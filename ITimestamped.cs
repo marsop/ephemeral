@@ -1,5 +1,9 @@
 using System;
 
-public interface ITimestamped {
-    DateTimeOffset Timestamp {get;}
+namespace seasonal
+{
+    public interface ITimestamped
+    {
+        DateTimeOffset Timestamp { get; }
+    }
 }
