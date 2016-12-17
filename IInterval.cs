@@ -10,7 +10,5 @@ namespace seasonal
         DateTimeOffset Start { get; }
         DateTimeOffset End { get; }
         TimeSpan Duration { get; }
-
-        bool Overlaps(IInterval other);
     }
 }
