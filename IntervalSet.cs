@@ -8,16 +8,16 @@ namespace seasonal
     public class DisjointIntervalSet : IList<IInterval>, IIntervalSet
     {
 
-        private SortedList<IInterval> _intervals;
+        private SortedList<IInterval, IInterval> _intervals = new SortedList<IInterval, IInterval>(new IntervalStartComparer());
 
-        public DisjointIntervalSet()
-        {
-            _intervals = new List<IInterval>();
-        }
+        public DisjointIntervalSet() { }
 
         public DisjointIntervalSet(IEnumerable<IInterval> intervals)
         {
-            _intervals = intervals.OrderBy(x => x.Start).ToList();
+            foreach (var interval in intervals)
+            {
+                Add(interval);
+            }
         }
 
         public DateTimeOffset Start => this.Min(x => x.Start);
@@ -31,18 +31,16 @@ namespace seasonal
 
         public IInterval this[int index]
         {
-            get { return _intervals[index]; }
-            set { _intervals[index] = value; }
+            get { return _intervals.Values[index]; }
+            set { _intervals.Values[index] = value; }
         }
 
-        public int IndexOf(IInterval item) => _intervals.IndexOf(item);
+        public int IndexOf(IInterval item) => _intervals.Values.IndexOf(item);
 
-        public void Insert(int index, IInterval item) {
-            if (this.Any(x => x.Overlaps(item)))
-                throw new OverlapException(nameof(item));
-            
-            _intervals.Insert(index, item);
-        } 
+        public void Insert(int index, IInterval item)
+        {
+            throw new NotSupportedException("The Set is already ordered");
+        }
 
         public void RemoveAt(int index) => _intervals.RemoveAt(index);
 
@@ -51,19 +49,19 @@ namespace seasonal
             if (this.Any(x => x.Overlaps(item)))
                 throw new OverlapException(nameof(item));
 
-            _intervals.Add(item);
+            _intervals.Add(item, item);
         }
 
         public void Clear() => _intervals.Clear();
 
-        public bool Contains(IInterval item) => _intervals.Contains(item);
+        public bool Contains(IInterval item) => _intervals.ContainsKey(item);
 
-        public void CopyTo(IInterval[] array, int arrayIndex) => _intervals.CopyTo(array, arrayIndex);
+        public void CopyTo(IInterval[] array, int arrayIndex) => _intervals.Values.CopyTo(array, arrayIndex);
 
         public bool Remove(IInterval item) => _intervals.Remove(item);
 
-        public IEnumerator<IInterval> GetEnumerator() => _intervals.GetEnumerator();
+        public IEnumerator<IInterval> GetEnumerator() => _intervals.Values.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() => _intervals.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => _intervals.Values.GetEnumerator();
     }
 }
