@@ -10,7 +10,7 @@ namespace seasonal
         public static bool Overlaps(this IInterval interval, IInterval other) =>
             interval.Intersect(other) != null;
 
-        public static bool Contains(this IInterval interval, DateTimeOffset timestamp)
+        public static bool Covers(this IInterval interval, DateTimeOffset timestamp)
         {
             if (timestamp < interval.Start)
                 return false;
@@ -27,6 +27,12 @@ namespace seasonal
             return true;
         }
 
+        public static Interval ToInterval(this IInterval interval) =>
+            new Interval(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
+        
+        public static bool Covers(this IInterval interval, IInterval other) =>
+            interval.Intersect(other).ToInterval().Equals(other);
+        
         public static IInterval Intersect(this IInterval interval, IInterval other)
         {
             var maxStart = interval.Start < other.Start ? other.Start : interval.Start;
@@ -35,11 +41,11 @@ namespace seasonal
             if (minEnd < maxStart)
                 return null;
 
-            if (minEnd == maxStart && (!interval.Contains(minEnd) || !other.Contains(minEnd)))
+            if (minEnd == maxStart && (!interval.Covers(minEnd) || !other.Covers(minEnd)))
                 return null;
 
-            var startIncluded = (interval.Contains(maxStart) && other.Contains(minEnd));
-            var endIncluded = (interval.Contains(minEnd) && other.Contains(minEnd));
+            var startIncluded = (interval.Covers(maxStart) && other.Covers(minEnd));
+            var endIncluded = (interval.Covers(minEnd) && other.Covers(minEnd));
 
             return new Interval(maxStart, minEnd, startIncluded, endIncluded);
         }

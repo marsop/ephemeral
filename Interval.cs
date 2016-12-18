@@ -5,7 +5,7 @@ namespace seasonal
     /// <summary>
     /// Immutable Interval Base class
     /// </summary>
-    public class Interval : IInterval
+    public class Interval : IInterval, IEquatable<IInterval>
     {
         private readonly DateTimeOffset _start;
         public DateTimeOffset Start => _start;
@@ -19,9 +19,17 @@ namespace seasonal
         private readonly bool _endIncluded;
         public bool EndIncluded => _endIncluded;
         
-        private TimeSpan _duration;
+        private readonly TimeSpan _duration;
         public TimeSpan Duration => _duration;
         
+        public static Interval CreatePoint(DateTimeOffset timestamp) =>
+            Interval.CreateClosed(timestamp, timestamp);
+
+        public static Interval CreateOpen(DateTimeOffset start, DateTimeOffset end) =>
+            new Interval(start, end, false, false);
+
+        public static Interval CreateClosed(DateTimeOffset start, DateTimeOffset end) =>
+            new Interval(start, end, true, true);
 
         public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded)
         {
@@ -50,5 +58,10 @@ namespace seasonal
             var endDelimiter = EndIncluded ? "]" : ")";
             return $"{startDelimiter}{Start} => {End}{endDelimiter}";
         }
+
+        public bool Equals(IInterval other) =>
+            (Start == other.Start && End == other.End && 
+            StartIncluded == other.StartIncluded && EndIncluded == other.EndIncluded);
+        
     }
 }
