@@ -45,6 +45,10 @@ namespace seasonal
 
         private bool IsValid() => (Start < End || (Start == End && StartIncluded && EndIncluded));
 
-        public override string ToString() => $"{Start} ({StartIncluded}) => {End} ({EndIncluded})";
+        public override string ToString() { 
+            var startDelimiter = StartIncluded ? "[" : "(";
+            var endDelimiter = EndIncluded ? "]" : ")";
+            return $"{startDelimiter}{Start} => {End}{endDelimiter}";
+        }
     }
 }
