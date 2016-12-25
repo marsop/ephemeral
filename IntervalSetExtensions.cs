@@ -6,7 +6,7 @@ namespace seasonal
     public static class IntervalSetExtensions
     {
         /// <summary>
-        /// Minimum interval that comprises all the intervals of the set.
+        /// Minimum interval that contais all the intervals of the set.
         /// </summary>
         /// <returns></returns>
         public static IInterval GetBoundingInterval(this IIntervalSet set) {
