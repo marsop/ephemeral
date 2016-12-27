@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace seasonal
+namespace ephemeral
 {
     public static class IntervalSetExtensions
     {
@@ -9,20 +9,20 @@ namespace seasonal
         /// Minimum interval that contais all the intervals of the set.
         /// </summary>
         /// <returns></returns>
-        public static IInterval GetBoundingInterval(this IIntervalSet set) {
+        public static IInterval GetBoundingInterval(this IDisjointIntervalSet set) {
             var startIncluded = set.Covers(set.Start);
             var endIncluded = set.Covers(set.End);
             return new Interval(set.Start, set.End, startIncluded, endIncluded);
         }
 
-        public static bool Covers(this IIntervalSet set, DateTimeOffset timestamp) =>
-            set.Covers(Interval.CreatePoint(timestamp));
+        /// <summary>
+        /// Checks if the timestamp is included in the interval set
+        /// </summary>
+        public static bool Covers(this IDisjointIntervalSet set, DateTimeOffset timestamp) =>
+            set.Any(x => x.Covers(timestamp));
 
-        public static bool Covers(this IIntervalSet set, IInterval interval) =>
-            set.Intersect(interval)
 
-
-        public static IIntervalSet Intersect(this IIntervalSet set, IInterval interval) =>
+        public static IDisjointIntervalSet Intersect(this IDisjointIntervalSet set, IInterval interval) =>
              null;
 
 
@@ -30,9 +30,7 @@ namespace seasonal
          /// Joins adjacent intervals.
          /// </summary>
          /// <returns> new set with the minimum amount of intervals</returns>
-         public static IIntervalSet Consolidate(this IIntervalSet set) {
-             if (set.HasOverlap)
-                throw new OverlapException(nameof(set));
+         public static IDisjointIntervalSet Consolidate(this IDisjointIntervalSet set) {
 
             // TODO
             return set;

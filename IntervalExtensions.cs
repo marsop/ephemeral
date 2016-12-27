@@ -1,15 +1,9 @@
 using System;
 
-namespace seasonal
+namespace ephemeral
 {
     public static class IntervalExtensions
     {
-        public static TimeSpan DurationUntilNow(this IInterval interval) =>
-            DateTimeOffset.UtcNow < interval.End ? interval.End - DateTimeOffset.UtcNow : interval.Duration;
-
-        public static bool Overlaps(this IInterval interval, IInterval other) =>
-            interval.Intersect(other) != null;
-
         public static bool Covers(this IInterval interval, DateTimeOffset timestamp)
         {
             if (timestamp < interval.Start)
@@ -27,33 +21,40 @@ namespace seasonal
             return true;
         }
 
+        public static bool Covers(this IInterval interval, IInterval other) =>
+            interval.Intersect(other).ToInterval().Equals(other);
+
+        public static TimeSpan DurationUntilNow(this IInterval interval) =>
+            DateTimeOffset.UtcNow < interval.End ? interval.End - DateTimeOffset.UtcNow : interval.Duration;
+
+
+        /// <summary>
+        /// Creates an interval based on the information of this object
+        /// </summary>
+        /// <returns> new interval </returns>
         public static Interval ToInterval(this IInterval interval) =>
             new Interval(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
         
-        public static bool Covers(this IInterval interval, IInterval other) =>
-            interval.Intersect(other).ToInterval().Equals(other);
-        
-        public static IInterval Intersect(this IInterval interval, IInterval other)
-        {
-            var maxStart = interval.Start < other.Start ? other.Start : interval.Start;
-            var minEnd = interval.End < other.End ? interval.End : other.End;
+        /// <summary>
+        /// Generates a new Interval, which is the intersection of the two.
+        /// WARN: Can be null
+        /// </summary>
+        /// <param name="interval"> first interval </param>
+        /// <param name="other"> second interval </param>
+        /// <returns> new interval </returns>
+        public static IInterval Intersect(this IInterval interval, IInterval other) =>
+            Interval.Intersect(interval, other);
 
-            if (minEnd < maxStart)
-                return null;
+        public static IDisjointIntervalSet Union(this IInterval interval, IInterval other) =>
+            new DisjointIntervalSet(interval, other);
 
-            if (minEnd == maxStart && (!interval.Covers(minEnd) || !other.Covers(minEnd)))
-                return null;
-
-            var startIncluded = (interval.Covers(maxStart) && other.Covers(minEnd));
-            var endIncluded = (interval.Covers(minEnd) && other.Covers(minEnd));
-
-            return new Interval(maxStart, minEnd, startIncluded, endIncluded);
-        }
-
-        public static TimeSpan GetOverlapDuration(this IInterval interval, IInterval other)
+        public static TimeSpan DurationOfIntersect(this IInterval interval, IInterval other)
         {
             var intersection = interval.Intersect(other);
             return intersection?.Duration ?? TimeSpan.Zero;
         }
+
+        public static bool Intersects(this IInterval interval, IInterval other) =>
+            interval.Intersect(other) != null;
     }
 }

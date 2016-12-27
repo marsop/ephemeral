@@ -1,6 +1,6 @@
 using System;
 
-namespace seasonal
+namespace ephemeral
 {
     /// <summary>
     /// Immutable Interval Base class
@@ -31,6 +31,14 @@ namespace seasonal
         public static Interval CreateClosed(DateTimeOffset start, DateTimeOffset end) =>
             new Interval(start, end, true, true);
 
+        public Interval(DateTimeOffset start, TimeSpan duration, bool startIncluded, bool endIncluded) :
+        this(start, start.Add(duration), startIncluded, endIncluded)
+        { }
+
+        public Interval(ITimestamped start, ITimestamped end, bool startIncluded, bool endIncluded) :
+        this(start.Timestamp, end.Timestamp, startIncluded, endIncluded)
+        { }
+
         public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded)
         {
             _start = start;
@@ -43,14 +51,6 @@ namespace seasonal
                 throw new InvalidDurationException(ToString());
         }
 
-        public Interval(DateTimeOffset start, TimeSpan duration, bool startIncluded, bool endIncluded) :
-        this(start, start.Add(duration), startIncluded, endIncluded)
-        { }
-
-        public Interval(ITimestamped start, ITimestamped end, bool startIncluded, bool endIncluded) :
-        this(start.Timestamp, end.Timestamp, startIncluded, endIncluded)
-        { }
-
         private bool IsValid() => (Start < End || (Start == End && StartIncluded && EndIncluded));
 
         public override string ToString() { 
@@ -62,6 +62,22 @@ namespace seasonal
         public bool Equals(IInterval other) =>
             (Start == other.Start && End == other.End && 
             StartIncluded == other.StartIncluded && EndIncluded == other.EndIncluded);
-        
+
+        public static Interval Intersect(IInterval first, IInterval second) {
+
+            var maxStart = first.Start < second.Start ? second.Start : first.Start;
+            var minEnd = first.End < second.End ? first.End : second.End;
+
+            if (minEnd < maxStart)
+                return null;
+
+            if (minEnd == maxStart && (!first.Covers(minEnd) || !second.Covers(minEnd)))
+                return null;
+
+            var startIncluded = (first.Covers(maxStart) && second.Covers(minEnd));
+            var endIncluded = (first.Covers(minEnd) && second.Covers(minEnd));
+
+            return new Interval(maxStart, minEnd, startIncluded, endIncluded);
+        }     
     }
 }

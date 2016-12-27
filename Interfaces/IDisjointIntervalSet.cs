@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace seasonal
+namespace ephemeral
 {
     /// <summary>
-    /// Collection of IIntervals
+    /// Collection of disjoint IIntervals
     /// </summary>
-    public interface IIntervalSet : IList<IInterval>
+    public interface IDisjointIntervalSet : IList<IInterval>
     {
-        bool HasOverlap { get; }
-        
+        bool IsContiguous { get; }
+
         /// <summary>
         /// Sum of durations of the enclosed intervals 
         /// </summary>

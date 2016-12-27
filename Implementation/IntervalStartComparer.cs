@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace seasonal
+namespace ephemeral
 {
     public class IntervalStartComparer : IComparer<IInterval>
     {

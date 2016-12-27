@@ -3,14 +3,25 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace seasonal
+namespace ephemeral
 {
-    public class DisjointIntervalSet : IList<IInterval>, IIntervalSet
+    public class DisjointIntervalSet : IList<IInterval>, IDisjointIntervalSet
     {
 
         private SortedList<IInterval, IInterval> _intervals = new SortedList<IInterval, IInterval>(new IntervalStartComparer());
 
         public DisjointIntervalSet() { }
+
+        public DisjointIntervalSet(params IInterval[] intervals)
+        {
+            if (intervals != null && intervals.Count() > 0) {
+
+                foreach (var interval in intervals)
+                {
+                    Add(interval);
+                }
+            }
+        }
 
         public DisjointIntervalSet(IEnumerable<IInterval> intervals)
         {
@@ -21,9 +32,13 @@ namespace seasonal
         }
 
         public DateTimeOffset Start => this.Min(x => x.Start);
+
         public DateTimeOffset End => this.Max(x => x.End);
+
         public TimeSpan AggregatedDuration => TimeSpan.FromTicks(this.Sum(x => x.Duration.Ticks));
-        public bool HasOverlap => this.Any(x => this.Any(y => x.Overlaps(x)));
+
+        // true if either there are no intervals or all can be smashed together into one
+        public bool IsContiguous => this.Consolidate().Count < 2;
 
         public int Count => _intervals.Count;
 
@@ -39,14 +54,14 @@ namespace seasonal
 
         public void Insert(int index, IInterval item)
         {
-            throw new NotSupportedException("The Set is already ordered");
+            throw new NotSupportedException("The Set is always ordered, please use Add()");
         }
 
         public void RemoveAt(int index) => _intervals.RemoveAt(index);
 
         public void Add(IInterval item)
         {
-            if (this.Any(x => x.Overlaps(item)))
+            if (this.Any(x => x.Intersects(item)))
                 throw new OverlapException(nameof(item));
 
             _intervals.Add(item, item);

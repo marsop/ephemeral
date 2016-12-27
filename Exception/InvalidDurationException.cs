@@ -1,6 +1,6 @@
 using System;
 
-namespace seasonal
+namespace ephemeral
 {
     public class InvalidDurationException : ArgumentException
     {
