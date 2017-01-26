@@ -8,17 +8,19 @@ namespace ephemeral
     public interface IInterval
     {
         /// <summary>
-        /// first point in time where the interval is defined
+        /// starting point of the interval
         /// </summary>
-        /// <returns></returns>
         DateTimeOffset Start { get; }
+
         bool StartIncluded { get; }
 
         /// <summary>
-        /// final point in time where the interval is defined
+        /// final point of the interval
         /// </summary>
         DateTimeOffset End { get; }
+
         bool EndIncluded { get; }
+
         TimeSpan Duration { get; }
     }
 }

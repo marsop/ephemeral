@@ -78,6 +78,20 @@ namespace ephemeral
             var endIncluded = (first.Covers(minEnd) && second.Covers(minEnd));
 
             return new Interval(maxStart, minEnd, startIncluded, endIncluded);
+        }
+
+        public static Interval Join(IInterval first, IInterval second) {
+
+            if (second.StartsBefore(first))
+                return Interval.Join(second, first);
+
+            if (first.Covers(second))
+                return first.ToInterval();
+
+            if (first.Intersects(second) || first.IsContiguouslyFollowedBy(second)) 
+                return new Interval(first.Start, second.End, first.StartIncluded, second.EndIncluded);
+
+            throw new ArgumentException("the intervals are not overlapping or contiguous");
         }     
     }
 }

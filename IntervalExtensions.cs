@@ -56,5 +56,15 @@ namespace ephemeral
 
         public static bool Intersects(this IInterval interval, IInterval other) =>
             interval.Intersect(other) != null;
+
+        public static bool IsContiguouslyFollowedBy(this IInterval interval, IInterval other) => 
+            interval.End == other.Start && (interval.EndIncluded != other.StartIncluded);
+
+        public static bool IsContiguouslyPreceededBy(this IInterval interval, IInterval other) =>
+            other.IsContiguouslyFollowedBy(interval);
+
+        public static bool StartsBefore(this IInterval interval, IInterval other) =>
+            (interval.Start < other.Start || (interval.Start == other.Start && interval.StartIncluded && !other.StartIncluded));
+
     }
 }
