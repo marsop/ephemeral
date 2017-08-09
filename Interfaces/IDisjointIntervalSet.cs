@@ -27,5 +27,9 @@ namespace ephemeral
         /// End of the last contained Interval
         /// </summary>
         DateTimeOffset End { get; }
+        
+        bool StartIncluded { get; }
+        
+        bool EndIncluded { get; }
     }
 }
