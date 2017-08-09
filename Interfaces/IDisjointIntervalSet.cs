@@ -8,15 +8,18 @@ namespace ephemeral
     /// </summary>
     public interface IDisjointIntervalSet : IList<IInterval>
     {
+        /// <summary>
+        /// True if all the contained intervals are contiguous or if empty
+        /// </summary>
         bool IsContiguous { get; }
 
         /// <summary>
-        /// Sum of durations of the enclosed intervals 
+        /// Sum of durations of each of the enclosed intervals 
         /// </summary>
         TimeSpan AggregatedDuration { get; }
         
         /// <summary>
-        /// Start of the last contained Interval
+        /// Start of the first contained Interval
         /// </summary>
         DateTimeOffset Start { get; }
         
