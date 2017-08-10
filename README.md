@@ -5,8 +5,19 @@ Example:
 
 ```
 var now = DateTimeOffset.UtcNow;
-Interval yesterday = new Interval(now.AddDays(-1), now);
+Interval yesterday = Interval.CreateOpen(now.AddDays(-1), now);
 Interval today = yesterday.Shift(TimeSpan.FromDays(1));
+
+Assert.IsFalse(yesterday.Overlaps(today));
+
+
+DisjointIntervalCollection collection = new DisjointIntervalCollection();
+collection.Add(yesterday);
+collection.Add(today);
+
+Assert.AreEqual(collection.Start, yesterday.Start);
+Assert.AreEqual(collection.End, today.End);
+
 ```
 
 
