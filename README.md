@@ -1,6 +1,10 @@
 # ephemeral
 C# Library to handle time intervals
 
+Supports for Open and Closed (time) intervals.
+Supports common operations like Covers(), Intersect(), Join(), etc..
+
+
 Interval Example:
 
 ```
