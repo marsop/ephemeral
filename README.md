@@ -18,12 +18,20 @@ yesterday.Overlaps(today); // true
 Interval Collection Example:
 
 ```
-DisjointIntervalCollection collection = new DisjointIntervalCollection();
+IDisjointIntervalSet collection = new DisjointIntervalSet();
 collection.Add(yesterday);
 collection.Add(today);
 
+var collection2 = yesterday.Union(today);
+
 collection.Start == yesterday.Start; // true
 collection.End == today.End; // true
+
+collection1.equals(collection2); // true
+
+var collection3 = collection2.Consolidate();
+collection2.Count(); // 2
+collection3.Count(); // 1
 
 ```
 
