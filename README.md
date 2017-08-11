@@ -21,12 +21,10 @@ Interval Collection Example:
 IDisjointIntervalSet collection = new DisjointIntervalSet();
 collection.Add(yesterday);
 collection.Add(today);
-
-var collection2 = yesterday.Union(today);
-
 collection.Start == yesterday.Start; // true
 collection.End == today.End; // true
 
+var collection2 = yesterday.Union(today);
 collection1.equals(collection2); // true
 
 var collection3 = collection2.Consolidate();
