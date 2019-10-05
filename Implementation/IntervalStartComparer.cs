@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ephemeral
+namespace Marsop.Ephemeral
 {
     public class IntervalStartComparer : IComparer<IInterval>
     {

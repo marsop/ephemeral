@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ephemeral
+namespace Marsop.Ephemeral
 {
     /// <summary>
     /// Collection of disjoint IIntervals
@@ -17,19 +17,25 @@ namespace ephemeral
         /// Sum of durations of each of the enclosed intervals 
         /// </summary>
         TimeSpan AggregatedDuration { get; }
-        
+
         /// <summary>
-        /// Start of the first contained Interval
+        /// Start of the earliest contained Interval
         /// </summary>
         DateTimeOffset Start { get; }
-        
+
         /// <summary>
-        /// End of the last contained Interval
+        /// End of the latest contained Interval
         /// </summary>
         DateTimeOffset End { get; }
-        
+
         bool StartIncluded { get; }
-        
+
         bool EndIncluded { get; }
+
+        /// <summary>
+        /// Minimum interval that contais all the intervals of the set.
+        /// </summary>
+        /// <returns></returns>
+        IInterval GetBoundingInterval() => new Interval(Start, End, this.Covers(Start), this.Covers(End));
     }
 }

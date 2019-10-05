@@ -1,6 +1,6 @@
 using System;
 
-namespace ephemeral
+namespace Marsop.Ephemeral
 {
     public class OverlapException : ArgumentException
     {

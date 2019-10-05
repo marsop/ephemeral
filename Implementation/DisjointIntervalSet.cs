@@ -3,9 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace ephemeral
+namespace Marsop.Ephemeral
 {
-    public class DisjointIntervalSet : IList<IInterval>, IDisjointIntervalSet
+    public class DisjointIntervalSet : IDisjointIntervalSet
     {
 
         private SortedList<IInterval, IInterval> _intervals = new SortedList<IInterval, IInterval>(new IntervalStartComparer());
@@ -44,11 +44,12 @@ namespace ephemeral
 
         public bool IsReadOnly => false;
 
-		public bool StartIncluded => throw new NotImplementedException();
 
-		public bool EndIncluded => throw new NotImplementedException();
+        public bool StartIncluded { get; }
 
-		public IInterval this[int index]
+        public bool EndIncluded { get; }
+
+        public IInterval this[int index]
         {
             get { return _intervals.Values[index]; }
             set { _intervals.Values[index] = value; }
