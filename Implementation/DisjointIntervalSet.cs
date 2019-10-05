@@ -44,6 +44,7 @@ namespace Marsop.Ephemeral
 
         public bool IsReadOnly => false;
 
+
         public bool StartIncluded { get; }
 
         public bool EndIncluded { get; }
