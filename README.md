@@ -5,7 +5,7 @@ C# Library to handle time intervals (composite start and end)
 - Support for common operations like Covers(), Intersect(), Join(), etc..
 - Support for collections of intervals.
 
-Interval Example:
+## Interval Example
 
 ```
 var now = DateTimeOffset.UtcNow;
@@ -15,7 +15,7 @@ Interval today = yesterday.Shift(TimeSpan.FromDays(1));
 yesterday.Overlaps(today); // returns true
 ```
 
-Interval Collection Example:
+## Interval Collection Example
 
 ```
 IDisjointIntervalSet collection = new DisjointIntervalSet();
