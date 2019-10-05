@@ -44,7 +44,11 @@ namespace ephemeral
 
         public bool IsReadOnly => false;
 
-        public IInterval this[int index]
+		public bool StartIncluded => throw new NotImplementedException();
+
+		public bool EndIncluded => throw new NotImplementedException();
+
+		public IInterval this[int index]
         {
             get { return _intervals.Values[index]; }
             set { _intervals.Values[index] = value; }
