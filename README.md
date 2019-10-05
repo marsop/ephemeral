@@ -1,9 +1,9 @@
 # ephemeral
-C# Library to handle time intervals
+C# Library to handle time intervals (composite start and end)
 
-Supports for Open and Closed (time) intervals.
-Supports common operations like Covers(), Intersect(), Join(), etc..
-
+- Support for open and closed (time) intervals.
+- Support for common operations like Covers(), Intersect(), Join(), etc..
+- Support for collections of intervals.
 
 Interval Example:
 
@@ -12,7 +12,7 @@ var now = DateTimeOffset.UtcNow;
 Interval yesterday = Interval.CreateOpen(now.AddDays(-1), now);
 Interval today = yesterday.Shift(TimeSpan.FromDays(1));
 
-yesterday.Overlaps(today); // true
+yesterday.Overlaps(today); // returns true
 ```
 
 Interval Collection Example:
@@ -27,12 +27,9 @@ collection.End == today.End; // true
 var collection2 = yesterday.Union(today);
 collection1.equals(collection2); // true
 
-var collection3 = collection2.Consolidate();
+var consolidatedCollection = collection2.Consolidate();
 collection2.Count(); // 2
-collection3.Count(); // 1
+consolidatedCollection.Count(); // 1
 
 ```
-
-
-Copyright (c) 2016 Alberto Gregorio
 
