@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleApplication
+namespace Marsop.Ephemeral
 {
     public class Program
     {

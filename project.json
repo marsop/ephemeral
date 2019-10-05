@@ -6,10 +6,10 @@
   },
   "dependencies": {},
   "frameworks": {
-    "netcoreapp1.1": {
+    "netcoreapp3.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "type": "platform",
+          "type": "default",
           "version": "1.1.0"
         }
       },

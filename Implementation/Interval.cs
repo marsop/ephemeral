@@ -1,30 +1,36 @@
+using Optional;
 using System;
 
-namespace ephemeral
+namespace Marsop.Ephemeral
 {
     /// <summary>
     /// Immutable Interval Base class
     /// </summary>
     public class Interval : IInterval, IEquatable<IInterval>
     {
-        private readonly DateTimeOffset _start;
-        public DateTimeOffset Start => _start;
+        public DateTimeOffset Start { get; }
 
-        private readonly DateTimeOffset _end;
-        public DateTimeOffset End => _end;
+        public DateTimeOffset End { get; }
 
-        private readonly bool _startIncluded;
-        public bool StartIncluded => _startIncluded;
-        
-        private readonly bool _endIncluded;
-        public bool EndIncluded => _endIncluded;
-        
-        private readonly TimeSpan _duration;
-        public TimeSpan Duration => _duration;
-        
-        public static Interval CreatePoint(DateTimeOffset timestamp) =>
-            Interval.CreateClosed(timestamp, timestamp);
+        public bool StartIncluded { get; }
 
+        public bool EndIncluded { get; }
+
+        
+
+        /// <summary>
+        /// Creates an interval with duration 0
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <returns></returns>
+        public static Interval CreatePoint(DateTimeOffset timestamp) => CreateClosed(timestamp, timestamp);
+
+        /// <summary>
+        /// Creates an interval with neither start or end included
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
         public static Interval CreateOpen(DateTimeOffset start, DateTimeOffset end) =>
             new Interval(start, end, false, false);
 
@@ -41,57 +47,62 @@ namespace ephemeral
 
         public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded)
         {
-            _start = start;
-            _end = end;
-            _duration = end - start;
-            _startIncluded = startIncluded;
-            _endIncluded = endIncluded;
+            Start = start;
+            End = end;
+            
+            StartIncluded = startIncluded;
+            EndIncluded = endIncluded;
 
-            if (!IsValid())
+
+            if (!IsValid)
                 throw new InvalidDurationException(ToString());
         }
 
-        private bool IsValid() => (Start < End || (Start == End && StartIncluded && EndIncluded));
+        public bool IsValid => (Start < End || (Start == End && StartIncluded && EndIncluded));
 
-        public override string ToString() { 
+
+        public override string ToString()
+        {
             var startDelimiter = StartIncluded ? "[" : "(";
             var endDelimiter = EndIncluded ? "]" : ")";
             return $"{startDelimiter}{Start} => {End}{endDelimiter}";
         }
 
         public bool Equals(IInterval other) =>
-            (Start == other.Start && End == other.End && 
+            (Start == other.Start && End == other.End &&
             StartIncluded == other.StartIncluded && EndIncluded == other.EndIncluded);
 
-        public static Interval Intersect(IInterval first, IInterval second) {
+        public static Option<Interval> Intersect(IInterval first, IInterval second)
+        {
 
             var maxStart = first.Start < second.Start ? second.Start : first.Start;
             var minEnd = first.End < second.End ? first.End : second.End;
 
             if (minEnd < maxStart)
-                return null;
+                return Option.None<Interval>();
 
             if (minEnd == maxStart && (!first.Covers(minEnd) || !second.Covers(minEnd)))
-                return null;
+                return Option.None<Interval>();
 
             var startIncluded = (first.Covers(maxStart) && second.Covers(minEnd));
             var endIncluded = (first.Covers(minEnd) && second.Covers(minEnd));
 
-            return new Interval(maxStart, minEnd, startIncluded, endIncluded);
+            return (new Interval(maxStart, minEnd, startIncluded, endIncluded)).Some();
         }
 
-        public static Interval Join(IInterval first, IInterval second) {
+        public static Interval Join(IInterval first, IInterval second)
+        {
 
             if (second.StartsBefore(first))
-                return Interval.Join(second, first);
+                return Join(second, first);
 
             if (first.Covers(second))
                 return first.ToInterval();
 
-            if (first.Intersects(second) || first.IsContiguouslyFollowedBy(second)) 
+            if (first.Intersects(second) || first.IsContiguouslyFollowedBy(second))
                 return new Interval(first.Start, second.End, first.StartIncluded, second.EndIncluded);
 
             throw new ArgumentException("the intervals are not overlapping or contiguous");
-        }     
+        }
     }
 }

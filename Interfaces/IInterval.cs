@@ -1,6 +1,6 @@
 using System;
 
-namespace ephemeral
+namespace Marsop.Ephemeral
 {
     /// <summary>
     /// Interface for classes implementing an interval
@@ -21,6 +21,8 @@ namespace ephemeral
 
         bool EndIncluded { get; }
 
-        TimeSpan Duration { get; }
+        public TimeSpan Duration => End - Start;
+
+        
     }
 }

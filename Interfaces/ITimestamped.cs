@@ -1,6 +1,6 @@
 using System;
 
-namespace ephemeral
+namespace Marsop.Ephemeral
 {
     /// <summary>
     /// Simple interface for objects with time information
