@@ -1,0 +1,831 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Interval
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Interval
+   ">
+    <meta name="generator" content="docfx 2.45.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Marsop.Ephemeral.Interval">
+  
+  
+  <h1 id="Marsop_Ephemeral_Interval" data-uid="Marsop.Ephemeral.Interval" class="text-break">Class Interval
+  </h1>
+  <div class="markdown level0 summary"><p>Immutable Interval Base class</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Interval</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Marsop.Ephemeral.IInterval.html">IInterval</a></div>
+    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="Marsop.Ephemeral.IInterval.html">IInterval</a>&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Marsop.Ephemeral.html">Marsop.Ephemeral</a></h6>
+  <h6><strong>Assembly</strong>: Marsop.Ephemeral.dll</h6>
+  <h5 id="Marsop_Ephemeral_Interval_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Interval : IInterval, IEquatable&lt;IInterval&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval__ctor_Marsop_Ephemeral_ITimestamped_Marsop_Ephemeral_ITimestamped_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.%23ctor(Marsop.Ephemeral.ITimestamped%2CMarsop.Ephemeral.ITimestamped%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L44">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval__ctor_" data-uid="Marsop.Ephemeral.Interval.#ctor*"></a>
+  <h4 id="Marsop_Ephemeral_Interval__ctor_Marsop_Ephemeral_ITimestamped_Marsop_Ephemeral_ITimestamped_System_Boolean_System_Boolean_" data-uid="Marsop.Ephemeral.Interval.#ctor(Marsop.Ephemeral.ITimestamped,Marsop.Ephemeral.ITimestamped,System.Boolean,System.Boolean)">Interval(ITimestamped, ITimestamped, Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Interval(ITimestamped start, ITimestamped end, bool startIncluded, bool endIncluded)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.ITimestamped.html">ITimestamped</a></td>
+        <td><span class="parametername">start</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.ITimestamped.html">ITimestamped</a></td>
+        <td><span class="parametername">end</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">startIncluded</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">endIncluded</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval__ctor_System_DateTimeOffset_System_DateTimeOffset_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.%23ctor(System.DateTimeOffset%2CSystem.DateTimeOffset%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L48">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval__ctor_" data-uid="Marsop.Ephemeral.Interval.#ctor*"></a>
+  <h4 id="Marsop_Ephemeral_Interval__ctor_System_DateTimeOffset_System_DateTimeOffset_System_Boolean_System_Boolean_" data-uid="Marsop.Ephemeral.Interval.#ctor(System.DateTimeOffset,System.DateTimeOffset,System.Boolean,System.Boolean)">Interval(DateTimeOffset, DateTimeOffset, Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td><span class="parametername">start</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td><span class="parametername">end</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">startIncluded</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">endIncluded</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval__ctor_System_DateTimeOffset_System_TimeSpan_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.%23ctor(System.DateTimeOffset%2CSystem.TimeSpan%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L40">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval__ctor_" data-uid="Marsop.Ephemeral.Interval.#ctor*"></a>
+  <h4 id="Marsop_Ephemeral_Interval__ctor_System_DateTimeOffset_System_TimeSpan_System_Boolean_System_Boolean_" data-uid="Marsop.Ephemeral.Interval.#ctor(System.DateTimeOffset,System.TimeSpan,System.Boolean,System.Boolean)">Interval(DateTimeOffset, TimeSpan, Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Interval(DateTimeOffset start, TimeSpan duration, bool startIncluded, bool endIncluded)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td><span class="parametername">start</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeSpan</span></td>
+        <td><span class="parametername">duration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">startIncluded</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">endIncluded</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_End.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.End%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L13">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_End_" data-uid="Marsop.Ephemeral.Interval.End*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_End" data-uid="Marsop.Ephemeral.Interval.End">End</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTimeOffset End { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_EndIncluded.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.EndIncluded%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L17">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_EndIncluded_" data-uid="Marsop.Ephemeral.Interval.EndIncluded*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_EndIncluded" data-uid="Marsop.Ephemeral.Interval.EndIncluded">EndIncluded</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EndIncluded { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_IsValid.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.IsValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L61">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_IsValid_" data-uid="Marsop.Ephemeral.Interval.IsValid*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_IsValid" data-uid="Marsop.Ephemeral.Interval.IsValid">IsValid</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsValid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_Start.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.Start%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L11">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_Start_" data-uid="Marsop.Ephemeral.Interval.Start*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_Start" data-uid="Marsop.Ephemeral.Interval.Start">Start</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTimeOffset Start { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_StartIncluded.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.StartIncluded%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L15">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_StartIncluded_" data-uid="Marsop.Ephemeral.Interval.StartIncluded*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_StartIncluded" data-uid="Marsop.Ephemeral.Interval.StartIncluded">StartIncluded</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool StartIncluded { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_CreateClosed_System_DateTimeOffset_System_DateTimeOffset_.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.CreateClosed(System.DateTimeOffset%2CSystem.DateTimeOffset)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L37">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_CreateClosed_" data-uid="Marsop.Ephemeral.Interval.CreateClosed*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_CreateClosed_System_DateTimeOffset_System_DateTimeOffset_" data-uid="Marsop.Ephemeral.Interval.CreateClosed(System.DateTimeOffset,System.DateTimeOffset)">CreateClosed(DateTimeOffset, DateTimeOffset)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Interval CreateClosed(DateTimeOffset start, DateTimeOffset end)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td><span class="parametername">start</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td><span class="parametername">end</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.Interval.html">Interval</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_CreateOpen_System_DateTimeOffset_System_DateTimeOffset_.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.CreateOpen(System.DateTimeOffset%2CSystem.DateTimeOffset)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L34">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_CreateOpen_" data-uid="Marsop.Ephemeral.Interval.CreateOpen*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_CreateOpen_System_DateTimeOffset_System_DateTimeOffset_" data-uid="Marsop.Ephemeral.Interval.CreateOpen(System.DateTimeOffset,System.DateTimeOffset)">CreateOpen(DateTimeOffset, DateTimeOffset)</h4>
+  <div class="markdown level1 summary"><p>Creates an interval with neither start or end included</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Interval CreateOpen(DateTimeOffset start, DateTimeOffset end)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td><span class="parametername">start</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td><span class="parametername">end</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.Interval.html">Interval</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_CreatePoint_System_DateTimeOffset_.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.CreatePoint(System.DateTimeOffset)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L26">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_CreatePoint_" data-uid="Marsop.Ephemeral.Interval.CreatePoint*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_CreatePoint_System_DateTimeOffset_" data-uid="Marsop.Ephemeral.Interval.CreatePoint(System.DateTimeOffset)">CreatePoint(DateTimeOffset)</h4>
+  <div class="markdown level1 summary"><p>Creates an interval with duration 0</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Interval CreatePoint(DateTimeOffset timestamp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTimeOffset</span></td>
+        <td><span class="parametername">timestamp</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.Interval.html">Interval</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_Equals_Marsop_Ephemeral_IInterval_.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.Equals(Marsop.Ephemeral.IInterval)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L71">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_Equals_" data-uid="Marsop.Ephemeral.Interval.Equals*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_Equals_Marsop_Ephemeral_IInterval_" data-uid="Marsop.Ephemeral.Interval.Equals(Marsop.Ephemeral.IInterval)">Equals(IInterval)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(IInterval other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.IInterval.html">IInterval</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_Intersect_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.Intersect(Marsop.Ephemeral.IInterval%2CMarsop.Ephemeral.IInterval)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L75">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_Intersect_" data-uid="Marsop.Ephemeral.Interval.Intersect*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_Intersect_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_" data-uid="Marsop.Ephemeral.Interval.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)">Intersect(IInterval, IInterval)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Option&lt;Interval&gt; Intersect(IInterval first, IInterval second)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.IInterval.html">IInterval</a></td>
+        <td><span class="parametername">first</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.IInterval.html">IInterval</a></td>
+        <td><span class="parametername">second</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Optional.Option</span>&lt;<a class="xref" href="Marsop.Ephemeral.Interval.html">Interval</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_Join_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.Join(Marsop.Ephemeral.IInterval%2CMarsop.Ephemeral.IInterval)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L93">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_Join_" data-uid="Marsop.Ephemeral.Interval.Join*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_Join_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_" data-uid="Marsop.Ephemeral.Interval.Join(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)">Join(IInterval, IInterval)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Interval Join(IInterval first, IInterval second)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.IInterval.html">IInterval</a></td>
+        <td><span class="parametername">first</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.IInterval.html">IInterval</a></td>
+        <td><span class="parametername">second</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Marsop.Ephemeral.Interval.html">Interval</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval_ToString.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L64">View Source</a>
+  </span>
+  <a id="Marsop_Ephemeral_Interval_ToString_" data-uid="Marsop.Ephemeral.Interval.ToString*"></a>
+  <h4 id="Marsop_Ephemeral_Interval_ToString" data-uid="Marsop.Ephemeral.Interval.ToString">ToString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IInterval.html">IInterval</a>
+  </div>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_Covers_Marsop_Ephemeral_IInterval_System_DateTimeOffset_">IntervalExtensions.Covers(IInterval, DateTimeOffset)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_Covers_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_">IntervalExtensions.Covers(IInterval, IInterval)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_DurationUntilNow_Marsop_Ephemeral_IInterval_">IntervalExtensions.DurationUntilNow(IInterval)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_ToInterval_Marsop_Ephemeral_IInterval_">IntervalExtensions.ToInterval(IInterval)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_Intersect_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_">IntervalExtensions.Intersect(IInterval, IInterval)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_Union_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_">IntervalExtensions.Union(IInterval, IInterval)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_DurationOfIntersect_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_">IntervalExtensions.DurationOfIntersect(IInterval, IInterval)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_Intersects_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_">IntervalExtensions.Intersects(IInterval, IInterval)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_IsContiguouslyFollowedBy_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_">IntervalExtensions.IsContiguouslyFollowedBy(IInterval, IInterval)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_IsContiguouslyPreceededBy_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_">IntervalExtensions.IsContiguouslyPreceededBy(IInterval, IInterval)</a>
+  </div>
+  <div>
+      <a class="xref" href="Marsop.Ephemeral.IntervalExtensions.html#Marsop_Ephemeral_IntervalExtensions_StartsBefore_Marsop_Ephemeral_IInterval_Marsop_Ephemeral_IInterval_">IntervalExtensions.StartsBefore(IInterval, IInterval)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/marsop/ephemeral/new/master/apiSpec/new?filename=Marsop_Ephemeral_Interval.md&amp;value=---%0Auid%3A%20Marsop.Ephemeral.Interval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/marsop/ephemeral/blob/master/Implementation/Interval.cs/#L9" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
