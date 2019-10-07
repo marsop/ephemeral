@@ -1,0 +1,2244 @@
+### YamlMime:ManagedReference
+items:
+- uid: Marsop.Ephemeral.Interval
+  commentId: T:Marsop.Ephemeral.Interval
+  id: Interval
+  parent: Marsop.Ephemeral
+  children:
+  - Marsop.Ephemeral.Interval.#ctor(Marsop.Ephemeral.ITimestamped,Marsop.Ephemeral.ITimestamped,System.Boolean,System.Boolean)
+  - Marsop.Ephemeral.Interval.#ctor(System.DateTimeOffset,System.DateTimeOffset,System.Boolean,System.Boolean)
+  - Marsop.Ephemeral.Interval.#ctor(System.DateTimeOffset,System.TimeSpan,System.Boolean,System.Boolean)
+  - Marsop.Ephemeral.Interval.CreateClosed(System.DateTimeOffset,System.DateTimeOffset)
+  - Marsop.Ephemeral.Interval.CreateOpen(System.DateTimeOffset,System.DateTimeOffset)
+  - Marsop.Ephemeral.Interval.CreatePoint(System.DateTimeOffset)
+  - Marsop.Ephemeral.Interval.End
+  - Marsop.Ephemeral.Interval.EndIncluded
+  - Marsop.Ephemeral.Interval.Equals(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.Interval.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.Interval.IsValid
+  - Marsop.Ephemeral.Interval.Join(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.Interval.Start
+  - Marsop.Ephemeral.Interval.StartIncluded
+  - Marsop.Ephemeral.Interval.ToString
+  langs:
+  - csharp
+  - vb
+  name: Interval
+  nameWithType: Interval
+  fullName: Marsop.Ephemeral.Interval
+  type: Class
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Interval
+    path: Implementation/Interval.cs
+    startLine: 8
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  summary: "\nImmutable Interval Base class\n"
+  example: []
+  syntax:
+    content: 'public class Interval : IInterval, IEquatable<IInterval>'
+    content.vb: >-
+      Public Class Interval
+          Implements IInterval, IEquatable(Of IInterval)
+  inheritance:
+  - System.Object
+  implements:
+  - Marsop.Ephemeral.IInterval
+  - System.IEquatable{Marsop.Ephemeral.IInterval}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Covers(System.DateTimeOffset)
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.DurationUntilNow
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.ToInterval
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Marsop.Ephemeral.Interval.Start
+  commentId: P:Marsop.Ephemeral.Interval.Start
+  id: Start
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: Start
+  nameWithType: Interval.Start
+  fullName: Marsop.Ephemeral.Interval.Start
+  type: Property
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Start
+    path: Implementation/Interval.cs
+    startLine: 10
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public DateTimeOffset Start { get; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+    content.vb: Public ReadOnly Property Start As DateTimeOffset
+  overload: Marsop.Ephemeral.Interval.Start*
+  implements:
+  - Marsop.Ephemeral.IInterval.Start
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.Interval.End
+  commentId: P:Marsop.Ephemeral.Interval.End
+  id: End
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: Interval.End
+  fullName: Marsop.Ephemeral.Interval.End
+  type: Property
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: End
+    path: Implementation/Interval.cs
+    startLine: 12
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public DateTimeOffset End { get; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+    content.vb: Public ReadOnly Property End As DateTimeOffset
+  overload: Marsop.Ephemeral.Interval.End*
+  implements:
+  - Marsop.Ephemeral.IInterval.End
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.Interval.StartIncluded
+  commentId: P:Marsop.Ephemeral.Interval.StartIncluded
+  id: StartIncluded
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: StartIncluded
+  nameWithType: Interval.StartIncluded
+  fullName: Marsop.Ephemeral.Interval.StartIncluded
+  type: Property
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: StartIncluded
+    path: Implementation/Interval.cs
+    startLine: 14
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool StartIncluded { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property StartIncluded As Boolean
+  overload: Marsop.Ephemeral.Interval.StartIncluded*
+  implements:
+  - Marsop.Ephemeral.IInterval.StartIncluded
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.Interval.EndIncluded
+  commentId: P:Marsop.Ephemeral.Interval.EndIncluded
+  id: EndIncluded
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: EndIncluded
+  nameWithType: Interval.EndIncluded
+  fullName: Marsop.Ephemeral.Interval.EndIncluded
+  type: Property
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: EndIncluded
+    path: Implementation/Interval.cs
+    startLine: 16
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool EndIncluded { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property EndIncluded As Boolean
+  overload: Marsop.Ephemeral.Interval.EndIncluded*
+  implements:
+  - Marsop.Ephemeral.IInterval.EndIncluded
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.Interval.CreatePoint(System.DateTimeOffset)
+  commentId: M:Marsop.Ephemeral.Interval.CreatePoint(System.DateTimeOffset)
+  id: CreatePoint(System.DateTimeOffset)
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: CreatePoint(DateTimeOffset)
+  nameWithType: Interval.CreatePoint(DateTimeOffset)
+  fullName: Marsop.Ephemeral.Interval.CreatePoint(System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: CreatePoint
+    path: Implementation/Interval.cs
+    startLine: 25
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  summary: "\nCreates an interval with duration 0\n"
+  example: []
+  syntax:
+    content: public static Interval CreatePoint(DateTimeOffset timestamp)
+    parameters:
+    - id: timestamp
+      type: System.DateTimeOffset
+      description: ''
+    return:
+      type: Marsop.Ephemeral.Interval
+      description: ''
+    content.vb: Public Shared Function CreatePoint(timestamp As DateTimeOffset) As Interval
+  overload: Marsop.Ephemeral.Interval.CreatePoint*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Marsop.Ephemeral.Interval.CreateOpen(System.DateTimeOffset,System.DateTimeOffset)
+  commentId: M:Marsop.Ephemeral.Interval.CreateOpen(System.DateTimeOffset,System.DateTimeOffset)
+  id: CreateOpen(System.DateTimeOffset,System.DateTimeOffset)
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: CreateOpen(DateTimeOffset, DateTimeOffset)
+  nameWithType: Interval.CreateOpen(DateTimeOffset, DateTimeOffset)
+  fullName: Marsop.Ephemeral.Interval.CreateOpen(System.DateTimeOffset, System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: CreateOpen
+    path: Implementation/Interval.cs
+    startLine: 33
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  summary: "\nCreates an interval with neither start or end included\n"
+  example: []
+  syntax:
+    content: public static Interval CreateOpen(DateTimeOffset start, DateTimeOffset end)
+    parameters:
+    - id: start
+      type: System.DateTimeOffset
+      description: ''
+    - id: end
+      type: System.DateTimeOffset
+      description: ''
+    return:
+      type: Marsop.Ephemeral.Interval
+      description: ''
+    content.vb: Public Shared Function CreateOpen(start As DateTimeOffset, end As DateTimeOffset) As Interval
+  overload: Marsop.Ephemeral.Interval.CreateOpen*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Marsop.Ephemeral.Interval.CreateClosed(System.DateTimeOffset,System.DateTimeOffset)
+  commentId: M:Marsop.Ephemeral.Interval.CreateClosed(System.DateTimeOffset,System.DateTimeOffset)
+  id: CreateClosed(System.DateTimeOffset,System.DateTimeOffset)
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: CreateClosed(DateTimeOffset, DateTimeOffset)
+  nameWithType: Interval.CreateClosed(DateTimeOffset, DateTimeOffset)
+  fullName: Marsop.Ephemeral.Interval.CreateClosed(System.DateTimeOffset, System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: CreateClosed
+    path: Implementation/Interval.cs
+    startLine: 36
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public static Interval CreateClosed(DateTimeOffset start, DateTimeOffset end)
+    parameters:
+    - id: start
+      type: System.DateTimeOffset
+    - id: end
+      type: System.DateTimeOffset
+    return:
+      type: Marsop.Ephemeral.Interval
+    content.vb: Public Shared Function CreateClosed(start As DateTimeOffset, end As DateTimeOffset) As Interval
+  overload: Marsop.Ephemeral.Interval.CreateClosed*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Marsop.Ephemeral.Interval.#ctor(System.DateTimeOffset,System.TimeSpan,System.Boolean,System.Boolean)
+  commentId: M:Marsop.Ephemeral.Interval.#ctor(System.DateTimeOffset,System.TimeSpan,System.Boolean,System.Boolean)
+  id: '#ctor(System.DateTimeOffset,System.TimeSpan,System.Boolean,System.Boolean)'
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: Interval(DateTimeOffset, TimeSpan, Boolean, Boolean)
+  nameWithType: Interval.Interval(DateTimeOffset, TimeSpan, Boolean, Boolean)
+  fullName: Marsop.Ephemeral.Interval.Interval(System.DateTimeOffset, System.TimeSpan, System.Boolean, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: .ctor
+    path: Implementation/Interval.cs
+    startLine: 39
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public Interval(DateTimeOffset start, TimeSpan duration, bool startIncluded, bool endIncluded)
+    parameters:
+    - id: start
+      type: System.DateTimeOffset
+    - id: duration
+      type: System.TimeSpan
+    - id: startIncluded
+      type: System.Boolean
+    - id: endIncluded
+      type: System.Boolean
+    content.vb: Public Sub New(start As DateTimeOffset, duration As TimeSpan, startIncluded As Boolean, endIncluded As Boolean)
+  overload: Marsop.Ephemeral.Interval.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.Interval.#ctor(Marsop.Ephemeral.ITimestamped,Marsop.Ephemeral.ITimestamped,System.Boolean,System.Boolean)
+  commentId: M:Marsop.Ephemeral.Interval.#ctor(Marsop.Ephemeral.ITimestamped,Marsop.Ephemeral.ITimestamped,System.Boolean,System.Boolean)
+  id: '#ctor(Marsop.Ephemeral.ITimestamped,Marsop.Ephemeral.ITimestamped,System.Boolean,System.Boolean)'
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: Interval(ITimestamped, ITimestamped, Boolean, Boolean)
+  nameWithType: Interval.Interval(ITimestamped, ITimestamped, Boolean, Boolean)
+  fullName: Marsop.Ephemeral.Interval.Interval(Marsop.Ephemeral.ITimestamped, Marsop.Ephemeral.ITimestamped, System.Boolean, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: .ctor
+    path: Implementation/Interval.cs
+    startLine: 43
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public Interval(ITimestamped start, ITimestamped end, bool startIncluded, bool endIncluded)
+    parameters:
+    - id: start
+      type: Marsop.Ephemeral.ITimestamped
+    - id: end
+      type: Marsop.Ephemeral.ITimestamped
+    - id: startIncluded
+      type: System.Boolean
+    - id: endIncluded
+      type: System.Boolean
+    content.vb: Public Sub New(start As ITimestamped, end As ITimestamped, startIncluded As Boolean, endIncluded As Boolean)
+  overload: Marsop.Ephemeral.Interval.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.Interval.#ctor(System.DateTimeOffset,System.DateTimeOffset,System.Boolean,System.Boolean)
+  commentId: M:Marsop.Ephemeral.Interval.#ctor(System.DateTimeOffset,System.DateTimeOffset,System.Boolean,System.Boolean)
+  id: '#ctor(System.DateTimeOffset,System.DateTimeOffset,System.Boolean,System.Boolean)'
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: Interval(DateTimeOffset, DateTimeOffset, Boolean, Boolean)
+  nameWithType: Interval.Interval(DateTimeOffset, DateTimeOffset, Boolean, Boolean)
+  fullName: Marsop.Ephemeral.Interval.Interval(System.DateTimeOffset, System.DateTimeOffset, System.Boolean, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: .ctor
+    path: Implementation/Interval.cs
+    startLine: 47
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded)
+    parameters:
+    - id: start
+      type: System.DateTimeOffset
+    - id: end
+      type: System.DateTimeOffset
+    - id: startIncluded
+      type: System.Boolean
+    - id: endIncluded
+      type: System.Boolean
+    content.vb: Public Sub New(start As DateTimeOffset, end As DateTimeOffset, startIncluded As Boolean, endIncluded As Boolean)
+  overload: Marsop.Ephemeral.Interval.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.Interval.IsValid
+  commentId: P:Marsop.Ephemeral.Interval.IsValid
+  id: IsValid
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: IsValid
+  nameWithType: Interval.IsValid
+  fullName: Marsop.Ephemeral.Interval.IsValid
+  type: Property
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: IsValid
+    path: Implementation/Interval.cs
+    startLine: 60
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool IsValid { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsValid As Boolean
+  overload: Marsop.Ephemeral.Interval.IsValid*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.Interval.ToString
+  commentId: M:Marsop.Ephemeral.Interval.ToString
+  id: ToString
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Interval.ToString()
+  fullName: Marsop.Ephemeral.Interval.ToString()
+  type: Method
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: ToString
+    path: Implementation/Interval.cs
+    startLine: 63
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overridden: System.Object.ToString
+  overload: Marsop.Ephemeral.Interval.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Marsop.Ephemeral.Interval.Equals(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.Interval.Equals(Marsop.Ephemeral.IInterval)
+  id: Equals(Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: Equals(IInterval)
+  nameWithType: Interval.Equals(IInterval)
+  fullName: Marsop.Ephemeral.Interval.Equals(Marsop.Ephemeral.IInterval)
+  type: Method
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Equals
+    path: Implementation/Interval.cs
+    startLine: 70
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool Equals(IInterval other)
+    parameters:
+    - id: other
+      type: Marsop.Ephemeral.IInterval
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As IInterval) As Boolean
+  overload: Marsop.Ephemeral.Interval.Equals*
+  implements:
+  - System.IEquatable{Marsop.Ephemeral.IInterval}.Equals(Marsop.Ephemeral.IInterval)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.Interval.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.Interval.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  id: Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: Intersect(IInterval, IInterval)
+  nameWithType: Interval.Intersect(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.Interval.Intersect(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  type: Method
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Intersect
+    path: Implementation/Interval.cs
+    startLine: 74
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public static Option<Interval> Intersect(IInterval first, IInterval second)
+    parameters:
+    - id: first
+      type: Marsop.Ephemeral.IInterval
+    - id: second
+      type: Marsop.Ephemeral.IInterval
+    return:
+      type: Optional.Option{Marsop.Ephemeral.Interval}
+    content.vb: 'Public Shared Function Intersect(first As IInterval, second As IInterval) As '
+  overload: Marsop.Ephemeral.Interval.Intersect*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Marsop.Ephemeral.Interval.Join(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.Interval.Join(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  id: Join(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.Interval
+  langs:
+  - csharp
+  - vb
+  name: Join(IInterval, IInterval)
+  nameWithType: Interval.Join(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.Interval.Join(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  type: Method
+  source:
+    remote:
+      path: Implementation/Interval.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Join
+    path: Implementation/Interval.cs
+    startLine: 92
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public static Interval Join(IInterval first, IInterval second)
+    parameters:
+    - id: first
+      type: Marsop.Ephemeral.IInterval
+    - id: second
+      type: Marsop.Ephemeral.IInterval
+    return:
+      type: Marsop.Ephemeral.Interval
+    content.vb: Public Shared Function Join(first As IInterval, second As IInterval) As Interval
+  overload: Marsop.Ephemeral.Interval.Join*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Marsop.Ephemeral
+  commentId: N:Marsop.Ephemeral
+  name: Marsop.Ephemeral
+  nameWithType: Marsop.Ephemeral
+  fullName: Marsop.Ephemeral
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Marsop.Ephemeral.IInterval
+  commentId: T:Marsop.Ephemeral.IInterval
+  parent: Marsop.Ephemeral
+  name: IInterval
+  nameWithType: IInterval
+  fullName: Marsop.Ephemeral.IInterval
+- uid: System.IEquatable{Marsop.Ephemeral.IInterval}
+  commentId: T:System.IEquatable{Marsop.Ephemeral.IInterval}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<IInterval>
+  nameWithType: IEquatable<IInterval>
+  fullName: System.IEquatable<Marsop.Ephemeral.IInterval>
+  nameWithType.vb: IEquatable(Of IInterval)
+  fullName.vb: System.IEquatable(Of Marsop.Ephemeral.IInterval)
+  name.vb: IEquatable(Of IInterval)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Covers(System.DateTimeOffset)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,System.DateTimeOffset)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,System.DateTimeOffset)
+  name: Covers(DateTimeOffset)
+  nameWithType: IntervalExtensions.Covers(DateTimeOffset)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Covers(System.DateTimeOffset)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Covers(System.DateTimeOffset)
+    name: Covers
+    nameWithType: IntervalExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Covers(System.DateTimeOffset)
+    name: Covers
+    nameWithType: IntervalExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: Covers(IInterval)
+  nameWithType: IntervalExtensions.Covers(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval)
+    name: Covers
+    nameWithType: IntervalExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval)
+    name: Covers
+    nameWithType: IntervalExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.DurationUntilNow
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.DurationUntilNow(Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow(Marsop.Ephemeral.IInterval)
+  name: DurationUntilNow()
+  nameWithType: IntervalExtensions.DurationUntilNow()
+  fullName: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow()
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow
+    name: DurationUntilNow
+    nameWithType: IntervalExtensions.DurationUntilNow
+    fullName: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow
+    name: DurationUntilNow
+    nameWithType: IntervalExtensions.DurationUntilNow
+    fullName: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.ToInterval
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.ToInterval(Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.ToInterval(Marsop.Ephemeral.IInterval)
+  name: ToInterval()
+  nameWithType: IntervalExtensions.ToInterval()
+  fullName: Marsop.Ephemeral.IntervalExtensions.ToInterval()
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.ToInterval
+    name: ToInterval
+    nameWithType: IntervalExtensions.ToInterval
+    fullName: Marsop.Ephemeral.IntervalExtensions.ToInterval
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.ToInterval
+    name: ToInterval
+    nameWithType: IntervalExtensions.ToInterval
+    fullName: Marsop.Ephemeral.IntervalExtensions.ToInterval
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: Intersect(IInterval)
+  nameWithType: IntervalExtensions.Intersect(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval)
+    name: Intersect
+    nameWithType: IntervalExtensions.Intersect
+    fullName: Marsop.Ephemeral.IntervalExtensions.Intersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval)
+    name: Intersect
+    nameWithType: IntervalExtensions.Intersect
+    fullName: Marsop.Ephemeral.IntervalExtensions.Intersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: Union(IInterval)
+  nameWithType: IntervalExtensions.Union(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval)
+    name: Union
+    nameWithType: IntervalExtensions.Union
+    fullName: Marsop.Ephemeral.IntervalExtensions.Union
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval)
+    name: Union
+    nameWithType: IntervalExtensions.Union
+    fullName: Marsop.Ephemeral.IntervalExtensions.Union
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: DurationOfIntersect(IInterval)
+  nameWithType: IntervalExtensions.DurationOfIntersect(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval)
+    name: DurationOfIntersect
+    nameWithType: IntervalExtensions.DurationOfIntersect
+    fullName: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval)
+    name: DurationOfIntersect
+    nameWithType: IntervalExtensions.DurationOfIntersect
+    fullName: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: Intersects(IInterval)
+  nameWithType: IntervalExtensions.Intersects(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval)
+    name: Intersects
+    nameWithType: IntervalExtensions.Intersects
+    fullName: Marsop.Ephemeral.IntervalExtensions.Intersects
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval)
+    name: Intersects
+    nameWithType: IntervalExtensions.Intersects
+    fullName: Marsop.Ephemeral.IntervalExtensions.Intersects
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: IsContiguouslyFollowedBy(IInterval)
+  nameWithType: IntervalExtensions.IsContiguouslyFollowedBy(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval)
+    name: IsContiguouslyFollowedBy
+    nameWithType: IntervalExtensions.IsContiguouslyFollowedBy
+    fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval)
+    name: IsContiguouslyFollowedBy
+    nameWithType: IntervalExtensions.IsContiguouslyFollowedBy
+    fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: IsContiguouslyPreceededBy(IInterval)
+  nameWithType: IntervalExtensions.IsContiguouslyPreceededBy(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval)
+    name: IsContiguouslyPreceededBy
+    nameWithType: IntervalExtensions.IsContiguouslyPreceededBy
+    fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval)
+    name: IsContiguouslyPreceededBy
+    nameWithType: IntervalExtensions.IsContiguouslyPreceededBy
+    fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval.Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalExtensions
+  definition: Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: StartsBefore(IInterval)
+  nameWithType: IntervalExtensions.StartsBefore(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval)
+    name: StartsBefore
+    nameWithType: IntervalExtensions.StartsBefore
+    fullName: Marsop.Ephemeral.IntervalExtensions.StartsBefore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval)
+    name: StartsBefore
+    nameWithType: IntervalExtensions.StartsBefore
+    fullName: Marsop.Ephemeral.IntervalExtensions.StartsBefore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,System.DateTimeOffset)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,System.DateTimeOffset)
+  isExternal: true
+  name: Covers(IInterval, DateTimeOffset)
+  nameWithType: IntervalExtensions.Covers(IInterval, DateTimeOffset)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval, System.DateTimeOffset)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,System.DateTimeOffset)
+    name: Covers
+    nameWithType: IntervalExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,System.DateTimeOffset)
+    name: Covers
+    nameWithType: IntervalExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions
+  commentId: T:Marsop.Ephemeral.IntervalExtensions
+  parent: Marsop.Ephemeral
+  name: IntervalExtensions
+  nameWithType: IntervalExtensions
+  fullName: Marsop.Ephemeral.IntervalExtensions
+- uid: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: Covers(IInterval, IInterval)
+  nameWithType: IntervalExtensions.Covers(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: Covers
+    nameWithType: IntervalExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Covers(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: Covers
+    nameWithType: IntervalExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.DurationUntilNow(Marsop.Ephemeral.IInterval)
+  name: DurationUntilNow(IInterval)
+  nameWithType: IntervalExtensions.DurationUntilNow(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow(Marsop.Ephemeral.IInterval)
+    name: DurationUntilNow
+    nameWithType: IntervalExtensions.DurationUntilNow
+    fullName: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow(Marsop.Ephemeral.IInterval)
+    name: DurationUntilNow
+    nameWithType: IntervalExtensions.DurationUntilNow
+    fullName: Marsop.Ephemeral.IntervalExtensions.DurationUntilNow
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.ToInterval(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.ToInterval(Marsop.Ephemeral.IInterval)
+  name: ToInterval(IInterval)
+  nameWithType: IntervalExtensions.ToInterval(IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.ToInterval(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.ToInterval(Marsop.Ephemeral.IInterval)
+    name: ToInterval
+    nameWithType: IntervalExtensions.ToInterval
+    fullName: Marsop.Ephemeral.IntervalExtensions.ToInterval
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.ToInterval(Marsop.Ephemeral.IInterval)
+    name: ToInterval
+    nameWithType: IntervalExtensions.ToInterval
+    fullName: Marsop.Ephemeral.IntervalExtensions.ToInterval
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: Intersect(IInterval, IInterval)
+  nameWithType: IntervalExtensions.Intersect(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: Intersect
+    nameWithType: IntervalExtensions.Intersect
+    fullName: Marsop.Ephemeral.IntervalExtensions.Intersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Intersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: Intersect
+    nameWithType: IntervalExtensions.Intersect
+    fullName: Marsop.Ephemeral.IntervalExtensions.Intersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: Union(IInterval, IInterval)
+  nameWithType: IntervalExtensions.Union(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: Union
+    nameWithType: IntervalExtensions.Union
+    fullName: Marsop.Ephemeral.IntervalExtensions.Union
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Union(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: Union
+    nameWithType: IntervalExtensions.Union
+    fullName: Marsop.Ephemeral.IntervalExtensions.Union
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: DurationOfIntersect(IInterval, IInterval)
+  nameWithType: IntervalExtensions.DurationOfIntersect(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: DurationOfIntersect
+    nameWithType: IntervalExtensions.DurationOfIntersect
+    fullName: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: DurationOfIntersect
+    nameWithType: IntervalExtensions.DurationOfIntersect
+    fullName: Marsop.Ephemeral.IntervalExtensions.DurationOfIntersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: Intersects(IInterval, IInterval)
+  nameWithType: IntervalExtensions.Intersects(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: Intersects
+    nameWithType: IntervalExtensions.Intersects
+    fullName: Marsop.Ephemeral.IntervalExtensions.Intersects
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.Intersects(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: Intersects
+    nameWithType: IntervalExtensions.Intersects
+    fullName: Marsop.Ephemeral.IntervalExtensions.Intersects
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: IsContiguouslyFollowedBy(IInterval, IInterval)
+  nameWithType: IntervalExtensions.IsContiguouslyFollowedBy(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: IsContiguouslyFollowedBy
+    nameWithType: IntervalExtensions.IsContiguouslyFollowedBy
+    fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: IsContiguouslyFollowedBy
+    nameWithType: IntervalExtensions.IsContiguouslyFollowedBy
+    fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyFollowedBy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: IsContiguouslyPreceededBy(IInterval, IInterval)
+  nameWithType: IntervalExtensions.IsContiguouslyPreceededBy(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: IsContiguouslyPreceededBy
+    nameWithType: IntervalExtensions.IsContiguouslyPreceededBy
+    fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: IsContiguouslyPreceededBy
+    nameWithType: IntervalExtensions.IsContiguouslyPreceededBy
+    fullName: Marsop.Ephemeral.IntervalExtensions.IsContiguouslyPreceededBy
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+  name: StartsBefore(IInterval, IInterval)
+  nameWithType: IntervalExtensions.StartsBefore(IInterval, IInterval)
+  fullName: Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: StartsBefore
+    nameWithType: IntervalExtensions.StartsBefore
+    fullName: Marsop.Ephemeral.IntervalExtensions.StartsBefore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalExtensions.StartsBefore(Marsop.Ephemeral.IInterval,Marsop.Ephemeral.IInterval)
+    name: StartsBefore
+    nameWithType: IntervalExtensions.StartsBefore
+    fullName: Marsop.Ephemeral.IntervalExtensions.StartsBefore
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.Interval.Start*
+  commentId: Overload:Marsop.Ephemeral.Interval.Start
+  name: Start
+  nameWithType: Interval.Start
+  fullName: Marsop.Ephemeral.Interval.Start
+- uid: Marsop.Ephemeral.IInterval.Start
+  commentId: P:Marsop.Ephemeral.IInterval.Start
+  parent: Marsop.Ephemeral.IInterval
+  name: Start
+  nameWithType: IInterval.Start
+  fullName: Marsop.Ephemeral.IInterval.Start
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: Marsop.Ephemeral.Interval.End*
+  commentId: Overload:Marsop.Ephemeral.Interval.End
+  name: End
+  nameWithType: Interval.End
+  fullName: Marsop.Ephemeral.Interval.End
+- uid: Marsop.Ephemeral.IInterval.End
+  commentId: P:Marsop.Ephemeral.IInterval.End
+  parent: Marsop.Ephemeral.IInterval
+  name: End
+  nameWithType: IInterval.End
+  fullName: Marsop.Ephemeral.IInterval.End
+- uid: Marsop.Ephemeral.Interval.StartIncluded*
+  commentId: Overload:Marsop.Ephemeral.Interval.StartIncluded
+  name: StartIncluded
+  nameWithType: Interval.StartIncluded
+  fullName: Marsop.Ephemeral.Interval.StartIncluded
+- uid: Marsop.Ephemeral.IInterval.StartIncluded
+  commentId: P:Marsop.Ephemeral.IInterval.StartIncluded
+  parent: Marsop.Ephemeral.IInterval
+  name: StartIncluded
+  nameWithType: IInterval.StartIncluded
+  fullName: Marsop.Ephemeral.IInterval.StartIncluded
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Marsop.Ephemeral.Interval.EndIncluded*
+  commentId: Overload:Marsop.Ephemeral.Interval.EndIncluded
+  name: EndIncluded
+  nameWithType: Interval.EndIncluded
+  fullName: Marsop.Ephemeral.Interval.EndIncluded
+- uid: Marsop.Ephemeral.IInterval.EndIncluded
+  commentId: P:Marsop.Ephemeral.IInterval.EndIncluded
+  parent: Marsop.Ephemeral.IInterval
+  name: EndIncluded
+  nameWithType: IInterval.EndIncluded
+  fullName: Marsop.Ephemeral.IInterval.EndIncluded
+- uid: Marsop.Ephemeral.Interval.CreatePoint*
+  commentId: Overload:Marsop.Ephemeral.Interval.CreatePoint
+  name: CreatePoint
+  nameWithType: Interval.CreatePoint
+  fullName: Marsop.Ephemeral.Interval.CreatePoint
+- uid: Marsop.Ephemeral.Interval
+  commentId: T:Marsop.Ephemeral.Interval
+  parent: Marsop.Ephemeral
+  name: Interval
+  nameWithType: Interval
+  fullName: Marsop.Ephemeral.Interval
+- uid: Marsop.Ephemeral.Interval.CreateOpen*
+  commentId: Overload:Marsop.Ephemeral.Interval.CreateOpen
+  name: CreateOpen
+  nameWithType: Interval.CreateOpen
+  fullName: Marsop.Ephemeral.Interval.CreateOpen
+- uid: Marsop.Ephemeral.Interval.CreateClosed*
+  commentId: Overload:Marsop.Ephemeral.Interval.CreateClosed
+  name: CreateClosed
+  nameWithType: Interval.CreateClosed
+  fullName: Marsop.Ephemeral.Interval.CreateClosed
+- uid: Marsop.Ephemeral.Interval.#ctor*
+  commentId: Overload:Marsop.Ephemeral.Interval.#ctor
+  name: Interval
+  nameWithType: Interval.Interval
+  fullName: Marsop.Ephemeral.Interval.Interval
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: Marsop.Ephemeral.ITimestamped
+  commentId: T:Marsop.Ephemeral.ITimestamped
+  parent: Marsop.Ephemeral
+  name: ITimestamped
+  nameWithType: ITimestamped
+  fullName: Marsop.Ephemeral.ITimestamped
+- uid: Marsop.Ephemeral.Interval.IsValid*
+  commentId: Overload:Marsop.Ephemeral.Interval.IsValid
+  name: IsValid
+  nameWithType: Interval.IsValid
+  fullName: Marsop.Ephemeral.Interval.IsValid
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.Interval.ToString*
+  commentId: Overload:Marsop.Ephemeral.Interval.ToString
+  name: ToString
+  nameWithType: Interval.ToString
+  fullName: Marsop.Ephemeral.Interval.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Marsop.Ephemeral.Interval.Equals*
+  commentId: Overload:Marsop.Ephemeral.Interval.Equals
+  name: Equals
+  nameWithType: Interval.Equals
+  fullName: Marsop.Ephemeral.Interval.Equals
+- uid: System.IEquatable{Marsop.Ephemeral.IInterval}.Equals(Marsop.Ephemeral.IInterval)
+  commentId: M:System.IEquatable{Marsop.Ephemeral.IInterval}.Equals(Marsop.Ephemeral.IInterval)
+  parent: System.IEquatable{Marsop.Ephemeral.IInterval}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(IInterval)
+  nameWithType: IEquatable<IInterval>.Equals(IInterval)
+  fullName: System.IEquatable<Marsop.Ephemeral.IInterval>.Equals(Marsop.Ephemeral.IInterval)
+  nameWithType.vb: IEquatable(Of IInterval).Equals(IInterval)
+  fullName.vb: System.IEquatable(Of Marsop.Ephemeral.IInterval).Equals(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<IInterval>.Equals
+    fullName: System.IEquatable<Marsop.Ephemeral.IInterval>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of IInterval).Equals
+    fullName: System.IEquatable(Of Marsop.Ephemeral.IInterval).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.Interval.Intersect*
+  commentId: Overload:Marsop.Ephemeral.Interval.Intersect
+  name: Intersect
+  nameWithType: Interval.Intersect
+  fullName: Marsop.Ephemeral.Interval.Intersect
+- uid: Optional.Option{Marsop.Ephemeral.Interval}
+  commentId: T:Optional.Option{Marsop.Ephemeral.Interval}
+  parent: Optional
+  definition: Optional.Option`1
+  name: Option<Interval>
+  nameWithType: Option<Interval>
+  fullName: Optional.Option<Marsop.Ephemeral.Interval>
+  nameWithType.vb: Option(Of Interval)
+  fullName.vb: Optional.Option(Of Marsop.Ephemeral.Interval)
+  name.vb: Option(Of Interval)
+  spec.csharp:
+  - uid: Optional.Option`1
+    name: Option
+    nameWithType: Option
+    fullName: Optional.Option
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Marsop.Ephemeral.Interval
+    name: Interval
+    nameWithType: Interval
+    fullName: Marsop.Ephemeral.Interval
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Optional.Option`1
+    name: Option
+    nameWithType: Option
+    fullName: Optional.Option
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Marsop.Ephemeral.Interval
+    name: Interval
+    nameWithType: Interval
+    fullName: Marsop.Ephemeral.Interval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Optional.Option`1
+  commentId: T:Optional.Option`1
+  isExternal: true
+  name: Option<T>
+  nameWithType: Option<T>
+  fullName: Optional.Option<T>
+  nameWithType.vb: Option(Of T)
+  fullName.vb: Optional.Option(Of T)
+  name.vb: Option(Of T)
+  spec.csharp:
+  - uid: Optional.Option`1
+    name: Option
+    nameWithType: Option
+    fullName: Optional.Option
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Optional.Option`1
+    name: Option
+    nameWithType: Option
+    fullName: Optional.Option
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Optional
+  commentId: N:Optional
+  isExternal: true
+  name: Optional
+  nameWithType: Optional
+  fullName: Optional
+- uid: Marsop.Ephemeral.Interval.Join*
+  commentId: Overload:Marsop.Ephemeral.Interval.Join
+  name: Join
+  nameWithType: Interval.Join
+  fullName: Marsop.Ephemeral.Interval.Join

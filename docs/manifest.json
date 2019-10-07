@@ -1,0 +1,224 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/AGR/Documents/projects/ephemeral",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "UZIKBcXz+nH6CPacAqE5Qw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.DisjointIntervalSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.DisjointIntervalSet.html",
+          "hash": "wjJ1Cp0ANIRoiiheiGrUNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.IDisjointIntervalSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.IDisjointIntervalSet.html",
+          "hash": "UhzjEKJDYebUH+z7s+xcJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.IInterval.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.IInterval.html",
+          "hash": "hJ+Cx9Uf7jialgdyLwP0fQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.ITimestamped.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.ITimestamped.html",
+          "hash": "QCKJ9hyYToFGZRK0tvc6AQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.Interval.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.Interval.html",
+          "hash": "ht3FBQjRcmSF49Xr2tFO8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.IntervalExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.IntervalExtensions.html",
+          "hash": "BTAQfCCDXN8Q2gxIcg8geA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.IntervalSetExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.IntervalSetExtensions.html",
+          "hash": "IydqpJ0FWSz1X5sHmfk3MQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.IntervalStartComparer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.IntervalStartComparer.html",
+          "hash": "/hOzeFsBJGYM3VNhu4fEHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.InvalidDurationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.InvalidDurationException.html",
+          "hash": "7/AIC6YdTCXzy403n9ihXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.OverlapException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.OverlapException.html",
+          "hash": "VJOYQzKBQecA7REfrXK+Kw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.Program.html",
+          "hash": "NlW0vEPtX+xhGc690eb4mQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/Marsop.Ephemeral.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/Marsop.Ephemeral.html",
+          "hash": "iZjxPRix/md5knppUKGj0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html",
+          "hash": "ssHYry6K4lQeakg36cuKvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 12,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

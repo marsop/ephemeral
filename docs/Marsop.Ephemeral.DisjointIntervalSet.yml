@@ -1,0 +1,3065 @@
+### YamlMime:ManagedReference
+items:
+- uid: Marsop.Ephemeral.DisjointIntervalSet
+  commentId: T:Marsop.Ephemeral.DisjointIntervalSet
+  id: DisjointIntervalSet
+  parent: Marsop.Ephemeral
+  children:
+  - Marsop.Ephemeral.DisjointIntervalSet.#ctor
+  - Marsop.Ephemeral.DisjointIntervalSet.#ctor(Marsop.Ephemeral.IInterval[])
+  - Marsop.Ephemeral.DisjointIntervalSet.#ctor(System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval})
+  - Marsop.Ephemeral.DisjointIntervalSet.Add(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.DisjointIntervalSet.AggregatedDuration
+  - Marsop.Ephemeral.DisjointIntervalSet.Clear
+  - Marsop.Ephemeral.DisjointIntervalSet.Contains(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.DisjointIntervalSet.CopyTo(Marsop.Ephemeral.IInterval[],System.Int32)
+  - Marsop.Ephemeral.DisjointIntervalSet.Count
+  - Marsop.Ephemeral.DisjointIntervalSet.End
+  - Marsop.Ephemeral.DisjointIntervalSet.EndIncluded
+  - Marsop.Ephemeral.DisjointIntervalSet.GetEnumerator
+  - Marsop.Ephemeral.DisjointIntervalSet.IndexOf(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.DisjointIntervalSet.Insert(System.Int32,Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.DisjointIntervalSet.IsContiguous
+  - Marsop.Ephemeral.DisjointIntervalSet.IsReadOnly
+  - Marsop.Ephemeral.DisjointIntervalSet.Item(System.Int32)
+  - Marsop.Ephemeral.DisjointIntervalSet.Remove(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.DisjointIntervalSet.RemoveAt(System.Int32)
+  - Marsop.Ephemeral.DisjointIntervalSet.Start
+  - Marsop.Ephemeral.DisjointIntervalSet.StartIncluded
+  - Marsop.Ephemeral.DisjointIntervalSet.System#Collections#IEnumerable#GetEnumerator
+  langs:
+  - csharp
+  - vb
+  name: DisjointIntervalSet
+  nameWithType: DisjointIntervalSet
+  fullName: Marsop.Ephemeral.DisjointIntervalSet
+  type: Class
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: DisjointIntervalSet
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 7
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: 'public class DisjointIntervalSet : IDisjointIntervalSet, IList<IInterval>, ICollection<IInterval>, IEnumerable<IInterval>, IEnumerable'
+    content.vb: >-
+      Public Class DisjointIntervalSet
+          Implements IDisjointIntervalSet, IList(Of IInterval), ICollection(Of IInterval), IEnumerable(Of IInterval), IEnumerable
+  inheritance:
+  - System.Object
+  implements:
+  - Marsop.Ephemeral.IDisjointIntervalSet
+  - System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}
+  - System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  - System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval}
+  - System.Collections.IEnumerable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Covers(System.DateTimeOffset)
+  - Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet)
+  - Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IInterval)
+  - Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Consolidate
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Marsop.Ephemeral.DisjointIntervalSet.#ctor
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.#ctor
+  id: '#ctor'
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: DisjointIntervalSet()
+  nameWithType: DisjointIntervalSet.DisjointIntervalSet()
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.DisjointIntervalSet()
+  type: Constructor
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: .ctor
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 12
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public DisjointIntervalSet()
+    content.vb: Public Sub New
+  overload: Marsop.Ephemeral.DisjointIntervalSet.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.DisjointIntervalSet.#ctor(Marsop.Ephemeral.IInterval[])
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.#ctor(Marsop.Ephemeral.IInterval[])
+  id: '#ctor(Marsop.Ephemeral.IInterval[])'
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: DisjointIntervalSet(IInterval[])
+  nameWithType: DisjointIntervalSet.DisjointIntervalSet(IInterval[])
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.DisjointIntervalSet(Marsop.Ephemeral.IInterval[])
+  type: Constructor
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: .ctor
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 14
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public DisjointIntervalSet(params IInterval[] intervals)
+    parameters:
+    - id: intervals
+      type: Marsop.Ephemeral.IInterval[]
+    content.vb: Public Sub New(ParamArray intervals As IInterval())
+  overload: Marsop.Ephemeral.DisjointIntervalSet.#ctor*
+  nameWithType.vb: DisjointIntervalSet.DisjointIntervalSet(IInterval())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Marsop.Ephemeral.DisjointIntervalSet.DisjointIntervalSet(Marsop.Ephemeral.IInterval())
+  name.vb: DisjointIntervalSet(IInterval())
+- uid: Marsop.Ephemeral.DisjointIntervalSet.#ctor(System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval})
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.#ctor(System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval})
+  id: '#ctor(System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval})'
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: DisjointIntervalSet(IEnumerable<IInterval>)
+  nameWithType: DisjointIntervalSet.DisjointIntervalSet(IEnumerable<IInterval>)
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.DisjointIntervalSet(System.Collections.Generic.IEnumerable<Marsop.Ephemeral.IInterval>)
+  type: Constructor
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: .ctor
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 25
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public DisjointIntervalSet(IEnumerable<IInterval> intervals)
+    parameters:
+    - id: intervals
+      type: System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval}
+    content.vb: Public Sub New(intervals As IEnumerable(Of IInterval))
+  overload: Marsop.Ephemeral.DisjointIntervalSet.#ctor*
+  nameWithType.vb: DisjointIntervalSet.DisjointIntervalSet(IEnumerable(Of IInterval))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Marsop.Ephemeral.DisjointIntervalSet.DisjointIntervalSet(System.Collections.Generic.IEnumerable(Of Marsop.Ephemeral.IInterval))
+  name.vb: DisjointIntervalSet(IEnumerable(Of IInterval))
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Start
+  commentId: P:Marsop.Ephemeral.DisjointIntervalSet.Start
+  id: Start
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: Start
+  nameWithType: DisjointIntervalSet.Start
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Start
+  type: Property
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Start
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 33
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public DateTimeOffset Start { get; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+    content.vb: Public ReadOnly Property Start As DateTimeOffset
+  overload: Marsop.Ephemeral.DisjointIntervalSet.Start*
+  implements:
+  - Marsop.Ephemeral.IDisjointIntervalSet.Start
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.DisjointIntervalSet.End
+  commentId: P:Marsop.Ephemeral.DisjointIntervalSet.End
+  id: End
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: DisjointIntervalSet.End
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.End
+  type: Property
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: End
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 35
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public DateTimeOffset End { get; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+    content.vb: Public ReadOnly Property End As DateTimeOffset
+  overload: Marsop.Ephemeral.DisjointIntervalSet.End*
+  implements:
+  - Marsop.Ephemeral.IDisjointIntervalSet.End
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.DisjointIntervalSet.AggregatedDuration
+  commentId: P:Marsop.Ephemeral.DisjointIntervalSet.AggregatedDuration
+  id: AggregatedDuration
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: AggregatedDuration
+  nameWithType: DisjointIntervalSet.AggregatedDuration
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.AggregatedDuration
+  type: Property
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: AggregatedDuration
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 37
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public TimeSpan AggregatedDuration { get; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public ReadOnly Property AggregatedDuration As TimeSpan
+  overload: Marsop.Ephemeral.DisjointIntervalSet.AggregatedDuration*
+  implements:
+  - Marsop.Ephemeral.IDisjointIntervalSet.AggregatedDuration
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.DisjointIntervalSet.IsContiguous
+  commentId: P:Marsop.Ephemeral.DisjointIntervalSet.IsContiguous
+  id: IsContiguous
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: IsContiguous
+  nameWithType: DisjointIntervalSet.IsContiguous
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.IsContiguous
+  type: Property
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: IsContiguous
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 40
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool IsContiguous { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsContiguous As Boolean
+  overload: Marsop.Ephemeral.DisjointIntervalSet.IsContiguous*
+  implements:
+  - Marsop.Ephemeral.IDisjointIntervalSet.IsContiguous
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Count
+  commentId: P:Marsop.Ephemeral.DisjointIntervalSet.Count
+  id: Count
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: DisjointIntervalSet.Count
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Count
+  type: Property
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Count
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 42
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Count As Integer
+  overload: Marsop.Ephemeral.DisjointIntervalSet.Count*
+  implements:
+  - System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Count
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.DisjointIntervalSet.IsReadOnly
+  commentId: P:Marsop.Ephemeral.DisjointIntervalSet.IsReadOnly
+  id: IsReadOnly
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: IsReadOnly
+  nameWithType: DisjointIntervalSet.IsReadOnly
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.IsReadOnly
+  type: Property
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: IsReadOnly
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 44
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool IsReadOnly { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsReadOnly As Boolean
+  overload: Marsop.Ephemeral.DisjointIntervalSet.IsReadOnly*
+  implements:
+  - System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.IsReadOnly
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.DisjointIntervalSet.StartIncluded
+  commentId: P:Marsop.Ephemeral.DisjointIntervalSet.StartIncluded
+  id: StartIncluded
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: StartIncluded
+  nameWithType: DisjointIntervalSet.StartIncluded
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.StartIncluded
+  type: Property
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: StartIncluded
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 47
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool StartIncluded { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property StartIncluded As Boolean
+  overload: Marsop.Ephemeral.DisjointIntervalSet.StartIncluded*
+  implements:
+  - Marsop.Ephemeral.IDisjointIntervalSet.StartIncluded
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.DisjointIntervalSet.EndIncluded
+  commentId: P:Marsop.Ephemeral.DisjointIntervalSet.EndIncluded
+  id: EndIncluded
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: EndIncluded
+  nameWithType: DisjointIntervalSet.EndIncluded
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.EndIncluded
+  type: Property
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: EndIncluded
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 49
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool EndIncluded { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property EndIncluded As Boolean
+  overload: Marsop.Ephemeral.DisjointIntervalSet.EndIncluded*
+  implements:
+  - Marsop.Ephemeral.IDisjointIntervalSet.EndIncluded
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Item(System.Int32)
+  commentId: P:Marsop.Ephemeral.DisjointIntervalSet.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: Item[Int32]
+  nameWithType: DisjointIntervalSet.Item[Int32]
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Item[System.Int32]
+  type: Property
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: this[]
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 51
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public IInterval this[int index] { get; set; }
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: Marsop.Ephemeral.IInterval
+    content.vb: Public Property Item(index As Integer) As IInterval
+  overload: Marsop.Ephemeral.DisjointIntervalSet.Item*
+  implements:
+  - System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.Item(System.Int32)
+  nameWithType.vb: DisjointIntervalSet.Item(Int32)
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  fullName.vb: Marsop.Ephemeral.DisjointIntervalSet.Item(System.Int32)
+  name.vb: Item(Int32)
+- uid: Marsop.Ephemeral.DisjointIntervalSet.IndexOf(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.IndexOf(Marsop.Ephemeral.IInterval)
+  id: IndexOf(Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: IndexOf(IInterval)
+  nameWithType: DisjointIntervalSet.IndexOf(IInterval)
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.IndexOf(Marsop.Ephemeral.IInterval)
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: IndexOf
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 57
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public int IndexOf(IInterval item)
+    parameters:
+    - id: item
+      type: Marsop.Ephemeral.IInterval
+    return:
+      type: System.Int32
+    content.vb: Public Function IndexOf(item As IInterval) As Integer
+  overload: Marsop.Ephemeral.DisjointIntervalSet.IndexOf*
+  implements:
+  - System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.IndexOf(Marsop.Ephemeral.IInterval)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Insert(System.Int32,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.Insert(System.Int32,Marsop.Ephemeral.IInterval)
+  id: Insert(System.Int32,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: Insert(Int32, IInterval)
+  nameWithType: DisjointIntervalSet.Insert(Int32, IInterval)
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Insert(System.Int32, Marsop.Ephemeral.IInterval)
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Insert
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 59
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public void Insert(int index, IInterval item)
+    parameters:
+    - id: index
+      type: System.Int32
+    - id: item
+      type: Marsop.Ephemeral.IInterval
+    content.vb: Public Sub Insert(index As Integer, item As IInterval)
+  overload: Marsop.Ephemeral.DisjointIntervalSet.Insert*
+  implements:
+  - System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.Insert(System.Int32,Marsop.Ephemeral.IInterval)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.DisjointIntervalSet.RemoveAt(System.Int32)
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.RemoveAt(System.Int32)
+  id: RemoveAt(System.Int32)
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: RemoveAt(Int32)
+  nameWithType: DisjointIntervalSet.RemoveAt(Int32)
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.RemoveAt(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: RemoveAt
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 64
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public void RemoveAt(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+    content.vb: Public Sub RemoveAt(index As Integer)
+  overload: Marsop.Ephemeral.DisjointIntervalSet.RemoveAt*
+  implements:
+  - System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.RemoveAt(System.Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Add(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.Add(Marsop.Ephemeral.IInterval)
+  id: Add(Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: Add(IInterval)
+  nameWithType: DisjointIntervalSet.Add(IInterval)
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Add(Marsop.Ephemeral.IInterval)
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Add
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 66
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public void Add(IInterval item)
+    parameters:
+    - id: item
+      type: Marsop.Ephemeral.IInterval
+    content.vb: Public Sub Add(item As IInterval)
+  overload: Marsop.Ephemeral.DisjointIntervalSet.Add*
+  implements:
+  - System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Add(Marsop.Ephemeral.IInterval)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Clear
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.Clear
+  id: Clear
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: DisjointIntervalSet.Clear()
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Clear()
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Clear
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 74
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear
+  overload: Marsop.Ephemeral.DisjointIntervalSet.Clear*
+  implements:
+  - System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Clear
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Contains(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.Contains(Marsop.Ephemeral.IInterval)
+  id: Contains(Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: Contains(IInterval)
+  nameWithType: DisjointIntervalSet.Contains(IInterval)
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Contains(Marsop.Ephemeral.IInterval)
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Contains
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 76
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool Contains(IInterval item)
+    parameters:
+    - id: item
+      type: Marsop.Ephemeral.IInterval
+    return:
+      type: System.Boolean
+    content.vb: Public Function Contains(item As IInterval) As Boolean
+  overload: Marsop.Ephemeral.DisjointIntervalSet.Contains*
+  implements:
+  - System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Contains(Marsop.Ephemeral.IInterval)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.DisjointIntervalSet.CopyTo(Marsop.Ephemeral.IInterval[],System.Int32)
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.CopyTo(Marsop.Ephemeral.IInterval[],System.Int32)
+  id: CopyTo(Marsop.Ephemeral.IInterval[],System.Int32)
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: CopyTo(IInterval[], Int32)
+  nameWithType: DisjointIntervalSet.CopyTo(IInterval[], Int32)
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.CopyTo(Marsop.Ephemeral.IInterval[], System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: CopyTo
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 78
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public void CopyTo(IInterval[] array, int arrayIndex)
+    parameters:
+    - id: array
+      type: Marsop.Ephemeral.IInterval[]
+    - id: arrayIndex
+      type: System.Int32
+    content.vb: Public Sub CopyTo(array As IInterval(), arrayIndex As Integer)
+  overload: Marsop.Ephemeral.DisjointIntervalSet.CopyTo*
+  implements:
+  - System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.CopyTo(Marsop.Ephemeral.IInterval[],System.Int32)
+  nameWithType.vb: DisjointIntervalSet.CopyTo(IInterval(), Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Marsop.Ephemeral.DisjointIntervalSet.CopyTo(Marsop.Ephemeral.IInterval(), System.Int32)
+  name.vb: CopyTo(IInterval(), Int32)
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Remove(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.Remove(Marsop.Ephemeral.IInterval)
+  id: Remove(Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: Remove(IInterval)
+  nameWithType: DisjointIntervalSet.Remove(IInterval)
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Remove(Marsop.Ephemeral.IInterval)
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: Remove
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 80
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public bool Remove(IInterval item)
+    parameters:
+    - id: item
+      type: Marsop.Ephemeral.IInterval
+    return:
+      type: System.Boolean
+    content.vb: Public Function Remove(item As IInterval) As Boolean
+  overload: Marsop.Ephemeral.DisjointIntervalSet.Remove*
+  implements:
+  - System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Remove(Marsop.Ephemeral.IInterval)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.DisjointIntervalSet.GetEnumerator
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.GetEnumerator
+  id: GetEnumerator
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: DisjointIntervalSet.GetEnumerator()
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.GetEnumerator()
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: GetEnumerator
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 82
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: public IEnumerator<IInterval> GetEnumerator()
+    return:
+      type: System.Collections.Generic.IEnumerator{Marsop.Ephemeral.IInterval}
+    content.vb: Public Function GetEnumerator As IEnumerator(Of IInterval)
+  overload: Marsop.Ephemeral.DisjointIntervalSet.GetEnumerator*
+  implements:
+  - System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval}.GetEnumerator
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Marsop.Ephemeral.DisjointIntervalSet.System#Collections#IEnumerable#GetEnumerator
+  commentId: M:Marsop.Ephemeral.DisjointIntervalSet.System#Collections#IEnumerable#GetEnumerator
+  id: System#Collections#IEnumerable#GetEnumerator
+  isEii: true
+  parent: Marsop.Ephemeral.DisjointIntervalSet
+  langs:
+  - csharp
+  - vb
+  name: IEnumerable.GetEnumerator()
+  nameWithType: DisjointIntervalSet.IEnumerable.GetEnumerator()
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.System.Collections.IEnumerable.GetEnumerator()
+  type: Method
+  source:
+    remote:
+      path: Implementation/DisjointIntervalSet.cs
+      branch: master
+      repo: https://github.com/marsop/ephemeral.git
+    id: System.Collections.IEnumerable.GetEnumerator
+    path: Implementation/DisjointIntervalSet.cs
+    startLine: 84
+  assemblies:
+  - Marsop.Ephemeral
+  namespace: Marsop.Ephemeral
+  syntax:
+    content: IEnumerator IEnumerable.GetEnumerator()
+    return:
+      type: System.Collections.IEnumerator
+    content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
+  overload: Marsop.Ephemeral.DisjointIntervalSet.System#Collections#IEnumerable#GetEnumerator*
+  implements:
+  - System.Collections.IEnumerable.GetEnumerator
+  nameWithType.vb: DisjointIntervalSet.System.Collections.IEnumerable.GetEnumerator()
+  name.vb: System.Collections.IEnumerable.GetEnumerator()
+references:
+- uid: Marsop.Ephemeral
+  commentId: N:Marsop.Ephemeral
+  name: Marsop.Ephemeral
+  nameWithType: Marsop.Ephemeral
+  fullName: Marsop.Ephemeral
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Marsop.Ephemeral.IDisjointIntervalSet
+  commentId: T:Marsop.Ephemeral.IDisjointIntervalSet
+  parent: Marsop.Ephemeral
+  name: IDisjointIntervalSet
+  nameWithType: IDisjointIntervalSet
+  fullName: Marsop.Ephemeral.IDisjointIntervalSet
+- uid: System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}
+  commentId: T:System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  name: IList<IInterval>
+  nameWithType: IList<IInterval>
+  fullName: System.Collections.Generic.IList<Marsop.Ephemeral.IInterval>
+  nameWithType.vb: IList(Of IInterval)
+  fullName.vb: System.Collections.Generic.IList(Of Marsop.Ephemeral.IInterval)
+  name.vb: IList(Of IInterval)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  commentId: T:System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  name: ICollection<IInterval>
+  nameWithType: ICollection<IInterval>
+  fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>
+  nameWithType.vb: ICollection(Of IInterval)
+  fullName.vb: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval)
+  name.vb: ICollection(Of IInterval)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: System.Collections.Generic.ICollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: System.Collections.Generic.ICollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval}
+  commentId: T:System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<IInterval>
+  nameWithType: IEnumerable<IInterval>
+  fullName: System.Collections.Generic.IEnumerable<Marsop.Ephemeral.IInterval>
+  nameWithType.vb: IEnumerable(Of IInterval)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Marsop.Ephemeral.IInterval)
+  name.vb: IEnumerable(Of IInterval)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Covers(System.DateTimeOffset)
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Covers(Marsop.Ephemeral.IDisjointIntervalSet,System.DateTimeOffset)
+  parent: Marsop.Ephemeral.IntervalSetExtensions
+  definition: Marsop.Ephemeral.IntervalSetExtensions.Covers(Marsop.Ephemeral.IDisjointIntervalSet,System.DateTimeOffset)
+  name: Covers(DateTimeOffset)
+  nameWithType: IntervalSetExtensions.Covers(DateTimeOffset)
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Covers(System.DateTimeOffset)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Covers(System.DateTimeOffset)
+    name: Covers
+    nameWithType: IntervalSetExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Covers(System.DateTimeOffset)
+    name: Covers
+    nameWithType: IntervalSetExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet)
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IDisjointIntervalSet)
+  parent: Marsop.Ephemeral.IntervalSetExtensions
+  definition: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IDisjointIntervalSet)
+  name: Join(IDisjointIntervalSet)
+  nameWithType: IntervalSetExtensions.Join(IDisjointIntervalSet)
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet)
+    name: Join
+    nameWithType: IntervalSetExtensions.Join
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet)
+    name: Join
+    nameWithType: IntervalSetExtensions.Join
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalSetExtensions
+  definition: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+  name: Join(IInterval)
+  nameWithType: IntervalSetExtensions.Join(IInterval)
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IInterval)
+    name: Join
+    nameWithType: IntervalSetExtensions.Join
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IInterval)
+    name: Join
+    nameWithType: IntervalSetExtensions.Join
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+  parent: Marsop.Ephemeral.IntervalSetExtensions
+  definition: Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+  name: Intersect(IInterval)
+  nameWithType: IntervalSetExtensions.Intersect(IInterval)
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IInterval)
+    name: Intersect
+    nameWithType: IntervalSetExtensions.Intersect
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Intersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IInterval)
+    name: Intersect
+    nameWithType: IntervalSetExtensions.Intersect
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Intersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.Marsop.Ephemeral.IntervalSetExtensions.Consolidate
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Consolidate(Marsop.Ephemeral.IDisjointIntervalSet)
+  parent: Marsop.Ephemeral.IntervalSetExtensions
+  definition: Marsop.Ephemeral.IntervalSetExtensions.Consolidate(Marsop.Ephemeral.IDisjointIntervalSet)
+  name: Consolidate()
+  nameWithType: IntervalSetExtensions.Consolidate()
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Consolidate()
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Consolidate
+    name: Consolidate
+    nameWithType: IntervalSetExtensions.Consolidate
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Consolidate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Consolidate
+    name: Consolidate
+    nameWithType: IntervalSetExtensions.Consolidate
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Consolidate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.IList`1
+  commentId: T:System.Collections.Generic.IList`1
+  isExternal: true
+  name: IList<T>
+  nameWithType: IList<T>
+  fullName: System.Collections.Generic.IList<T>
+  nameWithType.vb: IList(Of T)
+  fullName.vb: System.Collections.Generic.IList(Of T)
+  name.vb: IList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: System.Collections.Generic.ICollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: System.Collections.Generic.ICollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+- uid: Marsop.Ephemeral.IntervalSetExtensions.Covers(Marsop.Ephemeral.IDisjointIntervalSet,System.DateTimeOffset)
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Covers(Marsop.Ephemeral.IDisjointIntervalSet,System.DateTimeOffset)
+  isExternal: true
+  name: Covers(IDisjointIntervalSet, DateTimeOffset)
+  nameWithType: IntervalSetExtensions.Covers(IDisjointIntervalSet, DateTimeOffset)
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Covers(Marsop.Ephemeral.IDisjointIntervalSet, System.DateTimeOffset)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Covers(Marsop.Ephemeral.IDisjointIntervalSet,System.DateTimeOffset)
+    name: Covers
+    nameWithType: IntervalSetExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Covers(Marsop.Ephemeral.IDisjointIntervalSet,System.DateTimeOffset)
+    name: Covers
+    nameWithType: IntervalSetExtensions.Covers
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Covers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalSetExtensions
+  commentId: T:Marsop.Ephemeral.IntervalSetExtensions
+  parent: Marsop.Ephemeral
+  name: IntervalSetExtensions
+  nameWithType: IntervalSetExtensions
+  fullName: Marsop.Ephemeral.IntervalSetExtensions
+- uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IDisjointIntervalSet)
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IDisjointIntervalSet)
+  name: Join(IDisjointIntervalSet, IDisjointIntervalSet)
+  nameWithType: IntervalSetExtensions.Join(IDisjointIntervalSet, IDisjointIntervalSet)
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet, Marsop.Ephemeral.IDisjointIntervalSet)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IDisjointIntervalSet)
+    name: Join
+    nameWithType: IntervalSetExtensions.Join
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IDisjointIntervalSet)
+    name: Join
+    nameWithType: IntervalSetExtensions.Join
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+  name: Join(IDisjointIntervalSet, IInterval)
+  nameWithType: IntervalSetExtensions.Join(IDisjointIntervalSet, IInterval)
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+    name: Join
+    nameWithType: IntervalSetExtensions.Join
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Join(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+    name: Join
+    nameWithType: IntervalSetExtensions.Join
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Join
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+  name: Intersect(IDisjointIntervalSet, IInterval)
+  nameWithType: IntervalSetExtensions.Intersect(IDisjointIntervalSet, IInterval)
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IDisjointIntervalSet, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+    name: Intersect
+    nameWithType: IntervalSetExtensions.Intersect
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Intersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Intersect(Marsop.Ephemeral.IDisjointIntervalSet,Marsop.Ephemeral.IInterval)
+    name: Intersect
+    nameWithType: IntervalSetExtensions.Intersect
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Intersect
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IntervalSetExtensions.Consolidate(Marsop.Ephemeral.IDisjointIntervalSet)
+  commentId: M:Marsop.Ephemeral.IntervalSetExtensions.Consolidate(Marsop.Ephemeral.IDisjointIntervalSet)
+  name: Consolidate(IDisjointIntervalSet)
+  nameWithType: IntervalSetExtensions.Consolidate(IDisjointIntervalSet)
+  fullName: Marsop.Ephemeral.IntervalSetExtensions.Consolidate(Marsop.Ephemeral.IDisjointIntervalSet)
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Consolidate(Marsop.Ephemeral.IDisjointIntervalSet)
+    name: Consolidate
+    nameWithType: IntervalSetExtensions.Consolidate
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Consolidate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Marsop.Ephemeral.IntervalSetExtensions.Consolidate(Marsop.Ephemeral.IDisjointIntervalSet)
+    name: Consolidate
+    nameWithType: IntervalSetExtensions.Consolidate
+    fullName: Marsop.Ephemeral.IntervalSetExtensions.Consolidate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+    nameWithType: IDisjointIntervalSet
+    fullName: Marsop.Ephemeral.IDisjointIntervalSet
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.#ctor*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.#ctor
+  name: DisjointIntervalSet
+  nameWithType: DisjointIntervalSet.DisjointIntervalSet
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.DisjointIntervalSet
+- uid: Marsop.Ephemeral.IInterval[]
+  isExternal: true
+  name: IInterval[]
+  nameWithType: IInterval[]
+  fullName: Marsop.Ephemeral.IInterval[]
+  nameWithType.vb: IInterval()
+  fullName.vb: Marsop.Ephemeral.IInterval()
+  name.vb: IInterval()
+  spec.csharp:
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Start*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.Start
+  name: Start
+  nameWithType: DisjointIntervalSet.Start
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Start
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.Start
+  commentId: P:Marsop.Ephemeral.IDisjointIntervalSet.Start
+  parent: Marsop.Ephemeral.IDisjointIntervalSet
+  name: Start
+  nameWithType: IDisjointIntervalSet.Start
+  fullName: Marsop.Ephemeral.IDisjointIntervalSet.Start
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: Marsop.Ephemeral.DisjointIntervalSet.End*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.End
+  name: End
+  nameWithType: DisjointIntervalSet.End
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.End
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.End
+  commentId: P:Marsop.Ephemeral.IDisjointIntervalSet.End
+  parent: Marsop.Ephemeral.IDisjointIntervalSet
+  name: End
+  nameWithType: IDisjointIntervalSet.End
+  fullName: Marsop.Ephemeral.IDisjointIntervalSet.End
+- uid: Marsop.Ephemeral.DisjointIntervalSet.AggregatedDuration*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.AggregatedDuration
+  name: AggregatedDuration
+  nameWithType: DisjointIntervalSet.AggregatedDuration
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.AggregatedDuration
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.AggregatedDuration
+  commentId: P:Marsop.Ephemeral.IDisjointIntervalSet.AggregatedDuration
+  parent: Marsop.Ephemeral.IDisjointIntervalSet
+  name: AggregatedDuration
+  nameWithType: IDisjointIntervalSet.AggregatedDuration
+  fullName: Marsop.Ephemeral.IDisjointIntervalSet.AggregatedDuration
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: Marsop.Ephemeral.DisjointIntervalSet.IsContiguous*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.IsContiguous
+  name: IsContiguous
+  nameWithType: DisjointIntervalSet.IsContiguous
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.IsContiguous
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.IsContiguous
+  commentId: P:Marsop.Ephemeral.IDisjointIntervalSet.IsContiguous
+  parent: Marsop.Ephemeral.IDisjointIntervalSet
+  name: IsContiguous
+  nameWithType: IDisjointIntervalSet.IsContiguous
+  fullName: Marsop.Ephemeral.IDisjointIntervalSet.IsContiguous
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Count*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.Count
+  name: Count
+  nameWithType: DisjointIntervalSet.Count
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Count
+- uid: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Count
+  commentId: P:System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Count
+  parent: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.ICollection`1.Count
+  name: Count
+  nameWithType: ICollection<IInterval>.Count
+  fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.Count
+  nameWithType.vb: ICollection(Of IInterval).Count
+  fullName.vb: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).Count
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Collections.Generic.ICollection`1.Count
+  commentId: P:System.Collections.Generic.ICollection`1.Count
+  isExternal: true
+  name: Count
+  nameWithType: ICollection<T>.Count
+  fullName: System.Collections.Generic.ICollection<T>.Count
+  nameWithType.vb: ICollection(Of T).Count
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Count
+- uid: Marsop.Ephemeral.DisjointIntervalSet.IsReadOnly*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.IsReadOnly
+  name: IsReadOnly
+  nameWithType: DisjointIntervalSet.IsReadOnly
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.IsReadOnly
+- uid: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.IsReadOnly
+  commentId: P:System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.IsReadOnly
+  parent: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.ICollection`1.IsReadOnly
+  name: IsReadOnly
+  nameWithType: ICollection<IInterval>.IsReadOnly
+  fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.IsReadOnly
+  nameWithType.vb: ICollection(Of IInterval).IsReadOnly
+  fullName.vb: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).IsReadOnly
+- uid: System.Collections.Generic.ICollection`1.IsReadOnly
+  commentId: P:System.Collections.Generic.ICollection`1.IsReadOnly
+  isExternal: true
+  name: IsReadOnly
+  nameWithType: ICollection<T>.IsReadOnly
+  fullName: System.Collections.Generic.ICollection<T>.IsReadOnly
+  nameWithType.vb: ICollection(Of T).IsReadOnly
+  fullName.vb: System.Collections.Generic.ICollection(Of T).IsReadOnly
+- uid: Marsop.Ephemeral.DisjointIntervalSet.StartIncluded*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.StartIncluded
+  name: StartIncluded
+  nameWithType: DisjointIntervalSet.StartIncluded
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.StartIncluded
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.StartIncluded
+  commentId: P:Marsop.Ephemeral.IDisjointIntervalSet.StartIncluded
+  parent: Marsop.Ephemeral.IDisjointIntervalSet
+  name: StartIncluded
+  nameWithType: IDisjointIntervalSet.StartIncluded
+  fullName: Marsop.Ephemeral.IDisjointIntervalSet.StartIncluded
+- uid: Marsop.Ephemeral.DisjointIntervalSet.EndIncluded*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.EndIncluded
+  name: EndIncluded
+  nameWithType: DisjointIntervalSet.EndIncluded
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.EndIncluded
+- uid: Marsop.Ephemeral.IDisjointIntervalSet.EndIncluded
+  commentId: P:Marsop.Ephemeral.IDisjointIntervalSet.EndIncluded
+  parent: Marsop.Ephemeral.IDisjointIntervalSet
+  name: EndIncluded
+  nameWithType: IDisjointIntervalSet.EndIncluded
+  fullName: Marsop.Ephemeral.IDisjointIntervalSet.EndIncluded
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Item*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.Item
+  name: Item
+  nameWithType: DisjointIntervalSet.Item
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Item
+- uid: System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.Item(System.Int32)
+  commentId: P:System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.Item(System.Int32)
+  parent: System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.IList`1.Item(System.Int32)
+  name: Item[Int32]
+  nameWithType: IList<IInterval>.Item[Int32]
+  fullName: System.Collections.Generic.IList<Marsop.Ephemeral.IInterval>.Item[System.Int32]
+  nameWithType.vb: IList(Of IInterval).Item(Int32)
+  fullName.vb: System.Collections.Generic.IList(Of Marsop.Ephemeral.IInterval).Item(System.Int32)
+  name.vb: Item(Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1.Item(System.Int32)
+    name: Item
+    nameWithType: IList<IInterval>.Item
+    fullName: System.Collections.Generic.IList<Marsop.Ephemeral.IInterval>.Item
+    isExternal: true
+  - name: '['
+    nameWithType: '['
+    fullName: '['
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ']'
+    nameWithType: ']'
+    fullName: ']'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1.Item(System.Int32)
+    name: Item
+    nameWithType: IList(Of IInterval).Item
+    fullName: System.Collections.Generic.IList(Of Marsop.Ephemeral.IInterval).Item
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.IInterval
+  commentId: T:Marsop.Ephemeral.IInterval
+  parent: Marsop.Ephemeral
+  name: IInterval
+  nameWithType: IInterval
+  fullName: Marsop.Ephemeral.IInterval
+- uid: System.Collections.Generic.IList`1.Item(System.Int32)
+  commentId: P:System.Collections.Generic.IList`1.Item(System.Int32)
+  isExternal: true
+  name: Item[Int32]
+  nameWithType: IList<T>.Item[Int32]
+  fullName: System.Collections.Generic.IList<T>.Item[System.Int32]
+  nameWithType.vb: IList(Of T).Item(Int32)
+  fullName.vb: System.Collections.Generic.IList(Of T).Item(System.Int32)
+  name.vb: Item(Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1.Item(System.Int32)
+    name: Item
+    nameWithType: IList<T>.Item
+    fullName: System.Collections.Generic.IList<T>.Item
+    isExternal: true
+  - name: '['
+    nameWithType: '['
+    fullName: '['
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ']'
+    nameWithType: ']'
+    fullName: ']'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1.Item(System.Int32)
+    name: Item
+    nameWithType: IList(Of T).Item
+    fullName: System.Collections.Generic.IList(Of T).Item
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.IndexOf*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.IndexOf
+  name: IndexOf
+  nameWithType: DisjointIntervalSet.IndexOf
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.IndexOf
+- uid: System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.IndexOf(Marsop.Ephemeral.IInterval)
+  commentId: M:System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.IndexOf(Marsop.Ephemeral.IInterval)
+  parent: System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.IList`1.IndexOf(`0)
+  name: IndexOf(IInterval)
+  nameWithType: IList<IInterval>.IndexOf(IInterval)
+  fullName: System.Collections.Generic.IList<Marsop.Ephemeral.IInterval>.IndexOf(Marsop.Ephemeral.IInterval)
+  nameWithType.vb: IList(Of IInterval).IndexOf(IInterval)
+  fullName.vb: System.Collections.Generic.IList(Of Marsop.Ephemeral.IInterval).IndexOf(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1.IndexOf(`0)
+    name: IndexOf
+    nameWithType: IList<IInterval>.IndexOf
+    fullName: System.Collections.Generic.IList<Marsop.Ephemeral.IInterval>.IndexOf
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1.IndexOf(`0)
+    name: IndexOf
+    nameWithType: IList(Of IInterval).IndexOf
+    fullName: System.Collections.Generic.IList(Of Marsop.Ephemeral.IInterval).IndexOf
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IList`1.IndexOf(`0)
+  commentId: M:System.Collections.Generic.IList`1.IndexOf(`0)
+  isExternal: true
+  name: IndexOf(T)
+  nameWithType: IList<T>.IndexOf(T)
+  fullName: System.Collections.Generic.IList<T>.IndexOf(T)
+  nameWithType.vb: IList(Of T).IndexOf(T)
+  fullName.vb: System.Collections.Generic.IList(Of T).IndexOf(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1.IndexOf(`0)
+    name: IndexOf
+    nameWithType: IList<T>.IndexOf
+    fullName: System.Collections.Generic.IList<T>.IndexOf
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1.IndexOf(`0)
+    name: IndexOf
+    nameWithType: IList(Of T).IndexOf
+    fullName: System.Collections.Generic.IList(Of T).IndexOf
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Insert*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.Insert
+  name: Insert
+  nameWithType: DisjointIntervalSet.Insert
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Insert
+- uid: System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.Insert(System.Int32,Marsop.Ephemeral.IInterval)
+  commentId: M:System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.Insert(System.Int32,Marsop.Ephemeral.IInterval)
+  parent: System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.IList`1.Insert(System.Int32,`0)
+  name: Insert(Int32, IInterval)
+  nameWithType: IList<IInterval>.Insert(Int32, IInterval)
+  fullName: System.Collections.Generic.IList<Marsop.Ephemeral.IInterval>.Insert(System.Int32, Marsop.Ephemeral.IInterval)
+  nameWithType.vb: IList(Of IInterval).Insert(Int32, IInterval)
+  fullName.vb: System.Collections.Generic.IList(Of Marsop.Ephemeral.IInterval).Insert(System.Int32, Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1.Insert(System.Int32,`0)
+    name: Insert
+    nameWithType: IList<IInterval>.Insert
+    fullName: System.Collections.Generic.IList<Marsop.Ephemeral.IInterval>.Insert
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1.Insert(System.Int32,`0)
+    name: Insert
+    nameWithType: IList(Of IInterval).Insert
+    fullName: System.Collections.Generic.IList(Of Marsop.Ephemeral.IInterval).Insert
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IList`1.Insert(System.Int32,`0)
+  commentId: M:System.Collections.Generic.IList`1.Insert(System.Int32,`0)
+  isExternal: true
+  name: Insert(Int32, T)
+  nameWithType: IList<T>.Insert(Int32, T)
+  fullName: System.Collections.Generic.IList<T>.Insert(System.Int32, T)
+  nameWithType.vb: IList(Of T).Insert(Int32, T)
+  fullName.vb: System.Collections.Generic.IList(Of T).Insert(System.Int32, T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1.Insert(System.Int32,`0)
+    name: Insert
+    nameWithType: IList<T>.Insert
+    fullName: System.Collections.Generic.IList<T>.Insert
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1.Insert(System.Int32,`0)
+    name: Insert
+    nameWithType: IList(Of T).Insert
+    fullName: System.Collections.Generic.IList(Of T).Insert
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.RemoveAt*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.RemoveAt
+  name: RemoveAt
+  nameWithType: DisjointIntervalSet.RemoveAt
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.RemoveAt
+- uid: System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.RemoveAt(System.Int32)
+  commentId: M:System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}.RemoveAt(System.Int32)
+  parent: System.Collections.Generic.IList{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.IList`1.RemoveAt(System.Int32)
+  name: RemoveAt(Int32)
+  nameWithType: IList<IInterval>.RemoveAt(Int32)
+  fullName: System.Collections.Generic.IList<Marsop.Ephemeral.IInterval>.RemoveAt(System.Int32)
+  nameWithType.vb: IList(Of IInterval).RemoveAt(Int32)
+  fullName.vb: System.Collections.Generic.IList(Of Marsop.Ephemeral.IInterval).RemoveAt(System.Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1.RemoveAt(System.Int32)
+    name: RemoveAt
+    nameWithType: IList<IInterval>.RemoveAt
+    fullName: System.Collections.Generic.IList<Marsop.Ephemeral.IInterval>.RemoveAt
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1.RemoveAt(System.Int32)
+    name: RemoveAt
+    nameWithType: IList(Of IInterval).RemoveAt
+    fullName: System.Collections.Generic.IList(Of Marsop.Ephemeral.IInterval).RemoveAt
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IList`1.RemoveAt(System.Int32)
+  commentId: M:System.Collections.Generic.IList`1.RemoveAt(System.Int32)
+  isExternal: true
+  name: RemoveAt(Int32)
+  nameWithType: IList<T>.RemoveAt(Int32)
+  fullName: System.Collections.Generic.IList<T>.RemoveAt(System.Int32)
+  nameWithType.vb: IList(Of T).RemoveAt(Int32)
+  fullName.vb: System.Collections.Generic.IList(Of T).RemoveAt(System.Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1.RemoveAt(System.Int32)
+    name: RemoveAt
+    nameWithType: IList<T>.RemoveAt
+    fullName: System.Collections.Generic.IList<T>.RemoveAt
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1.RemoveAt(System.Int32)
+    name: RemoveAt
+    nameWithType: IList(Of T).RemoveAt
+    fullName: System.Collections.Generic.IList(Of T).RemoveAt
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Add*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.Add
+  name: Add
+  nameWithType: DisjointIntervalSet.Add
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Add
+- uid: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Add(Marsop.Ephemeral.IInterval)
+  commentId: M:System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Add(Marsop.Ephemeral.IInterval)
+  parent: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.ICollection`1.Add(`0)
+  name: Add(IInterval)
+  nameWithType: ICollection<IInterval>.Add(IInterval)
+  fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.Add(Marsop.Ephemeral.IInterval)
+  nameWithType.vb: ICollection(Of IInterval).Add(IInterval)
+  fullName.vb: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).Add(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Add(`0)
+    name: Add
+    nameWithType: ICollection<IInterval>.Add
+    fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.Add
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Add(`0)
+    name: Add
+    nameWithType: ICollection(Of IInterval).Add
+    fullName: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).Add
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.ICollection`1.Add(`0)
+  commentId: M:System.Collections.Generic.ICollection`1.Add(`0)
+  isExternal: true
+  name: Add(T)
+  nameWithType: ICollection<T>.Add(T)
+  fullName: System.Collections.Generic.ICollection<T>.Add(T)
+  nameWithType.vb: ICollection(Of T).Add(T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Add(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Add(`0)
+    name: Add
+    nameWithType: ICollection<T>.Add
+    fullName: System.Collections.Generic.ICollection<T>.Add
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Add(`0)
+    name: Add
+    nameWithType: ICollection(Of T).Add
+    fullName: System.Collections.Generic.ICollection(Of T).Add
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Clear*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.Clear
+  name: Clear
+  nameWithType: DisjointIntervalSet.Clear
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Clear
+- uid: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Clear
+  commentId: M:System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Clear
+  parent: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.ICollection`1.Clear
+  name: Clear()
+  nameWithType: ICollection<IInterval>.Clear()
+  fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.Clear()
+  nameWithType.vb: ICollection(Of IInterval).Clear()
+  fullName.vb: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Clear
+    name: Clear
+    nameWithType: ICollection<IInterval>.Clear
+    fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.Clear
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Clear
+    name: Clear
+    nameWithType: ICollection(Of IInterval).Clear
+    fullName: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).Clear
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.ICollection`1.Clear
+  commentId: M:System.Collections.Generic.ICollection`1.Clear
+  isExternal: true
+  name: Clear()
+  nameWithType: ICollection<T>.Clear()
+  fullName: System.Collections.Generic.ICollection<T>.Clear()
+  nameWithType.vb: ICollection(Of T).Clear()
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Clear
+    name: Clear
+    nameWithType: ICollection<T>.Clear
+    fullName: System.Collections.Generic.ICollection<T>.Clear
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Clear
+    name: Clear
+    nameWithType: ICollection(Of T).Clear
+    fullName: System.Collections.Generic.ICollection(Of T).Clear
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Contains*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.Contains
+  name: Contains
+  nameWithType: DisjointIntervalSet.Contains
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Contains
+- uid: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Contains(Marsop.Ephemeral.IInterval)
+  commentId: M:System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Contains(Marsop.Ephemeral.IInterval)
+  parent: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.ICollection`1.Contains(`0)
+  name: Contains(IInterval)
+  nameWithType: ICollection<IInterval>.Contains(IInterval)
+  fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.Contains(Marsop.Ephemeral.IInterval)
+  nameWithType.vb: ICollection(Of IInterval).Contains(IInterval)
+  fullName.vb: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).Contains(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
+    name: Contains
+    nameWithType: ICollection<IInterval>.Contains
+    fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.Contains
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
+    name: Contains
+    nameWithType: ICollection(Of IInterval).Contains
+    fullName: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).Contains
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.ICollection`1.Contains(`0)
+  commentId: M:System.Collections.Generic.ICollection`1.Contains(`0)
+  isExternal: true
+  name: Contains(T)
+  nameWithType: ICollection<T>.Contains(T)
+  fullName: System.Collections.Generic.ICollection<T>.Contains(T)
+  nameWithType.vb: ICollection(Of T).Contains(T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Contains(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
+    name: Contains
+    nameWithType: ICollection<T>.Contains
+    fullName: System.Collections.Generic.ICollection<T>.Contains
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
+    name: Contains
+    nameWithType: ICollection(Of T).Contains
+    fullName: System.Collections.Generic.ICollection(Of T).Contains
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.CopyTo*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.CopyTo
+  name: CopyTo
+  nameWithType: DisjointIntervalSet.CopyTo
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.CopyTo
+- uid: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.CopyTo(Marsop.Ephemeral.IInterval[],System.Int32)
+  commentId: M:System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.CopyTo(Marsop.Ephemeral.IInterval[],System.Int32)
+  parent: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+  name: CopyTo(IInterval[], Int32)
+  nameWithType: ICollection<IInterval>.CopyTo(IInterval[], Int32)
+  fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.CopyTo(Marsop.Ephemeral.IInterval[], System.Int32)
+  nameWithType.vb: ICollection(Of IInterval).CopyTo(IInterval(), Int32)
+  fullName.vb: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).CopyTo(Marsop.Ephemeral.IInterval(), System.Int32)
+  name.vb: CopyTo(IInterval(), Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    nameWithType: ICollection<IInterval>.CopyTo
+    fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.CopyTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    nameWithType: ICollection(Of IInterval).CopyTo
+    fullName: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).CopyTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+  commentId: M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+  isExternal: true
+  name: CopyTo(T[], Int32)
+  nameWithType: ICollection<T>.CopyTo(T[], Int32)
+  fullName: System.Collections.Generic.ICollection<T>.CopyTo(T[], System.Int32)
+  nameWithType.vb: ICollection(Of T).CopyTo(T(), Int32)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).CopyTo(T(), System.Int32)
+  name.vb: CopyTo(T(), Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    nameWithType: ICollection<T>.CopyTo
+    fullName: System.Collections.Generic.ICollection<T>.CopyTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    nameWithType: ICollection(Of T).CopyTo
+    fullName: System.Collections.Generic.ICollection(Of T).CopyTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.Remove*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.Remove
+  name: Remove
+  nameWithType: DisjointIntervalSet.Remove
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.Remove
+- uid: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Remove(Marsop.Ephemeral.IInterval)
+  commentId: M:System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}.Remove(Marsop.Ephemeral.IInterval)
+  parent: System.Collections.Generic.ICollection{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.ICollection`1.Remove(`0)
+  name: Remove(IInterval)
+  nameWithType: ICollection<IInterval>.Remove(IInterval)
+  fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.Remove(Marsop.Ephemeral.IInterval)
+  nameWithType.vb: ICollection(Of IInterval).Remove(IInterval)
+  fullName.vb: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).Remove(Marsop.Ephemeral.IInterval)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+    name: Remove
+    nameWithType: ICollection<IInterval>.Remove
+    fullName: System.Collections.Generic.ICollection<Marsop.Ephemeral.IInterval>.Remove
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+    name: Remove
+    nameWithType: ICollection(Of IInterval).Remove
+    fullName: System.Collections.Generic.ICollection(Of Marsop.Ephemeral.IInterval).Remove
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.ICollection`1.Remove(`0)
+  commentId: M:System.Collections.Generic.ICollection`1.Remove(`0)
+  isExternal: true
+  name: Remove(T)
+  nameWithType: ICollection<T>.Remove(T)
+  fullName: System.Collections.Generic.ICollection<T>.Remove(T)
+  nameWithType.vb: ICollection(Of T).Remove(T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Remove(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+    name: Remove
+    nameWithType: ICollection<T>.Remove
+    fullName: System.Collections.Generic.ICollection<T>.Remove
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+    name: Remove
+    nameWithType: ICollection(Of T).Remove
+    fullName: System.Collections.Generic.ICollection(Of T).Remove
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.GetEnumerator*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.GetEnumerator
+  name: GetEnumerator
+  nameWithType: DisjointIntervalSet.GetEnumerator
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.GetEnumerator
+- uid: System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval}.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval}.GetEnumerator
+  parent: System.Collections.Generic.IEnumerable{Marsop.Ephemeral.IInterval}
+  definition: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<IInterval>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<Marsop.Ephemeral.IInterval>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of IInterval).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Marsop.Ephemeral.IInterval).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable<IInterval>.GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable<Marsop.Ephemeral.IInterval>.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable(Of IInterval).GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable(Of Marsop.Ephemeral.IInterval).GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerator{Marsop.Ephemeral.IInterval}
+  commentId: T:System.Collections.Generic.IEnumerator{Marsop.Ephemeral.IInterval}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerator`1
+  name: IEnumerator<IInterval>
+  nameWithType: IEnumerator<IInterval>
+  fullName: System.Collections.Generic.IEnumerator<Marsop.Ephemeral.IInterval>
+  nameWithType.vb: IEnumerator(Of IInterval)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of Marsop.Ephemeral.IInterval)
+  name.vb: IEnumerator(Of IInterval)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    nameWithType: IEnumerator
+    fullName: System.Collections.Generic.IEnumerator
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    nameWithType: IEnumerator
+    fullName: System.Collections.Generic.IEnumerator
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+    nameWithType: IInterval
+    fullName: Marsop.Ephemeral.IInterval
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
+  isExternal: true
+  name: GetEnumerator()
+  nameWithType: IEnumerable<T>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of T).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable<T>.GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable(Of T).GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable(Of T).GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerator`1
+  commentId: T:System.Collections.Generic.IEnumerator`1
+  isExternal: true
+  name: IEnumerator<T>
+  nameWithType: IEnumerator<T>
+  fullName: System.Collections.Generic.IEnumerator<T>
+  nameWithType.vb: IEnumerator(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of T)
+  name.vb: IEnumerator(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    nameWithType: IEnumerator
+    fullName: System.Collections.Generic.IEnumerator
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    nameWithType: IEnumerator
+    fullName: System.Collections.Generic.IEnumerator
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Marsop.Ephemeral.DisjointIntervalSet.System#Collections#IEnumerable#GetEnumerator*
+  commentId: Overload:Marsop.Ephemeral.DisjointIntervalSet.System#Collections#IEnumerable#GetEnumerator
+  name: IEnumerable.GetEnumerator
+  nameWithType: DisjointIntervalSet.IEnumerable.GetEnumerator
+  fullName: Marsop.Ephemeral.DisjointIntervalSet.System.Collections.IEnumerable.GetEnumerator
+  nameWithType.vb: DisjointIntervalSet.System.Collections.IEnumerable.GetEnumerator
+  name.vb: System.Collections.IEnumerable.GetEnumerator
+- uid: System.Collections.IEnumerable.GetEnumerator
+  commentId: M:System.Collections.IEnumerable.GetEnumerator
+  parent: System.Collections.IEnumerable
+  isExternal: true
+  name: GetEnumerator()
+  nameWithType: IEnumerable.GetEnumerator()
+  fullName: System.Collections.IEnumerable.GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable.GetEnumerator
+    fullName: System.Collections.IEnumerable.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable.GetEnumerator
+    fullName: System.Collections.IEnumerable.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.IEnumerator
+  commentId: T:System.Collections.IEnumerator
+  parent: System.Collections
+  isExternal: true
+  name: IEnumerator
+  nameWithType: IEnumerator
+  fullName: System.Collections.IEnumerator

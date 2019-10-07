@@ -1,0 +1,26 @@
+### YamlMime:TableOfContent
+- uid: Marsop.Ephemeral
+  name: Marsop.Ephemeral
+  items:
+  - uid: Marsop.Ephemeral.DisjointIntervalSet
+    name: DisjointIntervalSet
+  - uid: Marsop.Ephemeral.IDisjointIntervalSet
+    name: IDisjointIntervalSet
+  - uid: Marsop.Ephemeral.IInterval
+    name: IInterval
+  - uid: Marsop.Ephemeral.Interval
+    name: Interval
+  - uid: Marsop.Ephemeral.IntervalExtensions
+    name: IntervalExtensions
+  - uid: Marsop.Ephemeral.IntervalSetExtensions
+    name: IntervalSetExtensions
+  - uid: Marsop.Ephemeral.IntervalStartComparer
+    name: IntervalStartComparer
+  - uid: Marsop.Ephemeral.InvalidDurationException
+    name: InvalidDurationException
+  - uid: Marsop.Ephemeral.ITimestamped
+    name: ITimestamped
+  - uid: Marsop.Ephemeral.OverlapException
+    name: OverlapException
+  - uid: Marsop.Ephemeral.Program
+    name: Program

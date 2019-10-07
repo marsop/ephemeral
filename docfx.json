@@ -9,7 +9,7 @@
           "src": "."
         }
       ],
-      "dest": "api",
+      "dest": "docs",
       "disableGitFeatures": false,
       "disableDefaultFilter": false
     }
@@ -18,8 +18,8 @@
     "content": [
       {
         "files": [
-          "api/**.yml",
-          "api/index.md"
+          "docs/**.yml",
+          "docs/index.md"
         ]
       },
       {
@@ -49,7 +49,7 @@
         ]
       }
     ],
-    "dest": "_site",
+    "dest": "docs",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
