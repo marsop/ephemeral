@@ -6,7 +6,7 @@
           "files": [
             "**.csproj"
           ],
-          "src": "C:\\Users\\AGR\\Documents\\projects\\ephemeral"
+          "src": "."
         }
       ],
       "dest": "api",
