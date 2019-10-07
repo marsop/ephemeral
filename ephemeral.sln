@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marsop.Ephemeral", "Marsop.Ephemeral.csproj", "{3700E717-A0DB-4311-BD6E-2CF826B3034A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marsop.Ephemeral.Tests", "Marsop.Ephemeral.Tests\Marsop.Ephemeral.Tests.csproj", "{5DBDA05A-A65D-49BF-B575-5DB97CFE5693}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3700E717-A0DB-4311-BD6E-2CF826B3034A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3700E717-A0DB-4311-BD6E-2CF826B3034A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3700E717-A0DB-4311-BD6E-2CF826B3034A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DBDA05A-A65D-49BF-B575-5DB97CFE5693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DBDA05A-A65D-49BF-B575-5DB97CFE5693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DBDA05A-A65D-49BF-B575-5DB97CFE5693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DBDA05A-A65D-49BF-B575-5DB97CFE5693}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

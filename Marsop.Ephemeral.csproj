@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Marsop.Ephemeral.Tests\**" />
+    <EmbeddedResource Remove="Marsop.Ephemeral.Tests\**" />
+    <None Remove="Marsop.Ephemeral.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="docfx.console" Version="2.45.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
