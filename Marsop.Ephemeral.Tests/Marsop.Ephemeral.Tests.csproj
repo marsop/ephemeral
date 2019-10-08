@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Marsop.Ephemeral.csproj" />
+    <ProjectReference Include="..\Marsop.Ephemeral\Marsop.Ephemeral.csproj" />
   </ItemGroup>
 
 </Project>
