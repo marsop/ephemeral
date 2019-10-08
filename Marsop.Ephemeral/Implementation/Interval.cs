@@ -1,5 +1,6 @@
-using Optional;
 using System;
+using Marsop.Ephemeral.Extensions;
+using Optional;
 
 namespace Marsop.Ephemeral
 {

@@ -1,7 +1,7 @@
 using Optional;
 using System;
 
-namespace Marsop.Ephemeral
+namespace Marsop.Ephemeral.Extensions
 {
     public static class IntervalExtensions
     {

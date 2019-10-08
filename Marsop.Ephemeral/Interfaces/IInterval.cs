@@ -12,6 +12,9 @@ namespace Marsop.Ephemeral
         /// </summary>
         DateTimeOffset Start { get; }
 
+        /// <summary>
+        /// indicates if the start timestamp is included in the interval
+        /// </summary>
         bool StartIncluded { get; }
 
         /// <summary>
@@ -19,10 +22,15 @@ namespace Marsop.Ephemeral
         /// </summary>
         DateTimeOffset End { get; }
 
+        /// <summary>
+        /// indicates if the end timestamp is included in the interval
+        /// </summary>
         bool EndIncluded { get; }
 
+        /// <summary>
+        /// gets the difference between start and end as timestamp
+        /// </summary>
         public TimeSpan Duration => End - Start;
 
-        
     }
 }
