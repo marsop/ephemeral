@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Marsop.Ephemeral.Tests\**" />
+    <EmbeddedResource Remove="Marsop.Ephemeral.Tests\**" />
+    <None Remove="Marsop.Ephemeral.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Optional" Version="4.0.0" />
   </ItemGroup>
 
