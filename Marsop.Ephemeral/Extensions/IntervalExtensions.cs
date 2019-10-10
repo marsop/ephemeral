@@ -1,73 +1,132 @@
-using Optional;
-using System;
+// <copyright file="IntervalExtensions.cs" company="Marsop">
+//     https://github.com/marsop/ephemeral
+// </copyright>
 
 namespace Marsop.Ephemeral.Extensions
 {
+    using System;
+    using Optional;
+
+    /// <summary>
+    /// Extension methods for <see cref="IInterval"/> objects
+    /// </summary>
     public static class IntervalExtensions
     {
+        /// <summary>
+        /// Verify if the interval covers the given <see cref="DateTimeOffset"/>
+        /// </summary>
+        /// <param name="interval">the current <see cref="IInterval"/> instance</param>
+        /// <param name="timestamp">the <see cref="DateTimeOffset"/></param>
+        /// <returns><code>true</code> if the offset is covered by the interval, <code>false</code> otherwise</returns>
         public static bool Covers(this IInterval interval, DateTimeOffset timestamp)
         {
             if (timestamp < interval.Start)
+            {
                 return false;
+            }
 
             if (interval.End < timestamp)
+            {
                 return false;
+            }
 
             if (timestamp == interval.Start && !interval.StartIncluded)
+            {
                 return false;
+            }
 
             if (timestamp == interval.End && !interval.EndIncluded)
+            {
                 return false;
+            }
 
             return true;
         }
 
+        /// <summary>
+        /// Checks if the interval covers the given <see cref="IInterval"/>
+        /// </summary>
+        /// <param name="interval">the current <see cref="IInterval"/> instance</param>
+        /// <param name="other">the <see cref="IInterval"/> instance to verify</param>
+        /// <returns><code>true</code> if the given <see cref="IInterval"/> is covered, <code>false</code> otherwise</returns>
         public static bool Covers(this IInterval interval, IInterval other) =>
             interval.Intersect(other).Match(x => x.ToInterval().Equals(other), () => false);
 
+        /// <summary>
+        /// Calculates duration as difference between actual UTC date time and the <see cref="IInterval"/>
+        /// </summary>
+        /// <param name="interval">the current <see cref="IInterval"/> instance</param>
+        /// <returns>a <see cref="TimeSpan"/> object representing the duration if the <see cref="IInterval"/> is not ended, a <see cref="TimeSpan"/> representing the delay compared to the <see cref="IInterval"/> end</returns>
         public static TimeSpan DurationUntilNow(this IInterval interval) =>
             DateTimeOffset.UtcNow < interval.End ? interval.End - DateTimeOffset.UtcNow : interval.Duration;
-
 
         /// <summary>
         /// Creates an interval based on the information of this object
         /// </summary>
-        /// <returns> new interval </returns>
+        /// <param name="interval">the current <see cref="IInterval"/> instance</param>
+        /// <returns>a new <see cref="Interval"/> object</returns>
         public static Interval ToInterval(this IInterval interval) =>
             new Interval(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
 
         /// <summary>
-        /// Generates a new Interval, which is the intersection of the two.
-        /// WARN: Can be null
+        /// Generates a new <see cref="Interval" />, which is the intersection of the two.
         /// </summary>
-        /// <param name="interval"> first interval </param>
-        /// <param name="other"> second interval </param>
-        /// <returns> new interval </returns>
+        /// <param name="interval">the current <see cref="IInterval"/> instance</param>
+        /// <param name="other">the <see cref="IInterval"/> instance to intersect</param>
+        /// <returns>a new <see cref="Interval"/> object representing the intersection between the two <see cref="IInterval"/> if an intersections exists, <code>null</code> otherwise</returns>
         public static Option<IInterval> Intersect(this IInterval interval, IInterval other) =>
             Interval.Intersect(interval, other).Map(x => (IInterval)x);
 
+        /// <summary>
+        /// Combines two <see cref="IInterval"/> instances
+        /// </summary>
+        /// <param name="i">the current <see cref="IInterval"/> instance</param>
+        /// <param name="j">the <see cref="IInterval"/> instance with which to merge</param>
+        /// <returns>a <see cref="IDisjointIntervalSet"/> representing the list of joined <see cref="IInterval"/> instances</returns>
         public static IDisjointIntervalSet Union(this IInterval i, IInterval j) => new DisjointIntervalSet(i, j);
 
+        /// <summary>
+        /// Calculates the duration of the intersection between intervals
+        /// </summary>
+        /// <param name="i">the current <see cref="IInterval"/> instance</param>
+        /// <param name="j">the <see cref="IInterval"/> instance in intersection</param>
+        /// <returns>a <see cref="TimeSpan"/> object representing the duration of the intersection between the intervals, an empty <see cref="TimeSpan"/> if there is no intersection between the given <see cref="IInterval"/> instances</returns>
         public static TimeSpan DurationOfIntersect(this IInterval i, IInterval j) =>
             i.Intersect(j).Match(x => x.Duration, () => TimeSpan.Zero);
 
-
+        /// <summary>
+        /// Checks if the interval intersects the given <see cref="IInterval"/>
+        /// </summary>
+        /// <param name="i">the current <see cref="IInterval"/> instance</param>
+        /// <param name="j">the <see cref="IInterval"/> instance to verify</param>
+        /// <returns><code>true</code> if the given <see cref="IInterval"/> has an intersection with the current one, <code>false</code> otherwise</returns>
         public static bool Intersects(this IInterval i, IInterval j) => i.Intersect(j).HasValue;
 
         /// <summary>
-        /// Returns true if both intervals join with each other seamlessly and without overlap
+        /// Checks if the given <see cref="IInterval"/> follows seamlessly and without overlap the current <see cref="IInterval"/>
         /// </summary>
-        /// <param name="i">earlier interval</param>
-        /// <param name="o">later interval</param>
-        /// <returns></returns>
+        /// <param name="i">the current <see cref="IInterval"/> instance</param>
+        /// <param name="o">the <see cref="IInterval"/> instance to check</param>
+        /// <returns><code>true</code> if the given <see cref="IInterval"/> is followed with the current one</returns>
         public static bool IsContiguouslyFollowedBy(this IInterval i, IInterval o) =>
             i.End == o.Start && (i.EndIncluded != o.StartIncluded);
 
+        /// <summary>
+        /// Checks if the current <see cref="IInterval"/> follows seamlessly and without overlap the given <see cref="IInterval"/>
+        /// </summary>
+        /// <param name="i">the current <see cref="IInterval"/> instance</param>
+        /// <param name="o">the <see cref="IInterval"/> instance to check</param>
+        /// <returns><code>true</code> if the <see cref="IInterval"/> is preceded the the given <see cref="IInterval"/>, <code>false</code> otherwise</returns>
         public static bool IsContiguouslyPreceededBy(this IInterval i, IInterval o) =>
             o.IsContiguouslyFollowedBy(i);
 
+        /// <summary>
+        /// Checks if the current <see cref="IInterval"/> starts before the given <see cref="IInterval"/>
+        /// </summary>
+        /// <param name="interval">the current <see cref="IInterval"/> instance</param>
+        /// <param name="other">the <see cref="IInterval"/> instance to check</param>
+        /// <returns><code>true</code> if the <see cref="IInterval"/> starts before the the given <see cref="IInterval"/>, <code>false</code> otherwise</returns>
         public static bool StartsBefore(this IInterval interval, IInterval other) =>
-            (interval.Start < other.Start || (interval.Start == other.Start && interval.StartIncluded && !other.StartIncluded));
-
+            interval.Start < other.Start || (interval.Start == other.Start && interval.StartIncluded && !other.StartIncluded);
     }
 }

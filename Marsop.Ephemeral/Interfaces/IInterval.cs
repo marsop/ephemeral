@@ -1,36 +1,39 @@
-using System;
+// <copyright file="IInterval.cs" company="Marsop">
+//     https://github.com/marsop/ephemeral
+// </copyright>
 
 namespace Marsop.Ephemeral
 {
+    using System;
+
     /// <summary>
     /// Interface for classes implementing an interval
     /// </summary>
     public interface IInterval
     {
         /// <summary>
-        /// starting point of the interval
+        /// Gets the starting point of the interval
         /// </summary>
         DateTimeOffset Start { get; }
 
         /// <summary>
-        /// indicates if the start timestamp is included in the interval
+        /// Gets a value indicating whether the start timestamp is included in the interval
         /// </summary>
         bool StartIncluded { get; }
 
         /// <summary>
-        /// final point of the interval
+        /// Gets the final point of the interval
         /// </summary>
         DateTimeOffset End { get; }
 
         /// <summary>
-        /// indicates if the end timestamp is included in the interval
+        /// Gets a value indicating whether the end timestamp is included in the interval
         /// </summary>
         bool EndIncluded { get; }
 
         /// <summary>
-        /// gets the difference between start and end as timestamp
+        /// Gets the difference between start and end as <see cref="TimeSpan"/>
         /// </summary>
-        public TimeSpan Duration => End - Start;
-
+        public TimeSpan Duration => this.End - this.Start;
     }
 }

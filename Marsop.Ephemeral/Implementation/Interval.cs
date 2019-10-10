@@ -1,109 +1,165 @@
-using System;
-using Marsop.Ephemeral.Extensions;
-using Optional;
+// <copyright file="Interval.cs" company="Marsop">
+//     https://github.com/marsop/ephemeral
+// </copyright>
 
 namespace Marsop.Ephemeral
 {
+    using System;
+    using Marsop.Ephemeral.Extensions;
+    using Optional;
+
     /// <summary>
     /// Immutable Interval Base class
     /// </summary>
     public class Interval : IInterval, IEquatable<IInterval>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Interval" /> class
+        /// </summary>
+        /// <param name="start">starting <see cref="DateTimeOffset"/></param>
+        /// <param name="duration">the interval duration</param>
+        /// <param name="startIncluded">a flag indicating whether the starting point is included</param>
+        /// <param name="endIncluded">a flag indicating whether the ending point is included</param>
+        public Interval(DateTimeOffset start, TimeSpan duration, bool startIncluded, bool endIncluded) : this(start, start.Add(duration), startIncluded, endIncluded)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Interval" /> class
+        /// </summary>
+        /// <param name="start">a <see cref="ITimestamped"/> instance representing the starting point</param>
+        /// <param name="end">a <see cref="ITimestamped"/> instance representing the ending point</param>
+        /// <param name="startIncluded">a flag indicating whether the starting point is included</param>
+        /// <param name="endIncluded">a flag indicating whether the ending point is included</param>
+        public Interval(ITimestamped start, ITimestamped end, bool startIncluded, bool endIncluded) : this(start.Timestamp, end.Timestamp, startIncluded, endIncluded)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Interval" /> class
+        /// </summary>
+        /// <param name="start">the starting <see cref="DateTimeOffset"/></param>
+        /// <param name="end">the ending <see cref="DateTimeOffset"/></param>
+        /// <param name="startIncluded">a flag indicating whether the starting point is included</param>
+        /// <param name="endIncluded">a flag indicating whether the ending point is included</param>
+        public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded)
+        {
+            this.Start = start;
+            this.End = end;
+
+            this.StartIncluded = startIncluded;
+            this.EndIncluded = endIncluded;
+
+            if (!this.IsValid)
+            {
+                throw new InvalidDurationException(this.ToString());
+            }
+        }
+
+        /// <inheritdoc cref="IInterval.Start"/>
         public DateTimeOffset Start { get; }
 
+        /// <inheritdoc cref="IInterval.End"/>
         public DateTimeOffset End { get; }
 
+        /// <inheritdoc cref="IInterval.StartIncluded"/>
         public bool StartIncluded { get; }
 
+        /// <inheritdoc cref="IInterval.EndIncluded"/>
         public bool EndIncluded { get; }
-
         
+        /// <summary>
+        /// Checks if the current <see cref="Interval"/> has coherent starting and ending points
+        /// </summary>
+        /// <returns><code>true</code> if starting and ending points are valid, <code>false</code> otherwise</returns>
+        public bool IsValid => this.Start < this.End || (this.Start == this.End && this.StartIncluded && this.EndIncluded);
 
         /// <summary>
         /// Creates an interval with duration 0
         /// </summary>
-        /// <param name="timestamp"></param>
-        /// <returns></returns>
+        /// <param name="timestamp">the <see cref="DateTimeOffset"/></param>
+        /// <returns>an <see cref="Interval"/> with start and end point set with the given <see cref="DateTimeOffset"/></returns>
         public static Interval CreatePoint(DateTimeOffset timestamp) => CreateClosed(timestamp, timestamp);
 
         /// <summary>
         /// Creates an interval with neither start or end included
         /// </summary>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
-        /// <returns></returns>
-        public static Interval CreateOpen(DateTimeOffset start, DateTimeOffset end) =>
-            new Interval(start, end, false, false);
+        /// <param name="start">the starting <see cref="DateTimeOffset"/></param>
+        /// <param name="end">the ending <see cref="DateTimeOffset"/></param>
+        /// <returns>an <see cref="Interval"/> with neither start or end included</returns>
+        public static Interval CreateOpen(DateTimeOffset start, DateTimeOffset end) => new Interval(start, end, false, false);
 
-        public static Interval CreateClosed(DateTimeOffset start, DateTimeOffset end) =>
-            new Interval(start, end, true, true);
+        /// <summary>
+        /// Creates an interval with both start and end included
+        /// </summary>
+        /// <param name="start">the starting <see cref="DateTimeOffset"/></param>
+        /// <param name="end">the ending <see cref="DateTimeOffset"/></param>
+        /// <returns>an <see cref="Interval"/> with both start and end included</returns>
+        public static Interval CreateClosed(DateTimeOffset start, DateTimeOffset end) => new Interval(start, end, true, true);
 
-        public Interval(DateTimeOffset start, TimeSpan duration, bool startIncluded, bool endIncluded) :
-        this(start, start.Add(duration), startIncluded, endIncluded)
-        { }
-
-        public Interval(ITimestamped start, ITimestamped end, bool startIncluded, bool endIncluded) :
-        this(start.Timestamp, end.Timestamp, startIncluded, endIncluded)
-        { }
-
-        public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded)
-        {
-            Start = start;
-            End = end;
-            
-            StartIncluded = startIncluded;
-            EndIncluded = endIncluded;
-
-
-            if (!IsValid)
-                throw new InvalidDurationException(ToString());
-        }
-
-        public bool IsValid => (Start < End || (Start == End && StartIncluded && EndIncluded));
-
-
-        public override string ToString()
-        {
-            var startDelimiter = StartIncluded ? "[" : "(";
-            var endDelimiter = EndIncluded ? "]" : ")";
-            return $"{startDelimiter}{Start} => {End}{endDelimiter}";
-        }
-
-        public bool Equals(IInterval other) =>
-            (Start == other.Start && End == other.End &&
-            StartIncluded == other.StartIncluded && EndIncluded == other.EndIncluded);
-
+        /// <summary>
+        /// Intersect two intervals
+        /// </summary>
+        /// <param name="first">the first <see cref="IInterval"/> instance</param>
+        /// <param name="second">the second <see cref="IInterval"/> instance</param>
+        /// <returns>a new <see cref="Interval"/> if an intersection exists</returns>
         public static Option<Interval> Intersect(IInterval first, IInterval second)
         {
-
             var maxStart = first.Start < second.Start ? second.Start : first.Start;
             var minEnd = first.End < second.End ? first.End : second.End;
 
             if (minEnd < maxStart)
+            {
                 return Option.None<Interval>();
+            }
 
             if (minEnd == maxStart && (!first.Covers(minEnd) || !second.Covers(minEnd)))
+            {
                 return Option.None<Interval>();
+            }
 
-            var startIncluded = (first.Covers(maxStart) && second.Covers(minEnd));
-            var endIncluded = (first.Covers(minEnd) && second.Covers(minEnd));
+            var startIncluded = first.Covers(maxStart) && second.Covers(minEnd);
+            var endIncluded = first.Covers(minEnd) && second.Covers(minEnd);
 
-            return (new Interval(maxStart, minEnd, startIncluded, endIncluded)).Some();
+            return new Interval(maxStart, minEnd, startIncluded, endIncluded).Some();
         }
 
+        /// <summary>
+        /// Join two intervals
+        /// </summary>
+        /// <param name="first">the first <see cref="IInterval"/> instance</param>
+        /// <param name="second">the second <see cref="IInterval"/> instance</param>
+        /// <returns>a new <see cref="Interval"/> with joined intervals</returns>
+        /// <exception cref="ArgumentException">an exception is thrown if the two intervals are not contiguous or overlapping</exception>
         public static Interval Join(IInterval first, IInterval second)
         {
-
             if (second.StartsBefore(first))
+            {
                 return Join(second, first);
+            }
 
             if (first.Covers(second))
+            {
                 return first.ToInterval();
+            }
 
             if (first.Intersects(second) || first.IsContiguouslyFollowedBy(second))
+            {
                 return new Interval(first.Start, second.End, first.StartIncluded, second.EndIncluded);
+            }
 
             throw new ArgumentException("the intervals are not overlapping or contiguous");
         }
+        
+        /// <inheritdoc cref="object.ToString"/>
+        public override string ToString()
+        {
+            var startDelimiter = this.StartIncluded ? "[" : "(";
+            var endDelimiter = this.EndIncluded ? "]" : ")";
+            return $"{startDelimiter}{this.Start} => {this.End}{endDelimiter}";
+        }
+
+        /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+        public bool Equals(IInterval other) => this.Start == other.Start && this.End == other.End && this.StartIncluded == other.StartIncluded && this.EndIncluded == other.EndIncluded;
     }
 }
