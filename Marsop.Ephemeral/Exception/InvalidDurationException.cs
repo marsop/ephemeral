@@ -1,19 +1,41 @@
-using System;
+// <copyright file="InvalidDurationException.cs" company="Marsop">
+//     https://github.com/marsop/ephemeral
+// </copyright>
 
 namespace Marsop.Ephemeral
 {
+    using System;
+
+    /// <summary>
+    /// Invalid interval duration exception
+    /// </summary>
     public class InvalidDurationException : ArgumentException
     {
-        public InvalidDurationException() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InvalidDurationException" /> class
+        /// </summary>
+        public InvalidDurationException()
+        {
+        }
 
-        public InvalidDurationException(string message) : base(message) { }
+        /// <inheritdoc cref="ArgumentException"/>
+        public InvalidDurationException(string message) : base(message)
+        {
+        }
 
-        public InvalidDurationException(string message, string paramName) : base(message, paramName) { }
+        /// <inheritdoc cref="ArgumentException"/>
+        public InvalidDurationException(string message, string paramName) : base(message, paramName)
+        {
+        }
 
-        public InvalidDurationException(string message, Exception innerException) : base(message, innerException) { }
+        /// <inheritdoc cref="ArgumentException"/>
+        public InvalidDurationException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
 
-        public InvalidDurationException(string message, string paramName, Exception innerException) :
-        base(message, paramName, innerException)
-        { }
+        /// <inheritdoc cref="ArgumentException"/>
+        public InvalidDurationException(string message, string paramName, Exception innerException) : base(message, paramName, innerException)
+        {
+        }
     }
 }
