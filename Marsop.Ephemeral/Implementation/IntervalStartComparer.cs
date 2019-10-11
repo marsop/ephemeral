@@ -2,6 +2,8 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
+using System;
+
 namespace Marsop.Ephemeral
 {
     using System.Collections.Generic;
@@ -12,8 +14,19 @@ namespace Marsop.Ephemeral
     public class IntervalStartComparer : IComparer<IInterval>
     {
         /// <inheritdoc cref="IComparer{T}.Compare"/>
+        /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
         public int Compare(IInterval x, IInterval y)
         {
+            if (x == null)
+            {
+                throw new ArgumentNullException(nameof(x));
+            }
+
+            if (y == null)
+            {
+                throw new ArgumentNullException(nameof(y));
+            }
+
             var startComparison = x.Start.CompareTo(y.Start);
             if (startComparison != 0)
             {
@@ -24,14 +37,13 @@ namespace Marsop.Ephemeral
             {
                 return -1;
             }
-            else if (!x.StartIncluded && y.StartIncluded)
+
+            if (!x.StartIncluded && y.StartIncluded)
             {
                 return 1;
             }
-            else
-            {
-                return 0;
-            }
+            
+            return 0;
         }
     }
 }

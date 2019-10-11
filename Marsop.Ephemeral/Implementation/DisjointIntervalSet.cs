@@ -31,9 +31,15 @@ namespace Marsop.Ephemeral
         /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
         /// </summary>
         /// <param name="intervals">an <see cref="Array"/> of <see cref="IInterval"/> to initialize the set</param>
+        /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
         public DisjointIntervalSet(params IInterval[] intervals)
         {
-            if (intervals != null && intervals.Count() > 0)
+            if (intervals == null)
+            {
+                throw new ArgumentNullException(nameof(intervals));
+            }
+
+            if (intervals?.Count() > 0)
             {
                 foreach (var interval in intervals)
                 {
@@ -46,8 +52,14 @@ namespace Marsop.Ephemeral
         /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
         /// </summary>
         /// <param name="intervals">an <see cref="IEnumerable{T}"/> of <see cref="IInterval"/> to initialize the set</param>
+        /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
         public DisjointIntervalSet(IEnumerable<IInterval> intervals)
         {
+            if (intervals == null)
+            {
+                throw new ArgumentNullException(nameof(intervals));
+            }
+
             foreach (var interval in intervals)
             {
                 this.Add(interval);
@@ -77,16 +89,25 @@ namespace Marsop.Ephemeral
 
         /// <inheritdoc cref="IDisjointIntervalSet.EndIncluded"/>
         public bool EndIncluded { get; }
-        
+
         /// <inheritdoc cref="IList{T}.this[int]"/>
         public IInterval this[int index]
         {
-            get { return this._intervals.Values[index]; }
-            set { this._intervals.Values[index] = value; }
+            get => this._intervals.Values[index];
+            set => this._intervals.Values[index] = value;
         }
 
         /// <inheritdoc cref="IList{T}.IndexOf"/>
-        public int IndexOf(IInterval item) => this._intervals.Values.IndexOf(item);
+        /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
+        public int IndexOf(IInterval item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            return this._intervals.Values.IndexOf(item);
+        }
 
         /// <inheritdoc cref="IList{T}.Insert"/>
         public void Insert(int index, IInterval item)
@@ -95,11 +116,29 @@ namespace Marsop.Ephemeral
         }
 
         /// <inheritdoc cref="IList{T}.RemoveAt"/>
-        public void RemoveAt(int index) => this._intervals.RemoveAt(index);
+        /// <exception cref="ArgumentOutOfRangeException">an exception is thrown if index is less than zero or index is equal to or greater than intervals count</exception>
+        public void RemoveAt(int index)
+        {
+            if (index >= 0 && this._intervals.Count > index)
+            {
+                this._intervals.RemoveAt(index);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
 
         /// <inheritdoc cref="ICollection{T}.Add"/>
+        /// <exception cref="ArgumentNullException">an exception is thrown if given interval is <code>null</code></exception>
+        /// <exception cref="OverlapException">an exception is thrown if given interval overlaps another interval</exception>
         public void Add(IInterval item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
             if (this.Any(x => x.Intersects(item)))
             {
                 throw new OverlapException(nameof(item));
@@ -112,13 +151,13 @@ namespace Marsop.Ephemeral
         public void Clear() => this._intervals.Clear();
 
         /// <inheritdoc cref="ICollection{T}.Contains"/>
-        public bool Contains(IInterval item) => this._intervals.ContainsKey(item);
+        public bool Contains(IInterval item) => item != null && this._intervals.ContainsKey(item);
 
         /// <inheritdoc cref="ICollection{T}.CopyTo"/>
         public void CopyTo(IInterval[] array, int arrayIndex) => this._intervals.Values.CopyTo(array, arrayIndex);
 
         /// <inheritdoc cref="ICollection{T}.Remove"/>
-        public bool Remove(IInterval item) => this._intervals.Remove(item);
+        public bool Remove(IInterval item) => item != null && this._intervals.Remove(item);
 
         /// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
         public IEnumerator<IInterval> GetEnumerator() => this._intervals.Values.GetEnumerator();
