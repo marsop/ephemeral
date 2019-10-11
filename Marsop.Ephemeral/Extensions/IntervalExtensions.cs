@@ -117,7 +117,7 @@ namespace Marsop.Ephemeral.Extensions
         /// <param name="i">the current <see cref="IInterval"/> instance</param>
         /// <param name="o">the <see cref="IInterval"/> instance to check</param>
         /// <returns><code>true</code> if the <see cref="IInterval"/> is preceded the the given <see cref="IInterval"/>, <code>false</code> otherwise</returns>
-        public static bool IsContiguouslyPreceededBy(this IInterval i, IInterval o) =>
+        public static bool IsContiguouslyPrecededBy(this IInterval i, IInterval o) =>
             o.IsContiguouslyFollowedBy(i);
 
         /// <summary>
