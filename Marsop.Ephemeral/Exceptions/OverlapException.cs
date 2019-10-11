@@ -2,7 +2,7 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-namespace Marsop.Ephemeral
+namespace Marsop.Ephemeral.Exceptions
 {
     using System;
 
