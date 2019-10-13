@@ -85,24 +85,31 @@ namespace Marsop.Ephemeral.Extensions
         {
             var result = new DisjointIntervalSet();
 
-            var orderedList = set.OrderBy(x => x.Start);
-
-            var cachedItem = orderedList.FirstOrDefault();
-
-            foreach (var item in orderedList.Skip(1))
+            if (set.Count > 0)
             {
-                if (cachedItem.IsContiguouslyFollowedBy(item))
-                {
-                    cachedItem = new Interval(cachedItem.Start, item.End, cachedItem.StartIncluded, item.EndIncluded);
-                }
-                else
-                {
-                    result.Add(cachedItem);
-                    cachedItem = item;
-                }
-            }
+                var orderedList = set.OrderBy(x => x.Start);
 
-            result.Add(cachedItem);
+                var cachedItem = orderedList.FirstOrDefault();
+
+                foreach (var item in orderedList.Skip(1))
+                {
+                    if (cachedItem.IsContiguouslyFollowedBy(item))
+                    {
+                        cachedItem = new Interval(
+                            cachedItem.Start, 
+                            item.End, 
+                            cachedItem.StartIncluded,
+                            item.EndIncluded);
+                    }
+                    else
+                    {
+                        result.Add(cachedItem);
+                        cachedItem = item;
+                    }
+                }
+
+                result.Add(cachedItem);
+            }
 
             return result;
         }

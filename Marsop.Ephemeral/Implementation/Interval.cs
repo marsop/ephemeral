@@ -52,7 +52,7 @@ namespace Marsop.Ephemeral
 
             if (!this.IsValid)
             {
-                throw new InvalidDurationException(this.ToString());
+                throw new InvalidDurationException(this.GetTextualRepresentation());
             }
         }
 
@@ -103,8 +103,19 @@ namespace Marsop.Ephemeral
         /// <param name="first">the first <see cref="IInterval"/> instance</param>
         /// <param name="second">the second <see cref="IInterval"/> instance</param>
         /// <returns>a new <see cref="Interval"/> if an intersection exists</returns>
+        /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
         public static Option<Interval> Intersect(IInterval first, IInterval second)
         {
+            if (first == null)
+            {
+                throw new ArgumentNullException(nameof(first));
+            }
+
+            if (second == null)
+            {
+                throw new ArgumentNullException(nameof(second));
+            }
+
             var maxStart = first.Start < second.Start ? second.Start : first.Start;
             var minEnd = first.End < second.End ? first.End : second.End;
 
@@ -131,8 +142,19 @@ namespace Marsop.Ephemeral
         /// <param name="second">the second <see cref="IInterval"/> instance</param>
         /// <returns>a new <see cref="Interval"/> with joined intervals</returns>
         /// <exception cref="ArgumentException">an exception is thrown if the two intervals are not contiguous or overlapping</exception>
+        /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
         public static Interval Join(IInterval first, IInterval second)
         {
+            if (first == null)
+            {
+                throw new ArgumentNullException(nameof(first));
+            }
+
+            if (second == null)
+            {
+                throw new ArgumentNullException(nameof(second));
+            }
+
             if (second.StartsBefore(first))
             {
                 return Join(second, first);
@@ -150,16 +172,25 @@ namespace Marsop.Ephemeral
 
             throw new ArgumentException("the intervals are not overlapping or contiguous");
         }
-        
+
         /// <inheritdoc cref="object.ToString"/>
         public override string ToString()
+        {
+            return this.GetTextualRepresentation();
+        }
+
+        /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+        public bool Equals(IInterval other) => other != null && (this.Start == other.Start && this.End == other.End && this.StartIncluded == other.StartIncluded && this.EndIncluded == other.EndIncluded);
+
+        /// <summary>
+        /// Get a representation of the interval
+        /// </summary>
+        /// <returns>a <see cref="String"/> that represent the interval</returns>
+        private string GetTextualRepresentation()
         {
             var startDelimiter = this.StartIncluded ? "[" : "(";
             var endDelimiter = this.EndIncluded ? "]" : ")";
             return $"{startDelimiter}{this.Start} => {this.End}{endDelimiter}";
         }
-
-        /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-        public bool Equals(IInterval other) => this.Start == other.Start && this.End == other.End && this.StartIncluded == other.StartIncluded && this.EndIncluded == other.EndIncluded;
     }
 }
