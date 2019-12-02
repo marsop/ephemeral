@@ -5,7 +5,7 @@ C# Library to handle time intervals (composite start and end)
 - Support for common operations like Covers(), Intersect(), Join(), etc..
 - Support for (disjoint) collections of intervals.
 
-Please check all the available options in the Wiki.
+Please check all the available options in the [Wiki](https://github.com/marsop/ephemeral/wiki).
 
 ## Interval Example
 
