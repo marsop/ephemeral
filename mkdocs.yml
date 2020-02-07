@@ -1,2 +1,6 @@
-site_name: Ephemeral v0.1
+site_name: Ephemeral
+site_url: https://albertogregorio.com/ephemeral
+repo_url: https://github.com/marsop/ephemeral/
 theme: readthedocs
+site_author: Alberto Gregorio
+google_analytics: ['UA-150973090-1', 'ephemeral']
