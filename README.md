@@ -1,4 +1,7 @@
 # ephemeral
+
+![](EphemeralLog.png)
+
 C# Library to handle time intervals (composite start and end)
 
 - Support for open and closed (time) intervals.
