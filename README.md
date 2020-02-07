@@ -1,6 +1,6 @@
 # ephemeral
 
-<img src="EphemeralLogo.png" width"100"/>
+![](EphemeralLogoCropped.png)
 
 C# Library to handle time intervals (composite start and end)
 
