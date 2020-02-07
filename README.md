@@ -1,6 +1,6 @@
 # ephemeral
 
-![](EphemeralLog.png)
+![](EphemeralLogo.png)
 
 C# Library to handle time intervals (composite start and end)
 
