@@ -1,4 +1,4 @@
-The following methods are available when you implement `IDisjointIntervalSet`:
+The following methods are available when any class implements `IDisjointIntervalSet`:
 
 - `Covers(t: DateTime) : bool`
 - `Join(s: IDisjointIntevalSet) : IDisjointIntevalSet`
@@ -6,7 +6,7 @@ The following methods are available when you implement `IDisjointIntervalSet`:
 - `Intersect(i : IInterval) : IDisjointIntevalSet`
 - `Consolidate() : IDisjointIntevalSet`
 
-The following methods are available when you implement `IInterval`:
+The following methods are available when any class implements `IInterval`:
 
 - `Covers(t: DateTime) : bool`
 - `Covers(i: IInterval) : bool`
