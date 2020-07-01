@@ -10,9 +10,11 @@ C# Library to handle time intervals (composite start and end)
 
 Please check all the available options in the [Wiki](https://github.com/marsop/ephemeral/wiki).
 
-## Interval Example
+## Examples
 
-```
+### Interval Example
+
+```csharp
 var now = DateTimeOffset.UtcNow;
 Interval yesterday = Interval.CreateOpen(now.AddDays(-1), now);
 Interval today = yesterday.Shift(TimeSpan.FromDays(1));
@@ -20,9 +22,9 @@ Interval today = yesterday.Shift(TimeSpan.FromDays(1));
 yesterday.Overlaps(today); // returns true
 ```
 
-## Interval Collection Example
+### Interval Collection Example
 
-```
+```csharp
 IDisjointIntervalSet collection = new DisjointIntervalSet();
 collection.Add(yesterday);
 collection.Add(today);
@@ -37,3 +39,9 @@ collection2.Count(); // 2
 consolidatedCollection.Count(); // 1
 
 ```
+
+## Getting started
+
+### Mkdocs
+
+### Nuget
