@@ -3,11 +3,11 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
+using Marsop.Ephemeral.Interfaces;
 
-namespace Marsop.Ephemeral
+namespace Marsop.Ephemeral.Implementation
 {
-    using System.Collections.Generic;
-
     /// <summary>
     /// Interval starting point comparer class
     /// </summary>
@@ -42,7 +42,7 @@ namespace Marsop.Ephemeral
             {
                 return 1;
             }
-            
+
             return 0;
         }
     }

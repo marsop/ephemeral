@@ -1,6 +1,7 @@
 ﻿using System;
 using Xunit;
 using FluentAssertions;
+using Marsop.Ephemeral.Implementation;
 
 namespace Marsop.Ephemeral.Tests.Implementation
 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Marsop.Ephemeral.Implementation;
 
 namespace Marsop.Ephemeral.Tests
 {

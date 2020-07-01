@@ -2,6 +2,9 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
+using Marsop.Ephemeral.Implementation;
+using Marsop.Ephemeral.Interfaces;
+
 namespace Marsop.Ephemeral.Extensions
 {
     using System;
@@ -15,6 +18,44 @@ namespace Marsop.Ephemeral.Extensions
     public static class IntervalSetExtensions
     {
         /// <summary>
+        /// Joins adjacent intervals.
+        /// </summary>
+        /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
+        /// <returns>a new <see cref="IDisjointIntervalSet"/> with the minimum amount of intervals</returns>
+        public static IDisjointIntervalSet Consolidate(this IDisjointIntervalSet set)
+        {
+            var result = new DisjointIntervalSet();
+
+            if (set.Count > 0)
+            {
+                var orderedList = set.OrderBy(x => x.Start);
+
+                var cachedItem = orderedList.FirstOrDefault();
+
+                foreach (var item in orderedList.Skip(1))
+                {
+                    if (cachedItem.IsContiguouslyFollowedBy(item))
+                    {
+                        cachedItem = new Interval(
+                            cachedItem.Start,
+                            item.End,
+                            cachedItem.StartIncluded,
+                            item.EndIncluded);
+                    }
+                    else
+                    {
+                        result.Add(cachedItem);
+                        cachedItem = item;
+                    }
+                }
+
+                result.Add(cachedItem);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Checks if the timestamp is included in the interval set
         /// </summary>
         /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
@@ -22,6 +63,21 @@ namespace Marsop.Ephemeral.Extensions
         /// <returns><code>true</code> if the <see cref="DateTimeOffset"/> is covered by at least one interval in the set, <code>false</code> otherwise</returns>
         public static bool Covers(this IDisjointIntervalSet set, DateTimeOffset timestamp) =>
             set.Any(x => x.Covers(timestamp));
+
+        /// <summary>
+        /// Intersects the given <see cref="IInterval"/> with the current set
+        /// </summary>
+        /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
+        /// <param name="interval">the <see cref="IInterval"/> to intersect</param>
+        /// <returns>a new <see cref="IDisjointIntervalSet"/> with the intersected set</returns>
+        public static IDisjointIntervalSet Intersect(this IDisjointIntervalSet set, IInterval interval)
+        {
+            var intersections = set
+                .Select(x => x.Intersect(interval))
+                .Where(y => y.HasValue)
+                .Select(z => z.ValueOrDefault());
+            return new DisjointIntervalSet(intersections);
+        }
 
         /// <summary>
         /// Joins the given <see cref="IDisjointIntervalSet"/> with the current set
@@ -57,59 +113,6 @@ namespace Marsop.Ephemeral.Extensions
             }
 
             result.Add(newInterval);
-
-            return result;
-        }
-
-        /// <summary>
-        /// Intersects the given <see cref="IInterval"/> with the current set
-        /// </summary>
-        /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-        /// <param name="interval">the <see cref="IInterval"/> to intersect</param>
-        /// <returns>a new <see cref="IDisjointIntervalSet"/> with the intersected set</returns>
-        public static IDisjointIntervalSet Intersect(this IDisjointIntervalSet set, IInterval interval)
-        {
-            var intersections = set
-                .Select(x => x.Intersect(interval))
-                .Where(y => y.HasValue)
-                .Select(z => z.ValueOrDefault());
-            return new DisjointIntervalSet(intersections);
-        }
-
-        /// <summary>
-        /// Joins adjacent intervals.
-        /// </summary>
-        /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-        /// <returns>a new <see cref="IDisjointIntervalSet"/> with the minimum amount of intervals</returns>
-        public static IDisjointIntervalSet Consolidate(this IDisjointIntervalSet set)
-        {
-            var result = new DisjointIntervalSet();
-
-            if (set.Count > 0)
-            {
-                var orderedList = set.OrderBy(x => x.Start);
-
-                var cachedItem = orderedList.FirstOrDefault();
-
-                foreach (var item in orderedList.Skip(1))
-                {
-                    if (cachedItem.IsContiguouslyFollowedBy(item))
-                    {
-                        cachedItem = new Interval(
-                            cachedItem.Start, 
-                            item.End, 
-                            cachedItem.StartIncluded,
-                            item.EndIncluded);
-                    }
-                    else
-                    {
-                        result.Add(cachedItem);
-                        cachedItem = item;
-                    }
-                }
-
-                result.Add(cachedItem);
-            }
 
             return result;
         }

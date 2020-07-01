@@ -2,12 +2,14 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-namespace Marsop.Ephemeral
-{
-    using System;
-    using Marsop.Ephemeral.Extensions;
-    using Optional;
+using System;
+using Marsop.Ephemeral.Exceptions;
+using Marsop.Ephemeral.Extensions;
+using Marsop.Ephemeral.Interfaces;
+using Optional;
 
+namespace Marsop.Ephemeral.Implementation
+{
     /// <summary>
     /// Immutable Interval Base class
     /// </summary>
@@ -56,30 +58,31 @@ namespace Marsop.Ephemeral
             }
         }
 
-        /// <inheritdoc cref="IInterval.Start"/>
-        public DateTimeOffset Start { get; }
-
         /// <inheritdoc cref="IInterval.End"/>
         public DateTimeOffset End { get; }
 
-        /// <inheritdoc cref="IInterval.StartIncluded"/>
-        public bool StartIncluded { get; }
-
         /// <inheritdoc cref="IInterval.EndIncluded"/>
         public bool EndIncluded { get; }
-        
+
         /// <summary>
         /// Checks if the current <see cref="Interval"/> has coherent starting and ending points
         /// </summary>
         /// <returns><code>true</code> if starting and ending points are valid, <code>false</code> otherwise</returns>
         public bool IsValid => this.Start < this.End || (this.Start == this.End && this.StartIncluded && this.EndIncluded);
 
+        /// <inheritdoc cref="IInterval.Start"/>
+        public DateTimeOffset Start { get; }
+
+        /// <inheritdoc cref="IInterval.StartIncluded"/>
+        public bool StartIncluded { get; }
+
         /// <summary>
-        /// Creates an interval with duration 0
+        /// Creates an interval with both start and end included
         /// </summary>
-        /// <param name="timestamp">the <see cref="DateTimeOffset"/></param>
-        /// <returns>an <see cref="Interval"/> with start and end point set with the given <see cref="DateTimeOffset"/></returns>
-        public static Interval CreatePoint(DateTimeOffset timestamp) => CreateClosed(timestamp, timestamp);
+        /// <param name="start">the starting <see cref="DateTimeOffset"/></param>
+        /// <param name="end">the ending <see cref="DateTimeOffset"/></param>
+        /// <returns>an <see cref="Interval"/> with both start and end included</returns>
+        public static Interval CreateClosed(DateTimeOffset start, DateTimeOffset end) => new Interval(start, end, true, true);
 
         /// <summary>
         /// Creates an interval with neither start or end included
@@ -90,12 +93,11 @@ namespace Marsop.Ephemeral
         public static Interval CreateOpen(DateTimeOffset start, DateTimeOffset end) => new Interval(start, end, false, false);
 
         /// <summary>
-        /// Creates an interval with both start and end included
+        /// Creates an interval with duration 0
         /// </summary>
-        /// <param name="start">the starting <see cref="DateTimeOffset"/></param>
-        /// <param name="end">the ending <see cref="DateTimeOffset"/></param>
-        /// <returns>an <see cref="Interval"/> with both start and end included</returns>
-        public static Interval CreateClosed(DateTimeOffset start, DateTimeOffset end) => new Interval(start, end, true, true);
+        /// <param name="timestamp">the <see cref="DateTimeOffset"/></param>
+        /// <returns>an <see cref="Interval"/> with start and end point set with the given <see cref="DateTimeOffset"/></returns>
+        public static Interval CreatePoint(DateTimeOffset timestamp) => CreateClosed(timestamp, timestamp);
 
         /// <summary>
         /// Intersect two intervals
@@ -173,14 +175,14 @@ namespace Marsop.Ephemeral
             throw new ArgumentException("the intervals are not overlapping or contiguous");
         }
 
+        /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+        public bool Equals(IInterval other) => other != null && (this.Start == other.Start && this.End == other.End && this.StartIncluded == other.StartIncluded && this.EndIncluded == other.EndIncluded);
+
         /// <inheritdoc cref="object.ToString"/>
         public override string ToString()
         {
             return this.GetTextualRepresentation();
         }
-
-        /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-        public bool Equals(IInterval other) => other != null && (this.Start == other.Start && this.End == other.End && this.StartIncluded == other.StartIncluded && this.EndIncluded == other.EndIncluded);
 
         /// <summary>
         /// Get a representation of the interval
