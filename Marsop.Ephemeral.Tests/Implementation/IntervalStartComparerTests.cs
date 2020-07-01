@@ -12,44 +12,43 @@ namespace Marsop.Ephemeral.Tests.Implementation
     {
         public class TheCompareMethod
         {
-            private RandomHelper _randomHelper = new RandomHelper();
+            private readonly RandomHelper _randomHelper = new RandomHelper();
 
             [Theory]
-            [InlineData(true, true)]            
+            [InlineData(true, true)]
             [InlineData(false, false)]
-            private void WhenBothIntervalsHaveTheSameStartDateAndSameStartIncludedValue_ThenReturnsZero(bool startIncludedIntervalA, bool startIncludedIntervalB) 
+            private void WhenBothIntervalsHaveTheSameStartDateAndSameStartIncludedValue_ThenReturnsZero(bool startIncludedIntervalA, bool startIncludedIntervalB)
             {
                 //arrange
-                DateTime now = _randomHelper.GetDateTime();
+                var now = _randomHelper.GetDateTime();
 
                 var intervalA = _randomHelper.GetInterval(now, null, startIncludedIntervalA);
                 var intervalB = _randomHelper.GetInterval(now, null, startIncludedIntervalB);
 
-                var sut = new IntervalStartComparer();
+                var intervalStartComparer = new IntervalStartComparer();
 
                 //act
-                int result = sut.Compare(intervalA,intervalB);
+                var result = intervalStartComparer.Compare(intervalA, intervalB);
 
                 //assert
-                result.Should().Be(0,"start dates are the same");
+                result.Should().Be(0, "start dates are the same");
             }
-
 
             [Theory]
             [InlineData(true, false, -1)]
-            [InlineData(false,true, 1)]
+            [InlineData(false, true, 1)]
             private void WhenBothIntervalsHaveTheSameStartDateButDifferentStartIncludedValue_ThenReturnsDifferentThanZero(bool startIncludedIntervalA, bool startIncludedIntervalB, int expectedResult)
             {
-                //arrange                
-                DateTime now = _randomHelper.GetDateTime();
+                //arrange
+                var now = _randomHelper.GetDateTime();
 
-                var intervalA = _randomHelper.GetInterval(now,null, startIncludedIntervalA); 
-                var intervalB = _randomHelper.GetInterval(now, null, startIncludedIntervalB); 
+                var intervalA = _randomHelper.GetInterval(now, null, startIncludedIntervalA);
+                var intervalB = _randomHelper.GetInterval(now, null, startIncludedIntervalB);
 
-                var sut = new IntervalStartComparer();
+                var intervalStartComparer = new IntervalStartComparer();
 
                 //act
-                int result = sut.Compare(intervalA, intervalB);
+                var result = intervalStartComparer.Compare(intervalA, intervalB);
 
                 //assert
                 result.Should().Be(expectedResult);
@@ -58,16 +57,16 @@ namespace Marsop.Ephemeral.Tests.Implementation
             [Fact]
             private void WhenFirstIntervalStartDateIsEarlierThanSecondIntervalStartDate_ThenReturnsMinusOne()
             {
-                //arrange                
-                DateTime now = _randomHelper.GetDateTime();
+                //arrange
+                var now = _randomHelper.GetDateTime();
 
                 var intervalA = _randomHelper.GetInterval(now);
                 var intervalB = _randomHelper.GetInterval(now.AddTicks(1));
 
-                var sut = new IntervalStartComparer();
+                var intervalStartComparer = new IntervalStartComparer();
 
                 //act
-                int result = sut.Compare(intervalA, intervalB);
+                var result = intervalStartComparer.Compare(intervalA, intervalB);
 
                 //assert
                 result.Should().Be(-1);
@@ -76,16 +75,16 @@ namespace Marsop.Ephemeral.Tests.Implementation
             [Fact]
             private void WhenFirstIntervalStartDateIsLaterThanSecondIntervalStartDate_ThenReturnsOne()
             {
-                //arrange                
-                DateTime now = _randomHelper.GetDateTime();
+                //arrange
+                var now = _randomHelper.GetDateTime();
 
                 var intervalA = _randomHelper.GetInterval(now);
                 var intervalB = _randomHelper.GetInterval(now.AddTicks(-1));
 
-                var sut = new IntervalStartComparer();
+                var intervalStartComparer = new IntervalStartComparer();
 
                 //act
-                int result = sut.Compare(intervalA, intervalB);
+                var result = intervalStartComparer.Compare(intervalA, intervalB);
 
                 //assert
                 result.Should().Be(1);

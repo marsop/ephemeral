@@ -12,14 +12,9 @@ namespace Marsop.Ephemeral.Interfaces
     public interface IInterval
     {
         /// <summary>
-        /// Gets the starting point of the interval
+        /// Gets the difference between start and end as <see cref="TimeSpan"/>
         /// </summary>
-        DateTimeOffset Start { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether the start timestamp is included in the interval
-        /// </summary>
-        bool StartIncluded { get; }
+        TimeSpan Duration => End - Start;
 
         /// <summary>
         /// Gets the final point of the interval
@@ -32,8 +27,13 @@ namespace Marsop.Ephemeral.Interfaces
         bool EndIncluded { get; }
 
         /// <summary>
-        /// Gets the difference between start and end as <see cref="TimeSpan"/>
+        /// Gets the starting point of the interval
         /// </summary>
-        public TimeSpan Duration => this.End - this.Start;
+        DateTimeOffset Start { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the start timestamp is included in the interval
+        /// </summary>
+        bool StartIncluded { get; }
     }
 }

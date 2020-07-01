@@ -8,7 +8,7 @@ namespace Marsop.Ephemeral.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    using Marsop.Ephemeral.Extensions;
+    using Extensions;
 
     /// <summary>
     /// Collection of disjoint IIntervals
