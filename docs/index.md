@@ -10,7 +10,11 @@ C# Library to handle time intervals (composite start and end)
 
 Please check all the available options in the [Methods Section](methods.md).
 
-## Interval Example
+This documentation is hosted at [albertogregorio.com/ephemeral](albertogregorio.com/ephemeral).
+
+## Examples
+
+### Interval Example
 
 ```
 var now = DateTimeOffset.UtcNow;
@@ -20,7 +24,7 @@ Interval today = yesterday.Shift(TimeSpan.FromDays(1));
 yesterday.Overlaps(today); // returns true
 ```
 
-## Interval Collection Example
+### Interval Collection Example
 
 ```
 IDisjointIntervalSet collection = new DisjointIntervalSet();
