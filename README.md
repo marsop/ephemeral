@@ -7,8 +7,11 @@ C# Library to handle time intervals (composite start and end)
 - Support for open and closed (time) intervals.
 - Support for common operations like Covers(), Intersect(), Join(), etc..
 - Support for (disjoint) collections of intervals.
+- Makes use of Optional to avoid returning `null` in many of the built-in operations.
 
-Please check all the available options in the [Wiki](https://github.com/marsop/ephemeral/wiki).
+Please check all the available options in the [Github Wiki](https://github.com/marsop/ephemeral/wiki).
+
+The API-documentation is hosted at [albertogregorio.com/ephemeral](albertogregorio.com/ephemeral).
 
 ## Examples
 
@@ -39,9 +42,3 @@ collection2.Count(); // 2
 consolidatedCollection.Count(); // 1
 
 ```
-
-## Getting started
-
-### Mkdocs
-
-### Nuget

@@ -147,12 +147,12 @@ namespace Marsop.Ephemeral.Implementation
         /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
         public static Interval Join(IInterval first, IInterval second)
         {
-            if (first == null)
+            if (first is null)
             {
                 throw new ArgumentNullException(nameof(first));
             }
 
-            if (second == null)
+            if (second is null)
             {
                 throw new ArgumentNullException(nameof(second));
             }
@@ -185,7 +185,9 @@ namespace Marsop.Ephemeral.Implementation
         }
 
         /// <summary>
-        /// Get a representation of the interval
+        /// Get a representation of the interval.
+        /// Open intervals are represented with parenthesis (a,b)
+        /// Close intervals are represented with brakets [a,b]
         /// </summary>
         /// <returns>a <see cref="String"/> that represent the interval</returns>
         private string GetTextualRepresentation()
