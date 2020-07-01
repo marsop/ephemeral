@@ -16,7 +16,7 @@ This documentation is hosted at [albertogregorio.com/ephemeral](albertogregorio.
 
 ### Interval Example
 
-```
+```csharp
 var now = DateTimeOffset.UtcNow;
 Interval yesterday = Interval.CreateOpen(now.AddDays(-1), now);
 Interval today = yesterday.Shift(TimeSpan.FromDays(1));
@@ -26,7 +26,7 @@ yesterday.Overlaps(today); // returns true
 
 ### Interval Collection Example
 
-```
+```csharp
 IDisjointIntervalSet collection = new DisjointIntervalSet();
 collection.Add(yesterday);
 collection.Add(today);
