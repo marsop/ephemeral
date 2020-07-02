@@ -1,4 +1,7 @@
-# ephemeral
+# Ephemeral
+
+![Nuget](https://img.shields.io/nuget/dt/ephemeral?style=for-the-badge)
+![Nuget](https://img.shields.io/nuget/v/ephemeral?style=for-the-badge)
 
 ![](docs/img/EphemeralLogoCropped.png)
 
@@ -9,9 +12,7 @@ C# Library to handle time intervals (composite start and end)
 - Support for (disjoint) collections of intervals.
 - Makes use of Optional to avoid returning `null` in many of the built-in operations.
 
-Please check all the available options in the [Github Wiki](https://github.com/marsop/ephemeral/wiki).
-
-The API-documentation is hosted at [albertogregorio.com/ephemeral](albertogregorio.com/ephemeral).
+The API-documentation is hosted at [albertogregorio.com/ephemeral](https://albertogregorio.com/ephemeral).
 
 ## Examples
 
