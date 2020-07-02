@@ -1,6 +1,7 @@
 # ephemeral
 
 ![Nuget](https://img.shields.io/nuget/dt/ephemeral?style=for-the-badge)
+![Nuget](https://img.shields.io/nuget/v/ephemeral?style=for-the-badge)
 
 ![](docs/img/EphemeralLogoCropped.png)
 
