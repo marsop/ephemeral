@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Ephemeral</PackageId>
-    <Version>0.1.3</Version>
+    <Version>0.1.4</Version>
     <Authors>Alberto Gregorio</Authors>
     <Company>albertogregorio.com</Company>
     <LangVersion>8.0</LangVersion>
