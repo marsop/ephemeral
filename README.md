@@ -12,7 +12,7 @@ C# Library to handle time intervals (composite start and end)
 - Support for (disjoint) collections of intervals.
 - Makes use of Optional to avoid returning `null` in many of the built-in operations.
 
-The API-documentation is hosted at [https://albertogregorio.com/ephemeral](albertogregorio.com/ephemeral).
+The API-documentation is hosted at [albertogregorio.com/ephemeral](https://albertogregorio.com/ephemeral).
 
 ## Examples
 
