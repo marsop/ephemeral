@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Ephemeral</PackageId>
     <PackageTags>Time;Timestamps;Time Intervals</PackageTags>
-    <Version>0.1.7</Version>
+    <Version>0.1.8</Version>
     <Authors>Alberto Gregorio</Authors>
     <Owners>albertogregorio</Owners>
     <Company>albertogregorio.com</Company>
@@ -14,9 +14,9 @@
     <ProjectUrl>https://albertogregorio.com/ephemeral</ProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/marsop/ephemeral/master/docs/img/Ephemeral64x64.png</PackageIconUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyVersion>0.1.7.0</AssemblyVersion>
-    <FileVersion>0.1.7.0</FileVersion>
-    <InformationalVersion>0.1.7+2.Branch.master.Sha.54eb3aaa02fc230e989b6bdc0691cec2e34f5e06</InformationalVersion>
+    <AssemblyVersion>0.1.8.0</AssemblyVersion>
+    <FileVersion>0.1.8.0</FileVersion>
+    <InformationalVersion>0.1.8+2.Branch.master.Sha.eba8d8fee421bfca5e09c231dba73383e21c06bd</InformationalVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Marsop.Ephemeral.Tests\**" />
