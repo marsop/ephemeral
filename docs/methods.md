@@ -12,8 +12,9 @@ The following methods are available when any class implements `IInterval`:
 - `Covers(i: IInterval) : bool`
 - `DurationUntilNow(): TimeSpan`
 - `ToInterval(): IInterval`
-- `Union(i: IInterval) : IDisjointIntevalSet`
+- `Union(i: IInterval) : IDisjointIntervalSet`
 - `Intersect(i : IInterval) : Option<IInterval>`
+- `Subtract(i: IInterval) : IDisjointIntervalSet`
 - `DurationOfIntersect(IInterval) : TimeSpan`
 - `Intersects(i: IInterval): bool`
 - `IsContiguouslyFollowedBy(i: IInterval) : bool`
