@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using Marsop.Ephemeral.Exceptions;
 using Marsop.Ephemeral.Extensions;
 using Marsop.Ephemeral.Interfaces;
@@ -173,6 +174,68 @@ namespace Marsop.Ephemeral.Implementation
             }
 
             throw new ArgumentException("the intervals are not overlapping or contiguous");
+        }
+
+        /// <summary>
+        /// Join two intervals
+        /// </summary>
+        /// <param name="source">the source <see cref="IInterval"/> instance</param>
+        /// <param name="subtraction">the subtraction <see cref="IInterval"/> instance</param>
+        /// <returns>a list of <see cref="Interval"/> after subtraction</returns>
+        /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
+        public static List<IInterval> Subtract(IInterval source, IInterval subtraction)
+        {
+            if (source is null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (subtraction is null)
+            {
+                throw new ArgumentNullException(nameof(subtraction));
+            }
+
+            if (((IEquatable<IInterval>)source).Equals(subtraction))
+            {
+                return new List<IInterval>
+                {
+                };
+            }
+
+            if (!source.Intersects(subtraction))
+            {
+                return new List<IInterval>
+                {
+                    source.ToInterval()
+                };
+            }
+
+            if (source.Covers(subtraction))
+            {
+                return new List<IInterval>
+                {
+                    new Interval(source.Start, subtraction.Start, source.StartIncluded, subtraction.StartIncluded),
+                    new Interval(subtraction.End, source.End, subtraction.EndIncluded, source.EndIncluded)
+                };
+            }
+
+            if (source.StartsBefore(subtraction))
+            {
+                return new List<IInterval>
+                {
+                    new Interval(source.Start, subtraction.Start, source.StartIncluded, subtraction.StartIncluded)
+                };
+            }
+
+            if (subtraction.StartsBefore(source))
+            {
+                return new List<IInterval>
+                {
+                    new Interval(subtraction.End, source.End, subtraction.EndIncluded, source.EndIncluded)
+                };
+            }
+
+            throw new NotImplementedException("Doesn't exists this option");
         }
 
         /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
