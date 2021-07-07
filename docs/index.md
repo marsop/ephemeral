@@ -1,3 +1,5 @@
+<link rel="shortcut icon" type="image/png" href="img/EphemeralIcon.png">
+
 # ephemeral
 
 ![](img/EphemeralLogoCropped.png)
