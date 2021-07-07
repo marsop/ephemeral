@@ -1,4 +1,4 @@
-<link rel="shortcut icon" type="image/png" href="img/EphemeralIcon.png">
+<link rel="shortcut icon" type="image/x-icon" href="{{ site.baseurl }}/img/favicon.ico">
 
 # ephemeral
 
