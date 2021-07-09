@@ -132,7 +132,7 @@ namespace Marsop.Ephemeral.Implementation
                 return Option.None<Interval>();
             }
 
-            var startIncluded = first.Covers(maxStart) && second.Covers(minEnd);
+            var startIncluded = first.Covers(maxStart) && second.Covers(maxStart);
             var endIncluded = first.Covers(minEnd) && second.Covers(minEnd);
 
             return new Interval(maxStart, minEnd, startIncluded, endIncluded).Some();
