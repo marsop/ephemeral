@@ -35,11 +35,11 @@ collection.Add(today);
 collection.Start == yesterday.Start; // true
 collection.End == today.End; // true
 
-var collection2 = yesterday.Union(today);
-collection1.equals(collection2); // true
+var yesterdayAndToday = yesterday.Union(today);
+collection.equals(yesterdayAndToday); // true
 
-var consolidatedCollection = collection2.Consolidate();
-collection2.Count(); // 2
+var consolidatedCollection = yesterdayAndToday.Consolidate(); // joins the two internal intervals into one
+yesterdayAndToday.Count(); // 2
 consolidatedCollection.Count(); // 1
 
 ```

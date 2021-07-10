@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Ephemeral</PackageId>
     <PackageTags>Time;Timestamps;Time Intervals</PackageTags>
-    <Version>0.1.8</Version>
+    <Version>0.1.9</Version>
     <Authors>Alberto Gregorio</Authors>
     <Owners>albertogregorio</Owners>
     <Company>albertogregorio.com</Company>
