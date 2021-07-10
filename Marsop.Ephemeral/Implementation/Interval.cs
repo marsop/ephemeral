@@ -195,13 +195,6 @@ namespace Marsop.Ephemeral.Implementation
                 throw new ArgumentNullException(nameof(subtraction));
             }
 
-            if (((IEquatable<IInterval>)source).Equals(subtraction))
-            {
-                return new List<IInterval>
-                {
-                };
-            }
-
             if (!source.Intersects(subtraction))
             {
                 return new List<IInterval>
@@ -210,32 +203,40 @@ namespace Marsop.Ephemeral.Implementation
                 };
             }
 
+            if (subtraction.Covers(source))
+            {
+                return new List<IInterval>
+                {
+                };
+            }
+
             if (source.Covers(subtraction))
             {
-                return new List<IInterval>
-                {
-                    new Interval(source.Start, subtraction.Start, source.StartIncluded, subtraction.StartIncluded),
-                    new Interval(subtraction.End, source.End, subtraction.EndIncluded, source.EndIncluded)
-                };
+                var result = new List<IInterval>();
+
+                if (source.Start < subtraction.Start || 
+                    (source.Start == subtraction.Start && source.StartIncluded && !subtraction.StartIncluded))
+                    result.Add(new Interval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded));
+                if (source.End > subtraction.End || 
+                    (source.End == subtraction.End && source.EndIncluded && !subtraction.EndIncluded))
+                    result.Add(new Interval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded));
+                
+                return result;
             }
 
-            if (source.StartsBefore(subtraction))
+            if (source.StartsBefore(subtraction) || 
+                (source.Start == subtraction.Start && source.StartIncluded && !subtraction.StartIncluded))
             {
                 return new List<IInterval>
                 {
-                    new Interval(source.Start, subtraction.Start, source.StartIncluded, subtraction.StartIncluded)
+                    new Interval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded)
                 };
             }
 
-            if (subtraction.StartsBefore(source))
+            return new List<IInterval>
             {
-                return new List<IInterval>
-                {
-                    new Interval(subtraction.End, source.End, subtraction.EndIncluded, source.EndIncluded)
-                };
-            }
-
-            throw new NotImplementedException("Doesn't exists this option");
+                new Interval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded)
+            };
         }
 
         /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
