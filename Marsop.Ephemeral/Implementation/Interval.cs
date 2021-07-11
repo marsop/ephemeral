@@ -210,33 +210,16 @@ namespace Marsop.Ephemeral.Implementation
                 };
             }
 
-            if (source.Covers(subtraction))
-            {
-                var result = new List<IInterval>();
+            var result = new List<IInterval>();
 
-                if (source.Start < subtraction.Start || 
-                    (source.Start == subtraction.Start && source.StartIncluded && !subtraction.StartIncluded))
-                    result.Add(new Interval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded));
-                if (source.End > subtraction.End || 
-                    (source.End == subtraction.End && source.EndIncluded && !subtraction.EndIncluded))
-                    result.Add(new Interval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded));
-                
-                return result;
-            }
-
-            if (source.StartsBefore(subtraction) || 
+            if (source.Start < subtraction.Start ||
                 (source.Start == subtraction.Start && source.StartIncluded && !subtraction.StartIncluded))
-            {
-                return new List<IInterval>
-                {
-                    new Interval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded)
-                };
-            }
+                result.Add(new Interval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded));
+            if (source.End > subtraction.End ||
+                (source.End == subtraction.End && source.EndIncluded && !subtraction.EndIncluded))
+                result.Add(new Interval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded));
 
-            return new List<IInterval>
-            {
-                new Interval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded)
-            };
+            return result;
         }
 
         /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
