@@ -58,23 +58,25 @@ namespace Marsop.Ephemeral.Tests.Implementation
             result.Should().BeEmpty("Full intersection, should return empty");
         }
 
-        //[Theory]
-        [InlineData(true, true)]
-        [InlineData(false, false)]
-        public void Test_Subtract_Inner(bool startIncludedIntervalA, bool startIncludedIntervalB)
+        [Theory]
+        [InlineData(true, true, true, true)]
+        [InlineData(true, false, true, false)]
+        [InlineData(false, true, false, true)]
+        [InlineData(false, false, false, false)]
+        public void Test_Subtract_Inner(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
         {
             //Given
             var date = _randomHelper.GetDateTime();
 
-            var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA);
-            var subtraction = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(11), startIncludedIntervalB);
+            var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
+            var subtraction = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
 
             //When
             var result = Interval.Subtract(source, subtraction);
 
             //Then
-            var expected1 = _randomHelper.GetInterval(source.Start, subtraction.Start, startIncludedIntervalA);
-            var expected2 = _randomHelper.GetInterval(subtraction.End, source.End, startIncludedIntervalB);
+            var expected1 = _randomHelper.GetInterval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded);
+            var expected2 = _randomHelper.GetInterval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded);
             result.Count.Should().Be(2);
             result.First().Should().BeEquivalentTo(expected1);
             result.Last().Should().BeEquivalentTo(expected2);
@@ -95,28 +97,75 @@ namespace Marsop.Ephemeral.Tests.Implementation
             var result = Interval.Subtract(source, subtraction);
 
             //Then
-            var expected = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(11), startIncludedIntervalA, startIncludedIntervalB);
+            var expected = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(11), startIncludedIntervalA, !startIncludedIntervalB);
             result.Should().ContainSingle();
             result.First().Should().BeEquivalentTo(expected);
         }
 
-
         [Theory]
-        [InlineData(true, true)]
-        [InlineData(false, false)]
-        public void Test_Subtract_SourceStartsAfter(bool endIncludedIntervalA, bool endIncludedIntervalB)
+        [InlineData(true, true, true, true)]
+        [InlineData(true, false, true, false)]
+        [InlineData(false, true, false, true)]
+        [InlineData(false, false, false, false)]
+        public void Test_Subtract_SourceStartsEqual(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
         {
             //Given
             var date = _randomHelper.GetDateTime();
 
-            var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), null, endIncludedIntervalA);
-            var subtraction = _randomHelper.GetInterval(date.AddHours(6), date.AddHours(9), null, endIncludedIntervalB);
+            var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
+            var subtraction = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
 
             //When
             var result = Interval.Subtract(source, subtraction);
 
             //Then
-            var expected = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(12), endIncludedIntervalA, endIncludedIntervalB);
+            var expected = _randomHelper.GetInterval(date.AddHours(11), date.AddHours(12), !endIncludedIntervalB, endIncludedIntervalA);
+            result.Should().ContainSingle();
+            result.First().Should().BeEquivalentTo(expected);
+        }
+
+        [Theory]
+        [InlineData(true, true, true, true)]
+        [InlineData(true, false, true, false)]
+        [InlineData(false, true, false, true)]
+        [InlineData(false, false, false, false)]
+        public void Test_Subtract_SourceEndsEqual(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
+        {
+            //Given
+            var date = _randomHelper.GetDateTime();
+
+            var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
+            var subtraction = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(12), startIncludedIntervalB, endIncludedIntervalB);
+
+            //When
+            var result = Interval.Subtract(source, subtraction);
+
+            //Then
+            var expected = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(9), startIncludedIntervalA, !startIncludedIntervalB);
+            result.Should().ContainSingle();
+            result.First().Should().BeEquivalentTo(expected);
+        }
+
+        [Theory]
+        [InlineData(true, true, true, true)]
+        [InlineData(true, false, true, false)]
+        [InlineData(false, true, false, true)]
+        [InlineData(false, false, false, false)]
+        public void Test_Subtract_SourceStartsAfter(
+            bool startIncludedIntervalA, bool startIncludedIntervalB,
+            bool endIncludedIntervalA, bool endIncludedIntervalB)
+        {
+            //Given
+            var date = _randomHelper.GetDateTime();
+
+            var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
+            var subtraction = _randomHelper.GetInterval(date.AddHours(6), date.AddHours(9), startIncludedIntervalB, endIncludedIntervalB);
+
+            //When
+            var result = Interval.Subtract(source, subtraction);
+
+            //Then
+            var expected = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(12), !endIncludedIntervalB, endIncludedIntervalA);
             result.Should().ContainSingle();
             result.First().Should().BeEquivalentTo(expected);
         }
