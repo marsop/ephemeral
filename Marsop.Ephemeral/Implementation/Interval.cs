@@ -183,7 +183,7 @@ namespace Marsop.Ephemeral.Implementation
         /// <param name="subtraction">the subtraction <see cref="IInterval"/> instance</param>
         /// <returns>a list of <see cref="Interval"/> after subtraction</returns>
         /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-        public static List<IInterval> Subtract(IInterval source, IInterval subtraction)
+        public static IDisjointIntervalSet Subtract(IInterval source, IInterval subtraction)
         {
             if (source is null)
             {
@@ -197,7 +197,7 @@ namespace Marsop.Ephemeral.Implementation
 
             if (!source.Intersects(subtraction))
             {
-                return new List<IInterval>
+                return new DisjointIntervalSet
                 {
                     source.ToInterval()
                 };
@@ -205,12 +205,10 @@ namespace Marsop.Ephemeral.Implementation
 
             if (subtraction.Covers(source))
             {
-                return new List<IInterval>
-                {
-                };
+                return new DisjointIntervalSet();
             }
 
-            var result = new List<IInterval>();
+            var result = new DisjointIntervalSet();
 
             if (source.Start < subtraction.Start ||
                 (source.Start == subtraction.Start && source.StartIncluded && !subtraction.StartIncluded))
