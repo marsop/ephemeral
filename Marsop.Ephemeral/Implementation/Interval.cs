@@ -3,7 +3,6 @@
 // </copyright>
 
 using System;
-using System.Collections.Generic;
 using Marsop.Ephemeral.Exceptions;
 using Marsop.Ephemeral.Extensions;
 using Marsop.Ephemeral.Interfaces;
