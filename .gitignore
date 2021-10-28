@@ -256,3 +256,6 @@ paket-files/
 
 # Visual Studio Code
 .vscode/
+
+# Windows icon
+desktop.ini
