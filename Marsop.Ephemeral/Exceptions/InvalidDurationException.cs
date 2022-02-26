@@ -2,40 +2,39 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-namespace Marsop.Ephemeral.Exceptions
+using System;
+
+namespace Marsop.Ephemeral.Exceptions;
+
+/// <summary>
+/// Invalid interval duration exception
+/// </summary>
+public class InvalidDurationException : ArgumentException
 {
-    using System;
-
     /// <summary>
-    /// Invalid interval duration exception
+    /// Initializes a new instance of the <see cref="InvalidDurationException" /> class
     /// </summary>
-    public class InvalidDurationException : ArgumentException
+    public InvalidDurationException()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidDurationException" /> class
-        /// </summary>
-        public InvalidDurationException()
-        {
-        }
+    }
 
-        /// <inheritdoc cref="ArgumentException"/>
-        public InvalidDurationException(string message) : base(message)
-        {
-        }
+    /// <inheritdoc cref="ArgumentException"/>
+    public InvalidDurationException(string message) : base(message)
+    {
+    }
 
-        /// <inheritdoc cref="ArgumentException"/>
-        public InvalidDurationException(string message, string paramName) : base(message, paramName)
-        {
-        }
+    /// <inheritdoc cref="ArgumentException"/>
+    public InvalidDurationException(string message, string paramName) : base(message, paramName)
+    {
+    }
 
-        /// <inheritdoc cref="ArgumentException"/>
-        public InvalidDurationException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+    /// <inheritdoc cref="ArgumentException"/>
+    public InvalidDurationException(string message, Exception innerException) : base(message, innerException)
+    {
+    }
 
-        /// <inheritdoc cref="ArgumentException"/>
-        public InvalidDurationException(string message, string paramName, Exception innerException) : base(message, paramName, innerException)
-        {
-        }
+    /// <inheritdoc cref="ArgumentException"/>
+    public InvalidDurationException(string message, string paramName, Exception innerException) : base(message, paramName, innerException)
+    {
     }
 }
