@@ -54,4 +54,15 @@ public static class IntervalExtensions
     /// <param name="j">the <see cref="IInterval"/> instance with which to merge</param>
     /// <returns>a <see cref="IDisjointIntervalSet"/> representing the list of joined <see cref="IInterval"/> instances</returns>
     public static IDisjointIntervalSet Union(this IInterval i, IInterval j) => new DisjointIntervalSet(i, j);
+
+    /// <summary>
+    /// Join two intervals
+    /// </summary>
+    /// <param name="first">the first <see cref="IInterval"/> instance</param>
+    /// <param name="second">the second <see cref="IInterval"/> instance</param>
+    /// <returns>a new <see cref="Interval"/> with joined intervals</returns>
+    /// <exception cref="ArgumentException">an exception is thrown if the two intervals are not contiguous or overlapping</exception>
+    /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
+    public static Interval Join(this IGenericInterval<DateTimeOffset> first, IGenericInterval<DateTimeOffset> second) =>
+        first.Join(second).ToInterval();
 }

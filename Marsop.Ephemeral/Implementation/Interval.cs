@@ -87,44 +87,6 @@ public class Interval : GenericInterval<DateTimeOffset>, IInterval
     /// <summary>
     /// Join two intervals
     /// </summary>
-    /// <param name="first">the first <see cref="IInterval"/> instance</param>
-    /// <param name="second">the second <see cref="IInterval"/> instance</param>
-    /// <returns>a new <see cref="Interval"/> with joined intervals</returns>
-    /// <exception cref="ArgumentException">an exception is thrown if the two intervals are not contiguous or overlapping</exception>
-    /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public static Interval Join(IGenericInterval<DateTimeOffset> first, IGenericInterval<DateTimeOffset> second)
-    {
-        if (first is null)
-        {
-            throw new ArgumentNullException(nameof(first));
-        }
-
-        if (second is null)
-        {
-            throw new ArgumentNullException(nameof(second));
-        }
-
-        if (second.StartsBefore(first))
-        {
-            return Join(second, first);
-        }
-
-        if (first.Covers(second))
-        {
-            return first.ToGenericInterval().ToInterval();
-        }
-
-        if (first.Intersects(second) || first.IsContiguouslyFollowedBy(second))
-        {
-            return new Interval(first.Start, second.End, first.StartIncluded, second.EndIncluded);
-        }
-
-        throw new ArgumentException("the intervals are not overlapping or contiguous");
-    }
-
-    /// <summary>
-    /// Join two intervals
-    /// </summary>
     /// <param name="source">the source <see cref="IInterval"/> instance</param>
     /// <param name="subtraction">the subtraction <see cref="IInterval"/> instance</param>
     /// <returns>a list of <see cref="Interval"/> after subtraction</returns>

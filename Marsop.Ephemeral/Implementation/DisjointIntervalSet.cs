@@ -2,13 +2,13 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
+using Marsop.Ephemeral.Exceptions;
+using Marsop.Ephemeral.Extensions;
+using Marsop.Ephemeral.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Marsop.Ephemeral.Exceptions;
-using Marsop.Ephemeral.Extensions;
-using Marsop.Ephemeral.Interfaces;
 
 namespace Marsop.Ephemeral.Implementation;
 
@@ -20,7 +20,31 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     /// <summary>
     /// Internal sorted list of intervals
     /// </summary>
-    private SortedList<IInterval, IInterval> _intervals = new SortedList<IInterval, IInterval>(new IntervalStartComparer());
+    private SortedList<IInterval, IInterval> _intervals = new(new IntervalStartComparer());
+
+    /// <inheritdoc cref="IDisjointIntervalSet.AggregatedDuration"/>
+    public TimeSpan AggregatedDuration => TimeSpan.FromTicks(this.Sum(x => x.Duration.Ticks));
+
+    /// <inheritdoc cref="IInterval.Count"/>
+    public int Count => this._intervals.Count;
+
+    /// <inheritdoc cref="IDisjointIntervalSet.End"/>
+    public DateTimeOffset End => this.Max(x => x.End);
+
+    /// <inheritdoc cref="IDisjointIntervalSet.EndIncluded"/>
+    public bool EndIncluded { get; }
+
+    /// <inheritdoc cref="IDisjointIntervalSet.IsContiguous"/>
+    public bool IsContiguous => this.Consolidate().Count < 2;
+
+    /// <inheritdoc cref="IInterval.IsReadOnly"/>
+    public bool IsReadOnly => false;
+
+    /// <inheritdoc cref="IDisjointIntervalSet.Start"/>
+    public DateTimeOffset Start => this.Min(x => x.Start);
+
+    /// <inheritdoc cref="IDisjointIntervalSet.StartIncluded"/>
+    public bool StartIncluded { get; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
@@ -67,30 +91,6 @@ public class DisjointIntervalSet : IDisjointIntervalSet
             this.Add(interval);
         }
     }
-
-    /// <inheritdoc cref="IDisjointIntervalSet.AggregatedDuration"/>
-    public TimeSpan AggregatedDuration => TimeSpan.FromTicks(this.Sum(x => x.Duration.Ticks));
-
-    /// <inheritdoc cref="IInterval.Count"/>
-    public int Count => this._intervals.Count;
-
-    /// <inheritdoc cref="IDisjointIntervalSet.End"/>
-    public DateTimeOffset End => this.Max(x => x.End);
-
-    /// <inheritdoc cref="IDisjointIntervalSet.EndIncluded"/>
-    public bool EndIncluded { get; }
-
-    /// <inheritdoc cref="IDisjointIntervalSet.IsContiguous"/>
-    public bool IsContiguous => this.Consolidate().Count < 2;
-
-    /// <inheritdoc cref="IInterval.IsReadOnly"/>
-    public bool IsReadOnly => false;
-
-    /// <inheritdoc cref="IDisjointIntervalSet.Start"/>
-    public DateTimeOffset Start => this.Min(x => x.Start);
-
-    /// <inheritdoc cref="IDisjointIntervalSet.StartIncluded"/>
-    public bool StartIncluded { get; }
 
     /// <inheritdoc cref="IList{T}.this[int]"/>
     public IInterval this[int index]

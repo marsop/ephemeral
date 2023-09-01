@@ -27,6 +27,6 @@
 		<PackageReference Include="Optional" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="..\docs\img\Ephemeral64x64.png" Pack="true" PackagePath="\"/>
+		<None Include="..\docs\img\Ephemeral64x64.png" Pack="true" PackagePath="."/>
 	</ItemGroup>
 </Project>
