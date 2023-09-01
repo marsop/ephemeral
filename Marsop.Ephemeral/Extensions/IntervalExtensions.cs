@@ -4,8 +4,8 @@
 
 using Marsop.Ephemeral.Implementation;
 using Marsop.Ephemeral.Interfaces;
-using System;
 using Optional;
+using System;
 
 namespace Marsop.Ephemeral.Extensions;
 
@@ -44,6 +44,15 @@ public static class IntervalExtensions
 
         return true;
     }
+
+    /// <summary>
+    /// Shifts the start and end of given <see cref="IInterval"/>
+    /// </summary>
+    /// <param name="interval">the current <see cref="IInterval"/> instance</param>
+    /// <param name="shiftAmount">the amount to be shifted (positive => shift towards future)</param>
+    /// <returns></returns>
+    public static Interval Shift(this IInterval interval, TimeSpan shiftAmount) =>
+        new(interval.Start + shiftAmount, interval.End + shiftAmount, interval.StartIncluded, interval.EndIncluded);
 
     /// <summary>
     /// Checks if the interval covers the given <see cref="IInterval"/>
