@@ -11,7 +11,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>.NET Library to handle time intervals (composite start and end)</Description>
     <ProjectUrl>https://albertogregorio.com/ephemeral</ProjectUrl>
-    <PackageIcon>https://raw.githubusercontent.com/marsop/ephemeral/master/docs/img/Ephemeral64x64.png</PackageIcon>
+    <PackageIcon>Ephemeral64x64.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Version>0.1.13</Version>
     <AssemblyVersion>0.1.13.0</AssemblyVersion>
@@ -26,4 +26,7 @@
   <ItemGroup>
     <PackageReference Include="Optional" />
   </ItemGroup>
+	<ItemGroup>
+		<None Include="..\docs\img\Ephemeral64x64.png" Pack="true" PackagePath="\"/>
+	</ItemGroup>
 </Project>
