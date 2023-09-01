@@ -38,8 +38,15 @@ public class Interval : GenericInterval<DateTimeOffset>, IInterval, IEquatable<I
     {
     }
 
-    public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded) :
-        base(start, end, startIncluded, endIncluded)
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Interval" /> class
+    /// </summary>
+    /// <param name="start">the starting <see cref="DateTimeOffset"/></param>
+    /// <param name="end">the ending <see cref="DateTimeOffset"/></param>
+    /// <param name="startIncluded">a flag indicating whether the starting point is included</param>
+    /// <param name="endIncluded">a flag indicating whether the ending point is included</param>
+    public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded)
+        : base(start, end, startIncluded, endIncluded)
     { }
 
     /// <summary>
