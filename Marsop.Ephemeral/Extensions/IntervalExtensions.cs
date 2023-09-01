@@ -15,37 +15,6 @@ namespace Marsop.Ephemeral.Extensions;
 public static class IntervalExtensions
 {
     /// <summary>
-    /// Verify if the interval covers the given <see cref="DateTimeOffset"/>
-    /// </summary>
-    /// <param name="interval">the current <see cref="IInterval"/> instance</param>
-    /// <param name="timestamp">the <see cref="DateTimeOffset"/></param>
-    /// <returns><code>true</code> if the offset is covered by the interval, <code>false</code> otherwise</returns>
-    public static bool Covers(this IInterval interval, DateTimeOffset timestamp)
-    {
-        if (timestamp < interval.Start)
-        {
-            return false;
-        }
-
-        if (interval.End < timestamp)
-        {
-            return false;
-        }
-
-        if (timestamp == interval.Start && !interval.StartIncluded)
-        {
-            return false;
-        }
-
-        if (timestamp == interval.End && !interval.EndIncluded)
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    /// <summary>
     /// Shifts the start and end of given <see cref="IInterval"/>
     /// </summary>
     /// <param name="interval">the current <see cref="IInterval"/> instance</param>
@@ -96,24 +65,6 @@ public static class IntervalExtensions
     /// <param name="j">the <see cref="IInterval"/> instance to verify</param>
     /// <returns><code>true</code> if the given <see cref="IInterval"/> has an intersection with the current one, <code>false</code> otherwise</returns>
     public static bool Intersects(this IInterval i, IInterval j) => i.Intersect(j).HasValue;
-
-    /// <summary>
-    /// Checks if the given <see cref="IInterval"/> follows seamlessly and without overlap the current <see cref="IInterval"/>
-    /// </summary>
-    /// <param name="i">the current <see cref="IInterval"/> instance</param>
-    /// <param name="o">the <see cref="IInterval"/> instance to check</param>
-    /// <returns><code>true</code> if the given <see cref="IInterval"/> is followed with the current one</returns>
-    public static bool IsContiguouslyFollowedBy(this IInterval i, IInterval o) =>
-        i.End == o.Start && (i.EndIncluded != o.StartIncluded);
-
-    /// <summary>
-    /// Checks if the current <see cref="IInterval"/> follows seamlessly and without overlap the given <see cref="IInterval"/>
-    /// </summary>
-    /// <param name="i">the current <see cref="IInterval"/> instance</param>
-    /// <param name="o">the <see cref="IInterval"/> instance to check</param>
-    /// <returns><code>true</code> if the <see cref="IInterval"/> is preceded the the given <see cref="IInterval"/>, <code>false</code> otherwise</returns>
-    public static bool IsContiguouslyPrecededBy(this IInterval i, IInterval o) =>
-        o.IsContiguouslyFollowedBy(i);
 
     /// <summary>
     /// Checks if the current <see cref="IInterval"/> starts before the given <see cref="IInterval"/>

@@ -1,4 +1,4 @@
-// <copyright file="IInterval.cs" company="Marsop">
+﻿// <copyright file="IInterval.cs" company="Marsop">
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
@@ -6,10 +6,7 @@ namespace Marsop.Ephemeral.Interfaces;
 
 using System;
 
-/// <summary>
-/// Interface for classes implementing an interval
-/// </summary>
-public interface IInterval : IGenericInterval<DateTimeOffset>
+public interface IDateTimeInterval : IGenericInterval<DateTime>
 {
     /// <summary>
     /// Gets the difference between start and end as <see cref="TimeSpan"/>

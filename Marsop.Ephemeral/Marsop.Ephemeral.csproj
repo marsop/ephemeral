@@ -1,31 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <PackageId>Ephemeral</PackageId>
-    <PackageTags>Time;Timestamps;Time Intervals</PackageTags>
-    <Authors>Alberto Gregorio</Authors>
-    <Owners>albertogregorio</Owners>
-    <Company>albertogregorio.com</Company>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>.NET Library to handle time intervals (composite start and end)</Description>
-    <ProjectUrl>https://albertogregorio.com/ephemeral</ProjectUrl>
-    <PackageIcon>Ephemeral64x64.png</PackageIcon>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>0.1.13</Version>
-    <AssemblyVersion>0.1.13.0</AssemblyVersion>
-    <FileVersion>0.1.13.0</FileVersion>
-    <InformationalVersion>0.1.8+2.Branch.master.Sha.eba8d8fee421bfca5e09c231dba73383e21c06bd</InformationalVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Marsop.Ephemeral.Tests\**" />
-    <EmbeddedResource Remove="Marsop.Ephemeral.Tests\**" />
-    <None Remove="Marsop.Ephemeral.Tests\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Optional" />
-  </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<PackageId>Ephemeral</PackageId>
+		<PackageTags>Time;Timestamps;Time Intervals</PackageTags>
+		<Authors>Alberto Gregorio</Authors>
+		<Owners>albertogregorio</Owners>
+		<Company>albertogregorio.com</Company>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>.NET Library to handle time intervals (composite start and end)</Description>
+		<ProjectUrl>https://albertogregorio.com/ephemeral</ProjectUrl>
+		<PackageIcon>Ephemeral64x64.png</PackageIcon>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Version>0.1.13</Version>
+		<AssemblyVersion>0.1.13.0</AssemblyVersion>
+		<FileVersion>0.1.13.0</FileVersion>
+		<InformationalVersion>0.1.8+2.Branch.master.Sha.eba8d8fee421bfca5e09c231dba73383e21c06bd</InformationalVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="Marsop.Ephemeral.Tests\**" />
+		<EmbeddedResource Remove="Marsop.Ephemeral.Tests\**" />
+		<None Remove="Marsop.Ephemeral.Tests\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Optional" />
+	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\docs\img\Ephemeral64x64.png" Pack="true" PackagePath="\"/>
 	</ItemGroup>
