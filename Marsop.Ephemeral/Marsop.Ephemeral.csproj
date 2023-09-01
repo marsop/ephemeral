@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Ephemeral</PackageId>
@@ -24,6 +24,6 @@
     <None Remove="Marsop.Ephemeral.Tests\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Optional" Version="4.0.0" />
+    <PackageReference Include="Optional" />
   </ItemGroup>
 </Project>

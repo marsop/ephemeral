@@ -2,11 +2,11 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-using System;
 using Marsop.Ephemeral.Exceptions;
 using Marsop.Ephemeral.Extensions;
 using Marsop.Ephemeral.Interfaces;
 using Optional;
+using System;
 
 namespace Marsop.Ephemeral.Implementation;
 
@@ -15,6 +15,24 @@ namespace Marsop.Ephemeral.Implementation;
 /// </summary>
 public class Interval : IInterval, IEquatable<IInterval>
 {
+    /// <inheritdoc cref="IInterval.End"/>
+    public DateTimeOffset End { get; }
+
+    /// <inheritdoc cref="IInterval.EndIncluded"/>
+    public bool EndIncluded { get; }
+
+    /// <summary>
+    /// Checks if the current <see cref="Interval"/> has coherent starting and ending points
+    /// </summary>
+    /// <returns><code>true</code> if starting and ending points are valid, <code>false</code> otherwise</returns>
+    public bool IsValid => this.Start < this.End || (this.Start == this.End && this.StartIncluded && this.EndIncluded);
+
+    /// <inheritdoc cref="IInterval.Start"/>
+    public DateTimeOffset Start { get; }
+
+    /// <inheritdoc cref="IInterval.StartIncluded"/>
+    public bool StartIncluded { get; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Interval" /> class
     /// </summary>
@@ -58,24 +76,6 @@ public class Interval : IInterval, IEquatable<IInterval>
         }
     }
 
-    /// <inheritdoc cref="IInterval.End"/>
-    public DateTimeOffset End { get; }
-
-    /// <inheritdoc cref="IInterval.EndIncluded"/>
-    public bool EndIncluded { get; }
-
-    /// <summary>
-    /// Checks if the current <see cref="Interval"/> has coherent starting and ending points
-    /// </summary>
-    /// <returns><code>true</code> if starting and ending points are valid, <code>false</code> otherwise</returns>
-    public bool IsValid => this.Start < this.End || (this.Start == this.End && this.StartIncluded && this.EndIncluded);
-
-    /// <inheritdoc cref="IInterval.Start"/>
-    public DateTimeOffset Start { get; }
-
-    /// <inheritdoc cref="IInterval.StartIncluded"/>
-    public bool StartIncluded { get; }
-
     /// <summary>
     /// Creates an interval with both start and end included
     /// </summary>
@@ -108,12 +108,12 @@ public class Interval : IInterval, IEquatable<IInterval>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
     public static Option<Interval> Intersect(IInterval first, IInterval second)
     {
-        if (first == null)
+        if (first is null)
         {
             throw new ArgumentNullException(nameof(first));
         }
 
-        if (second == null)
+        if (second is null)
         {
             throw new ArgumentNullException(nameof(second));
         }

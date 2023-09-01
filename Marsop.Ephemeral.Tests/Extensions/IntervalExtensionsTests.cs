@@ -8,7 +8,7 @@ namespace Marsop.Ephemeral.Tests.Extensions;
 
 public class IntervalExtensionsTests
 {
-    private readonly RandomHelper _randomHelper = new RandomHelper();
+    private readonly RandomHelper _randomHelper = new();
 
     [Theory]
     [InlineData(true, true, true, true)]

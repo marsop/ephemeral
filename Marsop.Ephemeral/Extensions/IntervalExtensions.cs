@@ -130,7 +130,7 @@ public static class IntervalExtensions
     /// <param name="interval">the current <see cref="IInterval"/> instance</param>
     /// <returns>a new <see cref="Interval"/> object</returns>
     public static Interval ToInterval(this IInterval interval) =>
-        new Interval(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
+        new(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
 
     /// <summary>
     /// Combines two <see cref="IInterval"/> instances
