@@ -7,7 +7,7 @@ using System;
 namespace Marsop.Ephemeral.Interfaces;
 
 public interface IGenericInterval<TBoundary>
-    where TBoundary : notnull, IComparable<TBoundary>, IEquatable<TBoundary>
+    where TBoundary : notnull, IComparable<TBoundary>
 {
     /// <summary>
     /// Gets the final point of the interval
@@ -28,4 +28,7 @@ public interface IGenericInterval<TBoundary>
     /// Gets a value indicating whether the start timestamp is included in the interval
     /// </summary>
     bool StartIncluded { get; }
+
+    bool EquivalentTo(IGenericInterval<TBoundary> other) =>
+        Start.Equals(other.Start) && End.Equals(other.End) && EndIncluded == other.EndIncluded && StartIncluded == other.StartIncluded;
 }

@@ -4,13 +4,12 @@
 
 using Marsop.Ephemeral.Implementation;
 using Marsop.Ephemeral.Interfaces;
+using Optional.Unsafe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Optional.Unsafe;
 
 namespace Marsop.Ephemeral.Extensions;
-
 
 /// <summary>
 /// Extensions method for <see cref="IDisjointIntervalSet"/> instances
@@ -73,7 +72,7 @@ public static class IntervalSetExtensions
     public static IDisjointIntervalSet Intersect(this IDisjointIntervalSet set, IInterval interval)
     {
         var intersections = set
-            .Select(x => x.Intersect(interval))
+            .Select(x => Interval.Intersect(x, interval))
             .Where(y => y.HasValue)
             .Select(z => z.ValueOrDefault());
         return new DisjointIntervalSet(intersections);

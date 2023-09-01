@@ -2,7 +2,9 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
+using Marsop.Ephemeral.Implementation;
 using Marsop.Ephemeral.Interfaces;
+using Optional;
 using System;
 
 namespace Marsop.Ephemeral.Extensions;
@@ -19,7 +21,7 @@ public static class GenericIntervalExtensions
     /// <param name="boundary">the boundary</param>
     /// <returns><code>true</code> if the offset is covered by the <see cref="IGenericInterval{T}"/>, <code>false</code> otherwise</returns>
     public static bool Covers<T>(this IGenericInterval<T> interval, T boundary)
-        where T : IComparable<T>, IEquatable<T>
+        where T : IComparable<T>
     {
         if (boundary.IsLessThan(interval.Start))
         {
@@ -45,6 +47,45 @@ public static class GenericIntervalExtensions
     }
 
     /// <summary>
+    /// Checks if the interval covers the given <see cref="IGenericInterval{T}"/>
+    /// </summary>
+    /// <param name="interval">the current <see cref="IGenericInterval{T}"/> instance</param>
+    /// <param name="other">the <see cref="IGenericInterval{T}"/> instance to verify</param>
+    /// <returns><code>true</code> if the given <see cref="IGenericInterval{T}"/> is covered, <code>false</code> otherwise</returns>
+    public static bool Covers<T>(this IGenericInterval<T> interval, IGenericInterval<T> other)
+        where T : IComparable<T> =>
+        interval.Intersect(other).Match(x => x.EquivalentTo(other), () => false);
+
+    /// <summary>
+    /// Generates a new <see cref="GenericInterval{T}" />, which is the intersection of the two.
+    /// </summary>
+    /// <param name="interval">the current <see cref="IGenericInterval{T}"/> instance</param>
+    /// <param name="other">the <see cref="IGenericInterval{T}"/> instance to intersect</param>
+    /// <returns>a new <see cref="Interval"/> object representing the intersection between the two <see cref="IGenericInterval{T}"/> if an intersections exists, <code>null</code> otherwise</returns>
+    public static Option<IGenericInterval<T>> Intersect<T>(this IGenericInterval<T> interval, IGenericInterval<T> other)
+        where T : IComparable<T> =>
+        GenericInterval<T>.Intersect(interval, other).Map(x => (IGenericInterval<T>)x);
+
+    /// <summary>
+    /// Checks if the interval intersects the given <see cref="IGenericInterval{T}"/>
+    /// </summary>
+    /// <param name="i">the current <see cref="IGenericInterval{T}"/> instance</param>
+    /// <param name="j">the <see cref="IGenericInterval{T}"/> instance to verify</param>
+    /// <returns><code>true</code> if the given <see cref="IGenericInterval{T}"/> has an intersection with the current one, <code>false</code> otherwise</returns>
+    public static bool Intersects<T>(this IGenericInterval<T> i, IGenericInterval<T> j)
+        where T : IComparable<T>, IEquatable<T> =>
+        i.Intersect(j).HasValue;
+
+    /// <summary>
+    /// Creates an interval based on the information of this object
+    /// </summary>
+    /// <param name="interval">the current <see cref="IGenericInterval{T}"/> instance</param>
+    /// <returns>a new <see cref="Interval"/> object</returns>
+    public static GenericInterval<T> ToGenericInterval<T>(this IGenericInterval<T> interval)
+        where T : IComparable<T>, IEquatable<T> =>
+        new(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
+
+    /// <summary>
     /// Checks if the given <see cref="IGenericInterval{T}"/> follows seamlessly and without overlap the current <see cref="IGenericInterval{T}"/>
     /// </summary>
     /// <param name="i">the current <see cref="IGenericInterval{T}"/> instance</param>
@@ -63,4 +104,14 @@ public static class GenericIntervalExtensions
     public static bool IsContiguouslyPrecededBy<T>(this IGenericInterval<T> i, IGenericInterval<T> o)
         where T : IComparable<T>, IEquatable<T> =>
         o.IsContiguouslyFollowedBy(i);
+
+    /// <summary>
+    /// Checks if the current <see cref="IGenericInterval{T}"/> starts before the given <see cref="IGenericInterval{T}"/>
+    /// </summary>
+    /// <param name="interval">the current <see cref="IGenericInterval{T}"/> instance</param>
+    /// <param name="other">the <see cref="IGenericInterval{T}"/> instance to check</param>
+    /// <returns><code>true</code> if the <see cref="IGenericInterval{T}"/> starts before the the given <see cref="IGenericInterval{T}"/>, <code>false</code> otherwise</returns>
+    public static bool StartsBefore<T>(this IGenericInterval<T> interval, IGenericInterval<T> other)
+        where T : IComparable<T>, IEquatable<T> =>
+        interval.Start.IsLessThan(other.Start) || (interval.Start.Equals(other.Start) && interval.StartIncluded && !other.StartIncluded);
 }

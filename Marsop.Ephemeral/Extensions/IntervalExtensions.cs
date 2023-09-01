@@ -4,7 +4,6 @@
 
 using Marsop.Ephemeral.Implementation;
 using Marsop.Ephemeral.Interfaces;
-using Optional;
 using System;
 
 namespace Marsop.Ephemeral.Extensions;
@@ -24,22 +23,13 @@ public static class IntervalExtensions
         new(interval.Start + shiftAmount, interval.End + shiftAmount, interval.StartIncluded, interval.EndIncluded);
 
     /// <summary>
-    /// Checks if the interval covers the given <see cref="IInterval"/>
-    /// </summary>
-    /// <param name="interval">the current <see cref="IInterval"/> instance</param>
-    /// <param name="other">the <see cref="IInterval"/> instance to verify</param>
-    /// <returns><code>true</code> if the given <see cref="IInterval"/> is covered, <code>false</code> otherwise</returns>
-    public static bool Covers(this IInterval interval, IInterval other) =>
-        interval.Intersect(other).Match(x => x.ToInterval().Equals(other), () => false);
-
-    /// <summary>
     /// Calculates the duration of the intersection between intervals
     /// </summary>
     /// <param name="i">the current <see cref="IInterval"/> instance</param>
     /// <param name="j">the <see cref="IInterval"/> instance in intersection</param>
     /// <returns>a <see cref="TimeSpan"/> object representing the duration of the intersection between the intervals, an empty <see cref="TimeSpan"/> if there is no intersection between the given <see cref="IInterval"/> instances</returns>
     public static TimeSpan DurationOfIntersect(this IInterval i, IInterval j) =>
-        i.Intersect(j).Match(x => x.Duration, () => TimeSpan.Zero);
+        Interval.Intersect(i, j).Match(x => x.Duration, () => TimeSpan.Zero);
 
     /// <summary>
     /// Calculates duration as difference between actual UTC date time and the <see cref="IInterval"/>
@@ -50,37 +40,11 @@ public static class IntervalExtensions
         DateTimeOffset.UtcNow < interval.End ? interval.End - DateTimeOffset.UtcNow : interval.Duration;
 
     /// <summary>
-    /// Generates a new <see cref="Interval" />, which is the intersection of the two.
-    /// </summary>
-    /// <param name="interval">the current <see cref="IInterval"/> instance</param>
-    /// <param name="other">the <see cref="IInterval"/> instance to intersect</param>
-    /// <returns>a new <see cref="Interval"/> object representing the intersection between the two <see cref="IInterval"/> if an intersections exists, <code>null</code> otherwise</returns>
-    public static Option<IInterval> Intersect(this IInterval interval, IInterval other) =>
-        Interval.Intersect(interval, other).Map(x => (IInterval)x);
-
-    /// <summary>
-    /// Checks if the interval intersects the given <see cref="IInterval"/>
-    /// </summary>
-    /// <param name="i">the current <see cref="IInterval"/> instance</param>
-    /// <param name="j">the <see cref="IInterval"/> instance to verify</param>
-    /// <returns><code>true</code> if the given <see cref="IInterval"/> has an intersection with the current one, <code>false</code> otherwise</returns>
-    public static bool Intersects(this IInterval i, IInterval j) => i.Intersect(j).HasValue;
-
-    /// <summary>
-    /// Checks if the current <see cref="IInterval"/> starts before the given <see cref="IInterval"/>
-    /// </summary>
-    /// <param name="interval">the current <see cref="IInterval"/> instance</param>
-    /// <param name="other">the <see cref="IInterval"/> instance to check</param>
-    /// <returns><code>true</code> if the <see cref="IInterval"/> starts before the the given <see cref="IInterval"/>, <code>false</code> otherwise</returns>
-    public static bool StartsBefore(this IInterval interval, IInterval other) =>
-        interval.Start < other.Start || (interval.Start == other.Start && interval.StartIncluded && !other.StartIncluded);
-
-    /// <summary>
     /// Creates an interval based on the information of this object
     /// </summary>
     /// <param name="interval">the current <see cref="IInterval"/> instance</param>
     /// <returns>a new <see cref="Interval"/> object</returns>
-    public static Interval ToInterval(this IInterval interval) =>
+    public static Interval ToInterval(this IGenericInterval<DateTimeOffset> interval) =>
         new(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
 
     /// <summary>

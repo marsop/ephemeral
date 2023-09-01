@@ -12,8 +12,10 @@ namespace Marsop.Ephemeral.Implementation;
 /// <summary>
 /// Immutable Interval Base class
 /// </summary>
-public class Interval : GenericInterval<DateTimeOffset>, IInterval, IEquatable<IInterval>
+public class Interval : GenericInterval<DateTimeOffset>, IInterval
 {
+    public TimeSpan Duration => End - Start;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Interval" /> class
     /// </summary>
@@ -79,36 +81,8 @@ public class Interval : GenericInterval<DateTimeOffset>, IInterval, IEquatable<I
     /// <param name="second">the second <see cref="IInterval"/> instance</param>
     /// <returns>a new <see cref="Interval"/> if an intersection exists</returns>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public static Option<Interval> Intersect(IInterval first, IInterval second)
-    {
-        if (first is null)
-        {
-            throw new ArgumentNullException(nameof(first));
-        }
-
-        if (second is null)
-        {
-            throw new ArgumentNullException(nameof(second));
-        }
-
-        var maxStart = first.Start.IsLessThan(second.Start) ? second.Start : first.Start;
-        var minEnd = first.End.IsLessThan(second.End) ? first.End : second.End;
-
-        if (minEnd.IsLessThan(maxStart))
-        {
-            return Option.None<Interval>();
-        }
-
-        if (minEnd.Equals(maxStart) && (!first.Covers(minEnd) || !second.Covers(minEnd)))
-        {
-            return Option.None<Interval>();
-        }
-
-        var startIncluded = first.Covers(maxStart) && second.Covers(maxStart);
-        var endIncluded = first.Covers(minEnd) && second.Covers(minEnd);
-
-        return new Interval(maxStart, minEnd, startIncluded, endIncluded).Some();
-    }
+    public static Option<Interval> Intersect(IInterval first, IInterval second) =>
+        GenericInterval<DateTimeOffset>.Intersect(first, second).Map(x => x.ToInterval());
 
     /// <summary>
     /// Join two intervals
@@ -118,7 +92,7 @@ public class Interval : GenericInterval<DateTimeOffset>, IInterval, IEquatable<I
     /// <returns>a new <see cref="Interval"/> with joined intervals</returns>
     /// <exception cref="ArgumentException">an exception is thrown if the two intervals are not contiguous or overlapping</exception>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public static Interval Join(IInterval first, IInterval second)
+    public static Interval Join(IGenericInterval<DateTimeOffset> first, IGenericInterval<DateTimeOffset> second)
     {
         if (first is null)
         {
@@ -137,7 +111,7 @@ public class Interval : GenericInterval<DateTimeOffset>, IInterval, IEquatable<I
 
         if (first.Covers(second))
         {
-            return first.ToInterval();
+            return first.ToGenericInterval().ToInterval();
         }
 
         if (first.Intersects(second) || first.IsContiguouslyFollowedBy(second))
@@ -191,7 +165,4 @@ public class Interval : GenericInterval<DateTimeOffset>, IInterval, IEquatable<I
 
         return result;
     }
-
-    /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-    public bool Equals(IInterval other) => other is not null && (Start.Equals(other.Start) && End == other.End && StartIncluded == other.StartIncluded && EndIncluded == other.EndIncluded);
 }

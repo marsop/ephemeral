@@ -15,7 +15,7 @@ public class IntervalExtensionsTests
     [InlineData(true, false, true, false)]
     [InlineData(false, true, false, true)]
     [InlineData(false, false, false, false)]
-    public void Test_Covers(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
+    public void Test_Covers_True(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
     {
         //Given
         var date = _randomHelper.GetDateTime();
@@ -31,6 +31,46 @@ public class IntervalExtensionsTests
     }
 
     [Theory]
+    [InlineData(true, true, true, true)]
+    [InlineData(true, false, true, false)]
+    [InlineData(false, true, false, true)]
+    [InlineData(false, false, false, false)]
+    public void Test_Covers_FalseEnd(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
+    {
+        //Given
+        var date = _randomHelper.GetDateTime();
+
+        var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
+        var other = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(13), startIncludedIntervalB, endIncludedIntervalB);
+
+        //When
+        var result = source.Covers(other);
+
+        //Then
+        result.Should().BeFalse();
+    }
+
+    [Theory]
+    [InlineData(true, true, true, true)]
+    [InlineData(true, false, true, false)]
+    [InlineData(false, true, false, true)]
+    [InlineData(false, false, false, false)]
+    public void Test_Covers_FalseStart(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
+    {
+        //Given
+        var date = _randomHelper.GetDateTime();
+
+        var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
+        var other = _randomHelper.GetInterval(date.AddHours(7), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
+
+        //When
+        var result = source.Covers(other);
+
+        //Then
+        result.Should().BeFalse();
+    }
+
+    [Theory]
     [InlineData(true, true)]
     [InlineData(true, false)]
     [InlineData(false, true)]
@@ -38,18 +78,20 @@ public class IntervalExtensionsTests
     public void Test_Shift(bool startIncludedInterval, bool endIncludedInterval)
     {
         //Given
+        Random r = new();
+
         var date = _randomHelper.GetDateTime();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
 
-        var shiftAmount = TimeSpan.FromHours(1);
+        var shiftAmount = TimeSpan.FromHours(r.NextDouble() - 0.5);
 
         //When
         var result = source.Shift(shiftAmount);
 
         //Then
-        result.End.Should().BeExactly(source.End.AddHours(1));
-        result.Start.Should().BeExactly(source.Start.AddHours(1));
+        result.End.Should().BeExactly(source.End.Add(shiftAmount));
+        result.Start.Should().BeExactly(source.Start.Add(shiftAmount));
     }
 
     [Theory]

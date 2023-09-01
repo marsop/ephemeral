@@ -6,10 +6,6 @@ namespace Marsop.Ephemeral.Interfaces;
 
 using System;
 
-public interface IDateTimeInterval : IGenericInterval<DateTime>
+public interface IDateTimeInterval : IGenericInterval<DateTime>, IHasDuration<TimeSpan>
 {
-    /// <summary>
-    /// Gets the difference between start and end as <see cref="TimeSpan"/>
-    /// </summary>
-    TimeSpan Duration => End - Start;
 }
