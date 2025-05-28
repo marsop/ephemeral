@@ -14,7 +14,7 @@
     <ProjectUrl>https://albertogregorio.com/ephemeral</ProjectUrl>
     <PackageIcon>Ephemeral64x64.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>0.2.0-alpha.1</Version>
+    <Version>$(VersionPrefix)-alpha.2</Version>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <InformationalVersion>0.1.8+2.Branch.master.Sha.eba8d8fee421bfca5e09c231dba73383e21c06bd</InformationalVersion>
