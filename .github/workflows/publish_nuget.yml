@@ -32,7 +32,7 @@ jobs:
         run: |
           dotnet nuget push ./nupkg/*.nupkg \
             --api-key ${{ secrets.NUGET_KEY }} \
-            --source https://api.nuget.org \
+            --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
         env:
           NUGET_KEY: ${{ secrets.NUGET_KEY }}
