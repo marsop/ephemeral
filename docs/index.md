@@ -10,6 +10,8 @@ C# Library to handle time intervals (composite start and end)
 - Support for common operations like Covers(), Intersect(), Join(), etc..
 - Support for (disjoint) collections of intervals.
 
+A new version (2.0) of this library including generic intervals is currently in development. See more info at [Breaking Changes v2](changes-v2.md)
+
 Please check all the available options in the [Methods Section](methods.md).
 
 This documentation is hosted at [albertogregorio.com/ephemeral](albertogregorio.com/ephemeral).
