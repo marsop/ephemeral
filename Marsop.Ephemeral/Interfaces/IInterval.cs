@@ -9,4 +9,4 @@ using System;
 /// <summary>
 /// Interface for classes implementing an interval
 /// </summary>
-public interface IInterval : IGenericInterval<DateTimeOffset>{}
+public interface IInterval : IGenericInterval<DateTimeOffset, TimeSpan>{}

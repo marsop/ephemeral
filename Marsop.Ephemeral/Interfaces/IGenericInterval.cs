@@ -9,8 +9,9 @@ using System;
 /// <summary>
 /// Interface for classes implementing an interval
 /// </summary>
-public interface IGenericInterval<TBoundary> 
+public interface IGenericInterval<TBoundary, TLength> : IHasLength<TLength>
     where TBoundary : notnull, IComparable<TBoundary>
+    where TLength : notnull, IComparable<TLength> 
 {
     /// <summary>
     /// Gets the final point of the interval

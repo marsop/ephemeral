@@ -33,6 +33,8 @@ public class Interval : IInterval, IEquatable<IInterval>
     /// <inheritdoc cref="IInterval.StartIncluded"/>
     public bool StartIncluded { get; }
 
+    public TimeSpan Length() => this.Duration();
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Interval" /> class
     /// </summary>
