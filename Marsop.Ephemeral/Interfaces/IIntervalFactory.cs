@@ -6,14 +6,9 @@ namespace Marsop.Ephemeral.Interfaces;
 
 using System;
 
-public interface IIntervalFactory<TInterval, TBoundary, TLength>
-    where TInterval : IInterval<TBoundary, TLength>
+public interface IIntervalFactory<TInterval, TBoundary>
+    where TInterval : IBasicInterval<TBoundary>
     where TBoundary : notnull, IComparable<TBoundary>
-    where TLength : notnull, IComparable<TLength>
 {
-    TInterval Create(
-        TBoundary start,
-        bool startIncluded,
-        TBoundary end,
-        bool endIncluded);
+    TInterval Create(IBasicInterval<TBoundary> interval);
 }

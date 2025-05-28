@@ -15,7 +15,7 @@ namespace Marsop.Ephemeral.Implementation;
 public class DateTimeOffsetInterval :
 IDateTimeOffsetInterval,
 IEquatable<IDateTimeOffsetInterval>,
-IIntervalFactory<DateTimeOffsetInterval, DateTimeOffset, TimeSpan>
+IIntervalFactory<DateTimeOffsetInterval, DateTimeOffset>
 {
     /// <inheritdoc cref="IDateTimeOffsetInterval.End"/>
     public DateTimeOffset End { get; }
@@ -76,7 +76,7 @@ IIntervalFactory<DateTimeOffsetInterval, DateTimeOffset, TimeSpan>
 
         if (!IsValid)
         {
-            throw new InvalidDurationException(GetTextualRepresentation());
+            throw new InvalidLengthException(GetTextualRepresentation());
         }
     }
 
@@ -140,8 +140,8 @@ IIntervalFactory<DateTimeOffsetInterval, DateTimeOffset, TimeSpan>
         return boundary2 - boundary1;
     }
 
-    public DateTimeOffsetInterval Create(DateTimeOffset start, bool startIncluded, DateTimeOffset end, bool endIncluded)
+    public DateTimeOffsetInterval Create(IBasicInterval<DateTimeOffset> i)
     {
-        return new DateTimeOffsetInterval(start, end, startIncluded, endIncluded);
+        return new DateTimeOffsetInterval(i.Start, i.End, i.StartIncluded, i.EndIncluded); 
     }
 }

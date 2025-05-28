@@ -11,5 +11,4 @@ using System;
 /// </summary>
 public interface IMetricInterval<TBoundary, TLength>
 : IBasicInterval<TBoundary>, IHasLength<TLength>
-    where TBoundary : notnull, IComparable<TBoundary>
-    where TLength : notnull, IComparable<TLength> {}
+    where TBoundary : notnull, IComparable<TBoundary> {}

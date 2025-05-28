@@ -69,7 +69,7 @@ public static class IntervalExtensions
     public static TInterval Shift<TInterval, TBoundary, TLength>(
         this TInterval interval,
         TLength shiftAmount)
-        where TInterval : IInterval<TBoundary, TLength>, IIntervalFactory<TInterval, TBoundary, TLength>
+        where TInterval : IInterval<TBoundary, TLength>, IIntervalFactory<TInterval, TBoundary>
         where TBoundary : notnull, IComparable<TBoundary>
         where TLength : notnull, IComparable<TLength>
 
@@ -80,7 +80,7 @@ public static class IntervalExtensions
     public static TOut Shift<TIn, TBoundary, TLength, TOut>(
         this TIn interval,
         TLength shiftAmount,
-        IIntervalFactory<TOut, TBoundary, TLength> factory)
+        IIntervalFactory<TOut, TBoundary> factory)
         where TIn : IInterval<TBoundary, TLength>
         where TOut : IInterval<TBoundary, TLength>
         where TBoundary : notnull, IComparable<TBoundary>
@@ -90,7 +90,8 @@ public static class IntervalExtensions
         var newStart = interval.Apply(interval.Start, shiftAmount);
         var newEnd = interval.Apply(interval.End, shiftAmount);
         
-        return factory.Create(newStart, interval.StartIncluded, newEnd, interval.EndIncluded);
+        BasicInterval<TBoundary> output = new(newStart, newEnd, interval.StartIncluded, interval.EndIncluded);
+        return factory.Create(output);
     }
 
     /// <summary>
