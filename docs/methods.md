@@ -6,17 +6,31 @@ The following methods are available when any class implements `IDisjointInterval
 - `Intersect(i : IInterval) : IDisjointIntevalSet`
 - `Consolidate() : IDisjointIntevalSet`
 
-The following methods are available when any class implements `IInterval`:
+The following methods are available when any class implements `IInterval` (as extension methods):
 
-- `Covers(t: DateTime) : bool`
+- `Covers(t: DateTimeOffset) : bool` *
+- `Shift(t: TimeSpan): Interval` *
 - `Covers(i: IInterval) : bool`
+- `DurationOfIntersect(i: IInterval): TimeSpan` *
 - `DurationUntilNow(): TimeSpan`
-- `ToInterval(): IInterval`
-- `Union(i: IInterval) : IDisjointIntervalSet`
-- `Intersect(i : IInterval) : Option<IInterval>`
-- `Subtract(i: IInterval) : IDisjointIntervalSet`
-- `DurationOfIntersect(IInterval) : TimeSpan`
+- `Intersect(i : IInterval) : Option<IInterval>` *
 - `Intersects(i: IInterval): bool`
 - `IsContiguouslyFollowedBy(i: IInterval) : bool`
 - `IsContiguouslyPrecededBy(i: IInterval) : bool`
 - `StartsBefore(i: IInterval) : bool`
+- `ToInterval(): Interval`
+- `Union(i: IInterval) : IDisjointIntervalSet`
+
+Static methods to create `Interval`
+
+- `CreateClosed`
+- `CreateOpen`
+- `CreatePoint`
+
+- `Intersect` 
+- `Join`
+- `Subtract(i: IInterval) : IDisjointIntervalSet`
+
+
+
+
