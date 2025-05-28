@@ -2,6 +2,7 @@ using FluentAssertions;
 using Marsop.Ephemeral.Extensions;
 using Marsop.Ephemeral.Implementation;
 using Marsop.Ephemeral.Interfaces;
+using Optional.Unsafe;
 using System;
 using Xunit;
 
@@ -46,7 +47,7 @@ public class IntervalExtensionsTests
         var shiftAmount = TimeSpan.FromHours(1);
 
         //When
-        var result = source.Shift<DateTimeOffsetInterval, DateTimeOffset, TimeSpan>(shiftAmount);
+        var result = source.Shift(shiftAmount);
 
         //Then
         result.End.Should().BeExactly(source.End.AddHours(1));
@@ -66,7 +67,7 @@ public class IntervalExtensionsTests
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
 
         //When
-        var result = source.Shift<DateTimeOffsetInterval, DateTimeOffset, TimeSpan>(TimeSpan.Zero);
+        var result = source.Shift(TimeSpan.Zero);
 
         //Then
         result.Should().BeEquivalentTo(source);
@@ -86,14 +87,16 @@ public class IntervalExtensionsTests
         var other = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
 
         //When
-        var result = source.Intersect(other).Match(x => x.ToInterval(), () => default(IDateTimeOffsetInterval));
+        var result = source
+            .Intersect(other)
+            .ValueOrFailure();
 
         //Then
         result.Should().BeEquivalentTo(other);
     }
 
     [Fact]
-    public void DurationOfIntersect_ReturnsCorrectDuration_WhenIntervalsOverlap()
+    public void LengthOfIntersect_ReturnsCorrectDuration_WhenIntervalsOverlap()
     {
         // Given
         var date = _randomHelper.GetDateTime();
@@ -101,14 +104,14 @@ public class IntervalExtensionsTests
         var intervalB = new DateTimeOffsetInterval(date.AddHours(10), date.AddHours(14), true, true);
 
         // When
-        var duration = intervalA.DurationOfIntersect(intervalB);
+        var duration = intervalA.LengthOfIntersect(intervalB, intervalA);
 
         // Then
         duration.Should().Be(intervalA.End - intervalB.Start);
     }
 
     [Fact]
-    public void DurationOfIntersect_ReturnsZero_WhenIntervalsDoNotOverlap()
+    public void LengthOfIntersect_ReturnsZero_WhenIntervalsDoNotOverlap()
     {
         // Given
         var date = _randomHelper.GetDateTime();
@@ -116,14 +119,14 @@ public class IntervalExtensionsTests
         var intervalB = _randomHelper.GetInterval(date.AddHours(11), date.AddHours(12), true, true);
 
         // When
-        var duration = intervalA.DurationOfIntersect(intervalB);
+        var duration = intervalA.LengthOfIntersect(intervalB, intervalA);
 
         // Then
         duration.Should().Be(TimeSpan.Zero);
     }
 
     [Fact]
-    public void DurationOfIntersect_ReturnsLength_WhenIntervalsAreIdentical()
+    public void LengthOfIntersect_ReturnsLength_WhenIntervalsAreIdentical()
     {
         // Given
         var date = _randomHelper.GetDateTime();
@@ -131,7 +134,7 @@ public class IntervalExtensionsTests
         IDateTimeOffsetInterval intervalB = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
 
         // When
-        var duration = intervalA.DurationOfIntersect(intervalB);
+        var duration = intervalA.LengthOfIntersect(intervalB, intervalA);
 
         // Then
         duration.Should().Be(intervalA.Length());

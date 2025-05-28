@@ -14,7 +14,6 @@ namespace Marsop.Ephemeral.Implementation;
 /// </summary>
 public class DateTimeOffsetInterval :
 IDateTimeOffsetInterval,
-IEquatable<IDateTimeOffsetInterval>,
 IIntervalFactory<DateTimeOffsetInterval, DateTimeOffset>
 {
     /// <inheritdoc cref="IDateTimeOffsetInterval.End"/>
@@ -103,8 +102,6 @@ IIntervalFactory<DateTimeOffsetInterval, DateTimeOffset>
     /// <returns>an <see cref="DateTimeOffsetInterval"/> with start and end point set with the given <see cref="DateTimeOffset"/></returns>
     public static DateTimeOffsetInterval CreatePoint(DateTimeOffset timestamp) => CreateClosed(timestamp, timestamp);
 
-    /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-    public bool Equals(IDateTimeOffsetInterval other) => other != null && (Start == other.Start && End == other.End && StartIncluded == other.StartIncluded && EndIncluded == other.EndIncluded);
 
     /// <inheritdoc cref="object.ToString"/>
     public override string ToString()
@@ -140,8 +137,12 @@ IIntervalFactory<DateTimeOffsetInterval, DateTimeOffset>
         return boundary2 - boundary1;
     }
 
-    public DateTimeOffsetInterval Create(IBasicInterval<DateTimeOffset> i)
+    public TimeSpan Zero() => TimeSpan.Zero;
+
+    public DateTimeOffsetInterval CreateFrom(IBasicInterval<DateTimeOffset> i) => From(i);
+
+    public static DateTimeOffsetInterval From(IBasicInterval<DateTimeOffset> i)
     {
-        return new DateTimeOffsetInterval(i.Start, i.End, i.StartIncluded, i.EndIncluded); 
+        return new DateTimeOffsetInterval(i.Start, i.End, i.StartIncluded, i.EndIncluded);
     }
 }

@@ -30,7 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Optional" />
-    <PackageReference Include="Microsoft.Bcl.TimeProvider" />
   </ItemGroup>
 	<ItemGroup>
 		<None Include="..\docs\img\Ephemeral64x64.png" Pack="true" PackagePath="\"/>

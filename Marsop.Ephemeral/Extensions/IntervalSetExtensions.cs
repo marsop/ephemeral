@@ -83,7 +83,8 @@ public static class IntervalSetExtensions
     {
         var intersections = set
             .Select(x => x.Intersect(interval))
-            .Values();
+            .Values()
+            .Select(DateTimeOffsetInterval.From);
         return [.. intersections];
     }
 

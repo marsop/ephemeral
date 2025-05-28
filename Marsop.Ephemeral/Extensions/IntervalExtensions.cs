@@ -15,16 +15,27 @@ namespace Marsop.Ephemeral.Extensions;
 /// </summary>
 public static class IntervalExtensions
 {
-    /// <summary>
-    /// Gets the length of the interval
-    /// </summary>
-    public static TLength Duration<TInterval, TBoundary, TLength>(this TInterval i)
-        where TInterval : IHasLength<TLength>, IBasicInterval<TBoundary>
+    public static bool IsEquivalentIntervalTo<TBoundary>(
+        this IBasicInterval<TBoundary> interval,
+        IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
-        where TLength : notnull, IComparable<TLength>
     {
-        return i.Length();
+        if (interval is null)
+        {
+            throw new ArgumentNullException(nameof(interval));
+        }
+
+        if (other is null)
+        {
+            throw new ArgumentNullException(nameof(other));
+        }
+
+        return interval.Start.IsEqualTo(other.Start) &&
+               interval.End.IsEqualTo(other.End) &&
+               interval.StartIncluded == other.StartIncluded &&
+               interval.EndIncluded == other.EndIncluded;
     }
+
 
     /// <summary>
     /// Verify if the interval covers the given boundary
@@ -66,70 +77,64 @@ public static class IntervalExtensions
     /// <param name="interval">the current <see cref="IInterval<>"/> instance</param>
     /// <param name="shiftLength">the amount to be shifted (positive or negative)</param>
     /// <returns></returns>
-    public static TInterval Shift<TInterval, TBoundary, TLength>(
-        this TInterval interval,
+    public static BasicInterval<TBoundary> Shift<TBoundary, TLength>(
+        this IInterval<TBoundary, TLength> interval,
         TLength shiftLength)
-        where TInterval : IInterval<TBoundary, TLength>, IIntervalFactory<TInterval, TBoundary>
         where TBoundary : notnull, IComparable<TBoundary>
         where TLength : notnull, IComparable<TLength>
-
     {
-        return Shift2(interval, shiftLength, interval);
-    }
+        var newStart = interval.Apply(interval.Start, shiftLength);
+        var newEnd = interval.Apply(interval.End, shiftLength);
 
-    public static TOut Shift2<TIn, TBoundary, TLength, TOut>(
-        this TIn interval,
-        TLength shiftAmount,
-        IIntervalFactory<TOut, TBoundary> factory)
-        where TIn : IInterval<TBoundary, TLength>
-        where TOut : IInterval<TBoundary, TLength>
-        where TBoundary : notnull, IComparable<TBoundary>
-        where TLength : notnull, IComparable<TLength>
-
-    {
-        var newStart = interval.Apply(interval.Start, shiftAmount);
-        var newEnd = interval.Apply(interval.End, shiftAmount);
-
-        BasicInterval<TBoundary> output = new(newStart, newEnd, interval.StartIncluded, interval.EndIncluded);
-        return factory.Create(output);
+        return new BasicInterval<TBoundary>(newStart, newEnd, interval.StartIncluded, interval.EndIncluded);
     }
 
     /// <summary>
-    /// Checks if the interval covers the given <see cref="IDateTimeOffsetInterval"/>
+    /// Checks if the interval covers the given interval
     /// </summary>
     /// <param name="interval">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
     /// <param name="other">the <see cref="IDateTimeOffsetInterval"/> instance to verify</param>
     /// <returns><code>true</code> if the given <see cref="IDateTimeOffsetInterval"/> is covered, <code>false</code> otherwise</returns>
-    public static bool Covers(this IDateTimeOffsetInterval interval, IDateTimeOffsetInterval other) =>
-        interval.Intersect(other).Match(x => x.ToInterval().Equals(other), () => false);
-
-    /// <summary>
-    /// Calculates the duration of the intersection between intervals
-    /// </summary>
-    /// <param name="i">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="j">the <see cref="IDateTimeOffsetInterval"/> instance in intersection</param>
-    /// <returns>a <see cref="TimeSpan"/> object representing the duration of the intersection between the intervals, an empty <see cref="TimeSpan"/> if there is no intersection between the given <see cref="IDateTimeOffsetInterval"/> instances</returns>
-    public static TimeSpan DurationOfIntersect(this IDateTimeOffsetInterval i, IDateTimeOffsetInterval j) =>
-        i.Intersect(j).Map(x => x.Length()).ValueOr(TimeSpan.Zero);
-
-    /// <summary>
-    /// Calculates duration as difference between actual UTC date time and the <see cref="IDateTimeOffsetInterval"/>
-    /// </summary>
-    /// <param name="interval">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <returns>a <see cref="TimeSpan"/> object representing the duration if the <see cref="IDateTimeOffsetInterval"/> is not ended, a <see cref="TimeSpan"/> representing the delay compared to the <see cref="IDateTimeOffsetInterval"/> end</returns>
-    public static TimeSpan DurationUntilNow(this IDateTimeOffsetInterval interval, TimeProvider timeProvider)
+    public static bool Covers<TBoundary>(
+        this IBasicInterval<TBoundary> interval,
+         IBasicInterval<TBoundary> other)
+        where TBoundary : notnull, IComparable<TBoundary>
     {
-        var utcNow = timeProvider?.GetUtcNow() ?? throw new ArgumentNullException(nameof(timeProvider));
-        return utcNow.IsLessThan(interval.End) ? interval.End - utcNow : interval.Length();
+        return interval
+        .Intersect(other)
+        .Match(
+            x => x.IsEquivalentIntervalTo(other),
+            () => false);
+    }
+
+    /// <summary>
+    /// Calculates the length of the intersection between intervals
+    /// </summary>
+    /// <param name="interval">the current <see cref="IBasicInterval<>"/> instance</param>
+    /// <param name="other">the <see cref="IBasicInterval<>"/> instance in intersection</param>
+    /// <returns>an object representing the length of the intersection between the intervals, an empty <see cref="TimeSpan"/> if there is no intersection between the given <see cref="IDateTimeOffsetInterval"/> instances</returns>
+    public static TLength LengthOfIntersect<TBoundary, TLength>(
+        this IBasicInterval<TBoundary> interval,
+        IBasicInterval<TBoundary> other,
+        ILengthOperator<TBoundary, TLength> lengthOperator)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        return interval
+        .Intersect(other)
+        .Map(lengthOperator.MeasureInterval)
+        .ValueOr(lengthOperator.Zero());
     }
 
     /// <summary>
     /// Generates a new <see cref="DateTimeOffsetInterval" />, which is the intersection of the two.
     /// </summary>
-    /// <param name="interval">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
+    /// <param name="interval">the current interval</param>
     /// <param name="other">the <see cref="IDateTimeOffsetInterval"/> instance to intersect</param>
     /// <returns>a new <see cref="DateTimeOffsetInterval"/> object representing the intersection between the two <see cref="IDateTimeOffsetInterval"/> if an intersections exists, <code>null</code> otherwise</returns>
-    public static Option<DateTimeOffsetInterval> Intersect(this IDateTimeOffsetInterval first, IDateTimeOffsetInterval second)
+    public static Option<BasicInterval<TBoundary>> Intersect<TBoundary>(
+        this IBasicInterval<TBoundary> first,
+        IBasicInterval<TBoundary> second)
+        where TBoundary : notnull, IComparable<TBoundary>
     {
         if (first is null)
         {
@@ -146,18 +151,18 @@ public static class IntervalExtensions
 
         if (minEnd.IsLessThan(maxStart))
         {
-            return Option.None<DateTimeOffsetInterval>();
+            return Option.None<BasicInterval<TBoundary>>();
         }
 
         if (minEnd.IsEqualTo(maxStart) && (!first.Covers(minEnd) || !second.Covers(minEnd)))
         {
-            return Option.None<DateTimeOffsetInterval>();
+            return Option.None<BasicInterval<TBoundary>>();
         }
 
         var startIncluded = first.Covers(maxStart) && second.Covers(maxStart);
         var endIncluded = first.Covers(minEnd) && second.Covers(minEnd);
 
-        return new DateTimeOffsetInterval(maxStart, minEnd, startIncluded, endIncluded).Some();
+        return new BasicInterval<TBoundary>(maxStart, minEnd, startIncluded, endIncluded).Some();
     }
 
     /// <summary>

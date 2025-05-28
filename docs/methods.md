@@ -19,7 +19,6 @@ The following methods are implemented as extension methods to be able to use the
 - `Shift(t: TimeSpan): Interval` *
 - `Covers(i: IInterval) : bool` *
 - `DurationOfIntersect(i: IInterval): TimeSpan` *
-- `DurationUntilNow(tp: TimeProvider): TimeSpan`
 - `Intersect(i : IInterval) : Option<Interval>` *
 - `Intersects(i: IInterval): bool`
 - `Join(i: IInterval): Interval`

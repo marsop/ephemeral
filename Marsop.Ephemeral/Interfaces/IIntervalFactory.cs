@@ -10,5 +10,5 @@ public interface IIntervalFactory<TInterval, TBoundary>
     where TInterval : IBasicInterval<TBoundary>
     where TBoundary : notnull, IComparable<TBoundary>
 {
-    TInterval Create(IBasicInterval<TBoundary> interval);
+    TInterval CreateFrom(IBasicInterval<TBoundary> interval);
 }
