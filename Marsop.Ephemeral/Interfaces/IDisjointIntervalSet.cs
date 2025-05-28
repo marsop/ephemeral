@@ -13,7 +13,7 @@ using Extensions;
 /// <summary>
 /// Collection of disjoint IIntervals
 /// </summary>
-public interface IDisjointIntervalSet : IList<IInterval>
+public interface IDisjointIntervalSet : IList<IDateTimeOffsetInterval>
 {
     /// <summary>
     /// Gets the sum of durations of each of the enclosed intervals

@@ -20,7 +20,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     /// <summary>
     /// Internal sorted list of intervals
     /// </summary>
-    private SortedList<IInterval, IInterval> _intervals = new SortedList<IInterval, IInterval>(new IntervalStartComparer());
+    private SortedList<IDateTimeOffsetInterval, IDateTimeOffsetInterval> _intervals = new SortedList<IDateTimeOffsetInterval, IDateTimeOffsetInterval>(new IntervalStartComparer());
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
@@ -32,9 +32,9 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     /// <summary>
     /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
     /// </summary>
-    /// <param name="intervals">an <see cref="Array"/> of <see cref="IInterval"/> to initialize the set</param>
+    /// <param name="intervals">an <see cref="Array"/> of <see cref="IDateTimeOffsetInterval"/> to initialize the set</param>
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
-    public DisjointIntervalSet(params IInterval[] intervals)
+    public DisjointIntervalSet(params IDateTimeOffsetInterval[] intervals)
     {
         if (intervals == null)
         {
@@ -53,9 +53,9 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     /// <summary>
     /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
     /// </summary>
-    /// <param name="intervals">an <see cref="IEnumerable{T}"/> of <see cref="IInterval"/> to initialize the set</param>
+    /// <param name="intervals">an <see cref="IEnumerable{T}"/> of <see cref="IDateTimeOffsetInterval"/> to initialize the set</param>
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
-    public DisjointIntervalSet(IEnumerable<IInterval> intervals)
+    public DisjointIntervalSet(IEnumerable<IDateTimeOffsetInterval> intervals)
     {
         if (intervals == null)
         {
@@ -69,9 +69,9 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     }
 
     /// <inheritdoc cref="IDisjointIntervalSet.AggregatedDuration"/>
-    public TimeSpan AggregatedDuration => TimeSpan.FromTicks(this.Sum(x => x.Duration().Ticks));
+    public TimeSpan AggregatedDuration => TimeSpan.FromTicks(this.Sum(x => x.Length().Ticks));
 
-    /// <inheritdoc cref="IInterval.Count"/>
+    /// <inheritdoc cref="IDateTimeOffsetInterval.Count"/>
     public int Count => this._intervals.Count;
 
     /// <inheritdoc cref="IDisjointIntervalSet.End"/>
@@ -83,7 +83,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     /// <inheritdoc cref="IDisjointIntervalSet.IsContiguous"/>
     public bool IsContiguous => this.Consolidate().Count < 2;
 
-    /// <inheritdoc cref="IInterval.IsReadOnly"/>
+    /// <inheritdoc cref="IDateTimeOffsetInterval.IsReadOnly"/>
     public bool IsReadOnly => false;
 
     /// <inheritdoc cref="IDisjointIntervalSet.Start"/>
@@ -93,7 +93,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     public bool StartIncluded { get; }
 
     /// <inheritdoc cref="IList{T}.this[int]"/>
-    public IInterval this[int index]
+    public IDateTimeOffsetInterval this[int index]
     {
         get => this._intervals.Values[index];
         set => this._intervals.Values[index] = value;
@@ -102,7 +102,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     /// <inheritdoc cref="ICollection{T}.Add"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if given interval is <code>null</code></exception>
     /// <exception cref="OverlapException">an exception is thrown if given interval overlaps another interval</exception>
-    public void Add(IInterval item)
+    public void Add(IDateTimeOffsetInterval item)
     {
         if (item == null)
         {
@@ -121,20 +121,20 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     public void Clear() => this._intervals.Clear();
 
     /// <inheritdoc cref="ICollection{T}.Contains"/>
-    public bool Contains(IInterval item) => item != null && this._intervals.ContainsKey(item);
+    public bool Contains(IDateTimeOffsetInterval item) => item != null && this._intervals.ContainsKey(item);
 
     /// <inheritdoc cref="ICollection{T}.CopyTo"/>
-    public void CopyTo(IInterval[] array, int arrayIndex) => this._intervals.Values.CopyTo(array, arrayIndex);
+    public void CopyTo(IDateTimeOffsetInterval[] array, int arrayIndex) => this._intervals.Values.CopyTo(array, arrayIndex);
 
     /// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-    public IEnumerator<IInterval> GetEnumerator() => this._intervals.Values.GetEnumerator();
+    public IEnumerator<IDateTimeOffsetInterval> GetEnumerator() => this._intervals.Values.GetEnumerator();
 
     /// <inheritdoc cref="IEnumerable.GetEnumerator"/>
     IEnumerator IEnumerable.GetEnumerator() => this._intervals.Values.GetEnumerator();
 
     /// <inheritdoc cref="IList{T}.IndexOf"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
-    public int IndexOf(IInterval item)
+    public int IndexOf(IDateTimeOffsetInterval item)
     {
         if (item == null)
         {
@@ -145,13 +145,13 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     }
 
     /// <inheritdoc cref="IList{T}.Insert"/>
-    public void Insert(int index, IInterval item)
+    public void Insert(int index, IDateTimeOffsetInterval item)
     {
         throw new NotSupportedException("The Set is always ordered, please use Add()");
     }
 
     /// <inheritdoc cref="ICollection{T}.Remove"/>
-    public bool Remove(IInterval item) => item != null && this._intervals.Remove(item);
+    public bool Remove(IDateTimeOffsetInterval item) => item != null && this._intervals.Remove(item);
 
     /// <inheritdoc cref="IList{T}.RemoveAt"/>
     /// <exception cref="ArgumentOutOfRangeException">an exception is thrown if index is less than zero or index is equal to or greater than intervals count</exception>

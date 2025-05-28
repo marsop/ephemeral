@@ -36,7 +36,7 @@ public static class IntervalSetExtensions
             {
                 if (cachedItem.IsContiguouslyFollowedBy(item))
                 {
-                    cachedItem = new Interval(
+                    cachedItem = new DateTimeOffsetInterval(
                         cachedItem.Start,
                         item.End,
                         cachedItem.StartIncluded,
@@ -68,18 +68,18 @@ public static class IntervalSetExtensions
     /// Checks if the timestamp is included in the interval set
     /// </summary>
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-    /// <param name="interval">the <see cref="IInterval"/> to check</param>
-    /// <returns><code>true</code> if the <see cref="IInterval"/> is covered by the set, <code>false</code> otherwise</returns>
-    public static bool Covers(this IDisjointIntervalSet set, IInterval interval) =>
+    /// <param name="interval">the <see cref="IDateTimeOffsetInterval"/> to check</param>
+    /// <returns><code>true</code> if the <see cref="IDateTimeOffsetInterval"/> is covered by the set, <code>false</code> otherwise</returns>
+    public static bool Covers(this IDisjointIntervalSet set, IDateTimeOffsetInterval interval) =>
         set.Consolidate().Any(x => x.Covers(interval));
 
     /// <summary>
-    /// Intersects the given <see cref="IInterval"/> with the current set
+    /// Intersects the given <see cref="IDateTimeOffsetInterval"/> with the current set
     /// </summary>
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-    /// <param name="interval">the <see cref="IInterval"/> to intersect</param>
+    /// <param name="interval">the <see cref="IDateTimeOffsetInterval"/> to intersect</param>
     /// <returns>a new <see cref="IDisjointIntervalSet"/> with the intersected set</returns>
-    public static DisjointIntervalSet Intersect(this IDisjointIntervalSet set, IInterval interval)
+    public static DisjointIntervalSet Intersect(this IDisjointIntervalSet set, IDateTimeOffsetInterval interval)
     {
         var intersections = set
             .Select(x => x.Intersect(interval))
@@ -109,25 +109,25 @@ public static class IntervalSetExtensions
     /// Gets the minimum interval that contains all the intervals of the set.
     /// </summary>
     /// <returns></returns>
-    public static Interval GetBoundingInterval(this IDisjointIntervalSet s)
+    public static DateTimeOffsetInterval GetBoundingInterval(this IDisjointIntervalSet s)
     {
-        return new Interval(s.Start, s.End, s.Covers(s.Start), s.Covers(s.End));
+        return new DateTimeOffsetInterval(s.Start, s.End, s.Covers(s.Start), s.Covers(s.End));
     }
 
     /// <summary>
-    /// Joins the given <see cref="IInterval"/> with the current set
+    /// Joins the given <see cref="IDateTimeOffsetInterval"/> with the current set
     /// </summary>
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-    /// <param name="interval">the <see cref="IInterval"/> to join</param>
+    /// <param name="interval">the <see cref="IDateTimeOffsetInterval"/> to join</param>
     /// <returns>a new <see cref="IDisjointIntervalSet"/> with the joined intervals</returns>
-    public static DisjointIntervalSet Join(this IDisjointIntervalSet set, IInterval interval)
+    public static DisjointIntervalSet Join(this IDisjointIntervalSet set, IDateTimeOffsetInterval interval)
     {
         var groups = set.GroupBy(val => val.Intersects(interval)).ToDictionary(g => g.Key, g => g.ToList());
 
-        var nonOverlaps = groups.ContainsKey(false) ? groups[false] : new List<IInterval>();
+        var nonOverlaps = groups.ContainsKey(false) ? groups[false] : new List<IDateTimeOffsetInterval>();
         var result = new DisjointIntervalSet(nonOverlaps);
 
-        var overlaps = groups.ContainsKey(true) ? groups[true] : new List<IInterval>();
+        var overlaps = groups.ContainsKey(true) ? groups[true] : new List<IDateTimeOffsetInterval>();
         var newInterval = interval;
         foreach (var overlap in overlaps)
         {

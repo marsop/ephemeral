@@ -1,4 +1,4 @@
-// <copyright file="IGenericInterval.cs" company="Marsop">
+// <copyright file="IBasicInterval.cs" company="Marsop">
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
@@ -6,7 +6,7 @@ namespace Marsop.Ephemeral.Interfaces;
 
 using System;
 
-public interface IGenericInterval<TBoundary>
+public interface IBasicInterval<TBoundary>
    where TBoundary : notnull, IComparable<TBoundary>
 {
     /// <summary>

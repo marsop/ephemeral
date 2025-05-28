@@ -8,8 +8,8 @@ namespace Marsop.Ephemeral.Tests.Extensions
 {
     public class IntervalSetExtensionsTests
     {
-        private static Interval IntervalClosedOpen(DateTimeOffset start, DateTimeOffset end, bool startIncluded = true, bool endIncluded = false)
-            => new Interval(start, end, startIncluded, endIncluded);
+        private static DateTimeOffsetInterval IntervalClosedOpen(DateTimeOffset start, DateTimeOffset end, bool startIncluded = true, bool endIncluded = false)
+            => new DateTimeOffsetInterval(start, end, startIncluded, endIncluded);
 
 
         [Fact]

@@ -1,4 +1,4 @@
-// <copyright file="IGenericIntervalWithLength.cs" company="Marsop">
+// <copyright file="IMetricInterval.cs" company="Marsop">
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
@@ -9,7 +9,7 @@ using System;
 /// <summary>
 /// Interface for classes implementing an interval
 /// </summary>
-public interface IGenericIntervalWithLength<TBoundary, TLength>
-: IGenericInterval<TBoundary>, IHasLength<TLength>
+public interface IMetricInterval<TBoundary, TLength>
+: IBasicInterval<TBoundary>, IHasLength<TLength>
     where TBoundary : notnull, IComparable<TBoundary>
     where TLength : notnull, IComparable<TLength> {}

@@ -46,7 +46,7 @@ public class IntervalExtensionsTests
         var shiftAmount = TimeSpan.FromHours(1);
 
         //When
-        var result = source.Shift(shiftAmount);
+        var result = source.Shift<DateTimeOffsetInterval, DateTimeOffset, TimeSpan>(shiftAmount);
 
         //Then
         result.End.Should().BeExactly(source.End.AddHours(1));
@@ -66,7 +66,7 @@ public class IntervalExtensionsTests
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
 
         //When
-        var result = source.Shift(TimeSpan.Zero);
+        var result = source.Shift<DateTimeOffsetInterval, DateTimeOffset, TimeSpan>(TimeSpan.Zero);
 
         //Then
         result.Should().BeEquivalentTo(source);
@@ -86,7 +86,7 @@ public class IntervalExtensionsTests
         var other = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
 
         //When
-        var result = source.Intersect(other).Match(x => x.ToInterval(), () => default(IInterval));
+        var result = source.Intersect(other).Match(x => x.ToInterval(), () => default(IDateTimeOffsetInterval));
 
         //Then
         result.Should().BeEquivalentTo(other);
@@ -97,8 +97,8 @@ public class IntervalExtensionsTests
     {
         // Given
         var date = _randomHelper.GetDateTime();
-        var intervalA = new Interval(date.AddHours(8), date.AddHours(12), true, true);
-        var intervalB = new Interval(date.AddHours(10), date.AddHours(14), true, true);
+        var intervalA = new DateTimeOffsetInterval(date.AddHours(8), date.AddHours(12), true, true);
+        var intervalB = new DateTimeOffsetInterval(date.AddHours(10), date.AddHours(14), true, true);
 
         // When
         var duration = intervalA.DurationOfIntersect(intervalB);
@@ -123,17 +123,17 @@ public class IntervalExtensionsTests
     }
 
     [Fact]
-    public void DurationOfIntersect_ReturnsFullDuration_WhenIntervalsAreIdentical()
+    public void DurationOfIntersect_ReturnsLength_WhenIntervalsAreIdentical()
     {
         // Given
         var date = _randomHelper.GetDateTime();
-        IInterval intervalA = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
-        IInterval intervalB = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
+        IDateTimeOffsetInterval intervalA = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
+        IDateTimeOffsetInterval intervalB = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
 
         // When
         var duration = intervalA.DurationOfIntersect(intervalB);
 
         // Then
-        duration.Should().Be(intervalA.Duration());
+        duration.Should().Be(intervalA.Length());
     }
 }

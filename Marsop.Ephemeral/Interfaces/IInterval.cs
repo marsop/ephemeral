@@ -6,7 +6,9 @@ namespace Marsop.Ephemeral.Interfaces;
 
 using System;
 
-/// <summary>
-/// Interface for classes implementing an interval
-/// </summary>
-public interface IInterval : IGenericIntervalWithLength<DateTimeOffset, TimeSpan> {}
+public interface IInterval<TBoundary, TLength>
+    : IMetricInterval<TBoundary, TLength>
+    , ILengthOperator<TBoundary, TLength>
+    where TBoundary : notnull, IComparable<TBoundary>
+    where TLength : notnull, IComparable<TLength>
+{ }
