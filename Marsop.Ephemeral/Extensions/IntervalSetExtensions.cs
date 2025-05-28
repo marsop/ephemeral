@@ -4,10 +4,10 @@
 
 using Marsop.Ephemeral.Implementation;
 using Marsop.Ephemeral.Interfaces;
+using Optional.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Optional.Unsafe;
 
 namespace Marsop.Ephemeral.Extensions;
 
@@ -22,7 +22,7 @@ public static class IntervalSetExtensions
     /// </summary>
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <returns>a new <see cref="IDisjointIntervalSet"/> with the minimum amount of intervals</returns>
-    public static IDisjointIntervalSet Consolidate(this IDisjointIntervalSet set)
+    public static DisjointIntervalSet Consolidate(this IDisjointIntervalSet set)
     {
         var result = new DisjointIntervalSet();
 
@@ -70,13 +70,12 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <param name="interval">the <see cref="IInterval"/> to intersect</param>
     /// <returns>a new <see cref="IDisjointIntervalSet"/> with the intersected set</returns>
-    public static IDisjointIntervalSet Intersect(this IDisjointIntervalSet set, IInterval interval)
+    public static DisjointIntervalSet Intersect(this IDisjointIntervalSet set, IInterval interval)
     {
         var intersections = set
             .Select(x => x.Intersect(interval))
-            .Where(y => y.HasValue)
-            .Select(z => z.ValueOrDefault());
-        return new DisjointIntervalSet(intersections);
+            .Values();
+        return [.. intersections];
     }
 
     /// <summary>
@@ -85,11 +84,25 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <param name="other">the <see cref="IDisjointIntervalSet"/> to join</param>
     /// <returns>the joined <see cref="IDisjointIntervalSet"/></returns>
-    public static IDisjointIntervalSet Join(this IDisjointIntervalSet set, IDisjointIntervalSet other)
+    public static DisjointIntervalSet Join(this IDisjointIntervalSet set, IDisjointIntervalSet other)
     {
         var result = set.Consolidate();
-        other.ToList().ForEach(x => result.Join(x));
+
+        foreach (var interval in other)
+        {
+            result = result.Join(interval);
+        }
+        
         return result;
+    }
+
+    /// <summary>
+    /// Gets the minimum interval that contains all the intervals of the set.
+    /// </summary>
+    /// <returns></returns>
+    public static Interval GetBoundingInterval(this IDisjointIntervalSet s)
+    {
+        return new Interval(s.Start, s.End, s.Covers(s.Start), s.Covers(s.End));
     }
 
     /// <summary>
@@ -98,7 +111,7 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <param name="interval">the <see cref="IInterval"/> to join</param>
     /// <returns>a new <see cref="IDisjointIntervalSet"/> with the joined intervals</returns>
-    public static IDisjointIntervalSet Join(this IDisjointIntervalSet set, IInterval interval)
+    public static DisjointIntervalSet Join(this IDisjointIntervalSet set, IInterval interval)
     {
         var groups = set.GroupBy(val => val.Intersects(interval)).ToDictionary(g => g.Key, g => g.ToList());
 

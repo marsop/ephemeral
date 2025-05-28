@@ -44,10 +44,4 @@ public interface IDisjointIntervalSet : IList<IInterval>
     /// Gets a value indicating whether the Start is included
     /// </summary>
     bool StartIncluded { get; }
-
-    /// <summary>
-    /// Gets the minimum interval that contains all the intervals of the set.
-    /// </summary>
-    /// <returns></returns>
-    IInterval GetBoundingInterval() => new Interval(Start, End, this.Covers(Start), this.Covers(End));
 }

@@ -5,10 +5,11 @@ The following methods are implemented as extension methods to be able to use the
 ## Methods available from `IDisjointIntervalSet`
 
 - `Covers(t: DateTime) : bool`
-- `Join(s: IDisjointIntevalSet) : IDisjointIntevalSet`
-- `Join(i: IInterval) : IDisjointIntevalSet`
-- `Intersect(i : IInterval) : IDisjointIntevalSet`
-- `Consolidate() : IDisjointIntevalSet`
+- `Join(s: IDisjointIntevalSet) : DisjointIntevalSet`
+- `Join(i: IInterval) : DisjointIntevalSet`
+- `Intersect(i : IInterval) : DisjointIntevalSet`
+- `Consolidate() : DisjointIntevalSet`
+- `GetBoundingInterval() : Interval`
 
 ## Methods available from `IInterval`
 
