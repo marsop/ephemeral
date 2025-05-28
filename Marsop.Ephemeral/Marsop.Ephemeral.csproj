@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <VersionPrefix>0.2.0</VersionPrefix>
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Ephemeral</PackageId>
     <PackageTags>Time;Timestamps;Time Intervals</PackageTags>
@@ -14,8 +15,8 @@
     <PackageIcon>Ephemeral64x64.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Version>0.2.0-alpha.1</Version>
-    <AssemblyVersion>0.2.0.0</AssemblyVersion>
-    <FileVersion>0.2.0.0</FileVersion>
+    <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+    <FileVersion>$(VersionPrefix)</FileVersion>
     <InformationalVersion>0.1.8+2.Branch.master.Sha.eba8d8fee421bfca5e09c231dba73383e21c06bd</InformationalVersion>
   </PropertyGroup>
   <ItemGroup>
