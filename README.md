@@ -26,7 +26,7 @@ Interval today = yesterday.Shift(TimeSpan.FromDays(1));
 yesterday.Overlaps(today); // returns true
 ```
 
-### Interval Collection Example
+### (Disjoint) Interval Collection Example
 
 ```csharp
 IDisjointIntervalSet collection = new DisjointIntervalSet();
