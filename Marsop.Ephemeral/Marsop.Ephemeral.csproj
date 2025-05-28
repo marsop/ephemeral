@@ -25,7 +25,7 @@
     <None Remove="Marsop.Ephemeral.Tests\**" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="readme.md" Pack="true" PackagePath="" />
+    <None Include="..\readme.md" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Optional" />
