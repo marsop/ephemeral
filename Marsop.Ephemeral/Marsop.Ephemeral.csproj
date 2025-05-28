@@ -13,8 +13,9 @@
     <Description>.NET Library to handle time intervals (composite start and end)</Description>
     <ProjectUrl>https://albertogregorio.com/ephemeral</ProjectUrl>
     <PackageIcon>Ephemeral64x64.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>$(VersionPrefix)-alpha.3</Version>
+    <Version>$(VersionPrefix)-alpha.4</Version>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <InformationalVersion>0.1.8+2.Branch.master.Sha.eba8d8fee421bfca5e09c231dba73383e21c06bd</InformationalVersion>
@@ -25,7 +26,7 @@
     <None Remove="Marsop.Ephemeral.Tests\**" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\README.md" Pack="true" PackagePath="" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Optional" />
