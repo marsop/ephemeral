@@ -1,4 +1,8 @@
-The following methods are available when any class implements `IDisjointIntervalSet`:
+# Extension Methods
+
+The following methods are implemented as extension methods to be able to use them from your own implementations.
+
+## Methods available from `IDisjointIntervalSet`
 
 - `Covers(t: DateTime) : bool`
 - `Join(s: IDisjointIntevalSet) : IDisjointIntevalSet`
@@ -6,30 +10,34 @@ The following methods are available when any class implements `IDisjointInterval
 - `Intersect(i : IInterval) : IDisjointIntevalSet`
 - `Consolidate() : IDisjointIntevalSet`
 
-The following methods are available when any class implements `IInterval` (as extension methods):
+## Methods available from `IInterval`
 
 - `Covers(t: DateTimeOffset) : bool` *
 - `Shift(t: TimeSpan): Interval` *
 - `Covers(i: IInterval) : bool` *
 - `DurationOfIntersect(i: IInterval): TimeSpan` *
 - `DurationUntilNow(tp: TimeProvider): TimeSpan`
-- `Intersect(i : IInterval) : Option<IInterval>` *
+- `Intersect(i : IInterval) : Option<Interval>` *
 - `Intersects(i: IInterval): bool`
+- `Join(i: IInterval): Interval`
 - `IsContiguouslyFollowedBy(i: IInterval) : bool`
 - `IsContiguouslyPrecededBy(i: IInterval) : bool`
 - `StartsBefore(i: IInterval) : bool`
 - `ToInterval(): Interval`
-- `Union(i: IInterval) : IDisjointIntervalSet`
+- `Union(i: IInterval) : DisjointIntervalSet`
+- `Subtract(i: IInterval) : DisjointIntervalSet`
 
-Static methods to create `Interval`
+# Factory Methods
 
-- `CreateClosed`
-- `CreateOpen`
-- `CreatePoint`
+## `Interval`
 
-- `Intersect` 
-- `Join`
-- `Subtract(i: IInterval) : IDisjointIntervalSet`
+- `CreateClosed(start, end)`
+- `CreateOpen(start, end)`
+- `CreatePoint(start)`
+
+## `DisjointIntervalSet` 
+
+TBD
 
 
 

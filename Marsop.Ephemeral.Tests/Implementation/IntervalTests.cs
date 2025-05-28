@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using FluentAssertions;
+using Marsop.Ephemeral.Extensions;
 using Marsop.Ephemeral.Implementation;
 using Xunit;
 
@@ -18,9 +19,7 @@ public class IntervalTests
 
         var interval = _randomHelper.GetInterval(now, null);
 
-        Assert.Throws<ArgumentNullException>(() => Interval.Subtract(null, null));
-        Assert.Throws<ArgumentNullException>(() => Interval.Subtract(interval, null));
-        Assert.Throws<ArgumentNullException>(() => Interval.Subtract(null, interval));
+        Assert.Throws<ArgumentNullException>(() => interval.Subtract(null));
     }
 
     [Fact]
@@ -33,7 +32,7 @@ public class IntervalTests
         var subtraction = _randomHelper.GetInterval(date.AddHours(14), date.AddHours(18));
 
         //When
-        var result = Interval.Subtract(source, subtraction);
+        var result = source.Subtract(subtraction);
 
         //Then
         result.Should().ContainSingle("No intersection, should return the first interval");
@@ -52,7 +51,7 @@ public class IntervalTests
         var subtraction = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
 
         //When
-        var result = Interval.Subtract(source, subtraction);
+        var result = source.Subtract(subtraction);
 
         //Then
         result.Should().BeEmpty("Full intersection, should return empty");
@@ -72,7 +71,7 @@ public class IntervalTests
         var subtraction = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
 
         //When
-        var result = Interval.Subtract(source, subtraction);
+        var result = source.Subtract(subtraction);
 
         //Then
         var expected1 = _randomHelper.GetInterval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded);
@@ -94,7 +93,7 @@ public class IntervalTests
         var subtraction = _randomHelper.GetInterval(date.AddHours(11), date.AddHours(13), startIncludedIntervalB);
 
         //When
-        var result = Interval.Subtract(source, subtraction);
+        var result = source.Subtract(subtraction);
 
         //Then
         var expected = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(11), startIncludedIntervalA, !startIncludedIntervalB);
@@ -116,7 +115,7 @@ public class IntervalTests
         var subtraction = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
 
         //When
-        var result = Interval.Subtract(source, subtraction);
+        var result = source.Subtract(subtraction);
 
         //Then
         var expected = _randomHelper.GetInterval(date.AddHours(11), date.AddHours(12), !endIncludedIntervalB, endIncludedIntervalA);
@@ -138,7 +137,7 @@ public class IntervalTests
         var subtraction = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(12), startIncludedIntervalB, endIncludedIntervalB);
 
         //When
-        var result = Interval.Subtract(source, subtraction);
+        var result = source.Subtract(subtraction);
 
         //Then
         var expected = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(9), startIncludedIntervalA, !startIncludedIntervalB);
@@ -162,7 +161,7 @@ public class IntervalTests
         var subtraction = _randomHelper.GetInterval(date.AddHours(6), date.AddHours(9), startIncludedIntervalB, endIncludedIntervalB);
 
         //When
-        var result = Interval.Subtract(source, subtraction);
+        var result = source.Subtract(subtraction);
 
         //Then
         var expected = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(12), !endIncludedIntervalB, endIncludedIntervalA);

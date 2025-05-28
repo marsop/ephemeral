@@ -170,10 +170,95 @@ public static class IntervalExtensions
         new(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
 
     /// <summary>
+    /// Join two intervals
+    /// </summary>
+    /// <param name="first">the first <see cref="IInterval"/> instance</param>
+    /// <param name="second">the second <see cref="IInterval"/> instance</param>
+    /// <returns>a new <see cref="Interval"/> with joined intervals</returns>
+    /// <exception cref="ArgumentException">an exception is thrown if the two intervals are not contiguous or overlapping</exception>
+    /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
+    public static Interval Join(this IInterval first, IInterval second)
+    {
+        if (first is null)
+        {
+            throw new ArgumentNullException(nameof(first));
+        }
+
+        if (second is null)
+        {
+            throw new ArgumentNullException(nameof(second));
+        }
+
+        if (second.StartsBefore(first))
+        {
+            return Join(second, first);
+        }
+
+        if (first.Covers(second))
+        {
+            return first.ToInterval();
+        }
+
+        if (first.Intersects(second) || first.IsContiguouslyFollowedBy(second))
+        {
+            return new Interval(first.Start, second.End, first.StartIncluded, second.EndIncluded);
+        }
+
+        throw new ArgumentException("the intervals are not overlapping or contiguous");
+    }
+
+    
+
+    /// <summary>
+    /// Join two intervals
+    /// </summary>
+    /// <param name="source">the source <see cref="IInterval"/> instance</param>
+    /// <param name="subtraction">the subtraction <see cref="IInterval"/> instance</param>
+    /// <returns>a list of <see cref="Interval"/> after subtraction</returns>
+    /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
+    public static DisjointIntervalSet Subtract(this IInterval source, IInterval subtraction)
+    {
+        if (source is null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        if (subtraction is null)
+        {
+            throw new ArgumentNullException(nameof(subtraction));
+        }
+
+        if (!source.Intersects(subtraction))
+        {
+            return new DisjointIntervalSet
+            {
+                source.ToInterval()
+            };
+        }
+
+        if (subtraction.Covers(source))
+        {
+            return new DisjointIntervalSet();
+        }
+
+        var result = new DisjointIntervalSet();
+
+        if (source.Start < subtraction.Start ||
+            (source.Start == subtraction.Start && source.StartIncluded && !subtraction.StartIncluded))
+            result.Add(new Interval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded));
+        if (source.End > subtraction.End ||
+            (source.End == subtraction.End && source.EndIncluded && !subtraction.EndIncluded))
+            result.Add(new Interval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded));
+
+        return result;
+    }
+
+
+    /// <summary>
     /// Combines two <see cref="IInterval"/> instances
     /// </summary>
     /// <param name="i">the current <see cref="IInterval"/> instance</param>
     /// <param name="j">the <see cref="IInterval"/> instance with which to merge</param>
     /// <returns>a <see cref="IDisjointIntervalSet"/> representing the list of joined <see cref="IInterval"/> instances</returns>
-    public static IDisjointIntervalSet Union(this IInterval i, IInterval j) => new DisjointIntervalSet(i, j);
+    public static DisjointIntervalSet Union(this IInterval i, IInterval j) => new DisjointIntervalSet(i, j);
 }

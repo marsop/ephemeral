@@ -109,7 +109,7 @@ public static class IntervalSetExtensions
         var newInterval = interval;
         foreach (var overlap in overlaps)
         {
-            newInterval = Interval.Join(newInterval, overlap);
+            newInterval = newInterval.Join(overlap);
         }
 
         result.Add(newInterval);
