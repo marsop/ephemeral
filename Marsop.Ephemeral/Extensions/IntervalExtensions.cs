@@ -27,22 +27,22 @@ public static class IntervalExtensions
     /// <returns><code>true</code> if the offset is covered by the interval, <code>false</code> otherwise</returns>
     public static bool Covers(this IInterval interval, DateTimeOffset timestamp)
     {
-        if (timestamp < interval.Start)
+        if (timestamp.IsLessThan(interval.Start))
         {
             return false;
         }
 
-        if (interval.End < timestamp)
+        if (interval.End.IsLessThan(timestamp))
         {
             return false;
         }
 
-        if (timestamp == interval.Start && !interval.StartIncluded)
+        if (timestamp.IsEqualTo(interval.Start) && !interval.StartIncluded)
         {
             return false;
         }
 
-        if (timestamp == interval.End && !interval.EndIncluded)
+        if (timestamp.IsEqualTo(interval.End) && !interval.EndIncluded)
         {
             return false;
         }
@@ -85,7 +85,7 @@ public static class IntervalExtensions
     public static TimeSpan DurationUntilNow(this IInterval interval, TimeProvider timeProvider)
     {
         var utcNow = timeProvider?.GetUtcNow() ?? throw new ArgumentNullException(nameof(timeProvider)); 
-        return utcNow < interval.End ? interval.End - utcNow : interval.Duration();
+        return utcNow.IsLessThan(interval.End) ? interval.End - utcNow : interval.Duration();
     }
 
     /// <summary>
@@ -106,15 +106,15 @@ public static class IntervalExtensions
             throw new ArgumentNullException(nameof(second));
         }
 
-        var maxStart = first.Start < second.Start ? second.Start : first.Start;
-        var minEnd = first.End < second.End ? first.End : second.End;
+        var maxStart = first.Start.IsLessThan(second.Start) ? second.Start : first.Start;
+        var minEnd = first.End.IsLessThan(second.End) ? first.End : second.End;
 
-        if (minEnd < maxStart)
+        if (minEnd.IsLessThan(maxStart))
         {
             return Option.None<Interval>();
         }
 
-        if (minEnd == maxStart && (!first.Covers(minEnd) || !second.Covers(minEnd)))
+        if (minEnd.IsEqualTo(maxStart) && (!first.Covers(minEnd) || !second.Covers(minEnd)))
         {
             return Option.None<Interval>();
         }
@@ -141,7 +141,7 @@ public static class IntervalExtensions
     /// <param name="o">the <see cref="IInterval"/> instance to check</param>
     /// <returns><code>true</code> if the given <see cref="IInterval"/> is followed with the current one</returns>
     public static bool IsContiguouslyFollowedBy(this IInterval i, IInterval o) =>
-        i.End == o.Start && (i.EndIncluded != o.StartIncluded);
+        i.End.IsEqualTo(o.Start) && (i.EndIncluded != o.StartIncluded);
 
     /// <summary>
     /// Checks if the current <see cref="IInterval"/> follows seamlessly and without overlap the given <see cref="IInterval"/>
@@ -159,7 +159,7 @@ public static class IntervalExtensions
     /// <param name="other">the <see cref="IInterval"/> instance to check</param>
     /// <returns><code>true</code> if the <see cref="IInterval"/> starts before the the given <see cref="IInterval"/>, <code>false</code> otherwise</returns>
     public static bool StartsBefore(this IInterval interval, IInterval other) =>
-        interval.Start < other.Start || (interval.Start == other.Start && interval.StartIncluded && !other.StartIncluded);
+        interval.Start.IsLessThan(other.Start)|| (interval.Start.IsEqualTo(other.Start) && interval.StartIncluded && !other.StartIncluded);
 
     /// <summary>
     /// Creates an interval based on the information of this object
@@ -243,11 +243,11 @@ public static class IntervalExtensions
 
         var result = new DisjointIntervalSet();
 
-        if (source.Start < subtraction.Start ||
-            (source.Start == subtraction.Start && source.StartIncluded && !subtraction.StartIncluded))
+        if (source.Start.IsLessThan(subtraction.Start) ||
+            (source.Start.IsEqualTo(subtraction.Start) && source.StartIncluded && !subtraction.StartIncluded))
             result.Add(new Interval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded));
-        if (source.End > subtraction.End ||
-            (source.End == subtraction.End && source.EndIncluded && !subtraction.EndIncluded))
+        if (source.End.IsGreaterThan(subtraction.End) ||
+            (source.End.IsEqualTo(subtraction.End) && source.EndIncluded && !subtraction.EndIncluded))
             result.Add(new Interval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded));
 
         return result;

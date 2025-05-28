@@ -6,12 +6,8 @@ namespace Marsop.Ephemeral.Interfaces;
 
 using System;
 
-/// <summary>
-/// Interface for classes implementing an interval
-/// </summary>
-public interface IGenericInterval<TBoundary, TLength> : IHasLength<TLength>
-    where TBoundary : notnull, IComparable<TBoundary>
-    where TLength : notnull, IComparable<TLength> 
+public interface IGenericInterval<TBoundary>
+   where TBoundary : notnull, IComparable<TBoundary>
 {
     /// <summary>
     /// Gets the final point of the interval

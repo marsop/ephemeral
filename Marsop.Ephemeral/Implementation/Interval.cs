@@ -25,7 +25,7 @@ public class Interval : IInterval, IEquatable<IInterval>
     /// Checks if the current <see cref="Interval"/> has coherent starting and ending points
     /// </summary>
     /// <returns><code>true</code> if starting and ending points are valid, <code>false</code> otherwise</returns>
-    public bool IsValid => Start < End || (Start == End && StartIncluded && EndIncluded);
+    public bool IsValid => Start.IsLessThan(End) || (Start.IsEqualTo(End) && StartIncluded && EndIncluded);
 
     /// <inheritdoc cref="IInterval.Start"/>
     public DateTimeOffset Start { get; }
