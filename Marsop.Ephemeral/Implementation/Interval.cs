@@ -99,43 +99,6 @@ public class Interval : IInterval, IEquatable<IInterval>
     /// <returns>an <see cref="Interval"/> with start and end point set with the given <see cref="DateTimeOffset"/></returns>
     public static Interval CreatePoint(DateTimeOffset timestamp) => CreateClosed(timestamp, timestamp);
 
-    /// <summary>
-    /// Intersect two intervals
-    /// </summary>
-    /// <param name="first">the first <see cref="IInterval"/> instance</param>
-    /// <param name="second">the second <see cref="IInterval"/> instance</param>
-    /// <returns>a new <see cref="Interval"/> if an intersection exists</returns>
-    /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public static Option<Interval> Intersect(IInterval first, IInterval second)
-    {
-        if (first is null)
-        {
-            throw new ArgumentNullException(nameof(first));
-        }
-
-        if (second is null)
-        {
-            throw new ArgumentNullException(nameof(second));
-        }
-
-        var maxStart = first.Start < second.Start ? second.Start : first.Start;
-        var minEnd = first.End < second.End ? first.End : second.End;
-
-        if (minEnd < maxStart)
-        {
-            return Option.None<Interval>();
-        }
-
-        if (minEnd == maxStart && (!first.Covers(minEnd) || !second.Covers(minEnd)))
-        {
-            return Option.None<Interval>();
-        }
-
-        var startIncluded = first.Covers(maxStart) && second.Covers(maxStart);
-        var endIncluded = first.Covers(minEnd) && second.Covers(minEnd);
-
-        return new Interval(maxStart, minEnd, startIncluded, endIncluded).Some();
-    }
 
     /// <summary>
     /// Join two intervals

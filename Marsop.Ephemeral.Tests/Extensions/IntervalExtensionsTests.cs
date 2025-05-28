@@ -134,6 +134,6 @@ public class IntervalExtensionsTests
         var duration = intervalA.DurationOfIntersect(intervalB);
 
         // Then
-        duration.Should().Be(intervalA.Duration);
+        duration.Should().Be(intervalA.Duration());
     }
 }

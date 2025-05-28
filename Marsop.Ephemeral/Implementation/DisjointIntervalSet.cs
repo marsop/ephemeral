@@ -69,7 +69,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet
     }
 
     /// <inheritdoc cref="IDisjointIntervalSet.AggregatedDuration"/>
-    public TimeSpan AggregatedDuration => TimeSpan.FromTicks(this.Sum(x => x.Duration.Ticks));
+    public TimeSpan AggregatedDuration => TimeSpan.FromTicks(this.Sum(x => x.Duration().Ticks));
 
     /// <inheritdoc cref="IInterval.Count"/>
     public int Count => this._intervals.Count;

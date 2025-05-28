@@ -12,11 +12,6 @@ using System;
 public interface IInterval
 {
     /// <summary>
-    /// Gets the difference between start and end as <see cref="TimeSpan"/>
-    /// </summary>
-    TimeSpan Duration => End - Start;
-
-    /// <summary>
     /// Gets the final point of the interval
     /// </summary>
     DateTimeOffset End { get; }
