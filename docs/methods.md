@@ -10,9 +10,9 @@ The following methods are available when any class implements `IInterval` (as ex
 
 - `Covers(t: DateTimeOffset) : bool` *
 - `Shift(t: TimeSpan): Interval` *
-- `Covers(i: IInterval) : bool`
+- `Covers(i: IInterval) : bool` *
 - `DurationOfIntersect(i: IInterval): TimeSpan` *
-- `DurationUntilNow(): TimeSpan`
+- `DurationUntilNow(tp: TimeProvider): TimeSpan`
 - `Intersect(i : IInterval) : Option<IInterval>` *
 - `Intersects(i: IInterval): bool`
 - `IsContiguouslyFollowedBy(i: IInterval) : bool`

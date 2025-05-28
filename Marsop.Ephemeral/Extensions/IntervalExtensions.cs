@@ -77,8 +77,11 @@ public static class IntervalExtensions
     /// </summary>
     /// <param name="interval">the current <see cref="IInterval"/> instance</param>
     /// <returns>a <see cref="TimeSpan"/> object representing the duration if the <see cref="IInterval"/> is not ended, a <see cref="TimeSpan"/> representing the delay compared to the <see cref="IInterval"/> end</returns>
-    public static TimeSpan DurationUntilNow(this IInterval interval) =>
-        DateTimeOffset.UtcNow < interval.End ? interval.End - DateTimeOffset.UtcNow : interval.Duration;
+    public static TimeSpan DurationUntilNow(this IInterval interval, TimeProvider timeProvider)
+    {
+        var utcNow = timeProvider?.GetUtcNow() ?? throw new ArgumentNullException(nameof(timeProvider)); 
+        return utcNow < interval.End ? interval.End - utcNow : interval.Duration;
+    }
 
     /// <summary>
     /// Generates a new <see cref="Interval" />, which is the intersection of the two.
