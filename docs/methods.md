@@ -5,10 +5,12 @@ The following methods are implemented as extension methods to be able to use the
 ## Methods available from `IDisjointIntervalSet`
 
 - `Covers(t: DateTime) : bool`
+- `Covers(i: IInterval) : bool`
 - `Join(s: IDisjointIntevalSet) : DisjointIntevalSet`
 - `Join(i: IInterval) : DisjointIntevalSet`
 - `Intersect(i : IInterval) : DisjointIntevalSet`
 - `Consolidate() : DisjointIntevalSet`
+  - Creates a new Set with the minimum number of intervals inside (merges together intervals that are continguous)
 - `GetBoundingInterval() : Interval`
 
 ## Methods available from `IInterval`

@@ -64,6 +64,15 @@ public static class IntervalSetExtensions
     public static bool Covers(this IDisjointIntervalSet set, DateTimeOffset timestamp) =>
         set.Any(x => x.Covers(timestamp));
 
+            /// <summary>
+    /// Checks if the timestamp is included in the interval set
+    /// </summary>
+    /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
+    /// <param name="interval">the <see cref="IInterval"/> to check</param>
+    /// <returns><code>true</code> if the <see cref="IInterval"/> is covered by the set, <code>false</code> otherwise</returns>
+    public static bool Covers(this IDisjointIntervalSet set, IInterval interval) =>
+        set.Consolidate().Any(x => x.Covers(interval));
+
     /// <summary>
     /// Intersects the given <see cref="IInterval"/> with the current set
     /// </summary>

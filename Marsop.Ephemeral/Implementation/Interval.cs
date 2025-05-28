@@ -25,7 +25,7 @@ public class Interval : IInterval, IEquatable<IInterval>
     /// Checks if the current <see cref="Interval"/> has coherent starting and ending points
     /// </summary>
     /// <returns><code>true</code> if starting and ending points are valid, <code>false</code> otherwise</returns>
-    public bool IsValid => this.Start < this.End || (this.Start == this.End && this.StartIncluded && this.EndIncluded);
+    public bool IsValid => Start < End || (Start == End && StartIncluded && EndIncluded);
 
     /// <inheritdoc cref="IInterval.Start"/>
     public DateTimeOffset Start { get; }
@@ -64,15 +64,15 @@ public class Interval : IInterval, IEquatable<IInterval>
     /// <param name="endIncluded">a flag indicating whether the ending point is included</param>
     public Interval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded)
     {
-        this.Start = start;
-        this.End = end;
+        Start = start;
+        End = end;
 
-        this.StartIncluded = startIncluded;
-        this.EndIncluded = endIncluded;
+        StartIncluded = startIncluded;
+        EndIncluded = endIncluded;
 
-        if (!this.IsValid)
+        if (!IsValid)
         {
-            throw new InvalidDurationException(this.GetTextualRepresentation());
+            throw new InvalidDurationException(GetTextualRepresentation());
         }
     }
 
@@ -99,16 +99,13 @@ public class Interval : IInterval, IEquatable<IInterval>
     /// <returns>an <see cref="Interval"/> with start and end point set with the given <see cref="DateTimeOffset"/></returns>
     public static Interval CreatePoint(DateTimeOffset timestamp) => CreateClosed(timestamp, timestamp);
 
-
-    
-
     /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-    public bool Equals(IInterval other) => other != null && (this.Start == other.Start && this.End == other.End && this.StartIncluded == other.StartIncluded && this.EndIncluded == other.EndIncluded);
+    public bool Equals(IInterval other) => other != null && (Start == other.Start && End == other.End && StartIncluded == other.StartIncluded && EndIncluded == other.EndIncluded);
 
     /// <inheritdoc cref="object.ToString"/>
     public override string ToString()
     {
-        return this.GetTextualRepresentation();
+        return GetTextualRepresentation();
     }
 
     /// <summary>
@@ -119,8 +116,8 @@ public class Interval : IInterval, IEquatable<IInterval>
     /// <returns>a <see cref="String"/> that represent the interval</returns>
     private string GetTextualRepresentation()
     {
-        var startDelimiter = this.StartIncluded ? "[" : "(";
-        var endDelimiter = this.EndIncluded ? "]" : ")";
-        return $"{startDelimiter}{this.Start} => {this.End}{endDelimiter}";
+        var startDelimiter = StartIncluded ? "[" : "(";
+        var endDelimiter = EndIncluded ? "]" : ")";
+        return $"{startDelimiter}{Start} => {End}{endDelimiter}";
     }
 }
