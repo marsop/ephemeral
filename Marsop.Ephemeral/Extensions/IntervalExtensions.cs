@@ -61,23 +61,23 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Shifts the start and end of given <see cref="IDateTimeOffsetInterval"/>
+    /// Shifts the start and end of given <see cref="IInterval<>"/>
     /// </summary>
-    /// <param name="interval">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="shiftAmount">the amount to be shifted (positive => shift towards future)</param>
+    /// <param name="interval">the current <see cref="IInterval<>"/> instance</param>
+    /// <param name="shiftLength">the amount to be shifted (positive or negative)</param>
     /// <returns></returns>
     public static TInterval Shift<TInterval, TBoundary, TLength>(
         this TInterval interval,
-        TLength shiftAmount)
+        TLength shiftLength)
         where TInterval : IInterval<TBoundary, TLength>, IIntervalFactory<TInterval, TBoundary>
         where TBoundary : notnull, IComparable<TBoundary>
         where TLength : notnull, IComparable<TLength>
 
     {
-        return Shift(interval, shiftAmount, interval);
+        return Shift2(interval, shiftLength, interval);
     }
 
-    public static TOut Shift<TIn, TBoundary, TLength, TOut>(
+    public static TOut Shift2<TIn, TBoundary, TLength, TOut>(
         this TIn interval,
         TLength shiftAmount,
         IIntervalFactory<TOut, TBoundary> factory)
@@ -89,7 +89,7 @@ public static class IntervalExtensions
     {
         var newStart = interval.Apply(interval.Start, shiftAmount);
         var newEnd = interval.Apply(interval.End, shiftAmount);
-        
+
         BasicInterval<TBoundary> output = new(newStart, newEnd, interval.StartIncluded, interval.EndIncluded);
         return factory.Create(output);
     }
