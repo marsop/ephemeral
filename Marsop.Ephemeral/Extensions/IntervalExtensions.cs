@@ -83,8 +83,8 @@ public static class IntervalExtensions
         where TBoundary : notnull, IComparable<TBoundary>
         where TLength : notnull, IComparable<TLength>
     {
-        var newStart = interval.Apply(interval.Start, shiftLength);
-        var newEnd = interval.Apply(interval.End, shiftLength);
+        var newStart = interval.LengthOperator.Apply(interval.Start, shiftLength);
+        var newEnd = interval.LengthOperator.Apply(interval.End, shiftLength);
 
         return new BasicInterval<TBoundary>(newStart, newEnd, interval.StartIncluded, interval.EndIncluded);
     }
@@ -126,11 +126,11 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Generates a new <see cref="DateTimeOffsetInterval" />, which is the intersection of the two.
+    /// Generates a new <see cref="StandardInterval" />, which is the intersection of the two.
     /// </summary>
     /// <param name="interval">the current interval</param>
     /// <param name="other">the <see cref="IDateTimeOffsetInterval"/> instance to intersect</param>
-    /// <returns>a new <see cref="DateTimeOffsetInterval"/> object representing the intersection between the two <see cref="IDateTimeOffsetInterval"/> if an intersections exists, <code>null</code> otherwise</returns>
+    /// <returns>a new <see cref="StandardInterval"/> object representing the intersection between the two <see cref="IDateTimeOffsetInterval"/> if an intersections exists, <code>null</code> otherwise</returns>
     public static Option<BasicInterval<TBoundary>> Intersect<TBoundary>(
         this IBasicInterval<TBoundary> first,
         IBasicInterval<TBoundary> second)
@@ -205,8 +205,8 @@ public static class IntervalExtensions
     /// Creates an interval based on the information of this object
     /// </summary>
     /// <param name="interval">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <returns>a new <see cref="DateTimeOffsetInterval"/> object</returns>
-    public static DateTimeOffsetInterval ToInterval(this IDateTimeOffsetInterval interval) =>
+    /// <returns>a new <see cref="StandardInterval"/> object</returns>
+    public static StandardInterval ToInterval(this IDateTimeOffsetInterval interval) =>
         new(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
 
     /// <summary>
@@ -214,10 +214,10 @@ public static class IntervalExtensions
     /// </summary>
     /// <param name="first">the first <see cref="IDateTimeOffsetInterval"/> instance</param>
     /// <param name="second">the second <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <returns>a new <see cref="DateTimeOffsetInterval"/> with joined intervals</returns>
+    /// <returns>a new <see cref="StandardInterval"/> with joined intervals</returns>
     /// <exception cref="ArgumentException">an exception is thrown if the two intervals are not contiguous or overlapping</exception>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public static DateTimeOffsetInterval Join(this IDateTimeOffsetInterval first, IDateTimeOffsetInterval second)
+    public static StandardInterval Join(this IDateTimeOffsetInterval first, IDateTimeOffsetInterval second)
     {
         if (first is null)
         {
@@ -241,7 +241,7 @@ public static class IntervalExtensions
 
         if (first.Intersects(second) || first.IsContiguouslyFollowedBy(second))
         {
-            return new DateTimeOffsetInterval(first.Start, second.End, first.StartIncluded, second.EndIncluded);
+            return new StandardInterval(first.Start, second.End, first.StartIncluded, second.EndIncluded);
         }
 
         throw new ArgumentException("the intervals are not overlapping or contiguous");
@@ -254,7 +254,7 @@ public static class IntervalExtensions
     /// </summary>
     /// <param name="source">the source <see cref="IDateTimeOffsetInterval"/> instance</param>
     /// <param name="subtraction">the subtraction <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <returns>a list of <see cref="DateTimeOffsetInterval"/> after subtraction</returns>
+    /// <returns>a list of <see cref="StandardInterval"/> after subtraction</returns>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
     public static DisjointIntervalSet Subtract(this IDateTimeOffsetInterval source, IDateTimeOffsetInterval subtraction)
     {
@@ -285,10 +285,10 @@ public static class IntervalExtensions
 
         if (source.Start.IsLessThan(subtraction.Start) ||
             (source.Start.IsEqualTo(subtraction.Start) && source.StartIncluded && !subtraction.StartIncluded))
-            result.Add(new DateTimeOffsetInterval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded));
+            result.Add(new StandardInterval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded));
         if (source.End.IsGreaterThan(subtraction.End) ||
             (source.End.IsEqualTo(subtraction.End) && source.EndIncluded && !subtraction.EndIncluded))
-            result.Add(new DateTimeOffsetInterval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded));
+            result.Add(new StandardInterval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded));
 
         return result;
     }

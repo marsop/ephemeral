@@ -67,7 +67,9 @@ public class IntervalExtensionsTests
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
 
         //When
-        var result = source.Shift(TimeSpan.Zero);
+        var result = source
+            .Shift(TimeSpan.Zero)
+            .WithMetric(source.LengthOperator);
 
         //Then
         result.Should().BeEquivalentTo(source);
@@ -89,6 +91,7 @@ public class IntervalExtensionsTests
         //When
         var result = source
             .Intersect(other)
+            .Map(x => x.WithMetric(source.LengthOperator))
             .ValueOrFailure();
 
         //Then
@@ -100,11 +103,11 @@ public class IntervalExtensionsTests
     {
         // Given
         var date = _randomHelper.GetDateTime();
-        var intervalA = new DateTimeOffsetInterval(date.AddHours(8), date.AddHours(12), true, true);
-        var intervalB = new DateTimeOffsetInterval(date.AddHours(10), date.AddHours(14), true, true);
+        var intervalA = new StandardInterval(date.AddHours(8), date.AddHours(12), true, true);
+        var intervalB = new StandardInterval(date.AddHours(10), date.AddHours(14), true, true);
 
         // When
-        var duration = intervalA.LengthOfIntersect(intervalB, intervalA);
+        var duration = intervalA.LengthOfIntersect(intervalB, intervalA.LengthOperator);
 
         // Then
         duration.Should().Be(intervalA.End - intervalB.Start);
@@ -119,7 +122,7 @@ public class IntervalExtensionsTests
         var intervalB = _randomHelper.GetInterval(date.AddHours(11), date.AddHours(12), true, true);
 
         // When
-        var duration = intervalA.LengthOfIntersect(intervalB, intervalA);
+        var duration = intervalA.LengthOfIntersect(intervalB, intervalA.LengthOperator);
 
         // Then
         duration.Should().Be(TimeSpan.Zero);
@@ -134,7 +137,7 @@ public class IntervalExtensionsTests
         IDateTimeOffsetInterval intervalB = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
 
         // When
-        var duration = intervalA.LengthOfIntersect(intervalB, intervalA);
+        var duration = intervalA.LengthOfIntersect(intervalB, intervalA.LengthOperator);
 
         // Then
         duration.Should().Be(intervalA.Length());

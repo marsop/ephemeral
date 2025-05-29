@@ -9,6 +9,7 @@ using System;
 /// <summary>
 /// Interface for classes implementing an interval
 /// </summary>
-public interface IMetricInterval<TBoundary, TLength>
-: IBasicInterval<TBoundary>, IHasLength<TLength>
+public interface IMetricInterval<TBoundary, TLength>: 
+    IBasicInterval<TBoundary>,
+    IHasLength<TLength>
     where TBoundary : notnull, IComparable<TBoundary> {}

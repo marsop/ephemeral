@@ -14,10 +14,10 @@ public abstract record AbstractMetricInterval<TBoundary, TLength> :
 {
     public AbstractMetricInterval(
         TBoundary start,
-         TBoundary end,
-          bool startIncluded,
-           bool endIncluded)
-        : base(start, end, startIncluded, endIncluded)
+        TBoundary end,
+        bool startIncluded,
+        bool endIncluded) :
+        base(start, end, startIncluded, endIncluded)
     {
     }
 

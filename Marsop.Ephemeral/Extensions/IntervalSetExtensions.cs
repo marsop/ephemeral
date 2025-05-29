@@ -36,7 +36,7 @@ public static class IntervalSetExtensions
             {
                 if (cachedItem.IsContiguouslyFollowedBy(item))
                 {
-                    cachedItem = new DateTimeOffsetInterval(
+                    cachedItem = new StandardInterval(
                         cachedItem.Start,
                         item.End,
                         cachedItem.StartIncluded,
@@ -84,7 +84,7 @@ public static class IntervalSetExtensions
         var intersections = set
             .Select(x => x.Intersect(interval))
             .Values()
-            .Select(DateTimeOffsetInterval.From);
+            .Select(StandardInterval.From);
         return [.. intersections];
     }
 
@@ -110,9 +110,9 @@ public static class IntervalSetExtensions
     /// Gets the minimum interval that contains all the intervals of the set.
     /// </summary>
     /// <returns></returns>
-    public static DateTimeOffsetInterval GetBoundingInterval(this IDisjointIntervalSet s)
+    public static StandardInterval GetBoundingInterval(this IDisjointIntervalSet s)
     {
-        return new DateTimeOffsetInterval(s.Start, s.End, s.Covers(s.Start), s.Covers(s.End));
+        return new StandardInterval(s.Start, s.End, s.Covers(s.Start), s.Covers(s.End));
     }
 
     /// <summary>
