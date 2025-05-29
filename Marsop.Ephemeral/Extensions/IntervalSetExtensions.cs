@@ -13,15 +13,15 @@ namespace Marsop.Ephemeral.Extensions;
 
 
 /// <summary>
-/// Extensions method for <see cref="IDisjointIntervalSet"/> instances
+/// Extensions method for <see cref="IDisjointIntervalSet{TBoundary, TLength}"/> instances
 /// </summary>
 public static class IntervalSetExtensions
 {
     /// <summary>
     /// Joins adjacent intervals.
     /// </summary>
-    /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-    /// <returns>a new <see cref="IDisjointIntervalSet"/> with the minimum amount of intervals</returns>
+    /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <returns>a new <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> with the minimum amount of intervals</returns>
     public static DisjointIntervalSet Consolidate(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set)
     {
@@ -59,27 +59,27 @@ public static class IntervalSetExtensions
     /// <summary>
     /// Checks if the timestamp is included in the interval set
     /// </summary>
-    /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
+    /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
     /// <param name="timestamp">the <see cref="DateTimeOffset"/> to check</param>
     /// <returns><code>true</code> if the <see cref="DateTimeOffset"/> is covered by at least one interval in the set, <code>false</code> otherwise</returns>
     public static bool Covers(this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set, DateTimeOffset timestamp) =>
         set.Any(x => x.Covers(timestamp));
 
-            /// <summary>
-    /// Checks if the timestamp is included in the interval set
+    /// <summary>
+    /// Checks if the interval is included in the interval set
     /// </summary>
-    /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-    /// <param name="interval">the <see cref="IDateTimeOffsetInterval"/> to check</param>
-    /// <returns><code>true</code> if the <see cref="IDateTimeOffsetInterval"/> is covered by the set, <code>false</code> otherwise</returns>
+    /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <param name="interval">the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> to check</param>
+    /// <returns><code>true</code> if the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> is covered by the set, <code>false</code> otherwise</returns>
     public static bool Covers(this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set, IDateTimeOffsetInterval interval) =>
         set.Consolidate().Any(x => x.Covers(interval));
 
     /// <summary>
-    /// Intersects the given <see cref="IDateTimeOffsetInterval"/> with the current set
+    /// Intersects the given <see cref="IInterval{DateTimeOffset, TimeSpan}"/> with the current set
     /// </summary>
-    /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-    /// <param name="interval">the <see cref="IDateTimeOffsetInterval"/> to intersect</param>
-    /// <returns>a new <see cref="IDisjointIntervalSet"/> with the intersected set</returns>
+    /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <param name="interval">the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> to intersect</param>
+    /// <returns>a new <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> with the intersected set</returns>
     public static DisjointIntervalSet Intersect(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
         IDateTimeOffsetInterval interval)
@@ -92,11 +92,11 @@ public static class IntervalSetExtensions
     }
 
     /// <summary>
-    /// Joins the given <see cref="IDisjointIntervalSet"/> with the current set
+    /// Joins the given <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> with the current set
     /// </summary>
-    /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-    /// <param name="other">the <see cref="IDisjointIntervalSet"/> to join</param>
-    /// <returns>the joined <see cref="IDisjointIntervalSet"/></returns>
+    /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <param name="other">the <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> to join</param>
+    /// <returns>the joined <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/></returns>
     public static DisjointIntervalSet Join(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
         IDisjointIntervalSet<DateTimeOffset, TimeSpan> other)
@@ -114,7 +114,8 @@ public static class IntervalSetExtensions
     /// <summary>
     /// Gets the minimum interval that contains all the intervals of the set.
     /// </summary>
-    /// <returns></returns>
+    /// <param name="s">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <returns>a <see cref="StandardInterval"/> containing all intervals in the set</returns>
     public static StandardInterval GetBoundingInterval(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> s)
     {
@@ -122,11 +123,11 @@ public static class IntervalSetExtensions
     }
 
     /// <summary>
-    /// Joins the given <see cref="IDateTimeOffsetInterval"/> with the current set
+    /// Joins the given <see cref="IInterval{DateTimeOffset, TimeSpan}"/> with the current set
     /// </summary>
-    /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
-    /// <param name="interval">the <see cref="IDateTimeOffsetInterval"/> to join</param>
-    /// <returns>a new <see cref="IDisjointIntervalSet"/> with the joined intervals</returns>
+    /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <param name="interval">the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> to join</param>
+    /// <returns>a new <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> with the joined intervals</returns>
     public static DisjointIntervalSet Join(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
         IInterval<DateTimeOffset, TimeSpan> interval)
