@@ -270,7 +270,7 @@ public static class IntervalExtensions
     /// <param name="subtraction">the subtraction <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance</param>
     /// <returns>a <see cref="DisjointIntervalSet"/> representing the result after subtraction</returns>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public static DisjointIntervalSet Subtract(
+    public static DisjointIntervalSet<DateTimeOffset, TimeSpan> Subtract(
         this IInterval<DateTimeOffset, TimeSpan> source,
         IInterval<DateTimeOffset, TimeSpan> subtraction)
     {

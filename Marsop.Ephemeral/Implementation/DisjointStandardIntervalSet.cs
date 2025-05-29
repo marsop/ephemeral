@@ -7,13 +7,16 @@ using Marsop.Ephemeral.Interfaces;
 
 namespace Marsop.Ephemeral.Implementation;
 
-public class DisjointStandardIntervalSet : DisjointIntervalSet
+public class DisjointStandardIntervalSet : 
+    DisjointIntervalSet<DateTimeOffset, TimeSpan>
 {
-    public DisjointStandardIntervalSet() : base()
+    public DisjointStandardIntervalSet() :
+        base(DateTimeOffsetStandardLengthOperator.Instance)
     {
     }
 
-    public DisjointStandardIntervalSet(params IInterval<DateTimeOffset, TimeSpan>[] intervals) : base(intervals)
+    public DisjointStandardIntervalSet(params IInterval<DateTimeOffset, TimeSpan>[] intervals) :
+        base(DateTimeOffsetStandardLengthOperator.Instance,intervals)
     {
     }
 }

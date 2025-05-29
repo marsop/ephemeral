@@ -6,6 +6,7 @@
 - `DurationUntilNow()` is no longer supported
 - New "base" classes `BasicInterval` and `BasicMetricInterval`
 - `Interval` has been renamed to `StandardInterval`
+- `AggregatedDuration` is no longer supported in DisjointedSets
 
 ## Version 1.x
 

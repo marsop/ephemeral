@@ -2,24 +2,20 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-using Marsop.Ephemeral.Implementation;
-
 namespace Marsop.Ephemeral.Interfaces;
 
 using System;
 using System.Collections.Generic;
-using Extensions;
 
 /// <summary>
 /// Collection of disjoint IIntervals
 /// </summary>
-public interface IDisjointIntervalSet<TBoundary, TLength> : IList<IInterval<DateTimeOffset, TimeSpan>>
+public interface IDisjointIntervalSet<TBoundary, TLength> : 
+    IList<IInterval<TBoundary, TLength>>
     where TBoundary : IComparable<TBoundary>
 {
-    /// <summary>
-    /// Gets the sum of durations of each of the enclosed intervals
-    /// </summary>
-    TLength AggregatedDuration { get; }
+
+    ILengthOperator<TBoundary, TLength> LengthOperator { get; }
 
     /// <summary>
     /// Gets the end of the latest contained Interval

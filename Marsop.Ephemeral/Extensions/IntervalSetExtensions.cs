@@ -22,10 +22,11 @@ public static class IntervalSetExtensions
     /// </summary>
     /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
     /// <returns>a new <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> with the minimum amount of intervals</returns>
-    public static DisjointIntervalSet Consolidate(
-        this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set)
+    public static DisjointIntervalSet<TBoundary, TLength> Consolidate<TBoundary, TLength>(
+        this IDisjointIntervalSet<TBoundary, TLength> set)
+        where TBoundary : notnull, IComparable<TBoundary>
     {
-        var result = new DisjointStandardIntervalSet();
+        var result = new DisjointIntervalSet<TBoundary, TLength>(set.LengthOperator);
 
         if (set.Count > 0)
         {
@@ -37,11 +38,12 @@ public static class IntervalSetExtensions
             {
                 if (cachedItem.IsContiguouslyFollowedBy(item))
                 {
-                    cachedItem = new StandardInterval(
+                    cachedItem = new BasicInterval<TBoundary>(
                         cachedItem.Start,
                         item.End,
                         cachedItem.StartIncluded,
-                        item.EndIncluded);
+                        item.EndIncluded)
+                        .WithMetric(set.LengthOperator);
                 }
                 else
                 {
@@ -101,7 +103,7 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
     /// <param name="other">the <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> to join</param>
     /// <returns>the joined <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/></returns>
-    public static DisjointIntervalSet Join(
+    public static DisjointIntervalSet<DateTimeOffset, TimeSpan> Join(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
         IDisjointIntervalSet<DateTimeOffset, TimeSpan> other)
     {
