@@ -133,8 +133,8 @@ public class IntervalExtensionsTests
     {
         // Given
         var date = _randomHelper.GetDateTime();
-        IDateTimeOffsetInterval intervalA = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
-        IDateTimeOffsetInterval intervalB = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
+        var intervalA = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
+        var intervalB = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
 
         // When
         var duration = intervalA.LengthOfIntersect(intervalB, intervalA.LengthOperator);

@@ -223,14 +223,6 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Creates an interval based on the information of this object
-    /// </summary>
-    /// <param name="interval">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <returns>a new <see cref="StandardInterval"/> object</returns>
-    public static StandardInterval ToInterval(this IDateTimeOffsetInterval interval) =>
-        new(interval.Start, interval.End, interval.StartIncluded, interval.EndIncluded);
-
-    /// <summary>
     /// Join two intervals
     /// </summary>
     /// <param name="first">the first <see cref="IBasicInterval{TBoundary}"/> instance</param>
@@ -272,13 +264,15 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Join two intervals
+    /// Subtracts one interval from another.
     /// </summary>
-    /// <param name="source">the source <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="subtraction">the subtraction <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <returns>a list of <see cref="StandardInterval"/> after subtraction</returns>
+    /// <param name="source">the source <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <param name="subtraction">the subtraction <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <returns>a <see cref="DisjointIntervalSet"/> representing the result after subtraction</returns>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public static DisjointIntervalSet Subtract(this IDateTimeOffsetInterval source, IDateTimeOffsetInterval subtraction)
+    public static DisjointIntervalSet Subtract(
+        this IInterval<DateTimeOffset, TimeSpan> source,
+        IInterval<DateTimeOffset, TimeSpan> subtraction)
     {
         if (source is null)
         {
@@ -292,10 +286,7 @@ public static class IntervalExtensions
 
         if (!source.Intersects(subtraction))
         {
-            return new DisjointIntervalSet
-            {
-                source.ToInterval()
-            };
+            return new DisjointIntervalSet { source };
         }
 
         if (subtraction.Covers(source))
@@ -317,10 +308,15 @@ public static class IntervalExtensions
 
 
     /// <summary>
-    /// Combines two <see cref="IDateTimeOffsetInterval"/> instances
+    /// Combines two <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instances
     /// </summary>
-    /// <param name="i">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="j">the <see cref="IDateTimeOffsetInterval"/> instance with which to merge</param>
-    /// <returns>a <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> representing the list of joined <see cref="IDateTimeOffsetInterval"/> instances</returns>
-    public static DisjointIntervalSet Union(this IDateTimeOffsetInterval i, IDateTimeOffsetInterval j) => new DisjointIntervalSet(i, j);
+    /// <param name="i">the current <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <param name="j">the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance with which to merge</param>
+    /// <returns>a <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> representing the list of joined <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instances</returns>
+    public static DisjointIntervalSet Union(
+        this IInterval<DateTimeOffset, TimeSpan> i,
+        IInterval<DateTimeOffset, TimeSpan> j)
+    {
+        return new DisjointIntervalSet(i, j);
+    }
 }

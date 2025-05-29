@@ -9,8 +9,7 @@ namespace Marsop.Ephemeral.Implementation;
 
 public record StandardInterval :
     AbstractMetricInterval<DateTimeOffset, TimeSpan>,
-    IIntervalFactory<StandardInterval, DateTimeOffset>,
-    IDateTimeOffsetInterval
+    IIntervalFactory<StandardInterval, DateTimeOffset>
 {
     public StandardInterval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded) :
         base(start, end, startIncluded, endIncluded)

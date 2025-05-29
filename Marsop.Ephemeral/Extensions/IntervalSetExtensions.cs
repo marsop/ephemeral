@@ -71,8 +71,12 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
     /// <param name="interval">the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> to check</param>
     /// <returns><code>true</code> if the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> is covered by the set, <code>false</code> otherwise</returns>
-    public static bool Covers(this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set, IDateTimeOffsetInterval interval) =>
-        set.Consolidate().Any(x => x.Covers(interval));
+    public static bool Covers(
+        this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
+        IInterval<DateTimeOffset, TimeSpan> interval)
+    {
+        return set.Consolidate().Any(x => x.Covers(interval));
+    }
 
     /// <summary>
     /// Intersects the given <see cref="IInterval{DateTimeOffset, TimeSpan}"/> with the current set
@@ -82,7 +86,7 @@ public static class IntervalSetExtensions
     /// <returns>a new <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> with the intersected set</returns>
     public static DisjointIntervalSet Intersect(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
-        IDateTimeOffsetInterval interval)
+        IInterval<DateTimeOffset, TimeSpan> interval)
     {
         var intersections = set
             .Select(x => x.Intersect(interval))
