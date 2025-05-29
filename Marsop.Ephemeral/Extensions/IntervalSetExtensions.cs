@@ -25,7 +25,7 @@ public static class IntervalSetExtensions
     public static DisjointIntervalSet Consolidate(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set)
     {
-        var result = new DisjointIntervalSet();
+        var result = new DisjointStandardIntervalSet();
 
         if (set.Count > 0)
         {
@@ -84,7 +84,7 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
     /// <param name="interval">the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> to intersect</param>
     /// <returns>a new <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> with the intersected set</returns>
-    public static DisjointIntervalSet Intersect(
+    public static DisjointStandardIntervalSet Intersect(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
         IInterval<DateTimeOffset, TimeSpan> interval)
     {
@@ -132,14 +132,14 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
     /// <param name="interval">the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> to join</param>
     /// <returns>a new <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> with the joined intervals</returns>
-    public static DisjointIntervalSet Join(
+    public static DisjointStandardIntervalSet Join(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
         IInterval<DateTimeOffset, TimeSpan> interval)
     {
         var groups = set.GroupBy(val => val.Intersects(interval)).ToDictionary(g => g.Key, g => g.ToList());
 
         var nonOverlaps = groups.ContainsKey(false) ? groups[false] : new List<IInterval<DateTimeOffset, TimeSpan>>();
-        var result = new DisjointIntervalSet(nonOverlaps);
+        var result = new DisjointStandardIntervalSet(nonOverlaps.ToArray());
 
         var overlaps = groups.ContainsKey(true) ? groups[true] : new List<IInterval<DateTimeOffset, TimeSpan>>();
         var newInterval = interval;

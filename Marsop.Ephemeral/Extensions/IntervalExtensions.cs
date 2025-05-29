@@ -286,15 +286,15 @@ public static class IntervalExtensions
 
         if (!source.Intersects(subtraction))
         {
-            return new DisjointIntervalSet { source };
+            return new DisjointStandardIntervalSet { source };
         }
 
         if (subtraction.Covers(source))
         {
-            return new DisjointIntervalSet();
+            return new DisjointStandardIntervalSet();
         }
 
-        var result = new DisjointIntervalSet();
+        var result = new DisjointStandardIntervalSet();
 
         if (source.Start.IsLessThan(subtraction.Start) ||
             (source.Start.IsEqualTo(subtraction.Start) && source.StartIncluded && !subtraction.StartIncluded))
@@ -313,10 +313,10 @@ public static class IntervalExtensions
     /// <param name="i">the current <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance</param>
     /// <param name="j">the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance with which to merge</param>
     /// <returns>a <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> representing the list of joined <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instances</returns>
-    public static DisjointIntervalSet Union(
+    public static DisjointStandardIntervalSet Union(
         this IInterval<DateTimeOffset, TimeSpan> i,
         IInterval<DateTimeOffset, TimeSpan> j)
     {
-        return new DisjointIntervalSet(i, j);
+        return new DisjointStandardIntervalSet(i, j);
     }
 }
