@@ -11,11 +11,11 @@ namespace Marsop.Ephemeral.Implementation;
 /// <summary>
 /// Interval starting point comparer class
 /// </summary>
-public class IntervalStartComparer : IComparer<IDateTimeOffsetInterval>
+public class IntervalStartComparer : IComparer<IInterval<DateTimeOffset, TimeSpan>>
 {
     /// <inheritdoc cref="IComparer{T}.Compare"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public int Compare(IDateTimeOffsetInterval x, IDateTimeOffsetInterval y)
+    public int Compare(IInterval<DateTimeOffset, TimeSpan> x, IInterval<DateTimeOffset, TimeSpan> y)
     {
         if (x == null)
         {

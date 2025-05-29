@@ -99,7 +99,7 @@ public static class IntervalSetExtensions
     /// <returns>the joined <see cref="IDisjointIntervalSet"/></returns>
     public static DisjointIntervalSet Join(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
-         IDisjointIntervalSet<DateTimeOffset, TimeSpan> other)
+        IDisjointIntervalSet<DateTimeOffset, TimeSpan> other)
     {
         var result = set.Consolidate();
 
@@ -129,14 +129,14 @@ public static class IntervalSetExtensions
     /// <returns>a new <see cref="IDisjointIntervalSet"/> with the joined intervals</returns>
     public static DisjointIntervalSet Join(
         this IDisjointIntervalSet<DateTimeOffset, TimeSpan> set,
-        IDateTimeOffsetInterval interval)
+        IInterval<DateTimeOffset, TimeSpan> interval)
     {
         var groups = set.GroupBy(val => val.Intersects(interval)).ToDictionary(g => g.Key, g => g.ToList());
 
-        var nonOverlaps = groups.ContainsKey(false) ? groups[false] : new List<IDateTimeOffsetInterval>();
+        var nonOverlaps = groups.ContainsKey(false) ? groups[false] : new List<IInterval<DateTimeOffset, TimeSpan>>();
         var result = new DisjointIntervalSet(nonOverlaps);
 
-        var overlaps = groups.ContainsKey(true) ? groups[true] : new List<IDateTimeOffsetInterval>();
+        var overlaps = groups.ContainsKey(true) ? groups[true] : new List<IInterval<DateTimeOffset, TimeSpan>>();
         var newInterval = interval;
         foreach (var overlap in overlaps)
         {

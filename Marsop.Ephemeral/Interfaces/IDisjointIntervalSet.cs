@@ -13,7 +13,7 @@ using Extensions;
 /// <summary>
 /// Collection of disjoint IIntervals
 /// </summary>
-public interface IDisjointIntervalSet<TBoundary, TLength> : IList<IDateTimeOffsetInterval>
+public interface IDisjointIntervalSet<TBoundary, TLength> : IList<IInterval<DateTimeOffset, TimeSpan>>
     where TBoundary : IComparable<TBoundary>
 {
     /// <summary>

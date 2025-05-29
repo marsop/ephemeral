@@ -20,7 +20,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <summary>
     /// Internal sorted list of intervals
     /// </summary>
-    private SortedList<IDateTimeOffsetInterval, IDateTimeOffsetInterval> _intervals = new SortedList<IDateTimeOffsetInterval, IDateTimeOffsetInterval>(new IntervalStartComparer());
+    private SortedList<IInterval<DateTimeOffset, TimeSpan>, IInterval<DateTimeOffset, TimeSpan>> _intervals = new(new IntervalStartComparer());
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
@@ -32,9 +32,9 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <summary>
     /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
     /// </summary>
-    /// <param name="intervals">an <see cref="Array"/> of <see cref="IDateTimeOffsetInterval"/> to initialize the set</param>
+    /// <param name="intervals">an <see cref="Array"/> of <see cref="IInterval<DateTimeOffset, TimeSpan>"/> to initialize the set</param>
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
-    public DisjointIntervalSet(params IDateTimeOffsetInterval[] intervals)
+    public DisjointIntervalSet(params IInterval<DateTimeOffset, TimeSpan>[] intervals)
     {
         if (intervals == null)
         {
@@ -53,9 +53,9 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <summary>
     /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
     /// </summary>
-    /// <param name="intervals">an <see cref="IEnumerable{T}"/> of <see cref="IDateTimeOffsetInterval"/> to initialize the set</param>
+    /// <param name="intervals">an <see cref="IEnumerable{T}"/> of <see cref="IInterval<DateTimeOffset, TimeSpan>"/> to initialize the set</param>
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
-    public DisjointIntervalSet(IEnumerable<IDateTimeOffsetInterval> intervals)
+    public DisjointIntervalSet(IEnumerable<IInterval<DateTimeOffset, TimeSpan>> intervals)
     {
         if (intervals == null)
         {
@@ -71,7 +71,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <inheritdoc cref="IDisjointIntervalSet.AggregatedDuration"/>
     public TimeSpan AggregatedDuration => TimeSpan.FromTicks(this.Sum(x => x.Length().Ticks));
 
-    /// <inheritdoc cref="IDateTimeOffsetInterval.Count"/>
+    /// <inheritdoc cref="IInterval<DateTimeOffset, TimeSpan>.Count"/>
     public int Count => this._intervals.Count;
 
     /// <inheritdoc cref="IDisjointIntervalSet.End"/>
@@ -83,7 +83,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <inheritdoc cref="IDisjointIntervalSet.IsContiguous"/>
     public bool IsContiguous => this.Consolidate().Count < 2;
 
-    /// <inheritdoc cref="IDateTimeOffsetInterval.IsReadOnly"/>
+    /// <inheritdoc cref="IInterval<DateTimeOffset, TimeSpan>.IsReadOnly"/>
     public bool IsReadOnly => false;
 
     /// <inheritdoc cref="IDisjointIntervalSet.Start"/>
@@ -93,7 +93,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     public bool StartIncluded { get; }
 
     /// <inheritdoc cref="IList{T}.this[int]"/>
-    public IDateTimeOffsetInterval this[int index]
+    public IInterval<DateTimeOffset, TimeSpan> this[int index]
     {
         get => this._intervals.Values[index];
         set => this._intervals.Values[index] = value;
@@ -102,7 +102,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <inheritdoc cref="ICollection{T}.Add"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if given interval is <code>null</code></exception>
     /// <exception cref="OverlapException">an exception is thrown if given interval overlaps another interval</exception>
-    public void Add(IDateTimeOffsetInterval item)
+    public void Add(IInterval<DateTimeOffset, TimeSpan> item)
     {
         if (item == null)
         {
@@ -121,20 +121,20 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     public void Clear() => this._intervals.Clear();
 
     /// <inheritdoc cref="ICollection{T}.Contains"/>
-    public bool Contains(IDateTimeOffsetInterval item) => item != null && this._intervals.ContainsKey(item);
+    public bool Contains(IInterval<DateTimeOffset, TimeSpan> item) => item != null && this._intervals.ContainsKey(item);
 
     /// <inheritdoc cref="ICollection{T}.CopyTo"/>
-    public void CopyTo(IDateTimeOffsetInterval[] array, int arrayIndex) => this._intervals.Values.CopyTo(array, arrayIndex);
+    public void CopyTo(IInterval<DateTimeOffset, TimeSpan>[] array, int arrayIndex) => this._intervals.Values.CopyTo(array, arrayIndex);
 
     /// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-    public IEnumerator<IDateTimeOffsetInterval> GetEnumerator() => this._intervals.Values.GetEnumerator();
+    public IEnumerator<IInterval<DateTimeOffset, TimeSpan>> GetEnumerator() => this._intervals.Values.GetEnumerator();
 
     /// <inheritdoc cref="IEnumerable.GetEnumerator"/>
     IEnumerator IEnumerable.GetEnumerator() => this._intervals.Values.GetEnumerator();
 
     /// <inheritdoc cref="IList{T}.IndexOf"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
-    public int IndexOf(IDateTimeOffsetInterval item)
+    public int IndexOf(IInterval<DateTimeOffset, TimeSpan> item)
     {
         if (item == null)
         {
@@ -145,13 +145,13 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     }
 
     /// <inheritdoc cref="IList{T}.Insert"/>
-    public void Insert(int index, IDateTimeOffsetInterval item)
+    public void Insert(int index, IInterval<DateTimeOffset, TimeSpan> item)
     {
         throw new NotSupportedException("The Set is always ordered, please use Add()");
     }
 
     /// <inheritdoc cref="ICollection{T}.Remove"/>
-    public bool Remove(IDateTimeOffsetInterval item) => item != null && this._intervals.Remove(item);
+    public bool Remove(IInterval<DateTimeOffset, TimeSpan> item) => item != null && this._intervals.Remove(item);
 
     /// <inheritdoc cref="IList{T}.RemoveAt"/>
     /// <exception cref="ArgumentOutOfRangeException">an exception is thrown if index is less than zero or index is equal to or greater than intervals count</exception>
