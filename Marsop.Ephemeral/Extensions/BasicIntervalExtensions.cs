@@ -1,13 +1,14 @@
-// <copyright file="IBasicIntervalExtensions.cs" company="Marsop">
+// <copyright file="BasicIntervalExtensions.cs" company="Marsop">
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
 using System;
+using Marsop.Ephemeral.Implementation;
 using Marsop.Ephemeral.Interfaces;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Extensions;
 
-public static class IBasicIntervalExtensions
+public static class BasicIntervalExtensions
 {
     public static BasicMetricInterval<TBoundary, TLength> WithMetric<TBoundary, TLength>(
         this IBasicInterval<TBoundary> interval,
