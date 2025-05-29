@@ -78,13 +78,14 @@ public static class IntervalExtensions
     /// <param name="shiftLength">the amount to be shifted (positive or negative)</param>
     /// <returns>a new <see cref="BasicInterval{TBoundary}"/> with shifted boundaries</returns>
     public static BasicInterval<TBoundary> Shift<TBoundary, TLength>(
-        this IInterval<TBoundary, TLength> interval,
-        TLength shiftLength)
+        this IMetricInterval<TBoundary, TLength> interval,
+        TLength shiftLength,
+        ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
         where TLength : notnull, IComparable<TLength>
     {
-        var newStart = interval.LengthOperator.Apply(interval.Start, shiftLength);
-        var newEnd = interval.LengthOperator.Apply(interval.End, shiftLength);
+        var newStart = lengthOperator.Apply(interval.Start, shiftLength);
+        var newEnd = lengthOperator.Apply(interval.End, shiftLength);
 
         return new BasicInterval<TBoundary>(newStart, newEnd, interval.StartIncluded, interval.EndIncluded);
     }
@@ -263,6 +264,7 @@ public static class IntervalExtensions
         throw new ArgumentException("the intervals are not overlapping or contiguous");
     }
 
+
     /// <summary>
     /// Subtracts one interval from another.
     /// </summary>
@@ -271,8 +273,9 @@ public static class IntervalExtensions
     /// <returns>a <see cref="DisjointIntervalSet"/> representing the result after subtraction</returns>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
     public static DisjointIntervalSet<TBoundary, TLength> Subtract<TBoundary, TLength>(
-        this IInterval<TBoundary, TLength> source,
-        IInterval<TBoundary, TLength> subtraction)
+        this IMetricInterval<TBoundary, TLength> source,
+        IMetricInterval<TBoundary, TLength> subtraction,
+        ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         if (source is null)
@@ -287,15 +290,15 @@ public static class IntervalExtensions
 
         if (!source.Intersects(subtraction))
         {
-            return new DisjointIntervalSet<TBoundary, TLength>(source.LengthOperator, source);
+            return new DisjointIntervalSet<TBoundary, TLength>(lengthOperator, source);
         }
 
         if (subtraction.Covers(source))
         {
-            return new DisjointIntervalSet<TBoundary, TLength>(source.LengthOperator);
+            return new DisjointIntervalSet<TBoundary, TLength>(lengthOperator);
         }
 
-        var result = new DisjointIntervalSet<TBoundary, TLength>(source.LengthOperator);
+        var result = new DisjointIntervalSet<TBoundary, TLength>(lengthOperator);
 
         if (source.Start.IsLessThan(subtraction.Start) ||
             source.Start.IsEqualTo(subtraction.Start) && source.StartIncluded && !subtraction.StartIncluded)
@@ -305,7 +308,7 @@ public static class IntervalExtensions
                     subtraction.Start,
                     source.StartIncluded,
                     !subtraction.StartIncluded)
-                .WithMetric(source.LengthOperator)
+                .WithMetric(lengthOperator)
             );
         if (source.End.IsGreaterThan(subtraction.End) ||
             source.End.IsEqualTo(subtraction.End) && source.EndIncluded && !subtraction.EndIncluded)
@@ -315,7 +318,7 @@ public static class IntervalExtensions
                     source.End,
                     !subtraction.EndIncluded,
                     source.EndIncluded)
-                .WithMetric(source.LengthOperator));
+                .WithMetric(lengthOperator));
 
         return result;
     }
@@ -328,10 +331,11 @@ public static class IntervalExtensions
     /// <param name="j">the <see cref="IInterval{TBoundary, TLength}"/> instance with which to merge</param>
     /// <returns>a <see cref="IDisjointIntervalSet{TBoundary, TLength}"/> representing the list of joined <see cref="IInterval{TBoundary, TLength}"/> instances</returns>
     public static DisjointIntervalSet<TBoundary, TLength> Union<TBoundary, TLength>(
-        this IInterval<TBoundary, TLength> i,
-        IInterval<TBoundary, TLength> j)
+        this IMetricInterval<TBoundary, TLength> i,
+        IMetricInterval<TBoundary, TLength> j,
+        ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        return new DisjointIntervalSet<TBoundary, TLength>(i.LengthOperator, i, j);
+        return new DisjointIntervalSet<TBoundary, TLength>(lengthOperator, i, j);
     }
 }

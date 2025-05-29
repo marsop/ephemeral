@@ -11,7 +11,7 @@ namespace Marsop.Ephemeral.Temporal;
 public class DisjointStandardIntervalSet : 
     DisjointIntervalSet<DateTimeOffset, TimeSpan>
 {
-    public DisjointStandardIntervalSet(params IInterval<DateTimeOffset, TimeSpan>[] intervals) :
+    public DisjointStandardIntervalSet(params IMetricInterval<DateTimeOffset, TimeSpan>[] intervals) :
         base(DateTimeOffsetStandardLengthOperator.Instance,intervals)
     {
     }

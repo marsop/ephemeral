@@ -3,9 +3,9 @@
 // </copyright>
 
 using System;
+using Marsop.Ephemeral.Core.Extensions;
 using Marsop.Ephemeral.Core.Implementation;
 using Marsop.Ephemeral.Core.Interfaces;
-using Marsop.Ephemeral.Temporal;
 
 namespace Marsop.Ephemeral.Temporal;
 
@@ -29,9 +29,9 @@ public record StandardInterval :
     {
     }
 
-    public override ILengthOperator<DateTimeOffset, TimeSpan> LengthOperator =>
+    private ILengthOperator<DateTimeOffset, TimeSpan> LengthOperator =>
         DateTimeOffsetStandardLengthOperator.Instance;
-    
+
     public static StandardInterval CreateFrom(IBasicInterval<DateTimeOffset> interval)
     {
         return new StandardInterval(
@@ -40,4 +40,15 @@ public record StandardInterval :
             interval.StartIncluded,
             interval.EndIncluded);
     }
+
+    public DisjointStandardIntervalSet Subtract(StandardInterval other) =>
+        new([.. IntervalExtensions.Subtract(this, other, LengthOperator)]);
+
+    public StandardInterval Shift(TimeSpan offset) =>
+        CreateFrom(IntervalExtensions.Shift(this, offset, LengthOperator));
+
+    public TimeSpan LengthOfIntersect(StandardInterval other) =>
+        IntervalExtensions.LengthOfIntersect(this, other, LengthOperator);
+
+    public override TimeSpan Length() => LengthOperator.Measure(Start, End);
 }

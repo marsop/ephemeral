@@ -80,7 +80,7 @@ public static class IntervalSetExtensions
     /// <returns><code>true</code> if the <see cref="IInterval{TBoundary, TLength}"/> is covered by the set, <code>false</code> otherwise</returns>
     public static bool Covers<TBoundary, TLength>(
         this IDisjointIntervalSet<TBoundary, TLength> set,
-        IInterval<TBoundary, TLength> interval)
+        IMetricInterval<TBoundary, TLength> interval)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         return set.Consolidate().Any(x => x.Covers(interval));
@@ -94,13 +94,14 @@ public static class IntervalSetExtensions
     /// <returns>a new <see cref="IDisjointIntervalSet{TBoundary, TLength}"/> with the intersected set</returns>
     public static DisjointIntervalSet<TBoundary, TLength> Intersect<TBoundary, TLength>(
         this IDisjointIntervalSet<TBoundary, TLength> set,
-        IInterval<TBoundary, TLength> interval)
+        IMetricInterval<TBoundary, TLength> interval)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         var intersections = set
             .Select(x => x.Intersect(interval))
             .Values()
-            .Select(x => x.WithMetric(set.LengthOperator));
+            .Select(x => x.WithMetric(set.LengthOperator))
+            .ToList();
         return new DisjointIntervalSet<TBoundary, TLength>(set.LengthOperator, intersections);
     }
 
@@ -146,15 +147,15 @@ public static class IntervalSetExtensions
     /// <returns>a new <see cref="IDisjointIntervalSet{TBoundary, TLength}"/> with the joined intervals</returns>
     public static DisjointIntervalSet<TBoundary, TLength> Join<TBoundary, TLength>(
         this IDisjointIntervalSet<TBoundary, TLength> set,
-        IInterval<TBoundary, TLength> interval)
+        IMetricInterval<TBoundary, TLength> interval)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         var groups = set.GroupBy(val => val.Intersects(interval)).ToDictionary(g => g.Key, g => g.ToList());
 
-        var nonOverlaps = groups.ContainsKey(false) ? groups[false] : new List<IInterval<TBoundary, TLength>>();
+        var nonOverlaps = groups.ContainsKey(false) ? groups[false] : new List<IMetricInterval<TBoundary, TLength>>();
         var result = new DisjointIntervalSet<TBoundary, TLength>(set.LengthOperator, nonOverlaps.ToArray());
 
-        var overlaps = groups.ContainsKey(true) ? groups[true] : new List<IInterval<TBoundary, TLength>>();
+        var overlaps = groups.ContainsKey(true) ? groups[true] : new List<IMetricInterval<TBoundary, TLength>>();
         var newInterval = interval;
         foreach (var overlap in overlaps)
         {

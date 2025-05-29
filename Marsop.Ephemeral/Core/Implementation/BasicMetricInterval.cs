@@ -19,10 +19,15 @@ public record BasicMetricInterval<TBoundary, TLength> :
         ILengthOperator<TBoundary, TLength> lengthOperator)
         : base(start, end, startIncluded, endIncluded)
     {
-        _lengthOperator = lengthOperator ?? throw new ArgumentNullException(nameof(lengthOperator));
+        if (lengthOperator is null)
+        {
+            throw new ArgumentNullException(nameof(lengthOperator));
+        }
+
+        _length = lengthOperator.Measure(start, end);
     }
 
-    private readonly ILengthOperator<TBoundary, TLength> _lengthOperator;
+    private readonly TLength _length;
 
-    public override ILengthOperator<TBoundary, TLength> LengthOperator => _lengthOperator;
+    public override TLength Length()  => _length;
 }

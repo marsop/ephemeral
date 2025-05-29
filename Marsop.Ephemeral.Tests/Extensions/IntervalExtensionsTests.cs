@@ -67,8 +67,7 @@ public class IntervalExtensionsTests
 
         //When
         var result = source
-            .Shift(TimeSpan.Zero)
-            .WithMetric(source.LengthOperator);
+            .Shift(TimeSpan.Zero);
 
         //Then
         result.Should().BeEquivalentTo(source);
@@ -90,7 +89,6 @@ public class IntervalExtensionsTests
         //When
         var result = source
             .Intersect(other)
-            .Map(x => x.WithMetric(source.LengthOperator))
             .ValueOrFailure();
 
         //Then
@@ -106,7 +104,7 @@ public class IntervalExtensionsTests
         var intervalB = new StandardInterval(date.AddHours(10), date.AddHours(14), true, true);
 
         // When
-        var duration = intervalA.LengthOfIntersect(intervalB, intervalA.LengthOperator);
+        var duration = intervalA.LengthOfIntersect(intervalB);
 
         // Then
         duration.Should().Be(intervalA.End - intervalB.Start);
@@ -121,7 +119,7 @@ public class IntervalExtensionsTests
         var intervalB = _randomHelper.GetInterval(date.AddHours(11), date.AddHours(12), true, true);
 
         // When
-        var duration = intervalA.LengthOfIntersect(intervalB, intervalA.LengthOperator);
+        var duration = intervalA.LengthOfIntersect(intervalB);
 
         // Then
         duration.Should().Be(TimeSpan.Zero);
@@ -136,7 +134,7 @@ public class IntervalExtensionsTests
         var intervalB = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
 
         // When
-        var duration = intervalA.LengthOfIntersect(intervalB, intervalA.LengthOperator);
+        var duration = intervalA.LengthOfIntersect(intervalB);
 
         // Then
         duration.Should().Be(intervalA.Length());

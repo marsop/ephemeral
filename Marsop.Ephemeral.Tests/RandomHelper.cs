@@ -37,7 +37,7 @@ public class RandomHelper
     /// <param name="endDate">End date (optional)</param>
     /// <param name="startIncluded">Start included (optional)</param>
     /// <param name="endIncluded">End included (optional)</param>
-    public IInterval<DateTimeOffset, TimeSpan> GetInterval(DateTimeOffset startDate, DateTimeOffset? endDate = null, bool? startIncluded = null, bool? endIncluded = null)
+    public StandardInterval GetInterval(DateTimeOffset startDate, DateTimeOffset? endDate = null, bool? startIncluded = null, bool? endIncluded = null)
     {
         var end = endDate ?? startDate.AddDays(GetIntInRanger(1, 10));
         var startIncludedBool = startIncluded ?? GetBool();
