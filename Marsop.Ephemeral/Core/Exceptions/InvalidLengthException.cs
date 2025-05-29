@@ -1,10 +1,10 @@
-// <copyright file="InvalidDurationException.cs" company="Marsop">
+// <copyright file="InvalidLengthException.cs" company="Marsop">
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
 using System;
 
-namespace Marsop.Ephemeral.Exceptions;
+namespace Marsop.Ephemeral.Core.Exceptions;
 
 /// <summary>
 /// Invalid interval duration exception

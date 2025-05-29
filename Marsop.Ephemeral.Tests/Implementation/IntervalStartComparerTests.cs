@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 using FluentAssertions;
-using Marsop.Ephemeral.Implementation;
+using Marsop.Ephemeral.Core.Implementation;
 
 namespace Marsop.Ephemeral.Tests.Implementation;
 
@@ -20,7 +20,7 @@ public class IntervalStartComparerTests
         private void WhenBothIntervalsHaveTheSameStartDateAndSameStartIncludedValue_ThenReturnsZero(bool startIncludedIntervalA, bool startIncludedIntervalB)
         {
             //arrange
-            var now = _randomHelper.GetDateTime();
+            var now = _randomHelper.GetRandomDateTimeOffset();
 
             var intervalA = _randomHelper.GetInterval(now, null, startIncludedIntervalA);
             var intervalB = _randomHelper.GetInterval(now, null, startIncludedIntervalB);
@@ -40,7 +40,7 @@ public class IntervalStartComparerTests
         private void WhenBothIntervalsHaveTheSameStartDateButDifferentStartIncludedValue_ThenReturnsDifferentThanZero(bool startIncludedIntervalA, bool startIncludedIntervalB, int expectedResult)
         {
             //arrange
-            var now = _randomHelper.GetDateTime();
+            var now = _randomHelper.GetRandomDateTimeOffset();
 
             var intervalA = _randomHelper.GetInterval(now, null, startIncludedIntervalA);
             var intervalB = _randomHelper.GetInterval(now, null, startIncludedIntervalB);
@@ -58,7 +58,7 @@ public class IntervalStartComparerTests
         private void WhenFirstIntervalStartDateIsEarlierThanSecondIntervalStartDate_ThenReturnsMinusOne()
         {
             //arrange
-            var now = _randomHelper.GetDateTime();
+            var now = _randomHelper.GetRandomDateTimeOffset();
 
             var intervalA = _randomHelper.GetInterval(now);
             var intervalB = _randomHelper.GetInterval(now.AddTicks(1));
@@ -76,7 +76,7 @@ public class IntervalStartComparerTests
         private void WhenFirstIntervalStartDateIsLaterThanSecondIntervalStartDate_ThenReturnsOne()
         {
             //arrange
-            var now = _randomHelper.GetDateTime();
+            var now = _randomHelper.GetRandomDateTimeOffset();
 
             var intervalA = _randomHelper.GetInterval(now);
             var intervalB = _randomHelper.GetInterval(now.AddTicks(-1));

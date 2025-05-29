@@ -1,10 +1,9 @@
 using FluentAssertions;
-using Marsop.Ephemeral.Extensions;
-using Marsop.Ephemeral.Implementation;
-using Marsop.Ephemeral.Interfaces;
 using Optional.Unsafe;
+using Marsop.Ephemeral.Core.Extensions;
 using System;
 using Xunit;
+using Marsop.Ephemeral.Temporal;
 
 namespace Marsop.Ephemeral.Tests.Extensions;
 
@@ -20,7 +19,7 @@ public class IntervalExtensionsTests
     public void Test_Covers(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
         var other = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
@@ -40,7 +39,7 @@ public class IntervalExtensionsTests
     public void Test_Shift(bool startIncludedInterval, bool endIncludedInterval)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
 
@@ -62,7 +61,7 @@ public class IntervalExtensionsTests
     public void Test_Shift_Empty(bool startIncludedInterval, bool endIncludedInterval)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
 
@@ -83,7 +82,7 @@ public class IntervalExtensionsTests
     public void Test_Intersect(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
         var other = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
@@ -102,7 +101,7 @@ public class IntervalExtensionsTests
     public void LengthOfIntersect_ReturnsCorrectDuration_WhenIntervalsOverlap()
     {
         // Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
         var intervalA = new StandardInterval(date.AddHours(8), date.AddHours(12), true, true);
         var intervalB = new StandardInterval(date.AddHours(10), date.AddHours(14), true, true);
 
@@ -117,7 +116,7 @@ public class IntervalExtensionsTests
     public void LengthOfIntersect_ReturnsZero_WhenIntervalsDoNotOverlap()
     {
         // Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
         var intervalA = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(10), true, true);
         var intervalB = _randomHelper.GetInterval(date.AddHours(11), date.AddHours(12), true, true);
 
@@ -132,7 +131,7 @@ public class IntervalExtensionsTests
     public void LengthOfIntersect_ReturnsLength_WhenIntervalsAreIdentical()
     {
         // Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
         var intervalA = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
         var intervalB = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
 

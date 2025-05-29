@@ -2,12 +2,12 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-using Marsop.Ephemeral.Implementation;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Interfaces;
 using Optional;
 using System;
+using Marsop.Ephemeral.Core.Implementation;
 
-namespace Marsop.Ephemeral.Extensions;
+namespace Marsop.Ephemeral.Core.Extensions;
 
 
 /// <summary>
@@ -191,7 +191,7 @@ public static class IntervalExtensions
         IBasicInterval<TBoundary> second)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        return first.End.IsEqualTo(second.Start) && (first.EndIncluded != second.StartIncluded);
+        return first.End.IsEqualTo(second.Start) && first.EndIncluded != second.StartIncluded;
     }
 
     /// <summary>
@@ -219,7 +219,7 @@ public static class IntervalExtensions
         IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        return interval.Start.IsLessThan(other.Start) || (interval.Start.IsEqualTo(other.Start) && interval.StartIncluded && !other.StartIncluded);
+        return interval.Start.IsLessThan(other.Start) || interval.Start.IsEqualTo(other.Start) && interval.StartIncluded && !other.StartIncluded;
     }
 
     /// <summary>
@@ -266,13 +266,14 @@ public static class IntervalExtensions
     /// <summary>
     /// Subtracts one interval from another.
     /// </summary>
-    /// <param name="source">the source <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance</param>
-    /// <param name="subtraction">the subtraction <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance</param>
+    /// <param name="source">the source <see cref="IInterval{TBoundary, TLength}"/> instance</param>
+    /// <param name="subtraction">the subtraction <see cref="IInterval{TBoundary, TLength}"/> instance</param>
     /// <returns>a <see cref="DisjointIntervalSet"/> representing the result after subtraction</returns>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public static DisjointIntervalSet<DateTimeOffset, TimeSpan> Subtract(
-        this IInterval<DateTimeOffset, TimeSpan> source,
-        IInterval<DateTimeOffset, TimeSpan> subtraction)
+    public static DisjointIntervalSet<TBoundary, TLength> Subtract<TBoundary, TLength>(
+        this IInterval<TBoundary, TLength> source,
+        IInterval<TBoundary, TLength> subtraction)
+        where TBoundary : notnull, IComparable<TBoundary>
     {
         if (source is null)
         {
@@ -286,37 +287,51 @@ public static class IntervalExtensions
 
         if (!source.Intersects(subtraction))
         {
-            return new DisjointStandardIntervalSet { source };
+            return new DisjointIntervalSet<TBoundary, TLength>(source.LengthOperator, source);
         }
 
         if (subtraction.Covers(source))
         {
-            return new DisjointStandardIntervalSet();
+            return new DisjointIntervalSet<TBoundary, TLength>(source.LengthOperator);
         }
 
-        var result = new DisjointStandardIntervalSet();
+        var result = new DisjointIntervalSet<TBoundary, TLength>(source.LengthOperator);
 
         if (source.Start.IsLessThan(subtraction.Start) ||
-            (source.Start.IsEqualTo(subtraction.Start) && source.StartIncluded && !subtraction.StartIncluded))
-            result.Add(new StandardInterval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded));
+            source.Start.IsEqualTo(subtraction.Start) && source.StartIncluded && !subtraction.StartIncluded)
+            result.Add(
+                new BasicInterval<TBoundary>(
+                    source.Start,
+                    subtraction.Start,
+                    source.StartIncluded,
+                    !subtraction.StartIncluded)
+                .WithMetric(source.LengthOperator)
+            );
         if (source.End.IsGreaterThan(subtraction.End) ||
-            (source.End.IsEqualTo(subtraction.End) && source.EndIncluded && !subtraction.EndIncluded))
-            result.Add(new StandardInterval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded));
+            source.End.IsEqualTo(subtraction.End) && source.EndIncluded && !subtraction.EndIncluded)
+            result.Add(
+                new BasicInterval<TBoundary>(
+                    subtraction.End,
+                    source.End,
+                    !subtraction.EndIncluded,
+                    source.EndIncluded)
+                .WithMetric(source.LengthOperator));
 
         return result;
     }
 
 
     /// <summary>
-    /// Combines two <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instances
+    /// Combines two <see cref="IInterval{TBoundary, TLength}"/> instances
     /// </summary>
-    /// <param name="i">the current <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance</param>
-    /// <param name="j">the <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instance with which to merge</param>
-    /// <returns>a <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> representing the list of joined <see cref="IInterval{DateTimeOffset, TimeSpan}"/> instances</returns>
-    public static DisjointStandardIntervalSet Union(
-        this IInterval<DateTimeOffset, TimeSpan> i,
-        IInterval<DateTimeOffset, TimeSpan> j)
+    /// <param name="i">the current <see cref="IInterval{TBoundary, TLength}"/> instance</param>
+    /// <param name="j">the <see cref="IInterval{TBoundary, TLength}"/> instance with which to merge</param>
+    /// <returns>a <see cref="IDisjointIntervalSet{TBoundary, TLength}"/> representing the list of joined <see cref="IInterval{TBoundary, TLength}"/> instances</returns>
+    public static DisjointIntervalSet<TBoundary, TLength> Union<TBoundary, TLength>(
+        this IInterval<TBoundary, TLength> i,
+        IInterval<TBoundary, TLength> j)
+        where TBoundary : notnull, IComparable<TBoundary>
     {
-        return new DisjointStandardIntervalSet(i, j);
+        return new DisjointIntervalSet<TBoundary, TLength>(i.LengthOperator, i, j);
     }
 }

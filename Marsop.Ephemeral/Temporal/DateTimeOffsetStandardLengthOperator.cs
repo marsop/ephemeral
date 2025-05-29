@@ -1,7 +1,7 @@
 using System;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Interfaces;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Temporal;
 
 public sealed class DateTimeOffsetStandardLengthOperator :
     ILengthOperator<DateTimeOffset, TimeSpan>

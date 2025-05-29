@@ -2,7 +2,7 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-namespace Marsop.Ephemeral.Interfaces;
+namespace Marsop.Ephemeral.Core.Interfaces;
 
 using System;
 using System.Collections.Generic;

@@ -1,8 +1,7 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using Marsop.Ephemeral.Extensions;
-using Marsop.Ephemeral.Implementation;
+using Marsop.Ephemeral.Core.Extensions;
 using Xunit;
 
 namespace Marsop.Ephemeral.Tests.Implementation;
@@ -15,7 +14,7 @@ public class IntervalTests
     public void Test_Subtract_Null()
     {
         //Given
-        var now = _randomHelper.GetDateTime();
+        var now = _randomHelper.GetRandomDateTimeOffset();
 
         var interval = _randomHelper.GetInterval(now, null);
 
@@ -26,7 +25,7 @@ public class IntervalTests
     public void Test_Subtract_NoIntersection()
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12));
         var subtraction = _randomHelper.GetInterval(date.AddHours(14), date.AddHours(18));
@@ -45,7 +44,7 @@ public class IntervalTests
     public void Test_Subtract_Full(bool startIncludedInterval, bool endIncludedInterval)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
         var subtraction = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
@@ -65,7 +64,7 @@ public class IntervalTests
     public void Test_Subtract_Inner(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
         var subtraction = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
@@ -87,7 +86,7 @@ public class IntervalTests
     public void Test_Subtract_SourceStartsBefore(bool startIncludedIntervalA, bool startIncludedIntervalB)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA);
         var subtraction = _randomHelper.GetInterval(date.AddHours(11), date.AddHours(13), startIncludedIntervalB);
@@ -109,7 +108,7 @@ public class IntervalTests
     public void Test_Subtract_SourceStartsEqual(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
         var subtraction = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(11), startIncludedIntervalB, endIncludedIntervalB);
@@ -131,7 +130,7 @@ public class IntervalTests
     public void Test_Subtract_SourceEndsEqual(bool startIncludedIntervalA, bool endIncludedIntervalA, bool startIncludedIntervalB, bool endIncludedIntervalB)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
         var subtraction = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(12), startIncludedIntervalB, endIncludedIntervalB);
@@ -155,7 +154,7 @@ public class IntervalTests
         bool endIncludedIntervalA, bool endIncludedIntervalB)
     {
         //Given
-        var date = _randomHelper.GetDateTime();
+        var date = _randomHelper.GetRandomDateTimeOffset();
 
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedIntervalA, endIncludedIntervalA);
         var subtraction = _randomHelper.GetInterval(date.AddHours(6), date.AddHours(9), startIncludedIntervalB, endIncludedIntervalB);

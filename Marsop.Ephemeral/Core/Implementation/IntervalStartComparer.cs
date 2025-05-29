@@ -4,9 +4,9 @@
 
 using System;
 using System.Collections.Generic;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Interfaces;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Core.Implementation;
 
 /// <summary>
 /// Interval starting point comparer class

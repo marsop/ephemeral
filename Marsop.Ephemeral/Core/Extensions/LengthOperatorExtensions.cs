@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Marsop.Ephemeral.Interfaces;
+namespace Marsop.Ephemeral.Core.Interfaces;
 
 public static class LengthOperatorExtensions
 {

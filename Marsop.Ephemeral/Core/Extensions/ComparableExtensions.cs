@@ -1,6 +1,6 @@
 using System;
 
-namespace Marsop.Ephemeral.Extensions;
+namespace Marsop.Ephemeral.Core.Extensions;
 
 public static class ComparableExtensions
 {

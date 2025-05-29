@@ -1,6 +1,6 @@
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Interfaces;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Numerics;
 
 public sealed class IntStandardLengthOperator :
     ILengthOperator<int, int>

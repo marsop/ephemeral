@@ -3,9 +3,9 @@
 // </copyright>
 
 using System;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Interfaces;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Core.Implementation;
 
 public abstract record AbstractMetricInterval<TBoundary, TLength> :
     BasicInterval<TBoundary>,

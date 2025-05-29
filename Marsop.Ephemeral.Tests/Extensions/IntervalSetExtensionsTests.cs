@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Marsop.Ephemeral.Extensions;
-using Marsop.Ephemeral.Implementation;
+using Marsop.Ephemeral.Core.Extensions;
 using Xunit;
+using Marsop.Ephemeral.Temporal;
 
 namespace Marsop.Ephemeral.Tests.Extensions
 {
@@ -28,7 +28,7 @@ namespace Marsop.Ephemeral.Tests.Extensions
         [Fact]
         public void Covers_ReturnsTrueIfTimestampIsCovered()
         {
-            var now = DateTimeOffset.Now;
+            var now = DateTimeOffset.UtcNow;
             var interval = IntervalClosedOpen(now.AddMinutes(-1), now.AddMinutes(1));
             var set = new DisjointStandardIntervalSet(interval);
             Assert.True(set.Covers(now));
@@ -37,7 +37,7 @@ namespace Marsop.Ephemeral.Tests.Extensions
         [Fact]
         public void Covers_ReturnsFalseIfTimestampIsNotCovered()
         {
-            var now = DateTimeOffset.Now;
+            var now = DateTimeOffset.UtcNow;
             var interval = IntervalClosedOpen(now.AddMinutes(-2), now.AddMinutes(-1));
             var set = new DisjointStandardIntervalSet(interval);
             Assert.False(set.Covers(now));
@@ -72,7 +72,7 @@ namespace Marsop.Ephemeral.Tests.Extensions
         [Fact]
         public void GetBoundingInterval_ReturnsCorrectBounds()
         {
-            var now = DateTimeOffset.Now;
+            var now = DateTimeOffset.UtcNow;
             var i1 = IntervalClosedOpen(now, now.AddMinutes(1));
             var i2 = IntervalClosedOpen(now.AddMinutes(2), now.AddMinutes(3));
             var set = new DisjointStandardIntervalSet(i1, i2);
@@ -84,7 +84,7 @@ namespace Marsop.Ephemeral.Tests.Extensions
         [Fact]
         public void Join_WithInterval_JoinsOverlappingIntervals()
         {
-            var now = DateTimeOffset.Now;
+            var now = DateTimeOffset.UtcNow;
             var i1 = IntervalClosedOpen(now, now.AddMinutes(1));
             var i2 = IntervalClosedOpen(now.AddSeconds(30), now.AddMinutes(2));
             var set = new DisjointStandardIntervalSet(i1);
@@ -97,7 +97,7 @@ namespace Marsop.Ephemeral.Tests.Extensions
         [Fact]
         public void Join_WithInterval_JoinsNonOverlappingIntervals()
         {
-            var now = DateTimeOffset.Now;
+            var now = DateTimeOffset.UtcNow;
             var i1 = IntervalClosedOpen(now, now.AddMinutes(1));
             var i2 = IntervalClosedOpen(now.AddMinutes(2), now.AddMinutes(3));
             var set = new DisjointStandardIntervalSet(i1);

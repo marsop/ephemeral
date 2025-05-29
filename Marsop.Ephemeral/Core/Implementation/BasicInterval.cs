@@ -3,11 +3,11 @@
 // </copyright>
 
 using System;
-using Marsop.Ephemeral.Exceptions;
-using Marsop.Ephemeral.Extensions;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Exceptions;
+using Marsop.Ephemeral.Core.Interfaces;
+using Marsop.Ephemeral.Core.Extensions;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Core.Implementation;
 
 public record BasicInterval<TBoundary> : 
     IBasicInterval<TBoundary>
@@ -76,7 +76,7 @@ public record BasicInterval<TBoundary> :
     /// Open intervals are represented with parenthesis (a,b)
     /// Close intervals are represented with brakets [a,b]
     /// </summary>
-    /// <returns>a <see cref="String"/> that represent the interval</returns>
+    /// <returns>a <see cref="string"/> that represent the interval</returns>
     protected string GetTextualRepresentation()
     {
         var startDelimiter = StartIncluded ? "[" : "(";

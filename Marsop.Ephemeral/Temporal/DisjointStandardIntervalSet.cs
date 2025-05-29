@@ -3,18 +3,14 @@
 // </copyright>
 
 using System;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Implementation;
+using Marsop.Ephemeral.Core.Interfaces;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Temporal;
 
 public class DisjointStandardIntervalSet : 
     DisjointIntervalSet<DateTimeOffset, TimeSpan>
 {
-    public DisjointStandardIntervalSet() :
-        base(DateTimeOffsetStandardLengthOperator.Instance)
-    {
-    }
-
     public DisjointStandardIntervalSet(params IInterval<DateTimeOffset, TimeSpan>[] intervals) :
         base(DateTimeOffsetStandardLengthOperator.Instance,intervals)
     {

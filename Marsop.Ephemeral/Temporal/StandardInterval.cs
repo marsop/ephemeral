@@ -3,9 +3,11 @@
 // </copyright>
 
 using System;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Implementation;
+using Marsop.Ephemeral.Core.Interfaces;
+using Marsop.Ephemeral.Temporal;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Temporal;
 
 public record StandardInterval :
     AbstractMetricInterval<DateTimeOffset, TimeSpan>

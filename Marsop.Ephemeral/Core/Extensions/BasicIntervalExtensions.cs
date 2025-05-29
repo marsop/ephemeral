@@ -3,10 +3,10 @@
 // </copyright>
 
 using System;
-using Marsop.Ephemeral.Implementation;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Interfaces;
+using Marsop.Ephemeral.Core.Implementation;
 
-namespace Marsop.Ephemeral.Extensions;
+namespace Marsop.Ephemeral.Core.Extensions;
 
 public static class BasicIntervalExtensions
 {

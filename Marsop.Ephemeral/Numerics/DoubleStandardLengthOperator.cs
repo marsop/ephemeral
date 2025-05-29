@@ -1,7 +1,7 @@
 using System;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Interfaces;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Numerics;
 
 public sealed class DoubleStandardLengthOperator :
     ILengthOperator<double, double>
