@@ -13,13 +13,13 @@ using Extensions;
 /// <summary>
 /// Collection of disjoint IIntervals
 /// </summary>
-public interface IDisjointIntervalSet<TBoundary> : IList<IDateTimeOffsetInterval>
+public interface IDisjointIntervalSet<TBoundary, TLength> : IList<IDateTimeOffsetInterval>
     where TBoundary : IComparable<TBoundary>
 {
     /// <summary>
     /// Gets the sum of durations of each of the enclosed intervals
     /// </summary>
-    TimeSpan AggregatedDuration { get; }
+    TLength AggregatedDuration { get; }
 
     /// <summary>
     /// Gets the end of the latest contained Interval
