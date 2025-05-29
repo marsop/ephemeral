@@ -9,7 +9,8 @@ using Marsop.Ephemeral.Interfaces;
 
 namespace Marsop.Ephemeral.Implementation;
 
-public record BasicInterval<TBoundary> : IBasicInterval<TBoundary>
+public record BasicInterval<TBoundary> : 
+    IBasicInterval<TBoundary>
     where TBoundary : IComparable<TBoundary>
 {
     /// <inheritdoc cref="IBasicInterval.Start"/>
@@ -89,7 +90,16 @@ public record BasicInterval<TBoundary> : IBasicInterval<TBoundary>
         return GetTextualRepresentation();
     }
 
-/// <summary>
+    public static BasicInterval<TBoundary> From(IBasicInterval<TBoundary> interval)
+    {
+        return new BasicInterval<TBoundary>(
+            interval.Start,
+            interval.End,
+            interval.StartIncluded,
+            interval.EndIncluded);
+    }
+
+    /// <summary>
     /// Checks if the current <see cref="BasicInterval<>"/> has coherent starting and ending points
     /// </summary>
     /// <returns><code>true</code> if starting and ending points are valid, <code>false</code> otherwise</returns>

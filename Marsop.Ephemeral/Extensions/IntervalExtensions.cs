@@ -126,11 +126,11 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Generates a new <see cref="StandardInterval" />, which is the intersection of the two.
+    /// Generates a new <see cref="BasicInterval<TBoundary>" />, which is the intersection of the two.
     /// </summary>
     /// <param name="interval">the current interval</param>
-    /// <param name="other">the <see cref="IDateTimeOffsetInterval"/> instance to intersect</param>
-    /// <returns>a new <see cref="StandardInterval"/> object representing the intersection between the two <see cref="IDateTimeOffsetInterval"/> if an intersections exists, <code>null</code> otherwise</returns>
+    /// <param name="other">the <see cref="IBasicInterval<TBoundary>"/> instance to intersect</param>
+    /// <returns>a new <see cref="BasicInterval<TBoundary>"/> object representing the intersection between the two <see cref="IBasicInterval<TBoundary>"/> if an intersections exists, <code>null</code> otherwise</returns>
     public static Option<BasicInterval<TBoundary>> Intersect<TBoundary>(
         this IBasicInterval<TBoundary> first,
         IBasicInterval<TBoundary> second)
@@ -171,8 +171,13 @@ public static class IntervalExtensions
     /// <param name="i">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
     /// <param name="j">the <see cref="IDateTimeOffsetInterval"/> instance to verify</param>
     /// <returns><code>true</code> if the given <see cref="IDateTimeOffsetInterval"/> has an intersection with the current one, <code>false</code> otherwise</returns>
-    public static bool Intersects(this IDateTimeOffsetInterval i, IDateTimeOffsetInterval j) =>
-        i.Intersect(j).HasValue;
+    public static bool Intersects<TBoundary>(
+        this IBasicInterval<TBoundary> first,
+        IBasicInterval<TBoundary> second)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        return first.Intersect(second).HasValue;
+    }
 
     /// <summary>
     /// Checks if the given <see cref="IDateTimeOffsetInterval"/> follows seamlessly and without overlap the current <see cref="IDateTimeOffsetInterval"/>
@@ -180,8 +185,13 @@ public static class IntervalExtensions
     /// <param name="i">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
     /// <param name="o">the <see cref="IDateTimeOffsetInterval"/> instance to check</param>
     /// <returns><code>true</code> if the given <see cref="IDateTimeOffsetInterval"/> is followed with the current one</returns>
-    public static bool IsContiguouslyFollowedBy(this IDateTimeOffsetInterval i, IDateTimeOffsetInterval o) =>
-        i.End.IsEqualTo(o.Start) && (i.EndIncluded != o.StartIncluded);
+    public static bool IsContiguouslyFollowedBy<TBoundary>(
+        this IBasicInterval<TBoundary> first,
+        IBasicInterval<TBoundary> second)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        return first.End.IsEqualTo(second.Start) && (first.EndIncluded != second.StartIncluded);
+    }
 
     /// <summary>
     /// Checks if the current <see cref="IDateTimeOffsetInterval"/> follows seamlessly and without overlap the given <see cref="IDateTimeOffsetInterval"/>
@@ -189,8 +199,13 @@ public static class IntervalExtensions
     /// <param name="i">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
     /// <param name="o">the <see cref="IDateTimeOffsetInterval"/> instance to check</param>
     /// <returns><code>true</code> if the <see cref="IDateTimeOffsetInterval"/> is preceded the the given <see cref="IDateTimeOffsetInterval"/>, <code>false</code> otherwise</returns>
-    public static bool IsContiguouslyPrecededBy(this IDateTimeOffsetInterval i, IDateTimeOffsetInterval o) =>
-        o.IsContiguouslyFollowedBy(i);
+    public static bool IsContiguouslyPrecededBy<TBoundary>(
+        this IBasicInterval<TBoundary> first,
+        IBasicInterval<TBoundary> second)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        return second.IsContiguouslyFollowedBy(first);
+    }
 
     /// <summary>
     /// Checks if the current <see cref="IDateTimeOffsetInterval"/> starts before the given <see cref="IDateTimeOffsetInterval"/>
@@ -198,8 +213,13 @@ public static class IntervalExtensions
     /// <param name="interval">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
     /// <param name="other">the <see cref="IDateTimeOffsetInterval"/> instance to check</param>
     /// <returns><code>true</code> if the <see cref="IDateTimeOffsetInterval"/> starts before the the given <see cref="IDateTimeOffsetInterval"/>, <code>false</code> otherwise</returns>
-    public static bool StartsBefore(this IDateTimeOffsetInterval interval, IDateTimeOffsetInterval other) =>
-        interval.Start.IsLessThan(other.Start) || (interval.Start.IsEqualTo(other.Start) && interval.StartIncluded && !other.StartIncluded);
+    public static bool StartsBefore<TBoundary>(
+        this IBasicInterval<TBoundary> interval,
+        IBasicInterval<TBoundary> other)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        return interval.Start.IsLessThan(other.Start) || (interval.Start.IsEqualTo(other.Start) && interval.StartIncluded && !other.StartIncluded);
+    }
 
     /// <summary>
     /// Creates an interval based on the information of this object
@@ -217,7 +237,10 @@ public static class IntervalExtensions
     /// <returns>a new <see cref="StandardInterval"/> with joined intervals</returns>
     /// <exception cref="ArgumentException">an exception is thrown if the two intervals are not contiguous or overlapping</exception>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public static StandardInterval Join(this IDateTimeOffsetInterval first, IDateTimeOffsetInterval second)
+    public static BasicInterval<TBoundary> Join<TBoundary>(
+        this IBasicInterval<TBoundary> first,
+        IBasicInterval<TBoundary> second)
+        where TBoundary : notnull, IComparable<TBoundary>
     {
         if (first is null)
         {
@@ -236,12 +259,12 @@ public static class IntervalExtensions
 
         if (first.Covers(second))
         {
-            return first.ToInterval();
+            return BasicInterval<TBoundary>.From(first);
         }
 
         if (first.Intersects(second) || first.IsContiguouslyFollowedBy(second))
         {
-            return new StandardInterval(first.Start, second.End, first.StartIncluded, second.EndIncluded);
+            return new BasicInterval<TBoundary>(first.Start, second.End, first.StartIncluded, second.EndIncluded);
         }
 
         throw new ArgumentException("the intervals are not overlapping or contiguous");
