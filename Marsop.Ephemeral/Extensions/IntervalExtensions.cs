@@ -11,7 +11,7 @@ namespace Marsop.Ephemeral.Extensions;
 
 
 /// <summary>
-/// Extension methods for <see cref="IDateTimeOffsetInterval"/> objects
+/// Extension methods for <see cref="IBasicInterval{TBoundary}"/> and related interval objects
 /// </summary>
 public static class IntervalExtensions
 {
@@ -40,7 +40,7 @@ public static class IntervalExtensions
     /// <summary>
     /// Verify if the interval covers the given boundary
     /// </summary>
-    /// <param name="interval">the current interval</param>
+    /// <param name="interval">the current <see cref="IBasicInterval{TBoundary}"/> instance</param>
     /// <param name="boundary">the boundary</param>
     /// <returns><code>true</code> if the boundary is covered by the interval, <code>false</code> otherwise</returns>
     public static bool Covers<TBoundary>(
@@ -72,11 +72,11 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Shifts the start and end of given <see cref="IInterval<>"/>
+    /// Shifts the start and end of given <see cref="IInterval{TBoundary, TLength}"/>
     /// </summary>
-    /// <param name="interval">the current <see cref="IInterval<>"/> instance</param>
+    /// <param name="interval">the current <see cref="IInterval{TBoundary, TLength}"/> instance</param>
     /// <param name="shiftLength">the amount to be shifted (positive or negative)</param>
-    /// <returns></returns>
+    /// <returns>a new <see cref="BasicInterval{TBoundary}"/> with shifted boundaries</returns>
     public static BasicInterval<TBoundary> Shift<TBoundary, TLength>(
         this IInterval<TBoundary, TLength> interval,
         TLength shiftLength)
@@ -92,9 +92,9 @@ public static class IntervalExtensions
     /// <summary>
     /// Checks if the interval covers the given interval
     /// </summary>
-    /// <param name="interval">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="other">the <see cref="IDateTimeOffsetInterval"/> instance to verify</param>
-    /// <returns><code>true</code> if the given <see cref="IDateTimeOffsetInterval"/> is covered, <code>false</code> otherwise</returns>
+    /// <param name="interval">the current <see cref="IBasicInterval{TBoundary}"/> instance</param>
+    /// <param name="other">the <see cref="IBasicInterval{TBoundary}"/> instance to verify</param>
+    /// <returns><code>true</code> if the given <see cref="IBasicInterval{TBoundary}"/> is covered, <code>false</code> otherwise</returns>
     public static bool Covers<TBoundary>(
         this IBasicInterval<TBoundary> interval,
          IBasicInterval<TBoundary> other)
@@ -110,9 +110,10 @@ public static class IntervalExtensions
     /// <summary>
     /// Calculates the length of the intersection between intervals
     /// </summary>
-    /// <param name="interval">the current <see cref="IBasicInterval<>"/> instance</param>
-    /// <param name="other">the <see cref="IBasicInterval<>"/> instance in intersection</param>
-    /// <returns>an object representing the length of the intersection between the intervals, an empty <see cref="TimeSpan"/> if there is no intersection between the given <see cref="IDateTimeOffsetInterval"/> instances</returns>
+    /// <param name="interval">the current <see cref="IBasicInterval{TBoundary}"/> instance</param>
+    /// <param name="other">the <see cref="IBasicInterval{TBoundary}"/> instance in intersection</param>
+    /// <param name="lengthOperator">the <see cref="ILengthOperator{TBoundary, TLength}"/> to use for measurement</param>
+    /// <returns>an object representing the length of the intersection between the intervals, or <see cref="ILengthOperator{TBoundary, TLength}.Zero"/> if there is no intersection</returns>
     public static TLength LengthOfIntersect<TBoundary, TLength>(
         this IBasicInterval<TBoundary> interval,
         IBasicInterval<TBoundary> other,
@@ -126,11 +127,11 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Generates a new <see cref="BasicInterval<TBoundary>" />, which is the intersection of the two.
+    /// Generates a new <see cref="BasicInterval{TBoundary}" />, which is the intersection of the two.
     /// </summary>
-    /// <param name="interval">the current interval</param>
-    /// <param name="other">the <see cref="IBasicInterval<TBoundary>"/> instance to intersect</param>
-    /// <returns>a new <see cref="BasicInterval<TBoundary>"/> object representing the intersection between the two <see cref="IBasicInterval<TBoundary>"/> if an intersections exists, <code>null</code> otherwise</returns>
+    /// <param name="interval">the current <see cref="IBasicInterval{TBoundary}"/> instance</param>
+    /// <param name="other">the <see cref="IBasicInterval{TBoundary}"/> instance to intersect</param>
+    /// <returns>a new <see cref="BasicInterval{TBoundary}"/> object representing the intersection between the two <see cref="IBasicInterval{TBoundary}"/> if an intersection exists, <code>null</code> otherwise</returns>
     public static Option<BasicInterval<TBoundary>> Intersect<TBoundary>(
         this IBasicInterval<TBoundary> first,
         IBasicInterval<TBoundary> second)
@@ -166,11 +167,11 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Checks if the interval intersects the given <see cref="IDateTimeOffsetInterval"/>
+    /// Checks if the interval intersects the given <see cref="IBasicInterval{TBoundary}"/>
     /// </summary>
-    /// <param name="i">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="j">the <see cref="IDateTimeOffsetInterval"/> instance to verify</param>
-    /// <returns><code>true</code> if the given <see cref="IDateTimeOffsetInterval"/> has an intersection with the current one, <code>false</code> otherwise</returns>
+    /// <param name="first">the current <see cref="IBasicInterval{TBoundary}"/> instance</param>
+    /// <param name="second">the <see cref="IBasicInterval{TBoundary}"/> instance to verify</param>
+    /// <returns><code>true</code> if the given <see cref="IBasicInterval{TBoundary}"/> has an intersection with the current one, <code>false</code> otherwise</returns>
     public static bool Intersects<TBoundary>(
         this IBasicInterval<TBoundary> first,
         IBasicInterval<TBoundary> second)
@@ -180,11 +181,11 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Checks if the given <see cref="IDateTimeOffsetInterval"/> follows seamlessly and without overlap the current <see cref="IDateTimeOffsetInterval"/>
+    /// Checks if the given <see cref="IBasicInterval{TBoundary}"/> follows seamlessly and without overlap the current <see cref="IBasicInterval{TBoundary}"/>
     /// </summary>
-    /// <param name="i">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="o">the <see cref="IDateTimeOffsetInterval"/> instance to check</param>
-    /// <returns><code>true</code> if the given <see cref="IDateTimeOffsetInterval"/> is followed with the current one</returns>
+    /// <param name="first">the current <see cref="IBasicInterval{TBoundary}"/> instance</param>
+    /// <param name="second">the <see cref="IBasicInterval{TBoundary}"/> instance to check</param>
+    /// <returns><code>true</code> if the given <see cref="IBasicInterval{TBoundary}"/> is followed with the current one</returns>
     public static bool IsContiguouslyFollowedBy<TBoundary>(
         this IBasicInterval<TBoundary> first,
         IBasicInterval<TBoundary> second)
@@ -194,11 +195,11 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Checks if the current <see cref="IDateTimeOffsetInterval"/> follows seamlessly and without overlap the given <see cref="IDateTimeOffsetInterval"/>
+    /// Checks if the current <see cref="IBasicInterval{TBoundary}"/> follows seamlessly and without overlap the given <see cref="IBasicInterval{TBoundary}"/>
     /// </summary>
-    /// <param name="i">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="o">the <see cref="IDateTimeOffsetInterval"/> instance to check</param>
-    /// <returns><code>true</code> if the <see cref="IDateTimeOffsetInterval"/> is preceded the the given <see cref="IDateTimeOffsetInterval"/>, <code>false</code> otherwise</returns>
+    /// <param name="first">the current <see cref="IBasicInterval{TBoundary}"/> instance</param>
+    /// <param name="second">the <see cref="IBasicInterval{TBoundary}"/> instance to check</param>
+    /// <returns><code>true</code> if the <see cref="IBasicInterval{TBoundary}"/> is preceded by the given <see cref="IBasicInterval{TBoundary}"/>, <code>false</code> otherwise</returns>
     public static bool IsContiguouslyPrecededBy<TBoundary>(
         this IBasicInterval<TBoundary> first,
         IBasicInterval<TBoundary> second)
@@ -208,11 +209,11 @@ public static class IntervalExtensions
     }
 
     /// <summary>
-    /// Checks if the current <see cref="IDateTimeOffsetInterval"/> starts before the given <see cref="IDateTimeOffsetInterval"/>
+    /// Checks if the current <see cref="IBasicInterval{TBoundary}"/> starts before the given <see cref="IBasicInterval{TBoundary}"/>
     /// </summary>
-    /// <param name="interval">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="other">the <see cref="IDateTimeOffsetInterval"/> instance to check</param>
-    /// <returns><code>true</code> if the <see cref="IDateTimeOffsetInterval"/> starts before the the given <see cref="IDateTimeOffsetInterval"/>, <code>false</code> otherwise</returns>
+    /// <param name="interval">the current <see cref="IBasicInterval{TBoundary}"/> instance</param>
+    /// <param name="other">the <see cref="IBasicInterval{TBoundary}"/> instance to check</param>
+    /// <returns><code>true</code> if the <see cref="IBasicInterval{TBoundary}"/> starts before the given <see cref="IBasicInterval{TBoundary}"/>, <code>false</code> otherwise</returns>
     public static bool StartsBefore<TBoundary>(
         this IBasicInterval<TBoundary> interval,
         IBasicInterval<TBoundary> other)
@@ -232,9 +233,9 @@ public static class IntervalExtensions
     /// <summary>
     /// Join two intervals
     /// </summary>
-    /// <param name="first">the first <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <param name="second">the second <see cref="IDateTimeOffsetInterval"/> instance</param>
-    /// <returns>a new <see cref="StandardInterval"/> with joined intervals</returns>
+    /// <param name="first">the first <see cref="IBasicInterval{TBoundary}"/> instance</param>
+    /// <param name="second">the second <see cref="IBasicInterval{TBoundary}"/> instance</param>
+    /// <returns>a new <see cref="BasicInterval{TBoundary}"/> with joined intervals</returns>
     /// <exception cref="ArgumentException">an exception is thrown if the two intervals are not contiguous or overlapping</exception>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
     public static BasicInterval<TBoundary> Join<TBoundary>(
@@ -269,8 +270,6 @@ public static class IntervalExtensions
 
         throw new ArgumentException("the intervals are not overlapping or contiguous");
     }
-
-
 
     /// <summary>
     /// Join two intervals
@@ -322,6 +321,6 @@ public static class IntervalExtensions
     /// </summary>
     /// <param name="i">the current <see cref="IDateTimeOffsetInterval"/> instance</param>
     /// <param name="j">the <see cref="IDateTimeOffsetInterval"/> instance with which to merge</param>
-    /// <returns>a <see cref="IDisjointIntervalSet"/> representing the list of joined <see cref="IDateTimeOffsetInterval"/> instances</returns>
+    /// <returns>a <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> representing the list of joined <see cref="IDateTimeOffsetInterval"/> instances</returns>
     public static DisjointIntervalSet Union(this IDateTimeOffsetInterval i, IDateTimeOffsetInterval j) => new DisjointIntervalSet(i, j);
 }
