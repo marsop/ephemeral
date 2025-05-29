@@ -20,7 +20,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <summary>
     /// Internal sorted list of intervals
     /// </summary>
-    private SortedList<IInterval<DateTimeOffset, TimeSpan>, IInterval<DateTimeOffset, TimeSpan>> _intervals = new(new IntervalStartComparer<DateTimeOffset, TimeSpan>());
+    private SortedList<IInterval<DateTimeOffset, TimeSpan>, IInterval<DateTimeOffset, TimeSpan>> _intervals = new(new IntervalStartComparer<DateTimeOffset>());
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
@@ -36,7 +36,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
     public DisjointIntervalSet(params IInterval<DateTimeOffset, TimeSpan>[] intervals)
     {
-        if (intervals == null)
+        if (intervals is null)
         {
             throw new ArgumentNullException(nameof(intervals));
         }
@@ -57,7 +57,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
     public DisjointIntervalSet(IEnumerable<IInterval<DateTimeOffset, TimeSpan>> intervals)
     {
-        if (intervals == null)
+        if (intervals is null)
         {
             throw new ArgumentNullException(nameof(intervals));
         }
@@ -104,7 +104,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <exception cref="OverlapException">an exception is thrown if given interval overlaps another interval</exception>
     public void Add(IInterval<DateTimeOffset, TimeSpan> item)
     {
-        if (item == null)
+        if (item is null)
         {
             throw new ArgumentNullException(nameof(item));
         }
@@ -136,7 +136,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
     public int IndexOf(IInterval<DateTimeOffset, TimeSpan> item)
     {
-        if (item == null)
+        if (item is null)
         {
             throw new ArgumentNullException(nameof(item));
         }

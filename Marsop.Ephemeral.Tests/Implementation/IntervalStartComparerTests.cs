@@ -25,7 +25,7 @@ public class IntervalStartComparerTests
             var intervalA = _randomHelper.GetInterval(now, null, startIncludedIntervalA);
             var intervalB = _randomHelper.GetInterval(now, null, startIncludedIntervalB);
 
-            var intervalStartComparer = new IntervalStartComparer<DateTimeOffset, TimeSpan>();
+            var intervalStartComparer = new IntervalStartComparer<DateTimeOffset>();
 
             //act
             var result = intervalStartComparer.Compare(intervalA, intervalB);
@@ -45,7 +45,7 @@ public class IntervalStartComparerTests
             var intervalA = _randomHelper.GetInterval(now, null, startIncludedIntervalA);
             var intervalB = _randomHelper.GetInterval(now, null, startIncludedIntervalB);
 
-            var intervalStartComparer = new IntervalStartComparer<DateTimeOffset, TimeSpan>();
+            var intervalStartComparer = new IntervalStartComparer<DateTimeOffset>();
 
             //act
             var result = intervalStartComparer.Compare(intervalA, intervalB);
@@ -63,7 +63,7 @@ public class IntervalStartComparerTests
             var intervalA = _randomHelper.GetInterval(now);
             var intervalB = _randomHelper.GetInterval(now.AddTicks(1));
 
-            var intervalStartComparer = new IntervalStartComparer<DateTimeOffset, TimeSpan>();
+            var intervalStartComparer = new IntervalStartComparer<DateTimeOffset>();
 
             //act
             var result = intervalStartComparer.Compare(intervalA, intervalB);
@@ -81,7 +81,7 @@ public class IntervalStartComparerTests
             var intervalA = _randomHelper.GetInterval(now);
             var intervalB = _randomHelper.GetInterval(now.AddTicks(-1));
 
-            var intervalStartComparer = new IntervalStartComparer<DateTimeOffset, TimeSpan>();
+            var intervalStartComparer = new IntervalStartComparer<DateTimeOffset>();
 
             //act
             var result = intervalStartComparer.Compare(intervalA, intervalB);

@@ -11,12 +11,12 @@ namespace Marsop.Ephemeral.Implementation;
 /// <summary>
 /// Interval starting point comparer class
 /// </summary>
-public class IntervalStartComparer<TBoundary, TLength> : IComparer<IInterval<TBoundary, TLength>>
+public class IntervalStartComparer<TBoundary> : IComparer<IBasicInterval<TBoundary>>
     where TBoundary : IComparable<TBoundary>
 {
     /// <inheritdoc cref="IComparer{T}.Compare"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public int Compare(IInterval<TBoundary, TLength> x, IInterval<TBoundary, TLength> y)
+    public int Compare(IBasicInterval<TBoundary> x, IBasicInterval<TBoundary> y)
     {
         if (x is null)
         {
