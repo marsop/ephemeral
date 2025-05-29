@@ -13,7 +13,8 @@ using Extensions;
 /// <summary>
 /// Collection of disjoint IIntervals
 /// </summary>
-public interface IDisjointIntervalSet : IList<IDateTimeOffsetInterval>
+public interface IDisjointIntervalSet<TBoundary> : IList<IDateTimeOffsetInterval>
+    where TBoundary : IComparable<TBoundary>
 {
     /// <summary>
     /// Gets the sum of durations of each of the enclosed intervals
@@ -23,7 +24,7 @@ public interface IDisjointIntervalSet : IList<IDateTimeOffsetInterval>
     /// <summary>
     /// Gets the end of the latest contained Interval
     /// </summary>
-    DateTimeOffset End { get; }
+    TBoundary End { get; }
 
     /// <summary>
     /// Gets a value indicating whether the End is included
@@ -38,7 +39,7 @@ public interface IDisjointIntervalSet : IList<IDateTimeOffsetInterval>
     /// <summary>
     /// Gets the Start of the earliest contained Interval
     /// </summary>
-    DateTimeOffset Start { get; }
+    TBoundary Start { get; }
 
     /// <summary>
     /// Gets a value indicating whether the Start is included

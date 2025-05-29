@@ -15,7 +15,7 @@ namespace Marsop.Ephemeral.Implementation;
 /// <summary>
 /// Disjoint interval set class
 /// </summary>
-public class DisjointIntervalSet : IDisjointIntervalSet
+public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset>
 {
     /// <summary>
     /// Internal sorted list of intervals

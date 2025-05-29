@@ -22,7 +22,7 @@ public static class IntervalSetExtensions
     /// </summary>
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <returns>a new <see cref="IDisjointIntervalSet"/> with the minimum amount of intervals</returns>
-    public static DisjointIntervalSet Consolidate(this IDisjointIntervalSet set)
+    public static DisjointIntervalSet Consolidate(this IDisjointIntervalSet<DateTimeOffset> set)
     {
         var result = new DisjointIntervalSet();
 
@@ -61,7 +61,7 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <param name="timestamp">the <see cref="DateTimeOffset"/> to check</param>
     /// <returns><code>true</code> if the <see cref="DateTimeOffset"/> is covered by at least one interval in the set, <code>false</code> otherwise</returns>
-    public static bool Covers(this IDisjointIntervalSet set, DateTimeOffset timestamp) =>
+    public static bool Covers(this IDisjointIntervalSet<DateTimeOffset> set, DateTimeOffset timestamp) =>
         set.Any(x => x.Covers(timestamp));
 
             /// <summary>
@@ -70,7 +70,7 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <param name="interval">the <see cref="IDateTimeOffsetInterval"/> to check</param>
     /// <returns><code>true</code> if the <see cref="IDateTimeOffsetInterval"/> is covered by the set, <code>false</code> otherwise</returns>
-    public static bool Covers(this IDisjointIntervalSet set, IDateTimeOffsetInterval interval) =>
+    public static bool Covers(this IDisjointIntervalSet<DateTimeOffset> set, IDateTimeOffsetInterval interval) =>
         set.Consolidate().Any(x => x.Covers(interval));
 
     /// <summary>
@@ -79,7 +79,7 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <param name="interval">the <see cref="IDateTimeOffsetInterval"/> to intersect</param>
     /// <returns>a new <see cref="IDisjointIntervalSet"/> with the intersected set</returns>
-    public static DisjointIntervalSet Intersect(this IDisjointIntervalSet set, IDateTimeOffsetInterval interval)
+    public static DisjointIntervalSet Intersect(this IDisjointIntervalSet<DateTimeOffset> set, IDateTimeOffsetInterval interval)
     {
         var intersections = set
             .Select(x => x.Intersect(interval))
@@ -94,7 +94,9 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <param name="other">the <see cref="IDisjointIntervalSet"/> to join</param>
     /// <returns>the joined <see cref="IDisjointIntervalSet"/></returns>
-    public static DisjointIntervalSet Join(this IDisjointIntervalSet set, IDisjointIntervalSet other)
+    public static DisjointIntervalSet Join(
+        this IDisjointIntervalSet<DateTimeOffset> set,
+         IDisjointIntervalSet<DateTimeOffset> other)
     {
         var result = set.Consolidate();
 
@@ -110,7 +112,7 @@ public static class IntervalSetExtensions
     /// Gets the minimum interval that contains all the intervals of the set.
     /// </summary>
     /// <returns></returns>
-    public static StandardInterval GetBoundingInterval(this IDisjointIntervalSet s)
+    public static StandardInterval GetBoundingInterval(this IDisjointIntervalSet<DateTimeOffset> s)
     {
         return new StandardInterval(s.Start, s.End, s.Covers(s.Start), s.Covers(s.End));
     }
@@ -121,7 +123,7 @@ public static class IntervalSetExtensions
     /// <param name="set">the current <see cref="IDisjointIntervalSet"/> instance</param>
     /// <param name="interval">the <see cref="IDateTimeOffsetInterval"/> to join</param>
     /// <returns>a new <see cref="IDisjointIntervalSet"/> with the joined intervals</returns>
-    public static DisjointIntervalSet Join(this IDisjointIntervalSet set, IDateTimeOffsetInterval interval)
+    public static DisjointIntervalSet Join(this IDisjointIntervalSet<DateTimeOffset> set, IDateTimeOffsetInterval interval)
     {
         var groups = set.GroupBy(val => val.Intersects(interval)).ToDictionary(g => g.Key, g => g.ToList());
 
