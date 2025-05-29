@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marsop.Ephemeral.Tests", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marsop.Ephemeral", "Marsop.Ephemeral\Marsop.Ephemeral.csproj", "{6D1C8615-ACE0-4CD7-A879-3DD25F2BDF67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marsop.Ephemeral.Net6", "Marsop.Ephemeral.Net6\Marsop.Ephemeral.Net6.csproj", "{D2E9C0B4-FDE2-4E70-ADF9-4FCEA69D78C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{8E9D4174-AFC5-4198-BD99-BCD67C27DEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E9D4174-AFC5-4198-BD99-BCD67C27DEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E9D4174-AFC5-4198-BD99-BCD67C27DEB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2E9C0B4-FDE2-4E70-ADF9-4FCEA69D78C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2E9C0B4-FDE2-4E70-ADF9-4FCEA69D78C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2E9C0B4-FDE2-4E70-ADF9-4FCEA69D78C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2E9C0B4-FDE2-4E70-ADF9-4FCEA69D78C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,14 +2,14 @@ using Marsop.Ephemeral.Core.Interfaces;
 
 namespace Marsop.Ephemeral.Numerics;
 
-public sealed class IntStandardLengthOperator :
+public sealed class IntDefaultLengthOperator :
     ILengthOperator<int, int>
 {
-    private static readonly IntStandardLengthOperator _instance = new();
+    private static readonly IntDefaultLengthOperator _instance = new();
 
     public static ILengthOperator<int, int> Instance => _instance;
 
-    private IntStandardLengthOperator() { }
+    private IntDefaultLengthOperator() { }
 
     public int Apply(int boundary, int length) => boundary + length;
 

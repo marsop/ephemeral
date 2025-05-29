@@ -3,14 +3,14 @@ using Marsop.Ephemeral.Core.Interfaces;
 
 namespace Marsop.Ephemeral.Temporal;
 
-public sealed class DateTimeOffsetStandardLengthOperator :
+public sealed class DateTimeOffsetTimeSpanLengthOperator :
     ILengthOperator<DateTimeOffset, TimeSpan>
 {
-    private static readonly DateTimeOffsetStandardLengthOperator _instance = new();
+    private static readonly DateTimeOffsetTimeSpanLengthOperator _instance = new();
 
     public static ILengthOperator<DateTimeOffset, TimeSpan> Instance => _instance;
 
-    private DateTimeOffsetStandardLengthOperator() { }
+    private DateTimeOffsetTimeSpanLengthOperator() { }
 
     public DateTimeOffset Apply(DateTimeOffset boundary, TimeSpan length) => boundary.Add(length);
 

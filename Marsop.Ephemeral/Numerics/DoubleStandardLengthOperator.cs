@@ -2,14 +2,14 @@ using Marsop.Ephemeral.Core.Interfaces;
 
 namespace Marsop.Ephemeral.Numerics;
 
-public sealed class DoubleStandardLengthOperator :
+public sealed class DoubleDefaultLengthOperator :
     ILengthOperator<double, double>
 {
-    private static readonly DoubleStandardLengthOperator _instance = new();
+    private static readonly DoubleDefaultLengthOperator _instance = new();
 
     public static ILengthOperator<double, double> Instance => _instance;
 
-    private DoubleStandardLengthOperator() { }
+    private DoubleDefaultLengthOperator() { }
 
     public double Apply(double boundary, double length) => boundary + length;
 

@@ -11,6 +11,6 @@ public record IntInterval :
     {
     }
 
-    public override ILengthOperator<int, int> LengthOperator => IntStandardLengthOperator.Instance;
+    public override ILengthOperator<int, int> LengthOperator => IntDefaultLengthOperator.Instance;
 
 }
