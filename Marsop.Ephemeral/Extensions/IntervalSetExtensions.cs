@@ -93,7 +93,7 @@ public static class IntervalSetExtensions
         var intersections = set
             .Select(x => x.Intersect(interval))
             .Values()
-            .Select(StandardInterval.From);
+            .Select(StandardInterval.CreateFrom);
         return [.. intersections];
     }
 
@@ -147,7 +147,7 @@ public static class IntervalSetExtensions
         var newInterval = interval;
         foreach (var overlap in overlaps)
         {
-            newInterval = StandardInterval.From(newInterval.Join(overlap));
+            newInterval = StandardInterval.CreateFrom(newInterval.Join(overlap));
         }
 
         result.Add(newInterval);

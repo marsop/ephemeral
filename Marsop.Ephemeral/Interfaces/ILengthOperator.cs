@@ -2,8 +2,6 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-using Marsop.Ephemeral.Extensions;
-
 namespace Marsop.Ephemeral.Interfaces;
 
 public interface ILengthOperator<TBoundary, TLength>

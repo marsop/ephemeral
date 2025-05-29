@@ -8,8 +8,7 @@ using Marsop.Ephemeral.Interfaces;
 namespace Marsop.Ephemeral.Implementation;
 
 public record StandardInterval :
-    AbstractMetricInterval<DateTimeOffset, TimeSpan>,
-    IIntervalFactory<StandardInterval, DateTimeOffset>
+    AbstractMetricInterval<DateTimeOffset, TimeSpan>
 {
     public StandardInterval(DateTimeOffset start, DateTimeOffset end, bool startIncluded, bool endIncluded) :
         base(start, end, startIncluded, endIncluded)
@@ -30,13 +29,8 @@ public record StandardInterval :
 
     public override ILengthOperator<DateTimeOffset, TimeSpan> LengthOperator =>
         DateTimeOffsetStandardLengthOperator.Instance;
-
-    public StandardInterval CreateFrom(IBasicInterval<DateTimeOffset> interval)
-    {
-        return From(interval);
-    }
     
-    public static StandardInterval From(IBasicInterval<DateTimeOffset> interval)
+    public static StandardInterval CreateFrom(IBasicInterval<DateTimeOffset> interval)
     {
         return new StandardInterval(
             interval.Start,
