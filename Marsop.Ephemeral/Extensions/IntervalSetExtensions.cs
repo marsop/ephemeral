@@ -20,8 +20,8 @@ public static class IntervalSetExtensions
     /// <summary>
     /// Joins adjacent intervals.
     /// </summary>
-    /// <param name="set">the current <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> instance</param>
-    /// <returns>a new <see cref="IDisjointIntervalSet{DateTimeOffset, TimeSpan}"/> with the minimum amount of intervals</returns>
+    /// <param name="set">the current <see cref="IDisjointIntervalSet{TBoundary, TLength}"/> instance</param>
+    /// <returns>a new <see cref="IDisjointIntervalSet{TBoundary, TLength}"/> with the minimum amount of intervals</returns>
     public static DisjointIntervalSet<TBoundary, TLength> Consolidate<TBoundary, TLength>(
         this IDisjointIntervalSet<TBoundary, TLength> set)
         where TBoundary : notnull, IComparable<TBoundary>
