@@ -45,7 +45,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
         {
             foreach (var interval in intervals)
             {
-                this.Add(interval);
+                Add(interval);
             }
         }
     }
@@ -64,7 +64,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
 
         foreach (var interval in intervals)
         {
-            this.Add(interval);
+            Add(interval);
         }
     }
 
@@ -72,7 +72,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     public TimeSpan AggregatedDuration => TimeSpan.FromTicks(this.Sum(x => x.Length().Ticks));
 
     /// <inheritdoc cref="IInterval<DateTimeOffset, TimeSpan>.Count"/>
-    public int Count => this._intervals.Count;
+    public int Count => _intervals.Count;
 
     /// <inheritdoc cref="IDisjointIntervalSet.End"/>
     public DateTimeOffset End => this.Max(x => x.End);
@@ -95,8 +95,8 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <inheritdoc cref="IList{T}.this[int]"/>
     public IInterval<DateTimeOffset, TimeSpan> this[int index]
     {
-        get => this._intervals.Values[index];
-        set => this._intervals.Values[index] = value;
+        get => _intervals.Values[index];
+        set => _intervals.Values[index] = value;
     }
 
     /// <inheritdoc cref="ICollection{T}.Add"/>
@@ -114,23 +114,23 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
             throw new OverlapException(nameof(item));
         }
 
-        this._intervals.Add(item, item);
+        _intervals.Add(item, item);
     }
 
     /// <inheritdoc cref="ICollection{T}.Clear"/>
-    public void Clear() => this._intervals.Clear();
+    public void Clear() => _intervals.Clear();
 
     /// <inheritdoc cref="ICollection{T}.Contains"/>
-    public bool Contains(IInterval<DateTimeOffset, TimeSpan> item) => item != null && this._intervals.ContainsKey(item);
+    public bool Contains(IInterval<DateTimeOffset, TimeSpan> item) => item != null && _intervals.ContainsKey(item);
 
     /// <inheritdoc cref="ICollection{T}.CopyTo"/>
-    public void CopyTo(IInterval<DateTimeOffset, TimeSpan>[] array, int arrayIndex) => this._intervals.Values.CopyTo(array, arrayIndex);
+    public void CopyTo(IInterval<DateTimeOffset, TimeSpan>[] array, int arrayIndex) => _intervals.Values.CopyTo(array, arrayIndex);
 
     /// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-    public IEnumerator<IInterval<DateTimeOffset, TimeSpan>> GetEnumerator() => this._intervals.Values.GetEnumerator();
+    public IEnumerator<IInterval<DateTimeOffset, TimeSpan>> GetEnumerator() => _intervals.Values.GetEnumerator();
 
     /// <inheritdoc cref="IEnumerable.GetEnumerator"/>
-    IEnumerator IEnumerable.GetEnumerator() => this._intervals.Values.GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => _intervals.Values.GetEnumerator();
 
     /// <inheritdoc cref="IList{T}.IndexOf"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
@@ -141,7 +141,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
             throw new ArgumentNullException(nameof(item));
         }
 
-        return this._intervals.Values.IndexOf(item);
+        return _intervals.Values.IndexOf(item);
     }
 
     /// <inheritdoc cref="IList{T}.Insert"/>
@@ -151,15 +151,15 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     }
 
     /// <inheritdoc cref="ICollection{T}.Remove"/>
-    public bool Remove(IInterval<DateTimeOffset, TimeSpan> item) => item != null && this._intervals.Remove(item);
+    public bool Remove(IInterval<DateTimeOffset, TimeSpan> item) => item != null && _intervals.Remove(item);
 
     /// <inheritdoc cref="IList{T}.RemoveAt"/>
     /// <exception cref="ArgumentOutOfRangeException">an exception is thrown if index is less than zero or index is equal to or greater than intervals count</exception>
     public void RemoveAt(int index)
     {
-        if (index >= 0 && this._intervals.Count > index)
+        if (index >= 0 && _intervals.Count > index)
         {
-            this._intervals.RemoveAt(index);
+            _intervals.RemoveAt(index);
         }
         else
         {
