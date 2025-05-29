@@ -5,7 +5,7 @@ using System;
 using Xunit;
 using Marsop.Ephemeral.Temporal;
 
-namespace Marsop.Ephemeral.Tests.Extensions;
+namespace Marsop.Ephemeral.Tests.Temporal;
 
 public class IntervalExtensionsTests
 {
@@ -66,11 +66,10 @@ public class IntervalExtensionsTests
         var source = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncludedInterval, endIncludedInterval);
 
         //When
-        var result = source
-            .Shift(TimeSpan.Zero);
+        var result = source.Shift(TimeSpan.Zero);
 
         //Then
-        result.Should().BeEquivalentTo(source);
+        result.IsEquivalentIntervalTo(source).Should().BeTrue();
     }
 
     [Theory]
@@ -100,8 +99,8 @@ public class IntervalExtensionsTests
     {
         // Given
         var date = _randomHelper.GetRandomDateTimeOffset();
-        var intervalA = new StandardInterval(date.AddHours(8), date.AddHours(12), true, true);
-        var intervalB = new StandardInterval(date.AddHours(10), date.AddHours(14), true, true);
+        var intervalA = new DateTimeOffsetInterval(date.AddHours(8), date.AddHours(12), true, true);
+        var intervalB = new DateTimeOffsetInterval(date.AddHours(10), date.AddHours(14), true, true);
 
         // When
         var duration = intervalA.LengthOfIntersect(intervalB);

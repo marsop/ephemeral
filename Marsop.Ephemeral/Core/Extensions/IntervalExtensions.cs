@@ -82,7 +82,6 @@ public static class IntervalExtensions
         TLength shiftLength,
         ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
-        where TLength : notnull, IComparable<TLength>
     {
         var newStart = lengthOperator.Apply(interval.Start, shiftLength);
         var newEnd = lengthOperator.Apply(interval.End, shiftLength);

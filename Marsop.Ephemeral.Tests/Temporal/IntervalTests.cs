@@ -2,9 +2,10 @@ using System;
 using System.Linq;
 using FluentAssertions;
 using Marsop.Ephemeral.Core.Extensions;
+using Marsop.Ephemeral.Temporal;
 using Xunit;
 
-namespace Marsop.Ephemeral.Tests.Implementation;
+namespace Marsop.Ephemeral.Tests.Temporal;
 
 public class IntervalTests
 {
@@ -18,7 +19,9 @@ public class IntervalTests
 
         var interval = _randomHelper.GetInterval(now, null);
 
-        Assert.Throws<ArgumentNullException>(() => interval.Subtract(null));
+        DateTimeOffsetInterval other = null!;
+
+        Assert.Throws<ArgumentNullException>(() => interval.Subtract(other));
     }
 
     [Fact]
