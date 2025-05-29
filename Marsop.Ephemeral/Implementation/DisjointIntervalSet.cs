@@ -20,7 +20,7 @@ public class DisjointIntervalSet : IDisjointIntervalSet<DateTimeOffset, TimeSpan
     /// <summary>
     /// Internal sorted list of intervals
     /// </summary>
-    private SortedList<IInterval<DateTimeOffset, TimeSpan>, IInterval<DateTimeOffset, TimeSpan>> _intervals = new(new IntervalStartComparer());
+    private SortedList<IInterval<DateTimeOffset, TimeSpan>, IInterval<DateTimeOffset, TimeSpan>> _intervals = new(new IntervalStartComparer<DateTimeOffset, TimeSpan>());
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DisjointIntervalSet" /> class
