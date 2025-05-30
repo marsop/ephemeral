@@ -8,7 +8,7 @@ public static class FullIntervalExtensions
 {
     public static DisjointIntervalSet<TBoundary, TLength> Subtract<TBoundary, TLength>(
         this FullInterval<TBoundary, TLength> interval,
-        IMetricInterval<TBoundary, TLength> other)
+        IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         return new(interval.LengthOperator, [.. BasicIntervalExtensions.Subtract(interval, other, interval.LengthOperator)]);
@@ -33,7 +33,7 @@ public static class FullIntervalExtensions
 
     public static TLength LengthOfIntersect<TBoundary, TLength>(
         this FullInterval<TBoundary, TLength> interval,
-        IMetricInterval<TBoundary, TLength> other)
+        IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         return BasicIntervalExtensions.LengthOfIntersect(interval, other, interval.LengthOperator);

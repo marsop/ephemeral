@@ -9,7 +9,7 @@ namespace Marsop.Ephemeral.Core.Implementation;
 
 public abstract record AbstractMetricInterval<TBoundary, TLength> :
     BasicInterval<TBoundary>,
-    IMetricInterval<TBoundary, TLength>
+    IHasLength<TLength>
     where TBoundary : notnull, IComparable<TBoundary>
 {
     public AbstractMetricInterval(
