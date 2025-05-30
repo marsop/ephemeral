@@ -20,6 +20,5 @@ public abstract record FullInterval<TBoundary, TLength> :
 
     public override TLength DefaultMeasure() => Operator.Measure(this);
 
-    /// <inheritdoc cref="object.ToString"/>
-    public override string ToString() => GetTextualRepresentation();
+    public override string ToString() => base.ToString();
 }

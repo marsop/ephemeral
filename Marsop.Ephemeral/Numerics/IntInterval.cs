@@ -13,4 +13,12 @@ public record IntInterval :
 
     public override ILengthOperator<int, int> Operator => IntDefaultLengthOperator.Instance;
 
+    public override string ToString() => base.ToString();
+
+    public new static IntInterval CreateClosed(int start, int end) => new(start, end, true, true);
+
+    public new static IntInterval CreateOpen(int start, int end) => new(start, end, false, false);
+
+    public new static IntInterval CreatePoint(int boundary) => CreateClosed(boundary, boundary);
+
 }

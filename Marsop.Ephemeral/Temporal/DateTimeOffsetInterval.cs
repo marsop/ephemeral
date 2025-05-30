@@ -30,4 +30,12 @@ public record DateTimeOffsetInterval :
 
     public override ILengthOperator<DateTimeOffset, TimeSpan> Operator =>
         DateTimeOffsetTimeSpanLengthOperator.Instance;
+
+    public override string ToString() => base.ToString();
+
+    public new static DateTimeOffsetInterval CreateClosed(DateTimeOffset start, DateTimeOffset end) => new(start, end, true, true);
+
+    public new static DateTimeOffsetInterval CreateOpen(DateTimeOffset start, DateTimeOffset end) => new(start, end, false, false);
+
+    public new static DateTimeOffsetInterval CreatePoint(DateTimeOffset boundary) => CreateClosed(boundary, boundary);
 }
