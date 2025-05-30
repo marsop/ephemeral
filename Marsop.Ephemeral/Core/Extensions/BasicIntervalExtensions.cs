@@ -101,6 +101,42 @@ public static class BasicIntervalExtensions
 
         return new BasicInterval<TBoundary>(newStart, newEnd, interval.StartIncluded, interval.EndIncluded);
     }
+
+/// <summary>
+    /// Shifts the start of given <see cref="IInterval{TBoundary, TLength}"/>
+    /// </summary>
+    /// <param name="interval">the current <see cref="IInterval{TBoundary, TLength}"/> instance</param>
+    /// <param name="shiftLength">the amount to be shifted (positive or negative)</param>
+    /// <returns>a new <see cref="BasicInterval{TBoundary}"/> with shifted boundaries</returns>
+    public static BasicInterval<TBoundary> ShiftStart<TBoundary, TLength>(
+        this IBasicInterval<TBoundary> interval,
+        TLength shiftLength,
+        ILengthOperator<TBoundary, TLength> lengthOperator)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        var newStart = lengthOperator.Apply(interval.Start, shiftLength);
+
+        return new BasicInterval<TBoundary>(newStart, interval.End, interval.StartIncluded, interval.EndIncluded);
+    }
+
+    /// <summary>
+    /// Shifts the end of given <see cref="IInterval{TBoundary, TLength}"/>
+    /// </summary>
+    /// <param name="interval">the current <see cref="IInterval{TBoundary, TLength}"/> instance</param>
+    /// <param name="shiftLength">the amount to be shifted (positive or negative)</param>
+    /// <returns>a new <see cref="BasicInterval{TBoundary}"/> with shifted boundaries</returns>
+    public static BasicInterval<TBoundary> ShiftEnd<TBoundary, TLength>(
+        this IBasicInterval<TBoundary> interval,
+        TLength shiftLength,
+        ILengthOperator<TBoundary, TLength> lengthOperator)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        var newEnd = lengthOperator.Apply(interval.End, shiftLength);
+
+        return new BasicInterval<TBoundary>(interval.Start, newEnd, interval.StartIncluded, interval.EndIncluded);
+    }
+
+    
     
     
     /// <summary>

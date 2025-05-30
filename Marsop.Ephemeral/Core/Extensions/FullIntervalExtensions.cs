@@ -31,6 +31,26 @@ public static class FullIntervalExtensions
             .WithMetric(interval.LengthOperator);
     }
 
+    public static BasicMetricInterval<TBoundary, TLength> ShiftStart<TBoundary, TLength>(
+        this FullInterval<TBoundary, TLength> interval,
+        TLength offset)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        return BasicIntervalExtensions
+            .ShiftStart(interval, offset, interval.LengthOperator)
+            .WithMetric(interval.LengthOperator);
+    }
+
+    public static BasicMetricInterval<TBoundary, TLength> ShiftEnd<TBoundary, TLength>(
+        this FullInterval<TBoundary, TLength> interval,
+        TLength offset)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        return BasicIntervalExtensions
+            .ShiftEnd(interval, offset, interval.LengthOperator)
+            .WithMetric(interval.LengthOperator);
+    }
+
     public static TLength LengthOfIntersect<TBoundary, TLength>(
         this FullInterval<TBoundary, TLength> interval,
         IBasicInterval<TBoundary> other)

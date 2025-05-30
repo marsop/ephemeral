@@ -72,6 +72,78 @@ public class IntervalExtensionsTests
         result.IsEquivalentIntervalTo(source).Should().BeTrue();
     }
 
+[Theory]
+    [InlineData(true, true)]
+    [InlineData(true, false)]
+    [InlineData(false, true)]
+    [InlineData(false, false)]
+    public void ShiftStart_ShouldShiftOnlyStart(bool startIncluded, bool endIncluded)
+    {
+        // Given
+        var date = _randomHelper.GetRandomDateTimeOffset();
+        var interval = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncluded, endIncluded);
+        var shiftAmount = TimeSpan.FromHours(2);
+
+        // When
+        var shifted = interval.ShiftStart(shiftAmount);
+
+        // Then
+        shifted.Start.Should().Be(interval.Start.Add(shiftAmount));
+        shifted.End.Should().Be(interval.End);
+        shifted.StartIncluded.Should().Be(interval.StartIncluded);
+        shifted.EndIncluded.Should().Be(interval.EndIncluded);
+    }
+
+    [Theory]
+    [InlineData(true, true)]
+    [InlineData(true, false)]
+    [InlineData(false, true)]
+    [InlineData(false, false)]
+    public void ShiftEnd_ShouldShiftOnlyEnd(bool startIncluded, bool endIncluded)
+    {
+        // Given
+        var date = _randomHelper.GetRandomDateTimeOffset();
+        var interval = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), startIncluded, endIncluded);
+        var shiftAmount = TimeSpan.FromHours(-1);
+
+        // When
+        var shifted = interval.ShiftEnd(shiftAmount);
+
+        // Then
+        shifted.Start.Should().Be(interval.Start);
+        shifted.End.Should().Be(interval.End.Add(shiftAmount));
+        shifted.StartIncluded.Should().Be(interval.StartIncluded);
+        shifted.EndIncluded.Should().Be(interval.EndIncluded);
+    }
+
+    [Fact]
+    public void ShiftStart_WithZero_ShouldReturnEquivalentInterval()
+    {
+        // Given
+        var date = _randomHelper.GetRandomDateTimeOffset();
+        var interval = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
+
+        // When
+        var shifted = interval.ShiftStart(TimeSpan.Zero);
+
+        // Then
+        shifted.IsEquivalentIntervalTo(interval).Should().BeTrue();
+    }
+
+    [Fact]
+    public void ShiftEnd_WithZero_ShouldReturnEquivalentInterval()
+    {
+        // Given
+        var date = _randomHelper.GetRandomDateTimeOffset();
+        var interval = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(12), true, true);
+
+        // When
+        var shifted = interval.ShiftEnd(TimeSpan.Zero);
+
+        // Then
+        shifted.IsEquivalentIntervalTo(interval).Should().BeTrue();
+    }
+
     [Theory]
     [InlineData(true, true, true, true)]
     [InlineData(true, false, true, false)]
