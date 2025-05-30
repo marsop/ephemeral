@@ -1,0 +1,14 @@
+// <copyright file="ILengthOperator.cs" company="Marsop">
+//     https://github.com/marsop/ephemeral
+// </copyright>
+
+namespace Marsop.Ephemeral.Core.Interfaces;
+
+public interface ILengthOperator<TBoundary, TLength>
+{
+    TBoundary Apply(TBoundary boundary, TLength length);
+
+    TLength Measure(TBoundary boundary1, TBoundary boundary2);
+
+    TLength Zero();
+}

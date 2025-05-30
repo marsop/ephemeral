@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Marsop.Ephemeral.Exceptions;
+namespace Marsop.Ephemeral.Core.Exceptions;
 
 /// <summary>
 /// Overlap between intervals exception

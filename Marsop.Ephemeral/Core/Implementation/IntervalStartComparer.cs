@@ -4,25 +4,26 @@
 
 using System;
 using System.Collections.Generic;
-using Marsop.Ephemeral.Interfaces;
+using Marsop.Ephemeral.Core.Interfaces;
 
-namespace Marsop.Ephemeral.Implementation;
+namespace Marsop.Ephemeral.Core.Implementation;
 
 /// <summary>
 /// Interval starting point comparer class
 /// </summary>
-public class IntervalStartComparer : IComparer<IInterval>
+public class IntervalStartComparer<TBoundary> : IComparer<IBasicInterval<TBoundary>>
+    where TBoundary : IComparable<TBoundary>
 {
     /// <inheritdoc cref="IComparer{T}.Compare"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if at least one of the given parameters is <code>null</code></exception>
-    public int Compare(IInterval x, IInterval y)
+    public int Compare(IBasicInterval<TBoundary> x, IBasicInterval<TBoundary> y)
     {
-        if (x == null)
+        if (x is null)
         {
             throw new ArgumentNullException(nameof(x));
         }
 
-        if (y == null)
+        if (y is null)
         {
             throw new ArgumentNullException(nameof(y));
         }

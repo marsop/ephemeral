@@ -3,19 +3,19 @@
     <VersionPrefix>0.2.0</VersionPrefix>
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>Ephemeral</PackageId>
-    <PackageTags>Time;Timestamps;Time Intervals</PackageTags>
+    <PackageTags>Time;Timestamps;Intervals</PackageTags>
     <Authors>Alberto Gregorio</Authors>
     <Owners>albertogregorio</Owners>
     <Company>albertogregorio.com</Company>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>.NET Library to handle time intervals (composite start and end)</Description>
+    <Description>.NET Library to handle intervals (composite start and end)</Description>
     <ProjectUrl>https://albertogregorio.com/ephemeral</ProjectUrl>
     <PackageIcon>Ephemeral64x64.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>$(VersionPrefix)-alpha.6</Version>
+    <Version>$(VersionPrefix)-beta.1</Version>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <InformationalVersion>0.1.8+2.Branch.master.Sha.eba8d8fee421bfca5e09c231dba73383e21c06bd</InformationalVersion>
@@ -30,7 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Optional" />
-    <PackageReference Include="Microsoft.Bcl.TimeProvider" />
   </ItemGroup>
 	<ItemGroup>
 		<None Include="..\docs\img\Ephemeral64x64.png" Pack="true" PackagePath="\"/>
