@@ -11,7 +11,7 @@ using System.Collections.Generic;
 /// Collection of disjoint IIntervals
 /// </summary>
 public interface IDisjointIntervalSet<TBoundary, TLength> : 
-    IList<IMetricInterval<TBoundary, TLength>>
+    IList<IBasicInterval<TBoundary>>
     where TBoundary : IComparable<TBoundary>
 {
 

@@ -22,7 +22,7 @@ public class DisjointIntervalSet<TBoundary, TLength> :
     /// <summary>
     /// Internal sorted list of intervals
     /// </summary>
-    private SortedList<IMetricInterval<TBoundary, TLength>, IMetricInterval<TBoundary, TLength>> _intervals =
+    private SortedList<IBasicInterval<TBoundary>, IBasicInterval<TBoundary>> _intervals =
          new(new IntervalStartComparer<TBoundary>());
 
     /// <summary>
@@ -46,7 +46,7 @@ public class DisjointIntervalSet<TBoundary, TLength> :
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
     public DisjointIntervalSet(
         ILengthOperator<TBoundary, TLength> lengthOperator,
-        params IMetricInterval<TBoundary, TLength>[] intervals)
+        params IBasicInterval<TBoundary>[] intervals)
         : this(lengthOperator)
     {
         if (intervals is null)
@@ -70,7 +70,7 @@ public class DisjointIntervalSet<TBoundary, TLength> :
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
     public DisjointIntervalSet(
         ILengthOperator<TBoundary, TLength> lengthOperator, 
-        IEnumerable<IMetricInterval<TBoundary, TLength>> intervals)
+        IEnumerable<IBasicInterval<TBoundary>> intervals)
         : this(lengthOperator)
     {
         if (intervals is null)
@@ -107,7 +107,7 @@ public class DisjointIntervalSet<TBoundary, TLength> :
     public ILengthOperator<TBoundary, TLength> LengthOperator { get; }
 
     /// <inheritdoc cref="IList{T}.this[int]"/>
-    public IMetricInterval<TBoundary, TLength> this[int index]
+    public IBasicInterval<TBoundary> this[int index]
     {
         get => _intervals.Values[index];
         set => _intervals.Values[index] = value;
@@ -116,7 +116,7 @@ public class DisjointIntervalSet<TBoundary, TLength> :
     /// <inheritdoc cref="ICollection{T}.Add"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if given interval is <code>null</code></exception>
     /// <exception cref="OverlapException">an exception is thrown if given interval overlaps another interval</exception>
-    public void Add(IMetricInterval<TBoundary, TLength> item)
+    public void Add(IBasicInterval<TBoundary> item)
     {
         if (item is null)
         {
@@ -135,20 +135,20 @@ public class DisjointIntervalSet<TBoundary, TLength> :
     public void Clear() => _intervals.Clear();
 
     /// <inheritdoc cref="ICollection{T}.Contains"/>
-    public bool Contains(IMetricInterval<TBoundary, TLength> item) => item != null && _intervals.ContainsKey(item);
+    public bool Contains(IBasicInterval<TBoundary> item) => item != null && _intervals.ContainsKey(item);
 
     /// <inheritdoc cref="ICollection{T}.CopyTo"/>
-    public void CopyTo(IMetricInterval<TBoundary, TLength>[] array, int arrayIndex) => _intervals.Values.CopyTo(array, arrayIndex);
+    public void CopyTo(IBasicInterval<TBoundary>[] array, int arrayIndex) => _intervals.Values.CopyTo(array, arrayIndex);
 
     /// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-    public IEnumerator<IMetricInterval<TBoundary, TLength>> GetEnumerator() => _intervals.Values.GetEnumerator();
+    public IEnumerator<IBasicInterval<TBoundary>> GetEnumerator() => _intervals.Values.GetEnumerator();
 
     /// <inheritdoc cref="IEnumerable.GetEnumerator"/>
     IEnumerator IEnumerable.GetEnumerator() => _intervals.Values.GetEnumerator();
 
     /// <inheritdoc cref="IList{T}.IndexOf"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if given parameter is <code>null</code></exception>
-    public int IndexOf(IMetricInterval<TBoundary, TLength> item)
+    public int IndexOf(IBasicInterval<TBoundary> item)
     {
         if (item is null)
         {
@@ -159,13 +159,13 @@ public class DisjointIntervalSet<TBoundary, TLength> :
     }
 
     /// <inheritdoc cref="IList{T}.Insert"/>
-    public void Insert(int index, IMetricInterval<TBoundary, TLength> item)
+    public void Insert(int index, IBasicInterval<TBoundary> item)
     {
         throw new NotSupportedException("The Set is always ordered, please use Add()");
     }
 
     /// <inheritdoc cref="ICollection{T}.Remove"/>
-    public bool Remove(IMetricInterval<TBoundary, TLength> item) => item != null && _intervals.Remove(item);
+    public bool Remove(IBasicInterval<TBoundary> item) => item != null && _intervals.Remove(item);
 
     /// <inheritdoc cref="IList{T}.RemoveAt"/>
     /// <exception cref="ArgumentOutOfRangeException">an exception is thrown if index is less than zero or index is equal to or greater than intervals count</exception>

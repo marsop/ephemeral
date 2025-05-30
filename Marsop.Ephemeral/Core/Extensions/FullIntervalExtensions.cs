@@ -11,7 +11,7 @@ public static class FullIntervalExtensions
         IMetricInterval<TBoundary, TLength> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        return new(interval.LengthOperator, [.. IntervalExtensions.Subtract(interval, other, interval.LengthOperator)]);
+        return new(interval.LengthOperator, [.. BasicIntervalExtensions.Subtract(interval, other, interval.LengthOperator)]);
     }
 
     public static DisjointIntervalSet<TBoundary, TLength> ToIntervalSet<TBoundary, TLength>(
@@ -26,7 +26,7 @@ public static class FullIntervalExtensions
         TLength offset)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        return IntervalExtensions
+        return BasicIntervalExtensions
             .Shift(interval, offset, interval.LengthOperator)
             .WithMetric(interval.LengthOperator);
     }
@@ -36,6 +36,6 @@ public static class FullIntervalExtensions
         IMetricInterval<TBoundary, TLength> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        return IntervalExtensions.LengthOfIntersect(interval, other, interval.LengthOperator);
+        return BasicIntervalExtensions.LengthOfIntersect(interval, other, interval.LengthOperator);
     }
 }
