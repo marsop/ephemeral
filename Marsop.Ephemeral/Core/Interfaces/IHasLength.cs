@@ -9,5 +9,5 @@ public interface IHasLength<out TLength>
     /// <summary>
     /// Gets the difference between start and end as <see cref="TLength"/>
     /// </summary>
-    TLength Length();
+    TLength DefaultMeasure();
 }

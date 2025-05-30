@@ -13,7 +13,7 @@ public sealed class IntDefaultLengthOperator :
 
     public int Apply(int boundary, int length) => boundary + length;
 
-    public int Measure(int boundary1, int boundary2) => boundary2 - boundary1;
+    public int Measure(IBasicInterval<int> interval) => interval.End - interval.Start;
 
     public int Zero() => 0;
 }

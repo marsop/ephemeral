@@ -7,12 +7,12 @@ using Marsop.Ephemeral.Core.Interfaces;
 
 namespace Marsop.Ephemeral.Core.Implementation;
 
-public abstract record AbstractMetricInterval<TBoundary, TLength> :
+public abstract record AbstractMeasuredInterval<TBoundary, TLength> :
     BasicInterval<TBoundary>,
     IHasLength<TLength>
     where TBoundary : notnull, IComparable<TBoundary>
 {
-    public AbstractMetricInterval(
+    public AbstractMeasuredInterval(
         TBoundary start,
         TBoundary end,
         bool startIncluded,
@@ -21,5 +21,5 @@ public abstract record AbstractMetricInterval<TBoundary, TLength> :
     {
     }
 
-    public abstract TLength Length();
+    public abstract TLength DefaultMeasure();
 }

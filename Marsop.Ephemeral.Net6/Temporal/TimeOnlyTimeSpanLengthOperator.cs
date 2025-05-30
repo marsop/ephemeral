@@ -13,7 +13,7 @@ public class TimeOnlyTimeSpanLengthOperator : ILengthOperator<TimeOnly, TimeSpan
 
     public TimeOnly Apply(TimeOnly boundary, TimeSpan length) => boundary.Add(length);
 
-    public TimeSpan Measure(TimeOnly boundary1, TimeOnly boundary2) => boundary2 - boundary1;
+    public TimeSpan Measure(IBasicInterval<TimeOnly> interval) => interval.End - interval.Start;
 
     public TimeSpan Zero() => TimeSpan.Zero;
 }

@@ -18,6 +18,6 @@ public static class LengthOperatorExtensions
             throw new ArgumentNullException(nameof(interval), "Interval cannot be null.");
         }
 
-        return lengthOperator.Measure(interval.Start, interval.End);
+        return lengthOperator.Measure(interval);
     }
 }

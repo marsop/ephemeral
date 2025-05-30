@@ -131,7 +131,7 @@ public static class IntervalSetExtensions
     /// </summary>
     /// <param name="s">the current <see cref="IDisjointIntervalSet{TBoundary, TLength}"/> instance</param>
     /// <returns>a <see cref="StandardInterval"/> containing all intervals in the set</returns>
-    public static BasicMetricInterval<TBoundary, TLength> GetBoundingInterval<TBoundary, TLength>(
+    public static BasicMeasuredInterval<TBoundary, TLength> GetBoundingInterval<TBoundary, TLength>(
         this IDisjointIntervalSet<TBoundary, TLength> s)
         where TBoundary : notnull, IComparable<TBoundary>
     {

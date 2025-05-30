@@ -208,6 +208,6 @@ public class IntervalExtensionsTests
         var duration = intervalA.LengthOfIntersect(intervalB);
 
         // Then
-        duration.Should().Be(intervalA.Length());
+        duration.Should().Be(intervalA.DefaultMeasure());
     }
 }

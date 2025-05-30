@@ -11,7 +11,19 @@ namespace Marsop.Ephemeral.Core.Extensions;
 
 public static class BasicIntervalExtensions
 {
-    public static BasicMetricInterval<TBoundary, TLength> WithMetric<TBoundary, TLength>(
+    public static TLength Measure<TBoundary, TLength>(
+        this IBasicInterval<TBoundary> interval,
+        ICanMeasure<TBoundary, TLength> measurer)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        if (interval is null) throw new ArgumentNullException(nameof(interval));
+        if (measurer is null) throw new ArgumentNullException(nameof(measurer));
+
+        return measurer.Measure(interval);
+    }
+
+
+    public static BasicMeasuredInterval<TBoundary, TLength> WithMetric<TBoundary, TLength>(
         this IBasicInterval<TBoundary> interval,
         ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
@@ -19,7 +31,7 @@ public static class BasicIntervalExtensions
         if (interval is null) throw new ArgumentNullException(nameof(interval));
         if (lengthOperator is null) throw new ArgumentNullException(nameof(lengthOperator));
 
-        return new BasicMetricInterval<TBoundary, TLength>(
+        return new BasicMeasuredInterval<TBoundary, TLength>(
             interval.Start,
             interval.End,
             interval.StartIncluded,

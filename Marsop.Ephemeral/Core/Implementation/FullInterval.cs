@@ -8,8 +8,7 @@ using Marsop.Ephemeral.Core.Interfaces;
 namespace Marsop.Ephemeral.Core.Implementation;
 
 public abstract record FullInterval<TBoundary, TLength> :
-    AbstractMetricInterval<TBoundary, TLength>,
-    IHasLengthOperator<TBoundary, TLength>
+    AbstractMeasuredInterval<TBoundary, TLength>
     where TBoundary : notnull, IComparable<TBoundary>
 {
     public FullInterval(TBoundary start, TBoundary end, bool startIncluded, bool endIncluded) :
@@ -17,7 +16,10 @@ public abstract record FullInterval<TBoundary, TLength> :
     {
     }
 
-    public abstract ILengthOperator<TBoundary, TLength> LengthOperator { get; }
+    public abstract ILengthOperator<TBoundary, TLength> Operator { get; }
 
-    public override TLength Length() => LengthOperator.Measure(Start, End);
+    public override TLength DefaultMeasure() => Operator.Measure(this);
+
+    /// <inheritdoc cref="object.ToString"/>
+    public override string ToString() => GetTextualRepresentation();
 }

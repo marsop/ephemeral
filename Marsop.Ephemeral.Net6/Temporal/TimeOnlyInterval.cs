@@ -10,7 +10,7 @@ namespace Marsop.Ephemeral.Net6.Temporal
         {
         }
 
-        public override ILengthOperator<TimeOnly, TimeSpan> LengthOperator =>
+        public override ILengthOperator<TimeOnly, TimeSpan> Operator =>
             TimeOnlyTimeSpanLengthOperator.Instance;
     }
 }

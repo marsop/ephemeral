@@ -28,6 +28,6 @@ public record DateTimeOffsetInterval :
     {
     }
 
-    public override ILengthOperator<DateTimeOffset, TimeSpan> LengthOperator =>
+    public override ILengthOperator<DateTimeOffset, TimeSpan> Operator =>
         DateTimeOffsetTimeSpanLengthOperator.Instance;
 }

@@ -11,44 +11,44 @@ public static class FullIntervalExtensions
         IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        return new(interval.LengthOperator, [.. BasicIntervalExtensions.Subtract(interval, other, interval.LengthOperator)]);
+        return new(interval.Operator, [.. BasicIntervalExtensions.Subtract(interval, other, interval.Operator)]);
     }
 
     public static DisjointIntervalSet<TBoundary, TLength> ToIntervalSet<TBoundary, TLength>(
         this FullInterval<TBoundary, TLength> interval)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        return new(interval.LengthOperator, [interval]);
+        return new(interval.Operator, [interval]);
     }
 
-    public static BasicMetricInterval<TBoundary, TLength> Shift<TBoundary, TLength>(
+    public static BasicMeasuredInterval<TBoundary, TLength> Shift<TBoundary, TLength>(
         this FullInterval<TBoundary, TLength> interval,
         TLength offset)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         return BasicIntervalExtensions
-            .Shift(interval, offset, interval.LengthOperator)
-            .WithMetric(interval.LengthOperator);
+            .Shift(interval, offset, interval.Operator)
+            .WithMetric(interval.Operator);
     }
 
-    public static BasicMetricInterval<TBoundary, TLength> ShiftStart<TBoundary, TLength>(
+    public static BasicMeasuredInterval<TBoundary, TLength> ShiftStart<TBoundary, TLength>(
         this FullInterval<TBoundary, TLength> interval,
         TLength offset)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         return BasicIntervalExtensions
-            .ShiftStart(interval, offset, interval.LengthOperator)
-            .WithMetric(interval.LengthOperator);
+            .ShiftStart(interval, offset, interval.Operator)
+            .WithMetric(interval.Operator);
     }
 
-    public static BasicMetricInterval<TBoundary, TLength> ShiftEnd<TBoundary, TLength>(
+    public static BasicMeasuredInterval<TBoundary, TLength> ShiftEnd<TBoundary, TLength>(
         this FullInterval<TBoundary, TLength> interval,
         TLength offset)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         return BasicIntervalExtensions
-            .ShiftEnd(interval, offset, interval.LengthOperator)
-            .WithMetric(interval.LengthOperator);
+            .ShiftEnd(interval, offset, interval.Operator)
+            .WithMetric(interval.Operator);
     }
 
     public static TLength LengthOfIntersect<TBoundary, TLength>(
@@ -56,6 +56,6 @@ public static class FullIntervalExtensions
         IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        return BasicIntervalExtensions.LengthOfIntersect(interval, other, interval.LengthOperator);
+        return BasicIntervalExtensions.LengthOfIntersect(interval, other, interval.Operator);
     }
 }

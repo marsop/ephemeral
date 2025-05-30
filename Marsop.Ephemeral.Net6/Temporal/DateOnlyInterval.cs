@@ -10,6 +10,6 @@ public record DateOnlyInterval : FullInterval<DateOnly, int>
     {
     }
 
-    public override ILengthOperator<DateOnly, int> LengthOperator =>
+    public override ILengthOperator<DateOnly, int> Operator =>
         DateOnlyDaysLengthOperator.Instance;
 }

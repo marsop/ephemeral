@@ -11,5 +11,5 @@ public record DoubleInterval :
     {
     }
 
-    public override ILengthOperator<double, double> LengthOperator => DoubleDefaultLengthOperator.Instance;
+    public override ILengthOperator<double, double> Operator => DoubleDefaultLengthOperator.Instance;
 }

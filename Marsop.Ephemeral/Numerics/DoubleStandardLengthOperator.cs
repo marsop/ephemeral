@@ -13,7 +13,7 @@ public sealed class DoubleDefaultLengthOperator :
 
     public double Apply(double boundary, double length) => boundary + length;
 
-    public double Measure(double boundary1, double boundary2) => boundary2 - boundary1;
+    public double Measure(IBasicInterval<double> interval) => interval.End - interval.Start;
 
     public double Zero() => 0.0;
 }

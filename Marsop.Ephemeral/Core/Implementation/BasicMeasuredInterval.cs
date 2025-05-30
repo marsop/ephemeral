@@ -7,27 +7,27 @@ using Marsop.Ephemeral.Core.Interfaces;
 
 namespace Marsop.Ephemeral.Core.Implementation;
 
-public record BasicMetricInterval<TBoundary, TLength> :
-    AbstractMetricInterval<TBoundary, TLength>
+public record BasicMeasuredInterval<TBoundary, TLength> :
+    AbstractMeasuredInterval<TBoundary, TLength>
     where TBoundary : notnull, IComparable<TBoundary>
 {
-    public BasicMetricInterval(
+    public BasicMeasuredInterval(
         TBoundary start,
         TBoundary end,
         bool startIncluded,
         bool endIncluded,
-        ILengthOperator<TBoundary, TLength> lengthOperator)
+        ICanMeasure<TBoundary, TLength> measureCalculator)
         : base(start, end, startIncluded, endIncluded)
     {
-        if (lengthOperator is null)
+        if (measureCalculator is null)
         {
-            throw new ArgumentNullException(nameof(lengthOperator));
+            throw new ArgumentNullException(nameof(measureCalculator));
         }
 
-        _length = lengthOperator.Measure(start, end);
+        _measure = measureCalculator.Measure(this);
     }
 
-    private readonly TLength _length;
+    private readonly TLength _measure;
 
-    public override TLength Length()  => _length;
+    public override TLength DefaultMeasure()  => _measure;
 }

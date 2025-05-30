@@ -13,9 +13,9 @@ public class DateOnlyDaysLengthOperator : ILengthOperator<DateOnly, int>
 
     public DateOnly Apply(DateOnly boundary, int length) => boundary.AddDays(length);
 
-    public int Measure(DateOnly boundary1, DateOnly boundary2)
+    public int Measure(IBasicInterval<DateOnly> interval)
     {
-        return (boundary2.ToDateTime(TimeOnly.MinValue) - boundary1.ToDateTime(TimeOnly.MinValue)).Days;
+        return (interval.End.ToDateTime(TimeOnly.MinValue) - interval.Start.ToDateTime(TimeOnly.MinValue)).Days;
     }
 
     public int Zero() => 0;
