@@ -79,8 +79,8 @@ public class IntervalTests
         var expected1 = _randomHelper.GetInterval(source.Start, subtraction.Start, source.StartIncluded, !subtraction.StartIncluded);
         var expected2 = _randomHelper.GetInterval(subtraction.End, source.End, !subtraction.EndIncluded, source.EndIncluded);
         result.Count.Should().Be(2);
-        result.First().Should().BeEquivalentTo(expected1);
-        result.Last().Should().BeEquivalentTo(expected2);
+        result.First().IsEquivalentIntervalTo(expected1).Should().BeTrue();
+        result.Last().IsEquivalentIntervalTo(expected2).Should().BeTrue();
     }
 
     [Theory]
@@ -100,7 +100,7 @@ public class IntervalTests
         //Then
         var expected = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(11), startIncludedIntervalA, !startIncludedIntervalB);
         result.Should().ContainSingle();
-        result.First().Should().BeEquivalentTo(expected);
+        result.First().IsEquivalentIntervalTo(expected).Should().BeTrue();
     }
 
     [Theory]
@@ -122,7 +122,7 @@ public class IntervalTests
         //Then
         var expected = _randomHelper.GetInterval(date.AddHours(11), date.AddHours(12), !endIncludedIntervalB, endIncludedIntervalA);
         result.Should().ContainSingle();
-        result.First().Should().BeEquivalentTo(expected);
+        result.First().IsEquivalentIntervalTo(expected).Should().BeTrue();
     }
 
     [Theory]
@@ -144,7 +144,7 @@ public class IntervalTests
         //Then
         var expected = _randomHelper.GetInterval(date.AddHours(8), date.AddHours(9), startIncludedIntervalA, !startIncludedIntervalB);
         result.Should().ContainSingle();
-        result.First().Should().BeEquivalentTo(expected);
+        result.First().IsEquivalentIntervalTo(expected).Should().BeTrue();
     }
 
     [Theory]
@@ -168,6 +168,6 @@ public class IntervalTests
         //Then
         var expected = _randomHelper.GetInterval(date.AddHours(9), date.AddHours(12), !endIncludedIntervalB, endIncludedIntervalA);
         result.Should().ContainSingle();
-        result.First().Should().BeEquivalentTo(expected);
+        result.First().IsEquivalentIntervalTo(expected).Should().BeTrue();
     }
 }

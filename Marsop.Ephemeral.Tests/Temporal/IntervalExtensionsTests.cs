@@ -91,7 +91,7 @@ public class IntervalExtensionsTests
             .ValueOrFailure();
 
         //Then
-        result.Should().BeEquivalentTo(other);
+        result.IsEquivalentIntervalTo(other).Should().BeTrue();
     }
 
     [Fact]
