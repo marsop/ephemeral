@@ -10,4 +10,6 @@ public interface ICanMeasure<TBoundary, TLength>
     where TBoundary : notnull, IComparable<TBoundary>
 {
     TLength Measure(IBasicInterval<TBoundary> interval);
+
+    TLength Zero();
 }

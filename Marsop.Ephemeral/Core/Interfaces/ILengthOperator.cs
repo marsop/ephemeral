@@ -11,6 +11,4 @@ public interface ILengthOperator<TBoundary, TLength> :
     where TBoundary : notnull, IComparable<TBoundary>
 {
     TBoundary Apply(TBoundary boundary, TLength length);
-
-    TLength Zero();
 }

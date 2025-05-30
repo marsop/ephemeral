@@ -23,20 +23,20 @@ public static class BasicIntervalExtensions
     }
 
 
-    public static BasicMeasuredInterval<TBoundary, TLength> WithMetric<TBoundary, TLength>(
+    public static BasicMeasuredInterval<TBoundary, TLength> WithMeaure<TBoundary, TLength>(
         this IBasicInterval<TBoundary> interval,
-        ILengthOperator<TBoundary, TLength> lengthOperator)
+        ICanMeasure<TBoundary, TLength> measurer)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         if (interval is null) throw new ArgumentNullException(nameof(interval));
-        if (lengthOperator is null) throw new ArgumentNullException(nameof(lengthOperator));
+        if (measurer is null) throw new ArgumentNullException(nameof(measurer));
 
         return new BasicMeasuredInterval<TBoundary, TLength>(
             interval.Start,
             interval.End,
             interval.StartIncluded,
             interval.EndIncluded,
-            lengthOperator);
+            measurer);
     }
 
 
@@ -174,18 +174,18 @@ public static class BasicIntervalExtensions
     /// </summary>
     /// <param name="interval">the current <see cref="IBasicInterval{TBoundary}"/> instance</param>
     /// <param name="other">the <see cref="IBasicInterval{TBoundary}"/> instance in intersection</param>
-    /// <param name="lengthOperator">the <see cref="ILengthOperator{TBoundary, TLength}"/> to use for measurement</param>
+    /// <param name="measurer">the <see cref="ILengthOperator{TBoundary, TLength}"/> to use for measurement</param>
     /// <returns>an object representing the length of the intersection between the intervals, or <see cref="ILengthOperator{TBoundary, TLength}.Zero"/> if there is no intersection</returns>
     public static TLength LengthOfIntersect<TBoundary, TLength>(
         this IBasicInterval<TBoundary> interval,
         IBasicInterval<TBoundary> other,
-        ILengthOperator<TBoundary, TLength> lengthOperator)
+        ICanMeasure<TBoundary, TLength> measurer)
         where TBoundary : notnull, IComparable<TBoundary>
     {
         return interval
         .Intersect(other)
-        .Map(lengthOperator.MeasureInterval)
-        .ValueOr(lengthOperator.Zero());
+        .Map(measurer.Measure)
+        .ValueOr(measurer.Zero());
     }
 
     /// <summary>
@@ -369,7 +369,7 @@ public static class BasicIntervalExtensions
                     subtraction.Start,
                     source.StartIncluded,
                     !subtraction.StartIncluded)
-                .WithMetric(lengthOperator)
+                .WithMeaure(lengthOperator)
             );
         if (source.End.IsGreaterThan(subtraction.End) ||
             source.End.IsEqualTo(subtraction.End) && source.EndIncluded && !subtraction.EndIncluded)
@@ -379,7 +379,7 @@ public static class BasicIntervalExtensions
                     source.End,
                     !subtraction.EndIncluded,
                     source.EndIncluded)
-                .WithMetric(lengthOperator));
+                .WithMeaure(lengthOperator));
 
         return result;
     }
