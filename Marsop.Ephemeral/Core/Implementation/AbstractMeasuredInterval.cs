@@ -21,4 +21,6 @@ public abstract record AbstractMeasuredInterval<TBoundary, TLength> :
     }
 
     public abstract TLength DefaultMeasure();
+
+    public override string ToString() => base.ToString();
 }

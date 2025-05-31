@@ -78,7 +78,7 @@ public record BasicInterval<TBoundary> :
     {
         var startDelimiter = StartIncluded ? "[" : "(";
         var endDelimiter = EndIncluded ? "]" : ")";
-        return $"{startDelimiter}{Start} , {End}{endDelimiter}";
+        return $"{startDelimiter}{Start}, {End}{endDelimiter}";
     }
 
     /// <inheritdoc cref="object.ToString"/>
