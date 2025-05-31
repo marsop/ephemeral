@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Marsop.Ephemeral.Core.Extensions;
 using Xunit;
 using Marsop.Ephemeral.Temporal;
+using Marsop.Ephemeral.Core;
 
 namespace Marsop.Ephemeral.Tests.Temporal
 {

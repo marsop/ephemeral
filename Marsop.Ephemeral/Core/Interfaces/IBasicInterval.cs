@@ -2,9 +2,9 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-namespace Marsop.Ephemeral.Core.Interfaces;
-
 using System;
+
+namespace Marsop.Ephemeral.Core;
 
 public interface IBasicInterval<TBoundary>
    where TBoundary : notnull, IComparable<TBoundary>

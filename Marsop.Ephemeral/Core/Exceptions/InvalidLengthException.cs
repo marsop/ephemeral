@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Marsop.Ephemeral.Core.Exceptions;
+namespace Marsop.Ephemeral.Core;
 
 /// <summary>
 /// Invalid interval duration exception

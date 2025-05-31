@@ -3,9 +3,8 @@
 // </copyright>
 
 using System;
-using Marsop.Ephemeral.Core.Interfaces;
 
-namespace Marsop.Ephemeral.Core.Implementation;
+namespace Marsop.Ephemeral.Core;
 
 public abstract record AbstractMeasuredInterval<TBoundary, TLength> :
     BasicInterval<TBoundary>,

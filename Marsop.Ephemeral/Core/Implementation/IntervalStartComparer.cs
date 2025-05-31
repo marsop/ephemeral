@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using Marsop.Ephemeral.Core.Interfaces;
 
 namespace Marsop.Ephemeral.Core.Implementation;
 

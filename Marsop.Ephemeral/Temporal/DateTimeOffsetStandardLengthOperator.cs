@@ -1,5 +1,5 @@
 using System;
-using Marsop.Ephemeral.Core.Interfaces;
+using Marsop.Ephemeral.Core;
 
 namespace Marsop.Ephemeral.Temporal;
 

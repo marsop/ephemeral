@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using Marsop.Ephemeral.Core.Extensions;
+using Marsop.Ephemeral.Core;
 using Marsop.Ephemeral.Temporal;
 using Xunit;
 

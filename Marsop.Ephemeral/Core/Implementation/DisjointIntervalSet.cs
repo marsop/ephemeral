@@ -6,11 +6,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Marsop.Ephemeral.Core.Exceptions;
-using Marsop.Ephemeral.Core.Interfaces;
-using Marsop.Ephemeral.Core.Extensions;
+using Marsop.Ephemeral.Core.Implementation;
 
-namespace Marsop.Ephemeral.Core.Implementation;
+namespace Marsop.Ephemeral.Core;
 
 /// <summary>
 /// Disjoint interval set class

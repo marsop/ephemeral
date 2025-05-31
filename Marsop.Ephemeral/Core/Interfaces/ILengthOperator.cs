@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Marsop.Ephemeral.Core.Interfaces;
+namespace Marsop.Ephemeral.Core;
 
 public interface ILengthOperator<TBoundary, TLength> : 
     ICanMeasure<TBoundary, TLength>

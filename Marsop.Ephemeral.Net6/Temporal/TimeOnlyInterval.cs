@@ -1,5 +1,4 @@
-using Marsop.Ephemeral.Core.Implementation;
-using Marsop.Ephemeral.Core.Interfaces;
+using Marsop.Ephemeral.Core;
 
 namespace Marsop.Ephemeral.Net6.Temporal;
 

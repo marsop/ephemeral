@@ -1,8 +1,8 @@
 using FluentAssertions;
 using Optional.Unsafe;
-using Marsop.Ephemeral.Core.Extensions;
 using System;
 using Xunit;
+using Marsop.Ephemeral.Core;
 using Marsop.Ephemeral.Temporal;
 
 namespace Marsop.Ephemeral.Tests.Temporal;

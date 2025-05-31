@@ -2,7 +2,7 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-namespace Marsop.Ephemeral.Core.Interfaces;
+namespace Marsop.Ephemeral.Core;
 
 public interface IHasLength<out TLength>
 {

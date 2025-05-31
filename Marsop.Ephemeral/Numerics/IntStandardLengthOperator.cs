@@ -1,4 +1,4 @@
-using Marsop.Ephemeral.Core.Interfaces;
+using Marsop.Ephemeral.Core;
 
 namespace Marsop.Ephemeral.Numerics;
 

@@ -3,11 +3,8 @@
 // </copyright>
 
 using System;
-using Marsop.Ephemeral.Core.Exceptions;
-using Marsop.Ephemeral.Core.Interfaces;
-using Marsop.Ephemeral.Core.Extensions;
 
-namespace Marsop.Ephemeral.Core.Implementation;
+namespace Marsop.Ephemeral.Core;
 
 public record BasicInterval<TBoundary> : 
     IBasicInterval<TBoundary>

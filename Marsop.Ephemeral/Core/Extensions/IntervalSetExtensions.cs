@@ -2,14 +2,12 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-using Marsop.Ephemeral.Core.Interfaces;
 using Optional.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Marsop.Ephemeral.Core.Implementation;
 
-namespace Marsop.Ephemeral.Core.Extensions;
+namespace Marsop.Ephemeral.Core;
 
 
 /// <summary>

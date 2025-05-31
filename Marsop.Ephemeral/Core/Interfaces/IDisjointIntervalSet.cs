@@ -2,10 +2,10 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
-namespace Marsop.Ephemeral.Core.Interfaces;
-
 using System;
 using System.Collections.Generic;
+
+namespace Marsop.Ephemeral.Core;
 
 /// <summary>
 /// Collection of disjoint IIntervals

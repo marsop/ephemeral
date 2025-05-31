@@ -1,8 +1,6 @@
 using System;
-using Marsop.Ephemeral.Core.Implementation;
-using Marsop.Ephemeral.Core.Interfaces;
 
-namespace Marsop.Ephemeral.Core.Extensions;
+namespace Marsop.Ephemeral.Core;
 
 public static class FullIntervalExtensions
 {

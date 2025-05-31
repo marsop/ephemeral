@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Marsop.Ephemeral.Core.Interfaces;
+namespace Marsop.Ephemeral.Core;
 
 public interface ICanMeasure<TBoundary, TLength>
     where TBoundary : notnull, IComparable<TBoundary>
