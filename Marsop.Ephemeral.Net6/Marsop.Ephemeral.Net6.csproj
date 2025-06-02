@@ -1,13 +1,43 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <VersionPrefix>0.2.0</VersionPrefix>
     <TargetFramework>net6.0</TargetFramework>
+
+    <PackageId>Ephemeral.Net6</PackageId>
+    <PackageTags>Time;Timestamps;Intervals</PackageTags>
+    <PackageIcon>Ephemeral64x64.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Ephemeral extensions for .NET 6, depends on Marsop.Ephemeral. Includes DateOnlyInterval and TimeOnlyInterval.</Description>
+
+    <Authors>Alberto Gregorio</Authors>
+    <Owners>albertogregorio</Owners>
+    <Company>albertogregorio.com</Company>
+    <ProjectUrl>https://albertogregorio.com/ephemeral</ProjectUrl>
+    <RepositoryUrl>https://github.com/marsop/ephemeral</RepositoryUrl>
+
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    
+    <Version>$(VersionPrefix)-beta.6</Version>
+    <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+    <FileVersion>$(VersionPrefix)</FileVersion>
+    
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../Marsop.Ephemeral/Marsop.Ephemeral.csproj" />
+    <PackageReference Include="Marsop.Ephemeral" Version="0.2.0" />
   </ItemGroup>
+
+ <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+		<None Include="..\docs\img\Ephemeral64x64.png" Pack="true" PackagePath="\"/>
+	</ItemGroup>
 
 </Project>
