@@ -28,8 +28,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Marsop.Ephemeral/Marsop.Ephemeral.csproj" />
-    <PackageReference Include="Marsop.Ephemeral" Version="0.2.0" />
+    <PackageReference Include="Ephemeral" />
   </ItemGroup>
 
  <ItemGroup>
