@@ -15,7 +15,7 @@
     <PackageIcon>Ephemeral64x64.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>$(VersionPrefix)-beta.5</Version>
+    <Version>$(VersionPrefix)-beta.6</Version>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <InformationalVersion>0.1.8+2.Branch.master.Sha.eba8d8fee421bfca5e09c231dba73383e21c06bd</InformationalVersion>
