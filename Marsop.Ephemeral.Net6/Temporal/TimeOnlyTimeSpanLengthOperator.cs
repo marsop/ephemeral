@@ -7,8 +7,6 @@ namespace Marsop.Ephemeral.Net6.Temporal;
 /// </summary>
 public class TimeOnlyTimeSpanLengthOperator : ILengthOperator<TimeOnly, TimeSpan>
 {
-    private TimeOnlyTimeSpanLengthOperator() { }
-
     public static TimeOnlyTimeSpanLengthOperator Instance { get; } = new TimeOnlyTimeSpanLengthOperator();
 
     public TimeOnly Apply(TimeOnly boundary, TimeSpan length) => boundary.Add(length);
