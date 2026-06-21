@@ -9,8 +9,6 @@ public sealed class DoubleDefaultLengthOperator :
 
     public static ILengthOperator<double, double> Instance => _instance;
 
-    private DoubleDefaultLengthOperator() { }
-
     public double Apply(double boundary, double length) => boundary + length;
 
     public double Measure(IBasicInterval<double> interval) => interval.End - interval.Start;
