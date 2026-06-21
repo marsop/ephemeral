@@ -146,9 +146,6 @@ public static class BasicIntervalExtensions
         return new BasicInterval<TBoundary>(interval.Start, newEnd, interval.StartIncluded, interval.EndIncluded);
     }
 
-    
-    
-    
     /// <summary>
     /// Checks if the interval covers the given interval
     /// </summary>
