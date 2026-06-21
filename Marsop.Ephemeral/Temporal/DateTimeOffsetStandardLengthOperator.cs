@@ -10,8 +10,6 @@ public sealed class DateTimeOffsetTimeSpanLengthOperator :
 
     public static ILengthOperator<DateTimeOffset, TimeSpan> Instance => _instance;
 
-    private DateTimeOffsetTimeSpanLengthOperator() { }
-
     public DateTimeOffset Apply(DateTimeOffset boundary, TimeSpan length) => boundary.Add(length);
 
     public TimeSpan Measure(IBasicInterval<DateTimeOffset> interval) => interval.End - interval.Start;

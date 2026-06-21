@@ -9,8 +9,6 @@ public class DateOnlyDaysLengthOperator : ILengthOperator<DateOnly, int>
 {
     public static DateOnlyDaysLengthOperator Instance { get; } = new DateOnlyDaysLengthOperator();
 
-    private DateOnlyDaysLengthOperator() { }
-
     public DateOnly Apply(DateOnly boundary, int length) => boundary.AddDays(length);
 
     public int Measure(IBasicInterval<DateOnly> interval)
