@@ -52,4 +52,6 @@ The following methods are implemented as extension methods to be able to use the
 
 ## `DisjointIntervalSet<TBoundary, TLength>`
 
-TBD
+- `DisjointIntervalSet(lengthOperator)`
+- `DisjointIntervalSet(lengthOperator, params intervals[])`
+- `DisjointIntervalSet(lengthOperator, IEnumerable<intervals>)`
