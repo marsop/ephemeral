@@ -7,6 +7,7 @@
 
 C# Library to handle intervals (composite start and end)
 
+- Targets `.NET Standard 2.0` for wide compatibility.
 - Support for generic types in intervals (e.g. `DateTimeOffset`, `int`, `double`).
 - Support for open and closed intervals.
 - Support for common operations like Covers(), Intersect(), Join(), etc. via extension methods.
