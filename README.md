@@ -129,10 +129,10 @@ Shifts the start of the interval by a given offset, while keeping the end fixed.
 ```text
 Real Line:  0---1---2---3---4---5---6---7---8---9---10
 
-Interval A:         [===============]          (A = [2, 6])
+Interval A:             [===========]          (A = [3, 6])
 
-A.ShiftStart(2) ->                  [===]      ([4, 6])
-A.ShiftStart(-1)->      [===================]  ([1, 6])
+A.ShiftStart(1) ->          [=======]          ([4, 6])
+A.ShiftStart(-1)->  [===============]          ([2, 6])
 ```
 
 ### `ShiftEnd()`
@@ -167,13 +167,10 @@ Joins adjacent or overlapping intervals in the set into the minimum amount of in
 Real Line:  0---1---2---3---4---5---6---7---8---9---10
 
 Set A:              [===]   [===]              ([2, 3], [4, 5])
-(Before)
+A.Consolidate() ->  [===]   [===]             (Assuming open/closed bounds prevent joining)
 
-Set A.Consolidate() -> [===] [===]             (Assuming open/closed bounds prevent joining)
-
-Set B:              [===]   [===========]      ([2, 3], [4, 7])
-                    (If contiguous)
-Set B.Consolidate() -> [===============]       ([2, 7])
+Set B:              [===](==============]      ([2, 3], (3, 7])
+B.Consolidate() ->  [===================]      ([2, 7])
 ```
 
 ### `Join()`
@@ -201,7 +198,7 @@ Interval B:         [===================]      (B = [2, 7])
 A.Intersect(B)  ->  [===]           [===]      ([2, 3], [6, 7])
 
 Interval C:                 [=======]          (C = [4, 6])
-A.Intersect(C)  ->                          [=](Intersection at [6, 6] or empty if open)
+A.Intersect(C)  ->                  []         (Intersection at [6, 6] or empty if open)
 ```
 
 ### `Covers()`
@@ -211,7 +208,6 @@ Real Line:  0---1---2---3---4---5---6---7---8---9---10
 
 Set A:              [=======]       [===]      ([2, 4], [6, 7])
 Interval B:             [===]                  (B = [3, 4])
-
 A.Covers(B)     ->  true
 
 Interval C:                 [===========]      (C = [4, 7])
@@ -221,11 +217,10 @@ A.Covers(C)     ->  false                      (Gap between 4 and 6)
 ### `GetBoundingInterval()`
 Returns a single interval spanning from the earliest start to the latest end in the set.
 ```text
-Real Line:  0---1---2---3---4---5---6---7---8---9---10
+Real Line:         0---1---2---3---4---5---6---7---8---9---10
 
-Set A:              [===]           [===]      ([2, 3], [6, 7])
-
-A.GetBoundingInterval() ->  [===========]      ([2, 7])
+Set A:                     [===]           [===]      ([2, 3], [6, 7])
+A.GetBoundingInterval() -> [===================]      ([2, 7])
 ```
 
 ## Examples
