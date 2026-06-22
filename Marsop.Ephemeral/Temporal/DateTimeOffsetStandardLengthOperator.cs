@@ -10,6 +10,7 @@ public sealed class DateTimeOffsetTimeSpanLengthOperator :
 
     public static ILengthOperator<DateTimeOffset, TimeSpan> Instance => _instance;
 
+    // Required to enforce the singleton pattern by preventing external instantiation.
     private DateTimeOffsetTimeSpanLengthOperator() { }
 
     public DateTimeOffset Apply(DateTimeOffset boundary, TimeSpan length) => boundary.Add(length);
