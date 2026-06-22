@@ -1,0 +1,23 @@
+--- Marsop.Ephemeral.Tests/Core/Implementation/FullIntervalTests.cs
++++ Marsop.Ephemeral.Tests/Core/Implementation/FullIntervalTests.cs
+@@ -30,16 +30,20 @@
+         public sealed override string ToString() => base.ToString();
+     }
+
+-    [Fact]
+-    public void Constructor_SetsPropertiesCorrectly()
++    [Theory]
++    [InlineData(true, true)]
++    [InlineData(true, false)]
++    [InlineData(false, true)]
++    [InlineData(false, false)]
++    public void Constructor_SetsPropertiesCorrectly(bool startIncluded, bool endIncluded)
+     {
+         // Arrange
+         int start = 5;
+         int end = 10;
+-        bool startIncluded = true;
+-        bool endIncluded = false;
+
+         // Act
+         var interval = new TestFullInterval(start, end, startIncluded, endIncluded);

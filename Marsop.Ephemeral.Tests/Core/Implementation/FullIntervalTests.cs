@@ -30,14 +30,16 @@ public class FullIntervalTests
         public sealed override string ToString() => base.ToString();
     }
 
-    [Fact]
-    public void Constructor_SetsPropertiesCorrectly()
+    [Theory]
+    [InlineData(true, true)]
+    [InlineData(true, false)]
+    [InlineData(false, true)]
+    [InlineData(false, false)]
+    public void Constructor_SetsPropertiesCorrectly(bool startIncluded, bool endIncluded)
     {
         // Arrange
         int start = 5;
         int end = 10;
-        bool startIncluded = true;
-        bool endIncluded = false;
 
         // Act
         var interval = new TestFullInterval(start, end, startIncluded, endIncluded);
@@ -62,16 +64,20 @@ public class FullIntervalTests
         measure.Should().Be(10);
     }
 
-    [Fact]
-    public void ToString_ReturnsBaseToStringImplementation()
+    [Theory]
+    [InlineData(true, true, "[2, 8]")]
+    [InlineData(true, false, "[2, 8)")]
+    [InlineData(false, true, "(2, 8]")]
+    [InlineData(false, false, "(2, 8)")]
+    public void ToString_ReturnsBaseToStringImplementation(bool startIncluded, bool endIncluded, string expected)
     {
         // Arrange
-        var interval = new TestFullInterval(2, 8, false, true);
+        var interval = new TestFullInterval(2, 8, startIncluded, endIncluded);
 
         // Act
         var result = interval.ToString();
 
         // Assert
-        result.Should().Be("(2, 8]");
+        result.Should().Be(expected);
     }
 }
