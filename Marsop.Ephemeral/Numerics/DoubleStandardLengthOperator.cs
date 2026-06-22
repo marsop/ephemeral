@@ -9,8 +9,10 @@ public sealed class DoubleDefaultLengthOperator :
 
     public static ILengthOperator<double, double> Instance => _instance;
 
-    // Required to enforce the singleton pattern by preventing external instantiation.
-    private DoubleDefaultLengthOperator() { }
+    private DoubleDefaultLengthOperator()
+    {
+        // Private constructor to prevent external instantiation and enforce the singleton pattern.
+    }
 
     public double Apply(double boundary, double length) => boundary + length;
 

@@ -7,7 +7,10 @@ namespace Marsop.Ephemeral.Net6.Temporal;
 /// </summary>
 public sealed class TimeOnlyTimeSpanLengthOperator : ILengthOperator<TimeOnly, TimeSpan>
 {
-    private TimeOnlyTimeSpanLengthOperator() { }
+    private TimeOnlyTimeSpanLengthOperator()
+    {
+        // Private constructor to prevent external instantiation and enforce the singleton pattern.
+    }
 
     public static TimeOnlyTimeSpanLengthOperator Instance { get; } = new TimeOnlyTimeSpanLengthOperator();
 
