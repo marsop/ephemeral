@@ -28,29 +28,32 @@ public static class IntervalSetExtensions
 
         if (set.Count > 0)
         {
-            var orderedList = set.OrderBy(x => x.Start);
-
-            var cachedItem = orderedList.FirstOrDefault();
-
-            foreach (var item in orderedList.Skip(1))
+            using var enumerator = set.OrderBy(x => x.Start).GetEnumerator();
+            if (enumerator.MoveNext())
             {
-                if (cachedItem.IsContiguouslyFollowedBy(item))
-                {
-                    cachedItem = new BasicInterval<TBoundary>(
-                        cachedItem.Start,
-                        item.End,
-                        cachedItem.StartIncluded,
-                        item.EndIncluded)
-                        .WithMeaure(set.LengthOperator);
-                }
-                else
-                {
-                    result.Add(cachedItem);
-                    cachedItem = item;
-                }
-            }
+                var cachedItem = enumerator.Current;
 
-            result.Add(cachedItem);
+                while (enumerator.MoveNext())
+                {
+                    var item = enumerator.Current;
+                    if (cachedItem.IsContiguouslyFollowedBy(item))
+                    {
+                        cachedItem = new BasicInterval<TBoundary>(
+                            cachedItem.Start,
+                            item.End,
+                            cachedItem.StartIncluded,
+                            item.EndIncluded)
+                            .WithMeaure(set.LengthOperator);
+                    }
+                    else
+                    {
+                        result.Add(cachedItem);
+                        cachedItem = item;
+                    }
+                }
+
+                result.Add(cachedItem);
+            }
         }
 
         return result;
