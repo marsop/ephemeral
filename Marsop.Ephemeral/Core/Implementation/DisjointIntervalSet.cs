@@ -52,7 +52,7 @@ public class DisjointIntervalSet<TBoundary, TLength> :
             throw new ArgumentNullException(nameof(intervals));
         }
 
-        if (intervals?.Count() > 0)
+        if (intervals.Any())
         {
             foreach (var interval in intervals)
             {
