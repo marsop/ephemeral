@@ -9,7 +9,10 @@ public sealed class IntDefaultLengthOperator :
 
     public static ILengthOperator<int, int> Instance => _instance;
 
-    private IntDefaultLengthOperator() { }
+    private IntDefaultLengthOperator()
+    {
+        // Private constructor to prevent external instantiation and enforce the singleton pattern.
+    }
 
     public int Apply(int boundary, int length) => boundary + length;
 

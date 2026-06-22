@@ -9,7 +9,10 @@ public sealed class DateOnlyDaysLengthOperator : ILengthOperator<DateOnly, int>
 {
     public static DateOnlyDaysLengthOperator Instance { get; } = new DateOnlyDaysLengthOperator();
 
-    private DateOnlyDaysLengthOperator() { }
+    private DateOnlyDaysLengthOperator()
+    {
+        // Private constructor to prevent external instantiation and enforce the singleton pattern.
+    }
 
     public DateOnly Apply(DateOnly boundary, int length) => boundary.AddDays(length);
 
