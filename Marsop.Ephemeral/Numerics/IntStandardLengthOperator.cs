@@ -9,6 +9,9 @@ public sealed class IntDefaultLengthOperator :
 
     public static ILengthOperator<int, int> Instance => _instance;
 
+    // Required to enforce the singleton pattern by preventing external instantiation.
+    private IntDefaultLengthOperator() { }
+
     public int Apply(int boundary, int length) => boundary + length;
 
     public int Measure(IBasicInterval<int> interval) => interval.End - interval.Start;
