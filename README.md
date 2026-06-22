@@ -27,6 +27,88 @@ To facilitate migration, Ephemeral provides several utility classes correspondin
 
 These utility classes extend `FullInterval` to offer standard duration logic right out of the box, similar to how `Interval` worked in older versions.
 
+## Interval Operations
+
+Here are graphical representations of common interval operations over the real line (using `DoubleInterval`).
+
+### `Covers()`
+Checks if an interval completely contains another interval (or point).
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======================]  (A = [2, 8])
+Interval B:                 [=======]          (B = [4, 6])
+
+A.Covers(B)     ->  true
+```
+
+### `Intersects()` / `Intersect()`
+Checks if two intervals overlap. `Intersect()` returns the overlapping interval.
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+Interval B:                 [===============]  (B = [4, 8])
+
+A.Intersects(B) ->  true
+A.Intersect(B)  ->          [=======]          ([4, 6])
+```
+
+### `Join()`
+Merges two overlapping or contiguous intervals into a single interval.
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+Interval B:                 [===============]  (B = [4, 8])
+
+A.Join(B)       ->  [=======================]  ([2, 8])
+```
+
+### `Subtract()`
+Subtracts one interval from another, returning a disjoint set of intervals.
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======================]  (A = [2, 8])
+Interval B:                 [=======]          (B = [4, 6])
+
+A.Subtract(B)   ->  [=======)       (=======]  ([2, 4) and (6, 8])
+```
+
+### `Union()`
+Combines two intervals into a collection (`DisjointIntervalSet`).
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+Interval B:                         [=======]  (B = [6, 8])
+
+A.Union(B)      ->  [=======]       [=======]  ([2, 4] and [6, 8])
+```
+
+### `IsContiguouslyFollowedBy()`
+Checks if one interval starts exactly where another ends (without overlap, typically open/closed).
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======)                  (A = [2, 4))
+Interval B:                 [=======]          (B = [4, 6])
+
+A.IsContiguouslyFollowedBy(B) -> true
+```
+
+### `StartsBefore()`
+Checks if an interval starts before another interval.
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+Interval B:                 [=======]          (B = [4, 6])
+
+A.StartsBefore(B) -> true
+```
+
 ## Examples
 
 ### Time Interval Example
