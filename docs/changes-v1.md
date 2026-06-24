@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.3.0
+## Version 0.2.0
 
 - Added XML documentation for all types and public members in `Marsop.Ephemeral` and `Marsop.Ephemeral.Net6`.
 - Enabled generation of XML documentation files.
