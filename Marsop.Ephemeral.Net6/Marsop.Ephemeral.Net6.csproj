@@ -20,7 +20,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     
-    <Version>$(VersionPrefix)-beta.6</Version>
+    <Version>$(VersionPrefix)-beta.7</Version>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     
