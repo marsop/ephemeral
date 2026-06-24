@@ -12,11 +12,17 @@ public sealed class TimeOnlyTimeSpanLengthOperator : ILengthOperator<TimeOnly, T
         // Private constructor to prevent external instantiation and enforce the singleton pattern.
     }
 
+    /// <summary>
+    /// Gets the singleton instance of the <see cref="TimeOnlyTimeSpanLengthOperator"/>.
+    /// </summary>
     public static TimeOnlyTimeSpanLengthOperator Instance { get; } = new TimeOnlyTimeSpanLengthOperator();
 
+    /// <inheritdoc/>
     public TimeOnly Apply(TimeOnly boundary, TimeSpan length) => boundary.Add(length);
 
+    /// <inheritdoc/>
     public TimeSpan Measure(IBasicInterval<TimeOnly> interval) => interval.End - interval.Start;
 
+    /// <inheritdoc/>
     public TimeSpan Zero() => TimeSpan.Zero;
 }
