@@ -19,6 +19,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <Version>$(VersionPrefix)-beta.6</Version>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>

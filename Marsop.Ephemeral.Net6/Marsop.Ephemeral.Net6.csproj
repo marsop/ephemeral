@@ -19,6 +19,7 @@
 
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     
     <Version>$(VersionPrefix)-beta.6</Version>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
