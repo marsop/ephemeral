@@ -21,7 +21,7 @@
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     
-    <Version>$(VersionPrefix)-beta.6</Version>
+    <Version>$(VersionPrefix)-beta.7</Version>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <FileVersion>$(VersionPrefix)</FileVersion>
     
