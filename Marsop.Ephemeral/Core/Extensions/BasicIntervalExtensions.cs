@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using Optional;
 
 namespace Marsop.Ephemeral.Core;
@@ -53,8 +54,8 @@ public static class BasicIntervalExtensions
             throw new ArgumentNullException(nameof(other));
         }
 
-        return interval.Start.IsEqualTo(other.Start) &&
-               interval.End.IsEqualTo(other.End) &&
+        return EqualityComparer<TBoundary>.Default.Equals(interval.Start, other.Start) &&
+               EqualityComparer<TBoundary>.Default.Equals(interval.End, other.End) &&
                interval.StartIncluded == other.StartIncluded &&
                interval.EndIncluded == other.EndIncluded;
     }
