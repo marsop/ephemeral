@@ -26,8 +26,26 @@ public class FullIntervalExtensionsTests
         }
 
         public override ILengthOperator<int, int> Operator => TestLengthOperator.Instance;
-
         public sealed override string ToString() => base.ToString();
+    }
+
+
+    [Fact]
+    public void ToIntervalSet_ValidInterval_ReturnsDisjointIntervalSetContainingInterval()
+    {
+        // Arrange
+        var start = 5;
+        var end = 10;
+        var interval = new TestFullInterval(start, end, true, false);
+
+        // Act
+        var result = interval.ToIntervalSet();
+
+        // Assert
+        result.Should().NotBeNull();
+        result.Should().HaveCount(1);
+        result[0].Should().BeSameAs(interval);
+        result.LengthOperator.Should().BeSameAs(interval.Operator);
     }
 
     [Theory]
