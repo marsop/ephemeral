@@ -151,12 +151,22 @@ public static class IntervalSetExtensions
         IBasicInterval<TBoundary> interval)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        var groups = set.GroupBy(val => val.Intersects(interval)).ToDictionary(g => g.Key, g => g.ToList());
+        var overlaps = new List<IBasicInterval<TBoundary>>();
+        var nonOverlaps = new List<IBasicInterval<TBoundary>>();
 
-        var nonOverlaps = groups.ContainsKey(false) ? groups[false] : new List<IBasicInterval<TBoundary>>();
+        foreach (var item in set)
+        {
+            if (item.Intersects(interval))
+            {
+                overlaps.Add(item);
+            }
+            else
+            {
+                nonOverlaps.Add(item);
+            }
+        }
+
         var result = new DisjointIntervalSet<TBoundary, TLength>(set.LengthOperator, nonOverlaps.ToArray());
-
-        var overlaps = groups.ContainsKey(true) ? groups[true] : new List<IBasicInterval<TBoundary>>();
         var newInterval = interval;
         foreach (var overlap in overlaps)
         {
