@@ -26,7 +26,7 @@ public static class FullIntervalExtensions
     {
         return BasicIntervalExtensions
             .Shift(interval, offset, interval.Operator)
-            .WithMeaure(interval.Operator);
+            .WithMeasure(interval.Operator);
     }
 
     public static BasicMeasuredInterval<TBoundary, TLength> ShiftStart<TBoundary, TLength>(
@@ -36,7 +36,7 @@ public static class FullIntervalExtensions
     {
         return BasicIntervalExtensions
             .ShiftStart(interval, offset, interval.Operator)
-            .WithMeaure(interval.Operator);
+            .WithMeasure(interval.Operator);
     }
 
     public static BasicMeasuredInterval<TBoundary, TLength> ShiftEnd<TBoundary, TLength>(
@@ -46,7 +46,7 @@ public static class FullIntervalExtensions
     {
         return BasicIntervalExtensions
             .ShiftEnd(interval, offset, interval.Operator)
-            .WithMeaure(interval.Operator);
+            .WithMeasure(interval.Operator);
     }
 
     public static TLength LengthOfIntersect<TBoundary, TLength>(

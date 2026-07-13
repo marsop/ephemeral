@@ -43,7 +43,7 @@ public static class IntervalSetExtensions
                             item.End,
                             cachedItem.StartIncluded,
                             item.EndIncluded)
-                            .WithMeaure(set.LengthOperator);
+                            .WithMeasure(set.LengthOperator);
                     }
                     else
                     {
@@ -101,7 +101,7 @@ public static class IntervalSetExtensions
         var intersections = set
             .Select(x => x.Intersect(interval))
             .Values()
-            .Select(x => x.WithMeaure(set.LengthOperator))
+            .Select(x => x.WithMeasure(set.LengthOperator))
             .ToList();
         return new DisjointIntervalSet<TBoundary, TLength>(set.LengthOperator, intersections);
     }
@@ -137,7 +137,7 @@ public static class IntervalSetExtensions
         where TBoundary : notnull, IComparable<TBoundary>
     {
         return new BasicInterval<TBoundary>(s.Start, s.End, s.Covers(s.Start), s.Covers(s.End))
-            .WithMeaure(s.LengthOperator);
+            .WithMeasure(s.LengthOperator);
     }
 
     /// <summary>
@@ -160,7 +160,7 @@ public static class IntervalSetExtensions
         var newInterval = interval;
         foreach (var overlap in overlaps)
         {
-            newInterval = newInterval.Join(overlap).WithMeaure(set.LengthOperator);
+            newInterval = newInterval.Join(overlap).WithMeasure(set.LengthOperator);
         }
 
         result.Add(newInterval);
