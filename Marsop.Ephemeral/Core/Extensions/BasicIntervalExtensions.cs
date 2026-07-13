@@ -72,6 +72,8 @@ public static class BasicIntervalExtensions
         TBoundary boundary)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        if (interval is null) throw new ArgumentNullException(nameof(interval));
+
         if (boundary.IsLessThan(interval.Start))
         {
             return false;
