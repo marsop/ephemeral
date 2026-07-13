@@ -101,4 +101,18 @@ public class BasicIntervalExtensionsTests
         // Assert
         result.Should().BeTrue();
     }
+
+    [Fact]
+    public void Intersect_DisjointIntervals_ReturnsNone()
+    {
+        // Arrange
+        var first = new TestBasicInterval(1, 2, true, true);
+        var second = new TestBasicInterval(3, 4, true, true);
+
+        // Act
+        var result = first.Intersect(second);
+
+        // Assert
+        result.HasValue.Should().BeFalse();
+    }
 }
