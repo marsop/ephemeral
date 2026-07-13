@@ -16,7 +16,7 @@ The following methods are implemented as extension methods to be able to use the
 ## Methods available from `IBasicInterval<TBoundary>`
 
 - `Measure(measurer: ILengthOperator<TBoundary, TLength>): TLength`
-- `WithMeaure(measurer: ILengthOperator<TBoundary, TLength>): BasicMeasuredInterval<TBoundary, TLength>`
+- `WithMeasure(measurer: ILengthOperator<TBoundary, TLength>): BasicMeasuredInterval<TBoundary, TLength>`
 - `IsEquivalentIntervalTo(i: IBasicInterval<TBoundary>) : bool`
 - `Covers(t: TBoundary) : bool`
 - `Covers(i: IBasicInterval<TBoundary>) : bool`

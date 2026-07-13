@@ -22,7 +22,7 @@ public static class BasicIntervalExtensions
     }
 
 
-    public static BasicMeasuredInterval<TBoundary, TLength> WithMeaure<TBoundary, TLength>(
+    public static BasicMeasuredInterval<TBoundary, TLength> WithMeasure<TBoundary, TLength>(
         this IBasicInterval<TBoundary> interval,
         ICanMeasure<TBoundary, TLength> measurer)
         where TBoundary : notnull, IComparable<TBoundary>
@@ -365,7 +365,7 @@ public static class BasicIntervalExtensions
                     subtraction.Start,
                     source.StartIncluded,
                     !subtraction.StartIncluded)
-                .WithMeaure(lengthOperator)
+                .WithMeasure(lengthOperator)
             );
         if (source.End.IsGreaterThan(subtraction.End) ||
             source.End.IsEqualTo(subtraction.End) && source.EndIncluded && !subtraction.EndIncluded)
@@ -375,7 +375,7 @@ public static class BasicIntervalExtensions
                     source.End,
                     !subtraction.EndIncluded,
                     source.EndIncluded)
-                .WithMeaure(lengthOperator));
+                .WithMeasure(lengthOperator));
 
         return result;
     }
