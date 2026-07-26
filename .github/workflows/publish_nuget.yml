@@ -25,6 +25,9 @@ jobs:
       - name: Build
         run: dotnet build Marsop.Ephemeral/Marsop.Ephemeral.csproj --configuration Release --no-restore
 
+      - name: Test
+        run: dotnet test --configuration Release --no-restore --verbosity normal
+
       - name: Pack
         run: dotnet pack Marsop.Ephemeral/Marsop.Ephemeral.csproj --configuration Release --no-build --output ./nupkg
 
