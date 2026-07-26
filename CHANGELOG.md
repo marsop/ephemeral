@@ -15,7 +15,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Extensive new test suites for generic interval behaviors.
 
 ### Changed
-- Promoted 0.2.0 from pre-release (beta) to stable release.
 - Refactored `DateTimeOffsetInterval` to inherit from new generic classes.
 - Target frameworks updated across projects to include `net6.0` and `net10.0` for tests.
 - Replaced GroupBy and ToDictionary with a single pass loop in IntervalSetExtensions.Join to reduce heap allocations and execution time.
