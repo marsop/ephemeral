@@ -134,7 +134,7 @@ firstTen.IsContiguouslyFollowedBy(nextTen); // returns false if both are closed.
 ### Interval Collection Example
 
 ```csharp
-var lengthOperator = DateTimeOffsetStandardLengthOperator.Instance;
+var lengthOperator = DateTimeOffsetTimeSpanLengthOperator.Instance;
 var collection = new DisjointIntervalSet<DateTimeOffset, TimeSpan>(lengthOperator);
 collection.Add(yesterday);
 collection.Add(today);
