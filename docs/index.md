@@ -65,7 +65,7 @@ range2.Covers(3.0); // returns false (because it's open)
 ### Interval Collection Example
 
 ```csharp
-var lengthOperator = DateTimeOffsetStandardLengthOperator.Instance;
+var lengthOperator = DateTimeOffsetTimeSpanLengthOperator.Instance;
 var collection = new DisjointIntervalSet<DateTimeOffset, TimeSpan>(lengthOperator);
 collection.Add(yesterday);
 collection.Add(today);
