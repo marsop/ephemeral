@@ -99,6 +99,17 @@ Interval B:                 [=======]          (B = [4, 6])
 A.IsContiguouslyFollowedBy(B) -> true
 ```
 
+### `IsContiguouslyPrecededBy()`
+Checks if one interval ends exactly where another starts (without overlap, typically open/closed).
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:                 [=======]          (A = [4, 6])
+Interval B:         [=======)                  (B = [2, 4))
+
+A.IsContiguouslyPrecededBy(B) -> true
+```
+
 ### `StartsBefore()`
 Checks if an interval starts before another interval.
 ```text
