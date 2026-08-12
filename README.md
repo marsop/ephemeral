@@ -121,6 +121,16 @@ Interval B:                 [=======]          (B = [4, 6])
 A.StartsBefore(B) -> true
 ```
 
+### `Shift()`
+Shifts an interval by a given duration/offset.
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+
+A.Shift(4)      ->                  [=======]  ([6, 8])
+```
+
 ## Examples
 
 ### Time Interval Example
