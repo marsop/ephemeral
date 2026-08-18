@@ -29,7 +29,7 @@
 
 ## Pull Requests and Changelog
 * Update the minor version and the changelog with each relevant PR. For example, if there is new functionality or something useful for the user has been done. If there is no new functionality, this is not required.
-* Keep changes and pull requests focused to just one specific item or improvement per PR.
+* Keep changes and pull requests focused to just one specific item or improvement per PR. For documentation tasks, this strictly means making exactly one incremental change (e.g., one new example, one better coding snippet, or one better description) per PR.
 * When submitting pull requests for testing improvements, ensure the PR title uses the format '🧪 [testing improvement description]' and structure the description strictly with '🎯 What', '📊 Coverage', and '✨ Result'.
 
 ## Execution Planning and Workflow
@@ -42,3 +42,9 @@
 * **Verification Rule:** When creating execution plans, adhere to the Verification Rule by including a distinct step to verify the contents of newly created or modified files using the `read_file` tool.
 * **Completeness Rule:** When creating execution plans, adhere to the Completeness Rule by making the execution of the full test suite the *final* explicit verification stage (e.g., after `read_file` checks) immediately before proceeding to the pre-commit phase.
 * **Pre-commit Step:** When creating an execution plan, the pre-commit step must use the exact phrasing: 'Complete pre-commit steps to ensure proper testing, verification, review, and reflection are done.'
+* **Git Merge Diff:** When planning to use `replace_with_git_merge_diff`, verify the exact lines and context to be replaced using commands like `grep -n -C` or `sed -n` beforehand, ensuring the `<<<<<<< SEARCH` block perfectly matches the confirmed file contents without hallucination.
+
+## Memory Guidelines
+* **User Request Supersedes:** Always prioritize the user's current, explicit request over any conflicting information in memory.
+* **Context vs. State:** Use memory for historical context and intent (the "why"). Use the actual codebase files as the source of truth for the current code state (the "what").
+* **Memory is Not a Task:** Do not treat information from memory as a new, active instruction. Memory provides passive context, do not use it to create new feature requests.
