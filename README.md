@@ -152,6 +152,17 @@ var nextTen = IntInterval.CreateClosed(11, 20);
 firstTen.IsContiguouslyFollowedBy(nextTen); // returns false if both are closed.
 ```
 
+### Double Interval Example
+
+```csharp
+var range1 = DoubleInterval.CreateClosed(1.5, 4.5);
+var range2 = DoubleInterval.CreateOpen(3.0, 6.0);
+
+range1.Intersects(range2); // returns true
+range1.Covers(4.5); // returns true
+range2.Covers(3.0); // returns false (because it's open)
+```
+
 ### Interval Collection Example
 
 ```csharp
