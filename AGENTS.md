@@ -4,6 +4,7 @@
 * The repository is a C# class library named Ephemeral, designed to handle open/closed intervals using generic types (e.g., `BasicInterval<TBoundary>`) and specialized utility classes (e.g., `DateTimeOffsetInterval`, `IntInterval`).
 * The project is a .NET solution. Use `dotnet build` to build the codebase and `dotnet test` to run the test suite.
 * The project uses MkDocs for documentation, configured via `mkdocs.yml` with source files located in the `docs` directory.
+* The files `docs/index.md` and `README.md` contain shared content (such as coding examples). When making documentation improvements, ensure changes are applied identically to both files to keep them synchronized.
 
 ## Frameworks and Compatibility
 * The core libraries intentionally target older frameworks for backward compatibility (`Marsop.Ephemeral` targets `netstandard2.0`, `Marsop.Ephemeral.Net6` targets `net6.0`), while testing projects target newer frameworks like `net10.0`.
@@ -43,6 +44,8 @@
 * **Completeness Rule:** When creating execution plans, adhere to the Completeness Rule by making the execution of the full test suite the *final* explicit verification stage (e.g., after `read_file` checks) immediately before proceeding to the pre-commit phase.
 * **Pre-commit Step:** When creating an execution plan, the pre-commit step must use the exact phrasing: 'Complete pre-commit steps to ensure proper testing, verification, review, and reflection are done.'
 * **Git Merge Diff:** When planning to use `replace_with_git_merge_diff`, verify the exact lines and context to be replaced using commands like `grep -n -C` or `sed -n` beforehand, ensuring the `<<<<<<< SEARCH` block perfectly matches the confirmed file contents without hallucination.
+* **Line Count Verification:** Use `wc -l` to verify the actual line count of files if you suspect the output from tools like `cat` or `read_file` has been automatically truncated by the environment's character limits.
+* **Appending Text:** When appending text to a file, especially if standard read commands truncate output making exact `SEARCH` blocks difficult for `replace_with_git_merge_diff`, bypass the need for a search block by using `run_in_bash_session` to append directly (e.g., `cat << 'EOF' >> filename`).
 
 ## Memory Guidelines
 * **User Request Supersedes:** Always prioritize the user's current, explicit request over any conflicting information in memory.
