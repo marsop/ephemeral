@@ -191,3 +191,14 @@ var consolidatedCollection = collection2.Consolidate();
 collection2.Count(); // 2
 consolidatedCollection.Count(); // 1
 ```
+
+### DateOnly Interval Example
+
+```csharp
+var start = new DateOnly(2023, 1, 1);
+var end = new DateOnly(2023, 12, 31);
+var year = DateOnlyInterval.CreateClosed(start, end);
+
+var other = DateOnlyInterval.CreateClosed(new DateOnly(2023, 6, 1), new DateOnly(2023, 8, 31));
+year.Covers(other); // returns true
+```
