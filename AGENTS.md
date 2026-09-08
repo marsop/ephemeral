@@ -46,6 +46,7 @@
 * **Git Merge Diff:** When planning to use `replace_with_git_merge_diff`, verify the exact lines and context to be replaced using commands like `grep -n -C` or `sed -n` beforehand, ensuring the `<<<<<<< SEARCH` block perfectly matches the confirmed file contents without hallucination.
 * **Line Count Verification:** Use `wc -l` to verify the actual line count of files if you suspect the output from tools like `cat` or `read_file` has been automatically truncated by the environment's character limits.
 * **Appending Text:** When appending text to a file, especially if standard read commands truncate output making exact `SEARCH` blocks difficult for `replace_with_git_merge_diff`, bypass the need for a search block by using `run_in_bash_session` to append directly (e.g., `cat << 'EOF' >> filename`).
+* **Method/Class Verification:** When verifying the existence or signature of specific methods or classes within large files, prefer using `grep -n 'SearchTerm' path/to/file` to explicitly confirm their presence and avoid issues with output truncation.
 
 ## Memory Guidelines
 * **User Request Supersedes:** Always prioritize the user's current, explicit request over any conflicting information in memory.
