@@ -204,3 +204,14 @@ var year = DateOnlyInterval.CreateClosed(start, end);
 var other = DateOnlyInterval.CreateClosed(new DateOnly(2023, 6, 1), new DateOnly(2023, 8, 31));
 year.Covers(other); // returns true
 ```
+
+### TimeOnly Interval Example
+
+```csharp
+var morningStart = new TimeOnly(8, 0);
+var morningEnd = new TimeOnly(12, 0);
+var morning = TimeOnlyInterval.CreateClosed(morningStart, morningEnd);
+
+var workDay = TimeOnlyInterval.CreateClosed(new TimeOnly(8, 0), new TimeOnly(17, 0));
+workDay.Covers(morning); // returns true
+```
