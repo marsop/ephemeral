@@ -34,6 +34,17 @@ These utility classes extend `FullInterval` to offer standard duration logic rig
 
 Here are graphical representations of common interval operations over the real line (using `DoubleInterval`).
 
+### `IsEquivalentIntervalTo()`
+Checks if two intervals have exactly the same start, end, and boundary inclusion types.
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======================]  (A = [2, 8])
+Interval B:         [=======================]  (B = [2, 8])
+
+A.IsEquivalentIntervalTo(B) ->  true
+```
+
 ### `Covers()`
 Checks if an interval completely contains another interval (or point).
 ```text
