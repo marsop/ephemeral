@@ -215,3 +215,13 @@ var morning = TimeOnlyInterval.CreateClosed(morningStart, morningEnd);
 var workDay = TimeOnlyInterval.CreateClosed(new TimeOnly(8, 0), new TimeOnly(17, 0));
 workDay.Covers(morning); // returns true
 ```
+
+### Generic Basic Interval Example
+
+```csharp
+var stringInterval = new BasicInterval<string>("apple", "orange", true, true);
+var otherStringInterval = new BasicInterval<string>("banana", "pear", true, true);
+
+stringInterval.Covers("cherry"); // returns true
+stringInterval.Intersects(otherStringInterval); // returns true
+```
