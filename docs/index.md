@@ -123,6 +123,19 @@ Interval B:                 [=======]          (B = [4, 6])
 A.StartsBefore(B) -> true
 ```
 
+### `IsEquivalentIntervalTo()`
+Checks if two intervals are equivalent (have the same boundaries and inclusion rules).
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+Interval B:         [=======]                  (B = [2, 4])
+Interval C:         [=======)                  (C = [2, 4))
+
+A.IsEquivalentIntervalTo(B) -> true
+A.IsEquivalentIntervalTo(C) -> false
+```
+
 ### `Shift()`
 Shifts an interval by a given duration/offset.
 ```text
