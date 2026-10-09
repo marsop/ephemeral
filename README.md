@@ -110,6 +110,17 @@ Interval B:         [=======)                  (B = [2, 4))
 A.IsContiguouslyPrecededBy(B) -> true
 ```
 
+### `IsEquivalentIntervalTo()`
+Checks if two intervals have the exact same boundaries and inclusivity.
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+Interval B:         [=======]                  (B = [2, 4])
+
+A.IsEquivalentIntervalTo(B) -> true
+```
+
 ### `StartsBefore()`
 Checks if an interval starts before another interval.
 ```text
