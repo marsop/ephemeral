@@ -5,6 +5,7 @@
 * The project is a .NET solution. Use `dotnet build` to build the codebase and `dotnet test` to run the test suite.
 * The project uses MkDocs for documentation, configured via `mkdocs.yml` with source files located in the `docs` directory.
 * The files `docs/index.md` and `README.md` contain shared content (such as coding examples). When making documentation improvements, ensure changes are applied identically to both files to keep them synchronized.
+* When updating documentation with ASCII art interval diagrams (e.g., in `README.md` or `docs/index.md`), meticulously verify that the visual alignment of the interval characters (like `[=======]`) physically matches the correct boundary values on the 'Real Line'.
 
 ## Frameworks and Compatibility
 * The core libraries intentionally target older frameworks for backward compatibility (`Marsop.Ephemeral` targets `netstandard2.0`, `Marsop.Ephemeral.Net6` targets `net6.0`), while testing projects target newer frameworks like `net10.0`.
