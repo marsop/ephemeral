@@ -155,6 +155,16 @@ Interval A:         [=======]                  (A = [2, 4])
 A.Shift(4)      ->                  [=======]  ([6, 8])
 ```
 
+### `ShiftStart()`
+Shifts only the start of an interval by a given duration/offset.
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+
+A.ShiftStart(2) ->                  []         ([4, 4])
+```
+
 ### `LengthOfIntersect()`
 Calculates the length of the intersection between two intervals.
 ```text
