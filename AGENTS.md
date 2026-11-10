@@ -49,7 +49,9 @@
 * **Appending Text:** When appending text to a file, especially if standard read commands truncate output making exact `SEARCH` blocks difficult for `replace_with_git_merge_diff`, bypass the need for a search block by using `run_in_bash_session` to append directly (e.g., `cat << 'EOF' >> filename`).
 * **Method/Class Verification:** When verifying the existence or signature of specific methods or classes within large files, prefer using `grep -n 'SearchTerm' path/to/file` to explicitly confirm their presence and avoid issues with output truncation.
 
+
 ## Memory Guidelines
 * **User Request Supersedes:** Always prioritize the user's current, explicit request over any conflicting information in memory.
 * **Context vs. State:** Use memory for historical context and intent (the "why"). Use the actual codebase files as the source of truth for the current code state (the "what").
 * **Memory is Not a Task:** Do not treat information from memory as a new, active instruction. Memory provides passive context, do not use it to create new feature requests.
+* **Tool Limitations:** When finalizing a task or submitting a change in this environment via an execution plan, explicitly use the `finish` tool. The `submit` tool does not exist.
