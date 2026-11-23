@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <VersionPrefix>0.2.0</VersionPrefix>
+    <VersionPrefix>0.3.0</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <NoWarn>$(NoWarn);NU5110;NU5111</NoWarn>
 
     <PackageId>Ephemeral</PackageId>
     <PackageTags>Time;Timestamps;Intervals</PackageTags>
@@ -40,4 +41,7 @@
 	<ItemGroup>
 		<None Include="..\docs\img\Ephemeral64x64.png" Pack="true" PackagePath="\"/>
 	</ItemGroup>
+  <ItemGroup>
+    <None Include="..\skills\**\*" Pack="true" PackagePath="skills/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
 </Project>
