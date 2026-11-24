@@ -2,6 +2,8 @@
 
 # ephemeral
 
+![Nuget](https://img.shields.io/nuget/v/ephemeral?style=for-the-badge)
+
 ![](img/EphemeralLogoCropped.png)
 
 C# Library to handle intervals (composite start and end)
