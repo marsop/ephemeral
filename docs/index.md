@@ -1,6 +1,6 @@
 <link rel="shortcut icon" type="image/x-icon" href="{{ site.baseurl }}/img/favicon.ico">
 
-# ephemeral
+# Ephemeral
 
 ![Nuget](https://img.shields.io/nuget/v/ephemeral?style=for-the-badge)
 
@@ -15,9 +15,16 @@ C# Library to handle intervals (composite start and end)
 - Support for disjoint collections of intervals via `DisjointIntervalSet`.
 - Makes use of Optional to avoid returning `null` in many of the built-in operations.
 
-A new version (1.0) of this library including generic intervals has been released. See more info at [Changelog](https://github.com/marsop/ephemeral/blob/master/CHANGELOG.md)
+A new version (1.0) of this library including generic intervals has been released. See more info at [Changelog](https://github.com/marsop/ephemeral/blob/master/CHANGELOG.md).
 
-Please check all the available options in the [Methods Section](methods.md).
+The documentation is split into four core sections:
+
+1. **[Basic Intervals](basic-intervals.md)**: Introduction to `IBasicInterval<TBoundary>`, `BasicInterval<TBoundary>`, and boundary methods (`Covers`, `Intersects`, `Intersect`, `Join`, `IsContiguouslyFollowedBy`, `StartsBefore`, etc.).
+2. **[Full Intervals](full-intervals.md)**: Introduction to `FullInterval<TBoundary, TLength>`, metric measurement via `ILengthOperator`, standard classes (`DateTimeOffsetInterval`, `IntInterval`, `DoubleInterval`, `DateOnlyInterval`, `TimeOnlyInterval`), and all length methods (`DefaultMeasure`, `Shift`, `Subtract`, `Partition`, etc.).
+3. **[Interval Sets](interval-sets/index.md)**: Management of ordered, non-overlapping collections via `DisjointIntervalSet<TBoundary, TLength>`, set consolidation, and set arithmetic.
+4. **[Custom Intervals](custom-intervals.md)**: Comprehensive guide and architectural considerations for creating custom interval types and custom length operators.
+
+You can also check the [Methods Reference](methods.md).
 
 This documentation is hosted at [albertogregorio.com/ephemeral](https://albertogregorio.com/ephemeral).
 

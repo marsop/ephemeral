@@ -6,12 +6,14 @@ site_author: Alberto Gregorio
 
 nav:
   - Home: index.md
-  - Methods: methods.md
-  - Advanced Topics:
-      - Interval Sets: interval-sets/index.md
+  - Basic Intervals: basic-intervals.md
+  - Full Intervals: full-intervals.md
+  - Interval Sets:
+      - Overview: interval-sets/index.md
       - Consolidate: interval-sets/consolidate.md
       - Covers: interval-sets/covers.md
       - Intersect: interval-sets/intersect.md
       - Join: interval-sets/join.md
       - GetBoundingInterval: interval-sets/get-bounding-interval.md
+  - Custom Intervals: custom-intervals.md
   - Changelog: https://github.com/marsop/ephemeral/blob/master/CHANGELOG.md

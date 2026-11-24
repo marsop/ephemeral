@@ -86,5 +86,8 @@ Ephemeral provides dedicated extension methods for `IDisjointIntervalSet<TBounda
 
 ## See Also
 
+- [Basic Intervals](../basic-intervals.md)
+- [Full Intervals](../full-intervals.md)
+- [Custom Intervals](../custom-intervals.md)
 - [Methods Overview](../methods.md)
 - [Home](../index.md)

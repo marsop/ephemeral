@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Split documentation into four core sections in MkDocs: Basic Intervals (`basic-intervals.md`), Full Intervals (`full-intervals.md`), Interval Sets (`interval-sets/index.md`), and Custom Intervals (`custom-intervals.md`).
+- Guide for authoring custom intervals and custom `ILengthOperator` implementations (`custom-intervals.md`).
+
+### Changed
+- Synchronized documentation homepage (`docs/index.md`) and repository `README.md` with links to all four documentation sections and the changelog.
+- Reorganized MkDocs navigation structure and methods reference.
+
+## [0.3.1] - 2026-11-24
+
+### Added
 - `Partition` method on basic and full intervals (`IBasicInterval<TBoundary>`, `FullInterval<TBoundary, TLength>`) allowing splitting intervals into contiguous sub-intervals of equal length.
 - Advanced topics documentation for Disjoint Interval Sets (`IDisjointIntervalSet`, `DisjointIntervalSet`) and individual dedicated documentation pages for each set method (`Consolidate`, `Covers`, `Intersect`, `Join`, `GetBoundingInterval`).
 - Comprehensive documentation and guides explaining Basic Intervals (`IBasicInterval<TBoundary>`) versus Full Intervals (`FullInterval<TBoundary, TLength>`), interval length measurement (`DefaultMeasure()`, `Measure()`), and generic basic interval usage.
@@ -53,7 +63,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial interval operations including overlapping, unions, and intersections on `DateTimeOffset` types.
 - DisjointIntervalSet implementation.
 
-[Unreleased]: https://github.com/marsop/ephemeral/compare/0.3.0...HEAD
+[Unreleased]: https://github.com/marsop/ephemeral/compare/0.3.1...HEAD
+[0.3.1]: https://github.com/marsop/ephemeral/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/marsop/ephemeral/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/marsop/ephemeral/compare/v0.1.10...0.2.0
 [0.1.10]: https://github.com/marsop/ephemeral/releases/tag/v0.1.10
