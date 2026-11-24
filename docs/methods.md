@@ -13,7 +13,7 @@ The following methods are implemented as extension methods to be able to use the
   - Creates a new Set with the minimum number of intervals inside (merges together intervals that are continguous)
 - `GetBoundingInterval() : BasicMeasuredInterval<TBoundary, TLength>`
 
-## Methods available from `IBasicInterval<TBoundary>`
+## Methods available from `IBasicInterval<TBoundary>` (Basic Intervals)
 
 - `Measure(measurer: ILengthOperator<TBoundary, TLength>): TLength`
 - `WithMeasure(measurer: ILengthOperator<TBoundary, TLength>): BasicMeasuredInterval<TBoundary, TLength>`
@@ -33,8 +33,9 @@ The following methods are implemented as extension methods to be able to use the
 - `Subtract(i: IBasicInterval<TBoundary>, measurer: ILengthOperator<TBoundary, TLength>) : DisjointIntervalSet<TBoundary, TLength>`
 - `Union(i: IBasicInterval<TBoundary>, measurer: ILengthOperator<TBoundary, TLength>) : DisjointIntervalSet<TBoundary, TLength>`
 
-## Methods available from `IInterval<TBoundary, TLength>`
+## Methods available from `FullInterval<TBoundary, TLength>` (Full Intervals)
 
+- `DefaultMeasure() : TLength`
 - `Shift(offset: TLength): BasicMeasuredInterval<TBoundary, TLength>`
 - `ShiftStart(offset: TLength): BasicMeasuredInterval<TBoundary, TLength>`
 - `ShiftEnd(offset: TLength): BasicMeasuredInterval<TBoundary, TLength>`

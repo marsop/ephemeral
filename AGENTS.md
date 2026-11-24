@@ -4,7 +4,7 @@
 * The repository is a C# class library named Ephemeral, designed to handle open/closed intervals using generic types (e.g., `BasicInterval<TBoundary>`) and specialized utility classes (e.g., `DateTimeOffsetInterval`, `IntInterval`).
 * The project is a .NET solution. Use `dotnet build` to build the codebase and `dotnet test` to run the test suite.
 * The project uses MkDocs for documentation, configured via `mkdocs.yml` with source files located in the `docs` directory.
-* The files `docs/index.md` and `README.md` contain shared content (such as coding examples). When making documentation improvements, ensure changes are applied identically to both files to keep them synchronized.
+* The files `docs/index.md` and `README.md` contain shared content (such as coding examples, diagrams, and section explanations). When making documentation improvements, ensure shared content is kept synchronized manually between both files while preserving each file's environment-specific styles (e.g., `docs/index.md` retains MkDocs-specific tags and relative links like `methods.md`, while `README.md` retains GitHub root badges and repository links). Do not force byte-for-byte identity by altering site-specific headers or converting local relative links to external URLs.
 * When updating documentation with ASCII art interval diagrams (e.g., in `README.md` or `docs/index.md`), meticulously verify that the visual alignment of the interval characters (like `[=======]`) physically matches the correct boundary values on the 'Real Line'.
 
 ## Frameworks and Compatibility

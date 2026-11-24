@@ -1,4 +1,4 @@
-name: .NET 10
+name: Build Code
 
 on:
   push:

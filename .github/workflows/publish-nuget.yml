@@ -1,4 +1,4 @@
-name: publish to nuget
+name: Publish NuGet
 on:
   push:
     branches:
@@ -9,7 +9,7 @@ permissions:
   id-token: write
 jobs:
   publish:
-    name: build, pack & publish
+    name: Build, Pack & Publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -37,7 +37,7 @@ jobs:
         with:
           user: albertogregorio
 
-      - name: Publish to NuGet
+      - name: Publish NuGet
         run: |
           dotnet nuget push ./nupkg/*.nupkg \
             --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
