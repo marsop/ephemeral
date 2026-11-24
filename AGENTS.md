@@ -31,6 +31,7 @@
 
 ## Pull Requests and Changelog
 * Update the minor version and the changelog with each relevant PR. For example, if there is new functionality or something useful for the user has been done. If there is no new functionality, this is not required.
+* Maintain `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and Semantic Versioning: track pending changes under an `## [Unreleased]` section categorized by standard subsections (`### Added`, `### Changed`, `### Deprecated`, `### Removed`, `### Fixed`, `### Security`), and preserve version comparison link definitions at the bottom of the file.
 * Keep changes and pull requests focused to just one specific item or improvement per PR. For documentation tasks, this strictly means making exactly one incremental change (e.g., one new example, one better coding snippet, or one better description) per PR.
 * When submitting pull requests for testing improvements, ensure the PR title uses the format '🧪 [testing improvement description]' and structure the description strictly with '🎯 What', '📊 Coverage', and '✨ Result'.
 
