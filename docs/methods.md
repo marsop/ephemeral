@@ -34,6 +34,7 @@ For detailed concepts and invariants, see the [Interval Sets Overview](interval-
 - `Join(i: IBasicInterval<TBoundary>): BasicInterval<TBoundary>`
 - `Subtract(i: IBasicInterval<TBoundary>, measurer: ILengthOperator<TBoundary, TLength>) : DisjointIntervalSet<TBoundary, TLength>`
 - `Union(i: IBasicInterval<TBoundary>, measurer: ILengthOperator<TBoundary, TLength>) : DisjointIntervalSet<TBoundary, TLength>`
+- `Partition(step: TLength, measurer: ILengthOperator<TBoundary, TLength>, intermediateEndsClosed: bool = false): DisjointIntervalSet<TBoundary, TLength>`
 
 ## Methods available from `FullInterval<TBoundary, TLength>` (Full Intervals)
 
@@ -44,6 +45,7 @@ For detailed concepts and invariants, see the [Interval Sets Overview](interval-
 - `LengthOfIntersect(i: IBasicInterval<TBoundary>): TLength`
 - `Subtract(i: IBasicInterval<TBoundary>) : DisjointIntervalSet<TBoundary, TLength>`
 - `ToIntervalSet() : DisjointIntervalSet<TBoundary, TLength>`
+- `Partition(step: TLength, intermediateEndsClosed: bool = false): DisjointIntervalSet<TBoundary, TLength>`
 
 # Factory Methods
 

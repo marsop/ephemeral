@@ -14,4 +14,4 @@ nav:
       - Intersect: interval-sets/intersect.md
       - Join: interval-sets/join.md
       - GetBoundingInterval: interval-sets/get-bounding-interval.md
-  - Breaking Changes v1: changes-v1.md
+  - Changelog: https://github.com/marsop/ephemeral/blob/master/CHANGELOG.md

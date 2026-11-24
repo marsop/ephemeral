@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using Marsop.Ephemeral.Core;
+using Marsop.Ephemeral.Numerics;
 using Xunit;
 
 namespace Marsop.Ephemeral.Tests.Core.Extensions;
@@ -90,5 +91,102 @@ public class FullIntervalExtensionsTests
         result.StartIncluded.Should().Be(startIncluded);
         result.EndIncluded.Should().Be(endIncluded);
         result.DefaultMeasure().Should().Be(5);
+    }
+
+    [Fact]
+    public void Partition_NullInterval_ThrowsArgumentNullException()
+    {
+        // Arrange
+        FullInterval<int, int> interval = null!;
+
+        // Act
+        Action act = () => interval.Partition(5);
+
+        // Assert
+        act.Should().Throw<ArgumentNullException>().WithParameterName("interval");
+    }
+
+    [Fact]
+    public void Partition_DefaultIntermediateEndsClosed_PartitionsWithOpenIntermediateEnds()
+    {
+        // Arrange
+        var interval = new TestFullInterval(10, 28, true, true);
+
+        // Act
+        var result = interval.Partition(5);
+
+        // Assert
+        result.Should().HaveCount(4);
+        result.LengthOperator.Should().BeSameAs(interval.Operator);
+
+        result[0].Start.Should().Be(10);
+        result[0].End.Should().Be(15);
+        result[0].StartIncluded.Should().BeTrue();
+        result[0].EndIncluded.Should().BeFalse();
+
+        result[1].Start.Should().Be(15);
+        result[1].End.Should().Be(20);
+        result[1].StartIncluded.Should().BeTrue();
+        result[1].EndIncluded.Should().BeFalse();
+
+        result[2].Start.Should().Be(20);
+        result[2].End.Should().Be(25);
+        result[2].StartIncluded.Should().BeTrue();
+        result[2].EndIncluded.Should().BeFalse();
+
+        result[3].Start.Should().Be(25);
+        result[3].End.Should().Be(28);
+        result[3].StartIncluded.Should().BeTrue();
+        result[3].EndIncluded.Should().BeTrue();
+    }
+
+    [Fact]
+    public void Partition_IntermediateEndsClosedTrue_PartitionsWithClosedIntermediateEnds()
+    {
+        // Arrange
+        var interval = new TestFullInterval(10, 28, true, true);
+
+        // Act
+        var result = interval.Partition(5, intermediateEndsClosed: true);
+
+        // Assert
+        result.Should().HaveCount(4);
+
+        result[0].Start.Should().Be(10);
+        result[0].End.Should().Be(15);
+        result[0].StartIncluded.Should().BeTrue();
+        result[0].EndIncluded.Should().BeTrue();
+
+        result[1].Start.Should().Be(15);
+        result[1].End.Should().Be(20);
+        result[1].StartIncluded.Should().BeFalse();
+        result[1].EndIncluded.Should().BeTrue();
+
+        result[2].Start.Should().Be(20);
+        result[2].End.Should().Be(25);
+        result[2].StartIncluded.Should().BeFalse();
+        result[2].EndIncluded.Should().BeTrue();
+
+        result[3].Start.Should().Be(25);
+        result[3].End.Should().Be(28);
+        result[3].StartIncluded.Should().BeFalse();
+        result[3].EndIncluded.Should().BeTrue();
+    }
+
+    [Fact]
+    public void Partition_DoubleIntervalExampleFromIssue_ProducesExpectedChunks()
+    {
+        // Arrange
+        var i = DoubleInterval.CreateClosed(10.0, 28.0);
+
+        // Act
+        var result = i.Partition(5.0, intermediateEndsClosed: false);
+
+        // Assert
+        result.Should().HaveCount(4);
+        result[0].ToString().Should().Be("[10, 15)");
+        result[1].ToString().Should().Be("[15, 20)");
+        result[2].ToString().Should().Be("[20, 25)");
+        result[3].ToString().Should().Be("[25, 28]");
     }
 }

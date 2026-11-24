@@ -21,7 +21,7 @@ The API-documentation is hosted at [albertogregorio.com/ephemeral](https://alber
 Starting from version 1, Ephemeral introduces generic intervals allowing boundaries of any type that implements `IComparable<TBoundary>`. It defines two primary categories of intervals:
 
 - **Basic intervals** (`IBasicInterval<TBoundary>`, `BasicInterval<TBoundary>`): Work with any comparable type without requiring length metrics or arithmetic operators. They support boundary-based operations such as containment (`Covers`), overlaps (`Intersects`, `Intersect`), contiguous checks (`IsContiguouslyFollowedBy`, `IsContiguouslyPrecededBy`), and ordering (`StartsBefore`).
-- **Full intervals** (`FullInterval<TBoundary, TLength>`, `IHasLength<TLength>`): Extend basic intervals by incorporating length measurement (`TLength`) via an `ILengthOperator<TBoundary, TLength>`. They support length-dependent operations such as `DefaultMeasure()`, shifting (`Shift`, `ShiftStart`, `ShiftEnd`), intersection length (`LengthOfIntersect`), and subtraction (`Subtract`).
+- **Full intervals** (`FullInterval<TBoundary, TLength>`, `IHasLength<TLength>`): Extend basic intervals by incorporating length measurement (`TLength`) via an `ILengthOperator<TBoundary, TLength>`. They support length-dependent operations such as `DefaultMeasure()`, shifting (`Shift`, `ShiftStart`, `ShiftEnd`), partitioning (`Partition`), intersection length (`LengthOfIntersect`), and subtraction (`Subtract`).
 
 To facilitate migration, Ephemeral provides several utility classes corresponding to standard types that extend `FullInterval`:
 - `DateTimeOffsetInterval` (for `DateTimeOffset`, measured with `TimeSpan`)
@@ -238,6 +238,20 @@ Real Line:  0---1---2---3---4---5---6---7---8---9---10
 Interval A:         [===============]          (A = [2, 6])
 
 A.ShiftEnd(2)   ->  [=======================]  ([2, 8])
+```
+
+### `Partition()`
+*Requires: Full interval (`FullInterval<TBoundary, TLength>`), or a basic interval with an explicit `ILengthOperator`*
+
+Splits an interval into contiguous sub-intervals of a specified length (`DisjointIntervalSet`). Intermediate boundaries can be configured with `intermediateEndsClosed` (defaults to `false`, generating `[start, end)` intermediate intervals).
+```text
+Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======================]          (A = [2, 8])
+
+A.Partition(2) ->   [=======)                          ([2, 4))
+                            [=======)                  ([4, 6))
+                                    [=======]          ([6, 8])
 ```
 
 ### `LengthOfIntersect()`

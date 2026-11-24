@@ -85,4 +85,19 @@ public class BasicMeasuredIntervalTests
         measure.Should().Be(expectedMeasure);
         mockMeasureCalculator.Verify(m => m.Measure(interval), Times.Once);
     }
+
+    [Fact]
+    public void ToString_ReturnsExpectedTextualRepresentation()
+    {
+        // Arrange
+        var mockMeasureCalculator = new Mock<ICanMeasure<int, int>>();
+        var closedInterval = new BasicMeasuredInterval<int, int>(5, 10, true, true, mockMeasureCalculator.Object);
+        var openInterval = new BasicMeasuredInterval<int, int>(5, 10, false, false, mockMeasureCalculator.Object);
+        var halfOpenInterval = new BasicMeasuredInterval<int, int>(5, 10, true, false, mockMeasureCalculator.Object);
+
+        // Act & Assert
+        closedInterval.ToString().Should().Be("[5, 10]");
+        openInterval.ToString().Should().Be("(5, 10)");
+        halfOpenInterval.ToString().Should().Be("[5, 10)");
+    }
 }

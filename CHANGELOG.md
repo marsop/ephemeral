@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- `Partition` method on basic and full intervals (`IBasicInterval<TBoundary>`, `FullInterval<TBoundary, TLength>`) allowing splitting intervals into contiguous sub-intervals of equal length.
 - Advanced topics documentation for Disjoint Interval Sets (`IDisjointIntervalSet`, `DisjointIntervalSet`) and individual dedicated documentation pages for each set method (`Consolidate`, `Covers`, `Intersect`, `Join`, `GetBoundingInterval`).
 - Comprehensive documentation and guides explaining Basic Intervals (`IBasicInterval<TBoundary>`) versus Full Intervals (`FullInterval<TBoundary, TLength>`), interval length measurement (`DefaultMeasure()`, `Measure()`), and generic basic interval usage.
 - NuGet package version badge to documentation homepage (`docs/index.md`).

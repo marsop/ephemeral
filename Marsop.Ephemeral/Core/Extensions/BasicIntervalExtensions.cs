@@ -397,4 +397,76 @@ public static class BasicIntervalExtensions
     {
         return new DisjointIntervalSet<TBoundary, TLength>(lengthOperator, i, j);
     }
+
+    /// <summary>
+    /// Partitions an interval into sub-intervals of a specified length.
+    /// </summary>
+    /// <typeparam name="TBoundary">The type of the interval boundaries.</typeparam>
+    /// <typeparam name="TLength">The type representing the length of intervals.</typeparam>
+    /// <param name="interval">The source <see cref="IBasicInterval{TBoundary}"/> instance.</param>
+    /// <param name="step">The length of each partition chunk.</param>
+    /// <param name="lengthOperator">The <see cref="ILengthOperator{TBoundary, TLength}"/> used to advance boundaries and measure intervals.</param>
+    /// <param name="intermediateEndsClosed">A flag indicating whether intermediate interval ends are closed (<c>true</c>) or open (<c>false</c>). Defaults to <c>false</c>.</param>
+    /// <returns>A <see cref="DisjointIntervalSet{TBoundary, TLength}"/> containing the partitioned sub-intervals.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="interval"/> or <paramref name="lengthOperator"/> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="step"/> does not advance the boundary forward.</exception>
+    public static DisjointIntervalSet<TBoundary, TLength> Partition<TBoundary, TLength>(
+        this IBasicInterval<TBoundary> interval,
+        TLength step,
+        ILengthOperator<TBoundary, TLength> lengthOperator,
+        bool intermediateEndsClosed = false)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        if (interval is null)
+        {
+            throw new ArgumentNullException(nameof(interval));
+        }
+
+        if (lengthOperator is null)
+        {
+            throw new ArgumentNullException(nameof(lengthOperator));
+        }
+
+        var testStep = lengthOperator.Apply(interval.Start, step);
+        if (testStep.IsLessOrEqualThan(interval.Start))
+        {
+            throw new ArgumentOutOfRangeException(nameof(step), "Partition step must be greater than zero.");
+        }
+
+        var result = new DisjointIntervalSet<TBoundary, TLength>(lengthOperator);
+
+        var currentStart = interval.Start;
+        var currentStartIncluded = interval.StartIncluded;
+
+        while (true)
+        {
+            var nextBoundary = lengthOperator.Apply(currentStart, step);
+            if (nextBoundary.IsLessThan(interval.End))
+            {
+                result.Add(
+                    new BasicInterval<TBoundary>(
+                        currentStart,
+                        nextBoundary,
+                        currentStartIncluded,
+                        intermediateEndsClosed)
+                    .WithMeasure(lengthOperator));
+
+                currentStart = nextBoundary;
+                currentStartIncluded = !intermediateEndsClosed;
+            }
+            else
+            {
+                result.Add(
+                    new BasicInterval<TBoundary>(
+                        currentStart,
+                        interval.End,
+                        currentStartIncluded,
+                        interval.EndIncluded)
+                    .WithMeasure(lengthOperator));
+                break;
+            }
+        }
+
+        return result;
+    }
 }

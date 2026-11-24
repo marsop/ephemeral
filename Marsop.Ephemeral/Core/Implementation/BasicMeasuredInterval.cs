@@ -29,4 +29,6 @@ public record BasicMeasuredInterval<TBoundary, TLength> :
     private readonly TLength _measure;
 
     public override TLength DefaultMeasure()  => _measure;
+
+    public override string ToString() => base.ToString();
 }
