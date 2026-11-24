@@ -4,14 +4,16 @@ The following methods are implemented as extension methods to be able to use the
 
 ## Methods available from `IDisjointIntervalSet<TBoundary, TLength>`
 
-- `Covers(t: TBoundary) : bool`
-- `Covers(i: IBasicInterval<TBoundary>) : bool`
-- `Join(s: IDisjointIntervalSet<TBoundary, TLength>) : DisjointIntervalSet<TBoundary, TLength>`
-- `Join(i: IBasicInterval<TBoundary>) : DisjointIntervalSet<TBoundary, TLength>`
-- `Intersect(i : IBasicInterval<TBoundary>) : DisjointIntervalSet<TBoundary, TLength>`
-- `Consolidate() : DisjointIntervalSet<TBoundary, TLength>`
-  - Creates a new Set with the minimum number of intervals inside (merges together intervals that are continguous)
-- `GetBoundingInterval() : BasicMeasuredInterval<TBoundary, TLength>`
+For detailed concepts and invariants, see the [Interval Sets Overview](interval-sets/index.md).
+
+- [`Covers(t: TBoundary) : bool`](interval-sets/covers.md)
+- [`Covers(i: IBasicInterval<TBoundary>) : bool`](interval-sets/covers.md)
+- [`Join(s: IDisjointIntervalSet<TBoundary, TLength>) : DisjointIntervalSet<TBoundary, TLength>`](interval-sets/join.md)
+- [`Join(i: IBasicInterval<TBoundary>) : DisjointIntervalSet<TBoundary, TLength>`](interval-sets/join.md)
+- [`Intersect(i : IBasicInterval<TBoundary>) : DisjointIntervalSet<TBoundary, TLength>`](interval-sets/intersect.md)
+- [`Consolidate() : DisjointIntervalSet<TBoundary, TLength>`](interval-sets/consolidate.md)
+  - Creates a new Set with the minimum number of intervals inside (merges together intervals that are contiguous)
+- [`GetBoundingInterval() : BasicMeasuredInterval<TBoundary, TLength>`](interval-sets/get-bounding-interval.md)
 
 ## Methods available from `IBasicInterval<TBoundary>` (Basic Intervals)
 
@@ -52,6 +54,8 @@ The following methods are implemented as extension methods to be able to use the
 - `CreatePoint(start)`
 
 ## `DisjointIntervalSet<TBoundary, TLength>`
+
+See [Interval Sets Guide](interval-sets/index.md) for full constructor and collection usage.
 
 - `DisjointIntervalSet(lengthOperator)`
 - `DisjointIntervalSet(lengthOperator, params intervals[])`

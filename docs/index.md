@@ -342,6 +342,20 @@ var workDay = TimeOnlyInterval.CreateClosed(new TimeOnly(8, 0), new TimeOnly(17,
 workDay.Covers(morning); // returns true
 ```
 
+## Advanced Topics: Interval Sets
+
+An **Interval Set** (`DisjointIntervalSet<TBoundary, TLength>`) represents an ordered collection of mutually disjoint (non-overlapping) intervals. It enforces that contained intervals cannot overlap (throwing `OverlapException` if an overlap is introduced) and automatically maintains intervals sorted by their start boundary.
+
+Interval sets are ideal for managing discontinuous ranges, such as available calendar time slots, non-overlapping shifts, or fragmented numeric intervals resulting from subtractions.
+
+Key capabilities include:
+- **Consolidation**: Merging contiguous adjacent intervals into a minimal continuous set (`Consolidate()`).
+- **Set Coverage**: Checking whether a point or an entire interval is covered across the set's segments (`Covers()`).
+- **Set Intersection & Joins**: Intersecting intervals against the set (`Intersect()`) or joining new intervals and sets (`Join()`).
+- **Bounding Interval**: Computing the minimal contiguous interval enclosing the entire set (`GetBoundingInterval()`).
+
+For the comprehensive guide, invariants, and dedicated pages for each method, see the [Interval Sets Documentation](interval-sets/index.md).
+
 ## Agent Skills
 
 Starting with version 0.3.0, the `Ephemeral` package includes AI agent skills following the [Agent Skills](https://agentskills.io) standard, packaged directly under `skills/` within the NuGet package. These skills provide instructions and detection tools to help AI coding assistants and developers discover and migrate interval logic to Ephemeral abstractions.
