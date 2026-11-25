@@ -79,8 +79,12 @@ namespace Marsop.Ephemeral.Tests.Temporal
             set = set.Join(i2);
             
             var bounding = set.GetBoundingInterval();
-            Assert.Equal(i1.Start, bounding.Start);
-            Assert.Equal(i2.End, bounding.End);
+            Assert.True(bounding.HasValue);
+            bounding.MatchSome(x =>
+            {
+                Assert.Equal(i1.Start, x.Start);
+                Assert.Equal(i2.End, x.End);
+            });
         }
 
         [Fact]

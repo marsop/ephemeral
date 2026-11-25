@@ -1,4 +1,5 @@
 using Marsop.Ephemeral.Core;
+using Marsop.Ephemeral.Net6.Core;
 
 namespace Marsop.Ephemeral.Net6.Temporal;
 
@@ -23,6 +24,7 @@ public sealed class DateOnlyDaysLengthOperator : ILengthOperator<DateOnly, int>
     /// <inheritdoc/>
     public int Measure(IBasicInterval<DateOnly> interval)
     {
+        interval.ValidateInterval();
         return (interval.End.ToDateTime(TimeOnly.MinValue) - interval.Start.ToDateTime(TimeOnly.MinValue)).Days;
     }
 

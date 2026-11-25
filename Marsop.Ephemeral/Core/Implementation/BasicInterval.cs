@@ -86,6 +86,11 @@ public record BasicInterval<TBoundary> :
 
     public static BasicInterval<TBoundary> From(IBasicInterval<TBoundary> interval)
     {
+        if (interval is null)
+        {
+            throw new ArgumentNullException(nameof(interval));
+        }
+
         return new BasicInterval<TBoundary>(
             interval.Start,
             interval.End,
@@ -97,5 +102,5 @@ public record BasicInterval<TBoundary> :
     /// Checks if the current <see cref="BasicInterval<>"/> has coherent starting and ending points
     /// </summary>
     /// <returns><code>true</code> if starting and ending points are valid, <code>false</code> otherwise</returns>
-    public bool IsValid => Start.IsLessThan(End) || Start.IsEqualTo(End) && StartIncluded && EndIncluded;
+    public bool IsValid => this.IsValidInterval();
 }

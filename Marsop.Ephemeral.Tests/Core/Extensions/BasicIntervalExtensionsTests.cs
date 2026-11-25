@@ -16,6 +16,133 @@ public class BasicIntervalExtensionsTests
         }
     }
 
+    private sealed class UncheckedInterval : IBasicInterval<int>
+    {
+        public UncheckedInterval(int start, int end, bool startIncluded, bool endIncluded)
+        {
+            Start = start;
+            End = end;
+            StartIncluded = startIncluded;
+            EndIncluded = endIncluded;
+        }
+
+        public int Start { get; }
+        public bool StartIncluded { get; }
+        public int End { get; }
+        public bool EndIncluded { get; }
+    }
+
+    [Fact]
+    public void IsValidInterval_NullInterval_ThrowsArgumentNullException()
+    {
+        IBasicInterval<int> interval = null!;
+        Action act = () => interval.IsValidInterval();
+        act.Should().Throw<ArgumentNullException>().WithParameterName("interval");
+    }
+
+    [Theory]
+    [InlineData(1, 5, true, true, true)]
+    [InlineData(1, 5, false, false, true)]
+    [InlineData(1, 5, true, false, true)]
+    [InlineData(1, 5, false, true, true)]
+    [InlineData(5, 5, true, true, true)]
+    [InlineData(10, 5, true, true, false)]
+    [InlineData(5, 5, false, false, false)]
+    [InlineData(5, 5, true, false, false)]
+    [InlineData(5, 5, false, true, false)]
+    public void IsValidInterval_VariousBoundaries_ReturnsExpectedResult(
+        int start,
+        int end,
+        bool startIncluded,
+        bool endIncluded,
+        bool expected)
+    {
+        var interval = new UncheckedInterval(start, end, startIncluded, endIncluded);
+        interval.IsValidInterval().Should().Be(expected);
+    }
+
+    public static TheoryData<IBasicInterval<int>> InvalidIntervals => new()
+    {
+        new UncheckedInterval(10, 5, true, true),
+        new UncheckedInterval(5, 5, false, false),
+        new UncheckedInterval(5, 5, true, false),
+        new UncheckedInterval(5, 5, false, true),
+    };
+
+    [Theory]
+    [MemberData(nameof(InvalidIntervals))]
+    public void Operations_InvalidPrimaryInterval_ThrowInvalidLengthException(IBasicInterval<int> invalid)
+    {
+        var valid = new TestBasicInterval(1, 10, true, true);
+        var op = IntDefaultLengthOperator.Instance;
+
+        ((Action)(() => invalid.Measure(op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.WithMeasure(op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.IsEquivalentIntervalTo(valid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.Covers(5))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.Covers(valid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.Shift(1, op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.ShiftStart(1, op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.ShiftEnd(1, op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.LengthOfIntersect(valid, op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.Intersect(valid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.Intersects(valid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.IsContiguouslyFollowedBy(valid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.IsContiguouslyPrecededBy(valid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.StartsBefore(valid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.Join(valid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.Subtract(valid, op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.Union(valid, op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => invalid.Partition(1, op))).Should().Throw<InvalidLengthException>();
+    }
+
+    [Theory]
+    [MemberData(nameof(InvalidIntervals))]
+    public void Operations_InvalidSecondaryInterval_ThrowInvalidLengthException(IBasicInterval<int> invalid)
+    {
+        var valid = new TestBasicInterval(1, 10, true, true);
+        var op = IntDefaultLengthOperator.Instance;
+
+        ((Action)(() => valid.IsEquivalentIntervalTo(invalid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.Covers(invalid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.LengthOfIntersect(invalid, op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.Intersect(invalid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.Intersects(invalid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.IsContiguouslyFollowedBy(invalid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.IsContiguouslyPrecededBy(invalid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.StartsBefore(invalid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.Join(invalid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.Subtract(invalid, op))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.Union(invalid, op))).Should().Throw<InvalidLengthException>();
+    }
+
+    [Fact]
+    public void Operations_NullArguments_ThrowArgumentNullException()
+    {
+        IBasicInterval<int> nullInterval = null!;
+        ILengthOperator<int, int> nullOp = null!;
+        var valid = new TestBasicInterval(1, 10, true, true);
+        var op = IntDefaultLengthOperator.Instance;
+
+        ((Action)(() => nullInterval.Shift(1, op))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => valid.Shift(1, null!))).Should().Throw<ArgumentNullException>().WithParameterName("lengthOperator");
+        ((Action)(() => nullInterval.ShiftStart(1, op))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => valid.ShiftStart(1, null!))).Should().Throw<ArgumentNullException>().WithParameterName("lengthOperator");
+        ((Action)(() => nullInterval.ShiftEnd(1, op))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => valid.ShiftEnd(1, null!))).Should().Throw<ArgumentNullException>().WithParameterName("lengthOperator");
+        ((Action)(() => valid.LengthOfIntersect(new TestBasicInterval(20, 30, true, true), nullOp))).Should().Throw<ArgumentNullException>().WithParameterName("measurer");
+        ((Action)(() => nullInterval.IsContiguouslyFollowedBy(valid))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => valid.IsContiguouslyFollowedBy(nullInterval))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => nullInterval.IsContiguouslyPrecededBy(valid))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => valid.IsContiguouslyPrecededBy(nullInterval))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => nullInterval.StartsBefore(valid))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => valid.StartsBefore(nullInterval))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => valid.Subtract(valid, nullOp))).Should().Throw<ArgumentNullException>().WithParameterName("lengthOperator");
+        ((Action)(() => nullInterval.Union(valid, op))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => valid.Union(nullInterval, op))).Should().Throw<ArgumentNullException>();
+        ((Action)(() => valid.Union(valid, nullOp))).Should().Throw<ArgumentNullException>().WithParameterName("lengthOperator");
+    }
+
     [Fact]
     public void Covers_Boundary_NullInterval_ThrowsArgumentNullException()
     {

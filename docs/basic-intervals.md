@@ -253,6 +253,13 @@ Interval B:                 [=======]          (B = [4, 6])
 A.StartsBefore(B) -> true
 ```
 
+#### `IsValidInterval()`
+Checks whether the interval satisfies the boundary invariant (`Start < End`, or `Start == End` with both boundaries included). Operations on `IBasicInterval<TBoundary>` validate this invariant and throw `InvalidLengthException` when violated.
+
+```csharp
+bool valid = interval.IsValidInterval();
+```
+
 #### `IsEquivalentIntervalTo(IBasicInterval<TBoundary> other)`
 Checks whether two intervals are mathematically identical (equal `Start`, `End`, `StartIncluded`, and `EndIncluded`).
 

@@ -1,11 +1,11 @@
 # GetBoundingInterval()
 
-The `GetBoundingInterval()` extension method returns the minimum interval that completely encloses all intervals contained within an `IDisjointIntervalSet<TBoundary, TLength>`.
+The `GetBoundingInterval()` extension method returns an `Option<BasicMeasuredInterval<TBoundary, TLength>>` containing the minimum interval that completely encloses all intervals contained within an `IDisjointIntervalSet<TBoundary, TLength>`, or `Option.None` if the set is empty.
 
 ## Method Signature
 
 ```csharp
-public static BasicMeasuredInterval<TBoundary, TLength> GetBoundingInterval<TBoundary, TLength>(
+public static Option<BasicMeasuredInterval<TBoundary, TLength>> GetBoundingInterval<TBoundary, TLength>(
     this IDisjointIntervalSet<TBoundary, TLength> s)
     where TBoundary : notnull, IComparable<TBoundary>;
 ```
@@ -13,9 +13,10 @@ public static BasicMeasuredInterval<TBoundary, TLength> GetBoundingInterval<TBou
 ## How It Works
 
 `GetBoundingInterval()` computes the smallest contiguous interval spanning from the earliest `Start` boundary to the latest `End` boundary across all intervals in the set:
-- The start boundary is `s.Start`, with inclusion determined by `s.Covers(s.Start)`.
+- If the set is empty (`s.Count == 0`), it returns `Option.None<BasicMeasuredInterval<TBoundary, TLength>>()`.
+- Otherwise, the start boundary is `s.Start`, with inclusion determined by `s.Covers(s.Start)`.
 - The end boundary is `s.End`, with inclusion determined by `s.Covers(s.End)`.
-- The returned interval is a `BasicMeasuredInterval<TBoundary, TLength>` measured by the set's `LengthOperator`.
+- The returned interval is a `BasicMeasuredInterval<TBoundary, TLength>` measured by the set's `LengthOperator`, wrapped in `Option.Some`.
 
 ```text
 Real Line:  0---1---2---3---4---5---6---7---8---9---10
@@ -23,7 +24,7 @@ Real Line:  0---1---2---3---4---5---6---7---8---9---10
 Set S:              [=======]       [=======]  ([2, 4] and [6, 8])
 
 S.GetBoundingInterval() ->
-                    [=======================]  ([2, 8])
+                    [=======================]  (Some([2, 8]))
 ```
 
 ## Example
@@ -32,6 +33,7 @@ S.GetBoundingInterval() ->
 using System;
 using Marsop.Ephemeral.Core;
 using Marsop.Ephemeral.Numerics;
+using Optional;
 
 var lengthOperator = IntDefaultLengthOperator.Instance;
 
@@ -42,14 +44,17 @@ var set = new DisjointIntervalSet<int, int>(
     IntInterval.CreateClosed(6, 8)
 );
 
-BasicMeasuredInterval<int, int> bounds = set.GetBoundingInterval();
+Option<BasicMeasuredInterval<int, int>> result = set.GetBoundingInterval();
 
-Console.WriteLine(bounds.Start); // 2
-Console.WriteLine(bounds.End);   // 8
-Console.WriteLine(bounds);       // [2, 8]
+result.MatchSome(bounds =>
+{
+    Console.WriteLine(bounds.Start); // 2
+    Console.WriteLine(bounds.End);   // 8
+    Console.WriteLine(bounds);       // [2, 8]
 
-// Because it is a measured interval, you can measure its total span
-int totalSpan = bounds.Measure(lengthOperator); // 6
+    // Because it is a measured interval, you can measure its total span
+    int totalSpan = bounds.Measure(lengthOperator); // 6
+});
 ```
 
 ## See Also

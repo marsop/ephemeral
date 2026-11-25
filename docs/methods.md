@@ -14,6 +14,7 @@ This page provides an index of methods available in Ephemeral, categorized by in
 See the [Basic Intervals Guide](basic-intervals.md) for full descriptions and visual diagrams.
 
 ### Pure Boundary Methods
+- `IsValidInterval() : bool`
 - `Covers(t: TBoundary) : bool`
 - `Covers(i: IBasicInterval<TBoundary>) : bool`
 - `Intersects(i: IBasicInterval<TBoundary>) : bool`
@@ -49,7 +50,7 @@ See the [Full Intervals Guide](full-intervals.md) for full descriptions and visu
 - `Subtract(i: IBasicInterval<TBoundary>) : DisjointIntervalSet<TBoundary, TLength>`
 - `ToIntervalSet() : DisjointIntervalSet<TBoundary, TLength>`
 - `Partition(step: TLength, intermediateEndsClosed: bool = false) : DisjointIntervalSet<TBoundary, TLength>`
-- *Inherited from `BasicInterval<TBoundary>`*: `Covers`, `Intersects`, `Intersect`, `Join`, `IsContiguouslyFollowedBy`, `IsContiguouslyPrecededBy`, `StartsBefore`, `IsEquivalentIntervalTo`.
+- *Inherited from `BasicInterval<TBoundary>`*: `IsValidInterval`, `Covers`, `Intersects`, `Intersect`, `Join`, `IsContiguouslyFollowedBy`, `IsContiguouslyPrecededBy`, `StartsBefore`, `IsEquivalentIntervalTo`.
 
 ---
 
@@ -63,7 +64,7 @@ See the [Interval Sets Guide](interval-sets/index.md) for concepts, invariants, 
 - [`Intersect(i: IBasicInterval<TBoundary>) : DisjointIntervalSet<TBoundary, TLength>`](interval-sets/intersect.md)
 - [`Join(i: IBasicInterval<TBoundary>) : DisjointIntervalSet<TBoundary, TLength>`](interval-sets/join.md)
 - [`Join(s: IDisjointIntervalSet<TBoundary, TLength>) : DisjointIntervalSet<TBoundary, TLength>`](interval-sets/join.md)
-- [`GetBoundingInterval() : BasicMeasuredInterval<TBoundary, TLength>`](interval-sets/get-bounding-interval.md)
+- [`GetBoundingInterval() : Option<BasicMeasuredInterval<TBoundary, TLength>>`](interval-sets/get-bounding-interval.md)
 
 ---
 

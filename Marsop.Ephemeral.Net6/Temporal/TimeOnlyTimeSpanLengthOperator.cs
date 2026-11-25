@@ -1,4 +1,5 @@
 using Marsop.Ephemeral.Core;
+using Marsop.Ephemeral.Net6.Core;
 
 namespace Marsop.Ephemeral.Net6.Temporal;
 
@@ -21,7 +22,11 @@ public sealed class TimeOnlyTimeSpanLengthOperator : ILengthOperator<TimeOnly, T
     public TimeOnly Apply(TimeOnly boundary, TimeSpan length) => boundary.Add(length);
 
     /// <inheritdoc/>
-    public TimeSpan Measure(IBasicInterval<TimeOnly> interval) => interval.End - interval.Start;
+    public TimeSpan Measure(IBasicInterval<TimeOnly> interval)
+    {
+        interval.ValidateInterval();
+        return interval.End - interval.Start;
+    }
 
     /// <inheritdoc/>
     public TimeSpan Zero() => TimeSpan.Zero;

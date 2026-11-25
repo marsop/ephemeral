@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-11-25
+
 ### Added
+- `IsValidInterval()` extension method on `IBasicInterval<TBoundary>` to check boundary invariants (`Start < End`, or `Start == End` with both boundaries included).
 - Split documentation into four core sections in MkDocs: Basic Intervals (`basic-intervals.md`), Full Intervals (`full-intervals.md`), Interval Sets (`interval-sets/index.md`), and Custom Intervals (`custom-intervals.md`).
 - Guide for authoring custom intervals and custom `ILengthOperator` implementations (`custom-intervals.md`).
 
 ### Changed
+- Enforced interval boundary invariant validation (`InvalidLengthException`) and null argument guards (`ArgumentNullException`) across `BasicIntervalExtensions`, `FullIntervalExtensions`, `IntervalSetExtensions`, `BasicInterval<TBoundary>.From`, `DisjointIntervalSet<TBoundary, TLength>.Add`, and built-in `ILengthOperator.Measure` implementations.
+- Changed `IntervalSetExtensions.GetBoundingInterval()` to return `Option<BasicMeasuredInterval<TBoundary, TLength>>` (`Option.None` when the set is empty).
 - Synchronized documentation homepage (`docs/index.md`) and repository `README.md` with links to all four documentation sections and the changelog.
 - Reorganized MkDocs navigation structure and methods reference.
 
@@ -63,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial interval operations including overlapping, unions, and intersections on `DateTimeOffset` types.
 - DisjointIntervalSet implementation.
 
-[Unreleased]: https://github.com/marsop/ephemeral/compare/0.3.1...HEAD
+[0.4.1]: https://github.com/marsop/ephemeral/compare/0.3.1...0.4.1
 [0.3.1]: https://github.com/marsop/ephemeral/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/marsop/ephemeral/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/marsop/ephemeral/compare/v0.1.10...0.2.0

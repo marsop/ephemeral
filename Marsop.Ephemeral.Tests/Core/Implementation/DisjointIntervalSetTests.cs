@@ -119,6 +119,41 @@ public class DisjointIntervalSetTests
         act.Should().Throw<ArgumentNullException>().WithParameterName("item");
     }
 
+    private sealed class UncheckedInterval : IBasicInterval<int>
+    {
+        public UncheckedInterval(int start, int end, bool startIncluded, bool endIncluded)
+        {
+            Start = start;
+            End = end;
+            StartIncluded = startIncluded;
+            EndIncluded = endIncluded;
+        }
+
+        public int Start { get; }
+        public bool StartIncluded { get; }
+        public int End { get; }
+        public bool EndIncluded { get; }
+    }
+
+    [Fact]
+    public void Add_InvalidIntervalToEmptySet_ThrowsInvalidLengthException()
+    {
+        var set = new DisjointIntervalSet<int, int>(Operator);
+        var invalid = new UncheckedInterval(10, 5, true, true);
+
+        Action act = () => set.Add(invalid);
+        act.Should().Throw<InvalidLengthException>();
+    }
+
+    [Fact]
+    public void Constructor_InvalidInterval_ThrowsInvalidLengthException()
+    {
+        var invalid = new UncheckedInterval(5, 5, true, false);
+
+        Action act = () => new DisjointIntervalSet<int, int>(Operator, invalid);
+        act.Should().Throw<InvalidLengthException>();
+    }
+
     [Fact]
     public void Add_OverlappingItem_ThrowsOverlapException()
     {

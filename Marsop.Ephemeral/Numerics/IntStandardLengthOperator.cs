@@ -24,7 +24,11 @@ public sealed class IntDefaultLengthOperator :
     public int Apply(int boundary, int length) => boundary + length;
 
     /// <inheritdoc/>
-    public int Measure(IBasicInterval<int> interval) => interval.End - interval.Start;
+    public int Measure(IBasicInterval<int> interval)
+    {
+        interval.ValidateInterval();
+        return interval.End - interval.Start;
+    }
 
     /// <inheritdoc/>
     public int Zero() => 0;

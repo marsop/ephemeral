@@ -189,4 +189,44 @@ public class FullIntervalExtensionsTests
         result[2].ToString().Should().Be("[20, 25)");
         result[3].ToString().Should().Be("[25, 28]");
     }
+
+    private sealed class UncheckedInterval : IBasicInterval<int>
+    {
+        public UncheckedInterval(int start, int end, bool startIncluded, bool endIncluded)
+        {
+            Start = start;
+            End = end;
+            StartIncluded = startIncluded;
+            EndIncluded = endIncluded;
+        }
+
+        public int Start { get; }
+        public bool StartIncluded { get; }
+        public int End { get; }
+        public bool EndIncluded { get; }
+    }
+
+    [Fact]
+    public void Operations_NullFullInterval_ThrowArgumentNullException()
+    {
+        FullInterval<int, int> nullInterval = null!;
+        var valid = new TestFullInterval(1, 5, true, true);
+
+        ((Action)(() => nullInterval.Subtract(valid))).Should().Throw<ArgumentNullException>().WithParameterName("interval");
+        ((Action)(() => nullInterval.ToIntervalSet())).Should().Throw<ArgumentNullException>().WithParameterName("interval");
+        ((Action)(() => nullInterval.Shift(1))).Should().Throw<ArgumentNullException>().WithParameterName("interval");
+        ((Action)(() => nullInterval.ShiftStart(1))).Should().Throw<ArgumentNullException>().WithParameterName("interval");
+        ((Action)(() => nullInterval.ShiftEnd(1))).Should().Throw<ArgumentNullException>().WithParameterName("interval");
+        ((Action)(() => nullInterval.LengthOfIntersect(valid))).Should().Throw<ArgumentNullException>().WithParameterName("interval");
+    }
+
+    [Fact]
+    public void Operations_InvalidOtherInterval_ThrowInvalidLengthException()
+    {
+        var valid = new TestFullInterval(1, 5, true, true);
+        var invalid = new UncheckedInterval(10, 2, true, true);
+
+        ((Action)(() => valid.Subtract(invalid))).Should().Throw<InvalidLengthException>();
+        ((Action)(() => valid.LengthOfIntersect(invalid))).Should().Throw<InvalidLengthException>();
+    }
 }

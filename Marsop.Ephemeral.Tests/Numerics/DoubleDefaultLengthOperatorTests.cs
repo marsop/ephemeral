@@ -36,6 +36,24 @@ public class DoubleDefaultLengthOperatorTests
     }
 
     [Fact]
+    public void Measure_NullInterval_ThrowsArgumentNullException()
+    {
+        Action act = () => DoubleDefaultLengthOperator.Instance.Measure(null!);
+        act.Should().Throw<ArgumentNullException>().WithParameterName("interval");
+    }
+
+    [Fact]
+    public void Measure_InvalidInterval_ThrowsInvalidLengthException()
+    {
+        var intervalMock = new Mock<IBasicInterval<double>>();
+        intervalMock.Setup(i => i.Start).Returns(7.5);
+        intervalMock.Setup(i => i.End).Returns(2.0);
+
+        Action act = () => DoubleDefaultLengthOperator.Instance.Measure(intervalMock.Object);
+        act.Should().Throw<InvalidLengthException>();
+    }
+
+    [Fact]
     public void Zero_ShouldReturnZero()
     {
         var result = DoubleDefaultLengthOperator.Instance.Zero();

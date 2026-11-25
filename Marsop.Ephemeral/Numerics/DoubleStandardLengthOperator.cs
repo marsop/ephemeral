@@ -24,7 +24,11 @@ public sealed class DoubleDefaultLengthOperator :
     public double Apply(double boundary, double length) => boundary + length;
 
     /// <inheritdoc/>
-    public double Measure(IBasicInterval<double> interval) => interval.End - interval.Start;
+    public double Measure(IBasicInterval<double> interval)
+    {
+        interval.ValidateInterval();
+        return interval.End - interval.Start;
+    }
 
     /// <inheritdoc/>
     public double Zero() => 0.0;

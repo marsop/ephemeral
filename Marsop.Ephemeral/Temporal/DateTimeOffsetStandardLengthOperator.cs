@@ -25,7 +25,11 @@ public sealed class DateTimeOffsetTimeSpanLengthOperator :
     public DateTimeOffset Apply(DateTimeOffset boundary, TimeSpan length) => boundary.Add(length);
 
     /// <inheritdoc/>
-    public TimeSpan Measure(IBasicInterval<DateTimeOffset> interval) => interval.End - interval.Start;
+    public TimeSpan Measure(IBasicInterval<DateTimeOffset> interval)
+    {
+        interval.ValidateInterval();
+        return interval.End - interval.Start;
+    }
 
     /// <inheritdoc/>
     public TimeSpan Zero() => TimeSpan.Zero;

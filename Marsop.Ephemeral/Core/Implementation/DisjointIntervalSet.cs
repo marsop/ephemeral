@@ -113,6 +113,7 @@ public class DisjointIntervalSet<TBoundary, TLength> :
 
     /// <inheritdoc cref="ICollection{T}.Add"/>
     /// <exception cref="ArgumentNullException">an exception is thrown if given interval is <code>null</code></exception>
+    /// <exception cref="InvalidLengthException">an exception is thrown if given interval violates boundary invariants</exception>
     /// <exception cref="OverlapException">an exception is thrown if given interval overlaps another interval</exception>
     public void Add(IBasicInterval<TBoundary> item)
     {
@@ -120,6 +121,8 @@ public class DisjointIntervalSet<TBoundary, TLength> :
         {
             throw new ArgumentNullException(nameof(item));
         }
+
+        item.ValidateInterval();
 
         if (this.Any(x => x.Intersects(item)))
         {

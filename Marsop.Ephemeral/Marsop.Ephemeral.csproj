@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <VersionPrefix>0.4.0</VersionPrefix>
+    <VersionPrefix>0.4.1</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
     <NoWarn>$(NoWarn);NU5110;NU5111</NoWarn>
 

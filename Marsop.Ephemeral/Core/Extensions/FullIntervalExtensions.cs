@@ -9,6 +9,9 @@ public static class FullIntervalExtensions
         IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+        other.ValidateInterval();
+
         return new(interval.Operator, [.. BasicIntervalExtensions.Subtract(interval, other, interval.Operator)]);
     }
 
@@ -16,6 +19,8 @@ public static class FullIntervalExtensions
         this FullInterval<TBoundary, TLength> interval)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+
         return new(interval.Operator, [interval]);
     }
 
@@ -24,6 +29,8 @@ public static class FullIntervalExtensions
         TLength offset)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+
         return BasicIntervalExtensions
             .Shift(interval, offset, interval.Operator)
             .WithMeasure(interval.Operator);
@@ -34,6 +41,8 @@ public static class FullIntervalExtensions
         TLength offset)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+
         return BasicIntervalExtensions
             .ShiftStart(interval, offset, interval.Operator)
             .WithMeasure(interval.Operator);
@@ -44,6 +53,8 @@ public static class FullIntervalExtensions
         TLength offset)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+
         return BasicIntervalExtensions
             .ShiftEnd(interval, offset, interval.Operator)
             .WithMeasure(interval.Operator);
@@ -54,6 +65,9 @@ public static class FullIntervalExtensions
         IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+        other.ValidateInterval();
+
         return BasicIntervalExtensions.LengthOfIntersect(interval, other, interval.Operator);
     }
 
@@ -74,10 +88,7 @@ public static class FullIntervalExtensions
         bool intermediateEndsClosed = false)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        if (interval is null)
-        {
-            throw new ArgumentNullException(nameof(interval));
-        }
+        interval.ValidateInterval();
 
         return BasicIntervalExtensions.Partition(interval, step, interval.Operator, intermediateEndsClosed);
     }

@@ -10,12 +10,50 @@ namespace Marsop.Ephemeral.Core;
 
 public static class BasicIntervalExtensions
 {
+    /// <summary>
+    /// Checks whether the interval satisfies the boundary invariant
+    /// (<c>Start &lt; End</c>, or <c>Start == End</c> with both boundaries included).
+    /// </summary>
+    /// <typeparam name="TBoundary">The type of the interval boundaries.</typeparam>
+    /// <param name="interval">The <see cref="IBasicInterval{TBoundary}"/> instance to validate.</param>
+    /// <returns><c>true</c> if the interval is valid; otherwise, <c>false</c>.</returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="interval"/> is <c>null</c>.</exception>
+    public static bool IsValidInterval<TBoundary>(
+        this IBasicInterval<TBoundary> interval)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        if (interval is null)
+        {
+            throw new ArgumentNullException(nameof(interval));
+        }
+
+        return interval.Start.IsLessThan(interval.End)
+            || (interval.Start.IsEqualTo(interval.End) && interval.StartIncluded && interval.EndIncluded);
+    }
+
+    internal static void ValidateInterval<TBoundary>(
+        this IBasicInterval<TBoundary> interval)
+        where TBoundary : notnull, IComparable<TBoundary>
+    {
+        if (interval is null)
+        {
+            throw new ArgumentNullException(nameof(interval));
+        }
+
+        if (!interval.IsValidInterval())
+        {
+            var startDelimiter = interval.StartIncluded ? "[" : "(";
+            var endDelimiter = interval.EndIncluded ? "]" : ")";
+            throw new InvalidLengthException($"{startDelimiter}{interval.Start}, {interval.End}{endDelimiter}");
+        }
+    }
+
     public static TLength Measure<TBoundary, TLength>(
         this IBasicInterval<TBoundary> interval,
         ICanMeasure<TBoundary, TLength> measurer)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        if (interval is null) throw new ArgumentNullException(nameof(interval));
+        interval.ValidateInterval();
         if (measurer is null) throw new ArgumentNullException(nameof(measurer));
 
         return measurer.Measure(interval);
@@ -27,7 +65,7 @@ public static class BasicIntervalExtensions
         ICanMeasure<TBoundary, TLength> measurer)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        if (interval is null) throw new ArgumentNullException(nameof(interval));
+        interval.ValidateInterval();
         if (measurer is null) throw new ArgumentNullException(nameof(measurer));
 
         return new BasicMeasuredInterval<TBoundary, TLength>(
@@ -44,15 +82,8 @@ public static class BasicIntervalExtensions
         IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        if (interval is null)
-        {
-            throw new ArgumentNullException(nameof(interval));
-        }
-
-        if (other is null)
-        {
-            throw new ArgumentNullException(nameof(other));
-        }
+        interval.ValidateInterval();
+        other.ValidateInterval();
 
         return EqualityComparer<TBoundary>.Default.Equals(interval.Start, other.Start) &&
                EqualityComparer<TBoundary>.Default.Equals(interval.End, other.End) &&
@@ -72,7 +103,7 @@ public static class BasicIntervalExtensions
         TBoundary boundary)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        if (interval is null) throw new ArgumentNullException(nameof(interval));
+        interval.ValidateInterval();
 
         if (boundary.IsLessThan(interval.Start))
         {
@@ -109,6 +140,9 @@ public static class BasicIntervalExtensions
         ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+        if (lengthOperator is null) throw new ArgumentNullException(nameof(lengthOperator));
+
         var newStart = lengthOperator.Apply(interval.Start, shiftLength);
         var newEnd = lengthOperator.Apply(interval.End, shiftLength);
 
@@ -127,6 +161,9 @@ public static class BasicIntervalExtensions
         ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+        if (lengthOperator is null) throw new ArgumentNullException(nameof(lengthOperator));
+
         var newStart = lengthOperator.Apply(interval.Start, shiftLength);
 
         return new BasicInterval<TBoundary>(newStart, interval.End, interval.StartIncluded, interval.EndIncluded);
@@ -144,6 +181,9 @@ public static class BasicIntervalExtensions
         ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+        if (lengthOperator is null) throw new ArgumentNullException(nameof(lengthOperator));
+
         var newEnd = lengthOperator.Apply(interval.End, shiftLength);
 
         return new BasicInterval<TBoundary>(interval.Start, newEnd, interval.StartIncluded, interval.EndIncluded);
@@ -160,6 +200,9 @@ public static class BasicIntervalExtensions
          IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+        other.ValidateInterval();
+
         return interval
         .Intersect(other)
         .Match(
@@ -180,6 +223,10 @@ public static class BasicIntervalExtensions
         ICanMeasure<TBoundary, TLength> measurer)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+        other.ValidateInterval();
+        if (measurer is null) throw new ArgumentNullException(nameof(measurer));
+
         return interval
         .Intersect(other)
         .Map(measurer.Measure)
@@ -197,15 +244,8 @@ public static class BasicIntervalExtensions
         IBasicInterval<TBoundary> second)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        if (first is null)
-        {
-            throw new ArgumentNullException(nameof(first));
-        }
-
-        if (second is null)
-        {
-            throw new ArgumentNullException(nameof(second));
-        }
+        first.ValidateInterval();
+        second.ValidateInterval();
 
         var maxStart = first.Start.IsLessThan(second.Start) ? second.Start : first.Start;
         var minEnd = first.End.IsLessThan(second.End) ? first.End : second.End;
@@ -251,6 +291,9 @@ public static class BasicIntervalExtensions
         IBasicInterval<TBoundary> second)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        first.ValidateInterval();
+        second.ValidateInterval();
+
         return first.End.IsEqualTo(second.Start) && first.EndIncluded != second.StartIncluded;
     }
 
@@ -265,6 +308,9 @@ public static class BasicIntervalExtensions
         IBasicInterval<TBoundary> second)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        first.ValidateInterval();
+        second.ValidateInterval();
+
         return second.IsContiguouslyFollowedBy(first);
     }
 
@@ -279,6 +325,9 @@ public static class BasicIntervalExtensions
         IBasicInterval<TBoundary> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        interval.ValidateInterval();
+        other.ValidateInterval();
+
         return interval.Start.IsLessThan(other.Start) || interval.Start.IsEqualTo(other.Start) && interval.StartIncluded && !other.StartIncluded;
     }
 
@@ -295,15 +344,8 @@ public static class BasicIntervalExtensions
         IBasicInterval<TBoundary> second)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        if (first is null)
-        {
-            throw new ArgumentNullException(nameof(first));
-        }
-
-        if (second is null)
-        {
-            throw new ArgumentNullException(nameof(second));
-        }
+        first.ValidateInterval();
+        second.ValidateInterval();
 
         if (second.StartsBefore(first))
         {
@@ -337,14 +379,11 @@ public static class BasicIntervalExtensions
         ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        if (source is null)
+        source.ValidateInterval();
+        subtraction.ValidateInterval();
+        if (lengthOperator is null)
         {
-            throw new ArgumentNullException(nameof(source));
-        }
-
-        if (subtraction is null)
-        {
-            throw new ArgumentNullException(nameof(subtraction));
+            throw new ArgumentNullException(nameof(lengthOperator));
         }
 
         if (!source.Intersects(subtraction))
@@ -395,6 +434,13 @@ public static class BasicIntervalExtensions
         ILengthOperator<TBoundary, TLength> lengthOperator)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        i.ValidateInterval();
+        j.ValidateInterval();
+        if (lengthOperator is null)
+        {
+            throw new ArgumentNullException(nameof(lengthOperator));
+        }
+
         return new DisjointIntervalSet<TBoundary, TLength>(lengthOperator, i, j);
     }
 
@@ -417,10 +463,7 @@ public static class BasicIntervalExtensions
         bool intermediateEndsClosed = false)
         where TBoundary : notnull, IComparable<TBoundary>
     {
-        if (interval is null)
-        {
-            throw new ArgumentNullException(nameof(interval));
-        }
+        interval.ValidateInterval();
 
         if (lengthOperator is null)
         {

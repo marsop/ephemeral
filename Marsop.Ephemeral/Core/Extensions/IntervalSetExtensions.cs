@@ -2,6 +2,7 @@
 //     https://github.com/marsop/ephemeral
 // </copyright>
 
+using Optional;
 using Optional.Collections;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,11 @@ public static class IntervalSetExtensions
         this IDisjointIntervalSet<TBoundary, TLength> set)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        if (set is null)
+        {
+            throw new ArgumentNullException(nameof(set));
+        }
+
         var result = new DisjointIntervalSet<TBoundary, TLength>(set.LengthOperator);
 
         if (set.Count > 0)
@@ -70,6 +76,11 @@ public static class IntervalSetExtensions
         TBoundary timestamp)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        if (set is null)
+        {
+            throw new ArgumentNullException(nameof(set));
+        }
+
         return set.Any(x => x.Covers(timestamp));
     }
 
@@ -84,6 +95,13 @@ public static class IntervalSetExtensions
         IBasicInterval<TBoundary> interval)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        if (set is null)
+        {
+            throw new ArgumentNullException(nameof(set));
+        }
+
+        interval.ValidateInterval();
+
         return set.Consolidate().Any(x => x.Covers(interval));
     }
 
@@ -98,6 +116,13 @@ public static class IntervalSetExtensions
         IBasicInterval<TBoundary> interval)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        if (set is null)
+        {
+            throw new ArgumentNullException(nameof(set));
+        }
+
+        interval.ValidateInterval();
+
         var intersections = set
             .Select(x => x.Intersect(interval))
             .Values()
@@ -117,6 +142,16 @@ public static class IntervalSetExtensions
         IDisjointIntervalSet<TBoundary, TLength> other)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        if (set is null)
+        {
+            throw new ArgumentNullException(nameof(set));
+        }
+
+        if (other is null)
+        {
+            throw new ArgumentNullException(nameof(other));
+        }
+
         var result = set.Consolidate();
 
         foreach (var interval in other)
@@ -131,13 +166,24 @@ public static class IntervalSetExtensions
     /// Gets the minimum interval that contains all the intervals of the set.
     /// </summary>
     /// <param name="s">the current <see cref="IDisjointIntervalSet{TBoundary, TLength}"/> instance</param>
-    /// <returns>a <see cref="StandardInterval"/> containing all intervals in the set</returns>
-    public static BasicMeasuredInterval<TBoundary, TLength> GetBoundingInterval<TBoundary, TLength>(
+    /// <returns>an <see cref="Option{T}"/> containing the bounding <see cref="BasicMeasuredInterval{TBoundary, TLength}"/> if the set is non-empty, or <see cref="Option.None{T}"/> if the set is empty</returns>
+    public static Option<BasicMeasuredInterval<TBoundary, TLength>> GetBoundingInterval<TBoundary, TLength>(
         this IDisjointIntervalSet<TBoundary, TLength> s)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        if (s is null)
+        {
+            throw new ArgumentNullException(nameof(s));
+        }
+
+        if (s.Count == 0)
+        {
+            return Option.None<BasicMeasuredInterval<TBoundary, TLength>>();
+        }
+
         return new BasicInterval<TBoundary>(s.Start, s.End, s.Covers(s.Start), s.Covers(s.End))
-            .WithMeasure(s.LengthOperator);
+            .WithMeasure(s.LengthOperator)
+            .Some();
     }
 
     /// <summary>
@@ -151,6 +197,13 @@ public static class IntervalSetExtensions
         IBasicInterval<TBoundary> interval)
         where TBoundary : notnull, IComparable<TBoundary>
     {
+        if (set is null)
+        {
+            throw new ArgumentNullException(nameof(set));
+        }
+
+        interval.ValidateInterval();
+
         var groups = set.GroupBy(val => val.Intersects(interval)).ToDictionary(g => g.Key, g => g.ToList());
 
         var nonOverlaps = groups.ContainsKey(false) ? groups[false] : new List<IBasicInterval<TBoundary>>();

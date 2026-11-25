@@ -82,7 +82,7 @@ Ephemeral provides dedicated extension methods for `IDisjointIntervalSet<TBounda
 - **[`Covers()`](covers.md)**: Checks if a point or interval is completely covered by the intervals in the set.
 - **[`Intersect()`](intersect.md)**: Computes the intersection between an interval and each interval in the set.
 - **[`Join()`](join.md)**: Merges an interval or another interval set into the set, combining overlapping intervals.
-- **[`GetBoundingInterval()`](get-bounding-interval.md)**: Returns the minimal interval spanning from the earliest start to the latest end of the set.
+- **[`GetBoundingInterval()`](get-bounding-interval.md)**: Returns an `Option` containing the minimal interval spanning from the earliest start to the latest end of the set, or `Option.None` when empty.
 
 ## See Also
 
