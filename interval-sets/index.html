@@ -1,0 +1,860 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Alberto Gregorio">
+      
+      
+        <link rel="canonical" href="https://albertogregorio.com/ephemeral/interval-sets/">
+      
+      
+        <link rel="prev" href="../full-intervals/">
+      
+      
+        <link rel="next" href="consolidate/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Overview - Ephemeral</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#interval-sets-disjointintervalset" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ephemeral" class="md-header__button md-logo" aria-label="Ephemeral" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ephemeral
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/marsop/ephemeral/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ephemeral" class="md-nav__button md-logo" aria-label="Ephemeral" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Ephemeral
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/marsop/ephemeral/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-intervals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Intervals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../full-intervals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Intervals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Interval Sets
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Interval Sets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-characteristics-and-invariants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Characteristics and Invariants
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-an-interval-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an Interval Set
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating an Interval Set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-interval-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Interval Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collection-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collection Operations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="consolidate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Consolidate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="covers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Covers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="intersect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intersect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="join/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="get-bounding-interval/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GetBoundingInterval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-intervals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Intervals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/marsop/ephemeral/blob/master/CHANGELOG.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-characteristics-and-invariants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Characteristics and Invariants
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-an-interval-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an Interval Set
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating an Interval Set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-interval-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Interval Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collection-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collection Operations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      See Also
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="interval-sets-disjointintervalset">Interval Sets (<code>DisjointIntervalSet</code>)</h1>
+<p>An <strong>Interval Set</strong> (<code>IDisjointIntervalSet&lt;TBoundary, TLength&gt;</code>) represents an ordered collection of mutually disjoint (non-overlapping) intervals over a real line or timeline. In Ephemeral, the primary implementation is <code>DisjointIntervalSet&lt;TBoundary, TLength&gt;</code>.</p>
+<p>Interval sets are particularly useful for modeling scenarios where time or numeric ranges are fragmented, such as:
+- Available time slots on a calendar or booking system.
+- Discontinuous working shifts or operating hours.
+- Sparse numeric coverage and multi-segment ranges.
+- Computing remaining intervals after subtracting busy periods.</p>
+<h2 id="core-characteristics-and-invariants">Core Characteristics and Invariants</h2>
+<ol>
+<li><strong>Disjointness Invariant</strong>: At any time, no two intervals in the set may overlap (<code>Intersects() == true</code>). Attempting to add an interval that overlaps any existing interval throws an <code>OverlapException</code>.</li>
+<li><strong>Automatic Ordering</strong>: Intervals in the set are always maintained in sorted order by their <code>Start</code> boundary (using <code>IntervalStartComparer&lt;TBoundary&gt;</code>). Direct indexed insertion (<code>Insert</code>) is not supported and throws <code>NotSupportedException</code>.</li>
+<li><strong>Length Measurement Integration</strong>: Each set holds an <code>ILengthOperator&lt;TBoundary, TLength&gt;</code> which allows operations such as consolidation, joins, and computing the bounding interval.</li>
+</ol>
+<h2 id="creating-an-interval-set">Creating an Interval Set</h2>
+<h3 id="constructors">Constructors</h3>
+<p>You can instantiate a <code>DisjointIntervalSet</code> directly using an <code>ILengthOperator</code>:</p>
+<pre><code class="language-csharp">var lengthOperator = IntDefaultLengthOperator.Instance;
+
+// Empty set
+var set = new DisjointIntervalSet&lt;int, int&gt;(lengthOperator);
+
+// Initialized with array or params
+var setWithParams = new DisjointIntervalSet&lt;int, int&gt;(
+    lengthOperator,
+    IntInterval.CreateClosed(1, 3),
+    IntInterval.CreateClosed(5, 8)
+);
+
+// Initialized from an IEnumerable
+var intervals = new List&lt;IBasicInterval&lt;int&gt;&gt;
+{
+    IntInterval.CreateClosed(1, 3),
+    IntInterval.CreateClosed(5, 8)
+};
+var setFromEnumerable = new DisjointIntervalSet&lt;int, int&gt;(lengthOperator, intervals);
+</code></pre>
+<h3 id="from-interval-operations">From Interval Operations</h3>
+<p>Interval sets are also returned naturally from interval operations:</p>
+<ul>
+<li><strong>From a single interval</strong>: <code>interval.ToIntervalSet()</code></li>
+<li><strong>Interval subtraction</strong>: <code>intervalA.Subtract(intervalB)</code> returns a <code>DisjointIntervalSet</code> representing the remaining segments.</li>
+<li><strong>Interval union</strong>: <code>intervalA.Union(intervalB, lengthOperator)</code> returns a <code>DisjointIntervalSet</code> containing both intervals.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<p><code>IDisjointIntervalSet&lt;TBoundary, TLength&gt;</code> exposes several properties to inspect the overall bounds and structure of the set:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Start</code></td>
+<td style="text-align: left;"><code>TBoundary</code></td>
+<td style="text-align: left;">The earliest start boundary among all contained intervals.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>StartIncluded</code></td>
+<td style="text-align: left;"><code>bool</code></td>
+<td style="text-align: left;">Whether the start boundary of the earliest interval is included.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>End</code></td>
+<td style="text-align: left;"><code>TBoundary</code></td>
+<td style="text-align: left;">The latest end boundary among all contained intervals.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>EndIncluded</code></td>
+<td style="text-align: left;"><code>bool</code></td>
+<td style="text-align: left;">Whether the end boundary of the latest interval is included.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>IsContiguous</code></td>
+<td style="text-align: left;"><code>bool</code></td>
+<td style="text-align: left;"><code>true</code> if all contained intervals are contiguous (i.e. mergeable into a single interval with no gaps) or if the set has fewer than 2 intervals.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Count</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">The total number of disjoint intervals currently in the set.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>LengthOperator</code></td>
+<td style="text-align: left;"><code>ILengthOperator&lt;TBoundary, TLength&gt;</code></td>
+<td style="text-align: left;">The length operator used for interval calculations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="collection-operations">Collection Operations</h2>
+<p><code>DisjointIntervalSet&lt;TBoundary, TLength&gt;</code> implements <code>IList&lt;IBasicInterval&lt;TBoundary&gt;&gt;</code> and <code>ICollection&lt;IBasicInterval&lt;TBoundary&gt;&gt;</code>:</p>
+<ul>
+<li><code>Add(IBasicInterval&lt;TBoundary&gt; item)</code>: Adds an interval to the set. Throws <code>OverlapException</code> if the interval overlaps an existing interval.</li>
+<li><code>Remove(IBasicInterval&lt;TBoundary&gt; item)</code>: Removes the specified interval from the set.</li>
+<li><code>Contains(IBasicInterval&lt;TBoundary&gt; item)</code>: Checks whether the specified interval exists in the set.</li>
+<li><code>Clear()</code>: Removes all intervals from the set.</li>
+<li><code>this[int index]</code>: Accesses an interval by its sorted index.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<p>Ephemeral provides dedicated extension methods for <code>IDisjointIntervalSet&lt;TBoundary, TLength&gt;</code>. Each method is documented on its own page:</p>
+<ul>
+<li><strong><a href="consolidate/"><code>Consolidate()</code></a></strong>: Merges adjacent, contiguous intervals into a minimal number of continuous intervals.</li>
+<li><strong><a href="covers/"><code>Covers()</code></a></strong>: Checks if a point or interval is completely covered by the intervals in the set.</li>
+<li><strong><a href="intersect/"><code>Intersect()</code></a></strong>: Computes the intersection between an interval and each interval in the set.</li>
+<li><strong><a href="join/"><code>Join()</code></a></strong>: Merges an interval or another interval set into the set, combining overlapping intervals.</li>
+<li><strong><a href="get-bounding-interval/"><code>GetBoundingInterval()</code></a></strong>: Returns an <code>Option</code> containing the minimal interval spanning from the earliest start to the latest end of the set, or <code>Option.None</code> when empty.</li>
+</ul>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="../basic-intervals/">Basic Intervals</a></li>
+<li><a href="../full-intervals/">Full Intervals</a></li>
+<li><a href="../custom-intervals/">Custom Intervals</a></li>
+<li><a href="../methods/">Methods Overview</a></li>
+<li><a href="../">Home</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../search/main.js"></script>
+      
+    
+  </body>
+</html>

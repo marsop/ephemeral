@@ -1,0 +1,1457 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Alberto Gregorio">
+      
+      
+        <link rel="canonical" href="https://albertogregorio.com/ephemeral/basic-intervals/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../full-intervals/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Basic Intervals - Ephemeral</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-intervals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ephemeral" class="md-header__button md-logo" aria-label="Ephemeral" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ephemeral
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basic Intervals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/marsop/ephemeral/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ephemeral" class="md-nav__button md-logo" aria-label="Ephemeral" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Ephemeral
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/marsop/ephemeral/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Basic Intervals
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Basic Intervals
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-ibasicintervaltboundary-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      The IBasicInterval&lt;TBoundary&gt; Interface
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The IBasicInterval<TBoundary> Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boundary-inclusivity-and-mathematical-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boundary Inclusivity and Mathematical Notation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validity-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validity Rules
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-intervals-provided-basicintervaltboundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Intervals Provided: BasicInterval&lt;TBoundary&gt;
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Intervals Provided: BasicInterval<TBoundary>">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructors-and-factory-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors and Factory Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generic-boundary-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generic Boundary Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods-for-basic-intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods for Basic Intervals
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods for Basic Intervals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pure-boundary-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pure Boundary Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pure Boundary Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coverstboundary-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Covers(TBoundary point)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coversibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Covers(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersectsibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersects(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersectibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersect(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joinibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Join(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iscontiguouslyfollowedbyibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      IsContiguouslyFollowedBy(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iscontiguouslyprecededbyibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      IsContiguouslyPrecededBy(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startsbeforeibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      StartsBefore(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isvalidinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      IsValidInterval()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isequivalentintervaltoibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      IsEquivalentIntervalTo(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metric-assisted-extension-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric-Assisted Extension Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metric-Assisted Extension Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#measuremeasurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Measure(measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#withmeasuremeasurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      WithMeasure(measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftoffset-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shift(offset, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftstartoffset-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShiftStart(offset, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftendoffset-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShiftEnd(offset, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lengthofintersectother-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      LengthOfIntersect(other, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subtractother-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subtract(other, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unionother-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Union(other, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitionstep-measurer-intermediateendsclosed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition(step, measurer, intermediateEndsClosed)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../full-intervals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Intervals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Interval Sets
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Interval Sets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/consolidate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Consolidate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/covers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Covers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/intersect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intersect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/join/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/get-bounding-interval/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GetBoundingInterval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-intervals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Intervals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/marsop/ephemeral/blob/master/CHANGELOG.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-ibasicintervaltboundary-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      The IBasicInterval&lt;TBoundary&gt; Interface
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The IBasicInterval<TBoundary> Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boundary-inclusivity-and-mathematical-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boundary Inclusivity and Mathematical Notation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validity-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validity Rules
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-intervals-provided-basicintervaltboundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Intervals Provided: BasicInterval&lt;TBoundary&gt;
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Intervals Provided: BasicInterval<TBoundary>">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constructors-and-factory-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constructors and Factory Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generic-boundary-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generic Boundary Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods-for-basic-intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods for Basic Intervals
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods for Basic Intervals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pure-boundary-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pure Boundary Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pure Boundary Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coverstboundary-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Covers(TBoundary point)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coversibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Covers(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersectsibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersects(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intersectibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intersect(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joinibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Join(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iscontiguouslyfollowedbyibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      IsContiguouslyFollowedBy(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iscontiguouslyprecededbyibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      IsContiguouslyPrecededBy(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startsbeforeibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      StartsBefore(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isvalidinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      IsValidInterval()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isequivalentintervaltoibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      IsEquivalentIntervalTo(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metric-assisted-extension-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric-Assisted Extension Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metric-Assisted Extension Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#measuremeasurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Measure(measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#withmeasuremeasurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      WithMeasure(measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftoffset-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shift(offset, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftstartoffset-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShiftStart(offset, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftendoffset-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShiftEnd(offset, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lengthofintersectother-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      LengthOfIntersect(other, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subtractother-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subtract(other, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unionother-measurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Union(other, measurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitionstep-measurer-intermediateendsclosed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition(step, measurer, intermediateEndsClosed)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="basic-intervals">Basic Intervals</h1>
+<p>A <strong>Basic Interval</strong> represents a continuous range between two boundary points (<code>Start</code> and <code>End</code>) of any comparable type. In Ephemeral, basic intervals are modeled by the <code>IBasicInterval&lt;TBoundary&gt;</code> interface and its canonical implementation, <code>BasicInterval&lt;TBoundary&gt;</code>.</p>
+<p>Unlike full intervals, basic intervals do not require arithmetic operations, distance metrics, or length calculation. They require only that the boundary type implements <code>IComparable&lt;TBoundary&gt;</code>, making them suitable for numbers, timestamps, strings, versions, or custom domain entities.</p>
+<hr />
+<h2 id="the-ibasicintervaltboundary-interface">The <code>IBasicInterval&lt;TBoundary&gt;</code> Interface</h2>
+<p>The <code>IBasicInterval&lt;TBoundary&gt;</code> interface defines the foundational contract for all intervals in Ephemeral:</p>
+<pre><code class="language-csharp">namespace Marsop.Ephemeral.Core;
+
+public interface IBasicInterval&lt;TBoundary&gt;
+    where TBoundary : notnull, IComparable&lt;TBoundary&gt;
+{
+    /// &lt;summary&gt;
+    /// Gets the starting point of the interval.
+    /// &lt;/summary&gt;
+    TBoundary Start { get; }
+
+    /// &lt;summary&gt;
+    /// Gets a value indicating whether the start is included in the interval.
+    /// &lt;/summary&gt;
+    bool StartIncluded { get; }
+
+    /// &lt;summary&gt;
+    /// Gets the final point of the interval.
+    /// &lt;/summary&gt;
+    TBoundary End { get; }
+
+    /// &lt;summary&gt;
+    /// Gets a value indicating whether the end is included in the interval.
+    /// &lt;/summary&gt;
+    bool EndIncluded { get; }
+}
+</code></pre>
+<h3 id="boundary-inclusivity-and-mathematical-notation">Boundary Inclusivity and Mathematical Notation</h3>
+<p>Ephemeral supports open, closed, and half-open intervals:</p>
+<ul>
+<li><strong>Closed <code>[a, b]</code></strong>: Both <code>Start</code> and <code>End</code> are included (<code>StartIncluded = true</code>, <code>EndIncluded = true</code>). Contains all $x$ such that $a \le x \le b$.</li>
+<li><strong>Open <code>(a, b)</code></strong>: Neither endpoint is included (<code>StartIncluded = false</code>, <code>EndIncluded = false</code>). Contains all $x$ such that $a &lt; x &lt; b$.</li>
+<li><strong>Right-Open / Half-Open <code>[a, b)</code></strong>: Start is included, end is excluded (<code>StartIncluded = true</code>, <code>EndIncluded = false</code>). Contains all $x$ such that $a \le x &lt; b$.</li>
+<li><strong>Left-Open / Half-Open <code>(a, b]</code></strong>: Start is excluded, end is included (<code>StartIncluded = false</code>, <code>EndIncluded = true</code>). Contains all $x$ such that $a &lt; x \le b$.</li>
+<li><strong>Degenerate Point <code>[a, a]</code></strong>: A single-point interval where <code>Start</code> equals <code>End</code> and both are included.</li>
+</ul>
+<h3 id="validity-rules">Validity Rules</h3>
+<p>An interval is valid if:</p>
+<p>$$\text{Start} &lt; \text{End} \quad \text{or} \quad (\text{Start} = \text{End} \land \text{StartIncluded} \land \text{EndIncluded})$$</p>
+<p>If <code>Start &gt; End</code>, or if <code>Start == End</code> while either boundary is open (e.g. <code>(a, a)</code>), attempting to instantiate the interval throws an <code>InvalidLengthException</code>.</p>
+<hr />
+<h2 id="basic-intervals-provided-basicintervaltboundary">Basic Intervals Provided: <code>BasicInterval&lt;TBoundary&gt;</code></h2>
+<p>Ephemeral provides <code>BasicInterval&lt;TBoundary&gt;</code> as the primary immutable implementation of <code>IBasicInterval&lt;TBoundary&gt;</code>.</p>
+<h3 id="constructors-and-factory-methods">Constructors and Factory Methods</h3>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Core;
+
+// Direct constructor
+var interval = new BasicInterval&lt;int&gt;(1, 10, startIncluded: true, endIncluded: false); // [1, 10)
+
+// Static factory methods
+var closed = BasicInterval&lt;int&gt;.CreateClosed(1, 10); // [1, 10]
+var open = BasicInterval&lt;int&gt;.CreateOpen(1, 10);     // (1, 10)
+var point = BasicInterval&lt;int&gt;.CreatePoint(5);       // [5, 5]
+
+// Copying from any IBasicInterval implementation
+var copy = BasicInterval&lt;int&gt;.From(closed);
+</code></pre>
+<h3 id="generic-boundary-usage">Generic Boundary Usage</h3>
+<p>Because <code>BasicInterval&lt;TBoundary&gt;</code> works with any <code>IComparable&lt;TBoundary&gt;</code>, you can create intervals over types where arithmetic distance has no standard meaning, such as strings:</p>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Core;
+
+var directoryRange = BasicInterval&lt;string&gt;.CreateClosed(&quot;apple&quot;, &quot;orange&quot;);
+
+directoryRange.Covers(&quot;banana&quot;); // returns true
+directoryRange.Covers(&quot;zebra&quot;);  // returns false
+directoryRange.ToString();       // &quot;[apple, orange]&quot;
+</code></pre>
+<hr />
+<h2 id="methods-for-basic-intervals">Methods for Basic Intervals</h2>
+<p>Methods available on <code>IBasicInterval&lt;TBoundary&gt;</code> are divided into two categories:</p>
+<ol>
+<li><strong>Pure Boundary Methods</strong>: Require only boundary comparisons (<code>IComparable&lt;TBoundary&gt;</code>).</li>
+<li><strong>Metric-Assisted Extension Methods</strong>: Accept an explicit <code>ILengthOperator&lt;TBoundary, TLength&gt;</code> or <code>ICanMeasure&lt;TBoundary, TLength&gt;</code> parameter to perform translations and metric calculations.</li>
+</ol>
+<hr />
+<h3 id="pure-boundary-methods">Pure Boundary Methods</h3>
+<p>These methods require no length operator and work directly on any <code>IBasicInterval&lt;TBoundary&gt;</code>.</p>
+<h4 id="coverstboundary-point"><code>Covers(TBoundary point)</code></h4>
+<p>Checks whether a specific point is contained within the interval, taking endpoint inclusion into account.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+
+A.Covers(2.0) -&gt; true
+A.Covers(4.0) -&gt; true
+A.Covers(7.0) -&gt; false
+</code></pre>
+<pre><code class="language-csharp">var interval = BasicInterval&lt;double&gt;.CreateClosed(2.0, 6.0);
+interval.Covers(2.0); // true
+interval.Covers(7.0); // false
+</code></pre>
+<h4 id="coversibasicintervaltboundary-other"><code>Covers(IBasicInterval&lt;TBoundary&gt; other)</code></h4>
+<p>Checks whether this interval completely encloses another interval.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======================]  (A = [2, 8])
+Interval B:                 [=======]          (B = [4, 6])
+
+A.Covers(B)     -&gt;  true
+</code></pre>
+<pre><code class="language-csharp">var a = BasicInterval&lt;int&gt;.CreateClosed(2, 8);
+var b = BasicInterval&lt;int&gt;.CreateClosed(4, 6);
+a.Covers(b); // true
+b.Covers(a); // false
+</code></pre>
+<h4 id="intersectsibasicintervaltboundary-other"><code>Intersects(IBasicInterval&lt;TBoundary&gt; other)</code></h4>
+<p>Returns <code>true</code> if this interval and <code>other</code> have at least one common point; otherwise <code>false</code>.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+Interval B:                 [===============]  (B = [4, 8])
+
+A.Intersects(B) -&gt;  true
+</code></pre>
+<pre><code class="language-csharp">var a = BasicInterval&lt;int&gt;.CreateClosed(2, 6);
+var b = BasicInterval&lt;int&gt;.CreateClosed(4, 8);
+a.Intersects(b); // true
+</code></pre>
+<h4 id="intersectibasicintervaltboundary-other"><code>Intersect(IBasicInterval&lt;TBoundary&gt; other)</code></h4>
+<p>Calculates the overlapping region between two intervals, returning an <code>Option&lt;BasicInterval&lt;TBoundary&gt;&gt;</code>. If the intervals do not overlap, returns <code>Option.None</code>.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+Interval B:                 [===============]  (B = [4, 8])
+
+A.Intersect(B)  -&gt;          [=======]          ([4, 6])
+</code></pre>
+<pre><code class="language-csharp">var a = BasicInterval&lt;int&gt;.CreateClosed(2, 6);
+var b = BasicInterval&lt;int&gt;.CreateClosed(4, 8);
+
+Option&lt;BasicInterval&lt;int&gt;&gt; overlap = a.Intersect(b);
+if (overlap.HasValue)
+{
+    Console.WriteLine(overlap.ValueOrFailure()); // [4, 6]
+}
+</code></pre>
+<h4 id="joinibasicintervaltboundary-other"><code>Join(IBasicInterval&lt;TBoundary&gt; other)</code></h4>
+<p>Combines two overlapping or contiguous intervals into a single encompassing interval. Throws <code>ArgumentException</code> if the intervals are disjoint with a gap.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+Interval B:                 [===============]  (B = [4, 8])
+
+A.Join(B)       -&gt;  [=======================]  ([2, 8])
+</code></pre>
+<pre><code class="language-csharp">var a = BasicInterval&lt;int&gt;.CreateClosed(2, 6);
+var b = BasicInterval&lt;int&gt;.CreateClosed(4, 8);
+BasicInterval&lt;int&gt; merged = a.Join(b); // [2, 8]
+</code></pre>
+<h4 id="iscontiguouslyfollowedbyibasicintervaltboundary-other"><code>IsContiguouslyFollowedBy(IBasicInterval&lt;TBoundary&gt; other)</code></h4>
+<p>Checks if <code>other</code> starts exactly at the boundary where this interval ends without overlapping (e.g. <code>[2, 4)</code> and <code>[4, 6]</code>).</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======)                  (A = [2, 4))
+Interval B:                 [=======]          (B = [4, 6])
+
+A.IsContiguouslyFollowedBy(B) -&gt; true
+</code></pre>
+<pre><code class="language-csharp">var a = new BasicInterval&lt;int&gt;(2, 4, true, false); // [2, 4)
+var b = new BasicInterval&lt;int&gt;(4, 6, true, true);  // [4, 6]
+a.IsContiguouslyFollowedBy(b); // true
+</code></pre>
+<h4 id="iscontiguouslyprecededbyibasicintervaltboundary-other"><code>IsContiguouslyPrecededBy(IBasicInterval&lt;TBoundary&gt; other)</code></h4>
+<p>Checks if <code>other</code> ends exactly where this interval starts without overlapping.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:                 [=======]          (A = [4, 6])
+Interval B:         [=======)                  (B = [2, 4))
+
+A.IsContiguouslyPrecededBy(B) -&gt; true
+</code></pre>
+<pre><code class="language-csharp">var a = new BasicInterval&lt;int&gt;(4, 6, true, true);  // [4, 6]
+var b = new BasicInterval&lt;int&gt;(2, 4, true, false); // [2, 4)
+a.IsContiguouslyPrecededBy(b); // true
+</code></pre>
+<h4 id="startsbeforeibasicintervaltboundary-other"><code>StartsBefore(IBasicInterval&lt;TBoundary&gt; other)</code></h4>
+<p>Checks if this interval starts before <code>other</code>. If start points are equal, an included start boundary is considered to start before an excluded start boundary.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+Interval B:                 [=======]          (B = [4, 6])
+
+A.StartsBefore(B) -&gt; true
+</code></pre>
+<h4 id="isvalidinterval"><code>IsValidInterval()</code></h4>
+<p>Checks whether the interval satisfies the boundary invariant (<code>Start &lt; End</code>, or <code>Start == End</code> with both boundaries included). Operations on <code>IBasicInterval&lt;TBoundary&gt;</code> validate this invariant and throw <code>InvalidLengthException</code> when violated.</p>
+<pre><code class="language-csharp">bool valid = interval.IsValidInterval();
+</code></pre>
+<h4 id="isequivalentintervaltoibasicintervaltboundary-other"><code>IsEquivalentIntervalTo(IBasicInterval&lt;TBoundary&gt; other)</code></h4>
+<p>Checks whether two intervals are mathematically identical (equal <code>Start</code>, <code>End</code>, <code>StartIncluded</code>, and <code>EndIncluded</code>).</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+Interval B:         [=======]                  (B = [2, 4])
+Interval C:         [=======)                  (C = [2, 4))
+
+A.IsEquivalentIntervalTo(B) -&gt; true
+A.IsEquivalentIntervalTo(C) -&gt; false
+</code></pre>
+<hr />
+<h3 id="metric-assisted-extension-methods">Metric-Assisted Extension Methods</h3>
+<p>When you need metric calculations on basic intervals, you can pass an explicit <code>ILengthOperator&lt;TBoundary, TLength&gt;</code> or <code>ICanMeasure&lt;TBoundary, TLength&gt;</code>.</p>
+<h4 id="measuremeasurer"><code>Measure(measurer)</code></h4>
+<p>Computes the length of the basic interval using the provided measurer.</p>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Numerics;
+
+var interval = BasicInterval&lt;double&gt;.CreateClosed(2.0, 6.0);
+double length = interval.Measure(DoubleDefaultLengthOperator.Instance); // 4.0
+</code></pre>
+<h4 id="withmeasuremeasurer"><code>WithMeasure(measurer)</code></h4>
+<p>Wraps the basic interval into a <code>BasicMeasuredInterval&lt;TBoundary, TLength&gt;</code> that caches the measured length.</p>
+<pre><code class="language-csharp">BasicMeasuredInterval&lt;double, double&gt; measured = 
+    interval.WithMeasure(DoubleDefaultLengthOperator.Instance);
+double len = measured.DefaultMeasure(); // 4.0
+</code></pre>
+<h4 id="shiftoffset-measurer"><code>Shift(offset, measurer)</code></h4>
+<p>Shifts both <code>Start</code> and <code>End</code> boundaries by <code>offset</code>.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+
+A.Shift(4)      -&gt;                  [=======]  ([6, 8])
+</code></pre>
+<pre><code class="language-csharp">var shifted = interval.Shift(4.0, DoubleDefaultLengthOperator.Instance);
+</code></pre>
+<h4 id="shiftstartoffset-measurer"><code>ShiftStart(offset, measurer)</code></h4>
+<p>Shifts only the <code>Start</code> boundary by <code>offset</code>.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+
+A.ShiftStart(2) -&gt;          [=======]          ([4, 6])
+</code></pre>
+<h4 id="shiftendoffset-measurer"><code>ShiftEnd(offset, measurer)</code></h4>
+<p>Shifts only the <code>End</code> boundary by <code>offset</code>.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+
+A.ShiftEnd(2)   -&gt;  [=======================]  ([2, 8])
+</code></pre>
+<h4 id="lengthofintersectother-measurer"><code>LengthOfIntersect(other, measurer)</code></h4>
+<p>Calculates the metric length of the intersection between two intervals. Returns <code>Zero()</code> if disjoint.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+Interval B:                 [===============]  (B = [4, 8])
+
+A.LengthOfIntersect(B) -&gt; 2
+</code></pre>
+<h4 id="subtractother-measurer"><code>Subtract(other, measurer)</code></h4>
+<p>Subtracts <code>other</code> from this interval, returning a <code>DisjointIntervalSet&lt;TBoundary, TLength&gt;</code> of the remaining pieces.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======================]  (A = [2, 8])
+Interval B:                 [=======]          (B = [4, 6])
+
+A.Subtract(B)   -&gt;  [=======)       (=======]  ([2, 4) and (6, 8])
+</code></pre>
+<h4 id="unionother-measurer"><code>Union(other, measurer)</code></h4>
+<p>Combines two intervals into a <code>DisjointIntervalSet&lt;TBoundary, TLength&gt;</code>. If they do not overlap, the set contains both separate intervals; if they overlap, they are merged.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+Interval B:                         [=======]  (B = [6, 8])
+
+A.Union(B)      -&gt;  [=======]       [=======]  ([2, 4] and [6, 8])
+</code></pre>
+<h4 id="partitionstep-measurer-intermediateendsclosed"><code>Partition(step, measurer, intermediateEndsClosed)</code></h4>
+<p>Splits the interval into contiguous sub-intervals of length <code>step</code>.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======================]          (A = [2, 8])
+
+A.Partition(2) -&gt;   [=======)                          ([2, 4))
+                            [=======)                  ([4, 6))
+                                    [=======]          ([6, 8])
+</code></pre>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Explore <a href="../full-intervals/">Full Intervals</a> to use intervals with built-in length operators.</li>
+<li>Explore <a href="../interval-sets/">Interval Sets</a> to manage collections of disjoint intervals.</li>
+<li>Explore <a href="../custom-intervals/">Custom Intervals</a> to define intervals for your own domain types.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../search/main.js"></script>
+      
+    
+  </body>
+</html>

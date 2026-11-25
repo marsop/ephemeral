@@ -1,0 +1,1372 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Alberto Gregorio">
+      
+      
+        <link rel="canonical" href="https://albertogregorio.com/ephemeral/full-intervals/">
+      
+      
+        <link rel="prev" href="../basic-intervals/">
+      
+      
+        <link rel="next" href="../interval-sets/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Full Intervals - Ephemeral</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#full-intervals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ephemeral" class="md-header__button md-logo" aria-label="Ephemeral" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ephemeral
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Full Intervals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/marsop/ephemeral/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ephemeral" class="md-nav__button md-logo" aria-label="Ephemeral" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Ephemeral
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/marsop/ephemeral/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-intervals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Intervals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Full Intervals
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Full Intervals
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-and-core-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture and Core Hierarchy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture and Core Hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-fullintervaltboundary-tlength-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      The FullInterval&lt;TBoundary, TLength&gt; Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-role-of-ilengthoperatortboundary-tlength" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Role of ILengthOperator&lt;TBoundary, TLength&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-full-interval-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Full Interval Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Full Interval Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datetimeoffsetinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      DateTimeOffsetInterval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      IntInterval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doubleinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoubleInterval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dateonlyinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      DateOnlyInterval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeonlyinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      TimeOnlyInterval
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#factory-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Factory Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-interval-methods-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full Interval Methods Explained
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Full Interval Methods Explained">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defaultmeasure" class="md-nav__link">
+    <span class="md-ellipsis">
+      DefaultMeasure()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shifttlength-offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shift(TLength offset)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftstarttlength-offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShiftStart(TLength offset)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftendtlength-offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShiftEnd(TLength offset)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lengthofintersectibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      LengthOfIntersect(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subtractibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subtract(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tointervalset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToIntervalSet()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitiontlength-step-bool-intermediateendsclosed-false" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition(TLength step, bool intermediateEndsClosed = false)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inherited-basic-interval-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inherited Basic Interval Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scheduling-and-meeting-shifts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scheduling and Meeting Shifts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dateonly-working-periods-net-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      DateOnly Working Periods (.NET 6+)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Interval Sets
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Interval Sets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/consolidate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Consolidate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/covers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Covers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/intersect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intersect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/join/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Join
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval-sets/get-bounding-interval/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GetBoundingInterval
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-intervals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Intervals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/marsop/ephemeral/blob/master/CHANGELOG.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-and-core-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture and Core Hierarchy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture and Core Hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-fullintervaltboundary-tlength-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      The FullInterval&lt;TBoundary, TLength&gt; Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-role-of-ilengthoperatortboundary-tlength" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Role of ILengthOperator&lt;TBoundary, TLength&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-in-full-interval-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Full Interval Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Full Interval Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datetimeoffsetinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      DateTimeOffsetInterval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      IntInterval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doubleinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoubleInterval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dateonlyinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      DateOnlyInterval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeonlyinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      TimeOnlyInterval
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#factory-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Factory Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-interval-methods-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full Interval Methods Explained
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Full Interval Methods Explained">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defaultmeasure" class="md-nav__link">
+    <span class="md-ellipsis">
+      DefaultMeasure()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shifttlength-offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shift(TLength offset)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftstarttlength-offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShiftStart(TLength offset)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shiftendtlength-offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ShiftEnd(TLength offset)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lengthofintersectibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      LengthOfIntersect(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subtractibasicintervaltboundary-other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subtract(IBasicInterval&lt;TBoundary&gt; other)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tointervalset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ToIntervalSet()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitiontlength-step-bool-intermediateendsclosed-false" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition(TLength step, bool intermediateEndsClosed = false)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inherited-basic-interval-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inherited Basic Interval Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scheduling-and-meeting-shifts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scheduling and Meeting Shifts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dateonly-working-periods-net-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      DateOnly Working Periods (.NET 6+)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="full-intervals">Full Intervals</h1>
+<p>A <strong>Full Interval</strong> (<code>FullInterval&lt;TBoundary, TLength&gt;</code>) extends a basic interval by incorporating an intrinsic length metric and translation arithmetic via an <code>ILengthOperator&lt;TBoundary, TLength&gt;</code>.</p>
+<p>While basic intervals require callers to supply an explicit length operator for metric-dependent operations, full intervals carry their own operator natively. This enables streamlined, natural syntax for measuring, shifting, subtracting, and partitioning intervals.</p>
+<hr />
+<h2 id="architecture-and-core-hierarchy">Architecture and Core Hierarchy</h2>
+<p>The full interval architecture links boundary comparisons with metric distance calculations:</p>
+<pre><code class="language-text">IBasicInterval&lt;TBoundary&gt;          IHasLength&lt;TLength&gt;
+        ▲                                   ▲
+        │                                   │
+ BasicInterval&lt;TBoundary&gt;   AbstractMeasuredInterval&lt;TBoundary, TLength&gt;
+                                            ▲
+                                            │
+                               FullInterval&lt;TBoundary, TLength&gt;
+                                            ▲
+                  ┌─────────────────────────┼─────────────────────────┐
+                  │                         │                         │
+        DateTimeOffsetInterval         IntInterval              DoubleInterval
+        (DateOnlyInterval / TimeOnlyInterval in .NET 6+)
+</code></pre>
+<h3 id="the-fullintervaltboundary-tlength-class">The <code>FullInterval&lt;TBoundary, TLength&gt;</code> Class</h3>
+<pre><code class="language-csharp">namespace Marsop.Ephemeral.Core;
+
+public abstract record FullInterval&lt;TBoundary, TLength&gt; :
+    AbstractMeasuredInterval&lt;TBoundary, TLength&gt;
+    where TBoundary : notnull, IComparable&lt;TBoundary&gt;
+{
+    protected FullInterval(TBoundary start, TBoundary end, bool startIncluded, bool endIncluded)
+        : base(start, end, startIncluded, endIncluded)
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// Gets the length operator associated with this interval.
+    /// &lt;/summary&gt;
+    public abstract ILengthOperator&lt;TBoundary, TLength&gt; Operator { get; }
+
+    /// &lt;summary&gt;
+    /// Measures the interval using its intrinsic operator.
+    /// &lt;/summary&gt;
+    public override TLength DefaultMeasure() =&gt; Operator.Measure(this);
+}
+</code></pre>
+<h3 id="the-role-of-ilengthoperatortboundary-tlength">The Role of <code>ILengthOperator&lt;TBoundary, TLength&gt;</code></h3>
+<p>The <code>ILengthOperator</code> provides three key operations:</p>
+<ol>
+<li><strong><code>Apply(TBoundary boundary, TLength length) : TBoundary</code></strong>: Translates a boundary forward by a length offset.</li>
+<li><strong><code>Measure(IBasicInterval&lt;TBoundary&gt; interval) : TLength</code></strong>: Calculates the distance between <code>End</code> and <code>Start</code>.</li>
+<li><strong><code>Zero() : TLength</code></strong>: Returns the zero/identity value for <code>TLength</code>.</li>
+</ol>
+<p>Depending on the interval type, <code>TLength</code> can either match <code>TBoundary</code> or represent a distinct difference type:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Interval Class</th>
+<th style="text-align: left;">Boundary Type (<code>TBoundary</code>)</th>
+<th style="text-align: left;">Length Type (<code>TLength</code>)</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>DateTimeOffsetInterval</code></td>
+<td style="text-align: left;"><code>DateTimeOffset</code></td>
+<td style="text-align: left;"><code>TimeSpan</code></td>
+<td style="text-align: left;">Calendar time intervals measured in durations.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>IntInterval</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Discrete integer intervals.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DoubleInterval</code></td>
+<td style="text-align: left;"><code>double</code></td>
+<td style="text-align: left;"><code>double</code></td>
+<td style="text-align: left;">Continuous numeric intervals on the real line.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DateOnlyInterval</code></td>
+<td style="text-align: left;"><code>DateOnly</code></td>
+<td style="text-align: left;"><code>int</code></td>
+<td style="text-align: left;">Calendar date intervals measured in whole days (.NET 6+).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>TimeOnlyInterval</code></td>
+<td style="text-align: left;"><code>TimeOnly</code></td>
+<td style="text-align: left;"><code>TimeSpan</code></td>
+<td style="text-align: left;">Clock time intervals measured in time durations (.NET 6+).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="built-in-full-interval-classes">Built-in Full Interval Classes</h2>
+<p>Ephemeral provides ready-to-use full interval classes for the most common .NET data types.</p>
+<h3 id="datetimeoffsetinterval"><code>DateTimeOffsetInterval</code></h3>
+<p>Targets <code>.NET Standard 2.0+</code>. Represents a timeline range between two points in time.</p>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Temporal;
+
+var start = DateTimeOffset.UtcNow;
+var end = start.AddHours(2);
+
+var meeting = DateTimeOffsetInterval.CreateClosed(start, end);
+TimeSpan duration = meeting.DefaultMeasure(); // 02:00:00
+</code></pre>
+<h3 id="intinterval"><code>IntInterval</code></h3>
+<p>Targets <code>.NET Standard 2.0+</code>. Represents a range over integers.</p>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Numerics;
+
+var pages = IntInterval.CreateClosed(1, 10);
+int pageCount = pages.DefaultMeasure(); // 9 (10 - 1)
+</code></pre>
+<h3 id="doubleinterval"><code>DoubleInterval</code></h3>
+<p>Targets <code>.NET Standard 2.0+</code>. Represents continuous floating-point intervals.</p>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Numerics;
+
+var tolerance = DoubleInterval.CreateClosed(-0.5, 0.5);
+double width = tolerance.DefaultMeasure(); // 1.0
+</code></pre>
+<h3 id="dateonlyinterval"><code>DateOnlyInterval</code></h3>
+<p>Targets <code>.NET 6.0+</code> (<code>Marsop.Ephemeral.Net6</code>). Represents a calendar date range measured in days.</p>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Net6.Temporal;
+
+var q1 = DateOnlyInterval.CreateClosed(new DateOnly(2025, 1, 1), new DateOnly(2025, 3, 31));
+int days = q1.DefaultMeasure(); // 89 days
+</code></pre>
+<h3 id="timeonlyinterval"><code>TimeOnlyInterval</code></h3>
+<p>Targets <code>.NET 6.0+</code> (<code>Marsop.Ephemeral.Net6</code>). Represents a time-of-day interval measured with <code>TimeSpan</code>.</p>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Net6.Temporal;
+
+var shift = TimeOnlyInterval.CreateClosed(new TimeOnly(9, 0), new TimeOnly(17, 0));
+TimeSpan shiftLength = shift.DefaultMeasure(); // 08:00:00
+</code></pre>
+<hr />
+<h2 id="factory-methods">Factory Methods</h2>
+<p>All built-in full interval classes provide standard static factory methods:</p>
+<pre><code class="language-csharp">// Closed: [start, end]
+var closed = DoubleInterval.CreateClosed(2.0, 6.0);
+
+// Open: (start, end)
+var open = DoubleInterval.CreateOpen(2.0, 6.0);
+
+// Point / Degenerate: [point, point]
+var point = DoubleInterval.CreatePoint(42.0);
+</code></pre>
+<hr />
+<h2 id="full-interval-methods-explained">Full Interval Methods Explained</h2>
+<p>Because <code>FullInterval&lt;TBoundary, TLength&gt;</code> carries its own <code>Operator</code>, all methods can be invoked directly without passing length operators.</p>
+<hr />
+<h3 id="defaultmeasure"><code>DefaultMeasure()</code></h3>
+<p>Measures the interval's length from <code>Start</code> to <code>End</code> using the interval's intrinsic operator.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+
+A.DefaultMeasure() -&gt; 4
+</code></pre>
+<pre><code class="language-csharp">var interval = DoubleInterval.CreateClosed(2.0, 6.0);
+double length = interval.DefaultMeasure(); // 4.0
+</code></pre>
+<hr />
+<h3 id="shifttlength-offset"><code>Shift(TLength offset)</code></h3>
+<p>Translates both the <code>Start</code> and <code>End</code> boundaries forward (or backward for negative offsets) by the specified <code>offset</code>.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======]                  (A = [2, 4])
+
+A.Shift(4)      -&gt;                  [=======]  ([6, 8])
+</code></pre>
+<pre><code class="language-csharp">var interval = DoubleInterval.CreateClosed(2.0, 4.0);
+var shifted = interval.Shift(4.0); // [6.0, 8.0]
+</code></pre>
+<hr />
+<h3 id="shiftstarttlength-offset"><code>ShiftStart(TLength offset)</code></h3>
+<p>Translates only the <code>Start</code> boundary by <code>offset</code>. The new start must remain less than or equal to <code>End</code> (or equal if both are closed); otherwise, an <code>InvalidLengthException</code> is thrown.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+
+A.ShiftStart(2) -&gt;          [=======]          ([4, 6])
+</code></pre>
+<pre><code class="language-csharp">var interval = DoubleInterval.CreateClosed(2.0, 6.0);
+var contracted = interval.ShiftStart(2.0); // [4.0, 6.0]
+</code></pre>
+<hr />
+<h3 id="shiftendtlength-offset"><code>ShiftEnd(TLength offset)</code></h3>
+<p>Translates only the <code>End</code> boundary by <code>offset</code>. The new end must remain greater than or equal to <code>Start</code>; otherwise, an <code>InvalidLengthException</code> is thrown.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+
+A.ShiftEnd(2)   -&gt;  [=======================]  ([2, 8])
+</code></pre>
+<pre><code class="language-csharp">var interval = DoubleInterval.CreateClosed(2.0, 6.0);
+var expanded = interval.ShiftEnd(2.0); // [2.0, 8.0]
+</code></pre>
+<hr />
+<h3 id="lengthofintersectibasicintervaltboundary-other"><code>LengthOfIntersect(IBasicInterval&lt;TBoundary&gt; other)</code></h3>
+<p>Computes the metric length of the overlapping region between this interval and <code>other</code>. If the intervals do not intersect, returns <code>Zero()</code>.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [===============]          (A = [2, 6])
+Interval B:                 [===============]  (B = [4, 8])
+
+A.LengthOfIntersect(B) -&gt; 2
+</code></pre>
+<pre><code class="language-csharp">var a = DoubleInterval.CreateClosed(2.0, 6.0);
+var b = DoubleInterval.CreateClosed(4.0, 8.0);
+
+double overlapLen = a.LengthOfIntersect(b); // 2.0
+</code></pre>
+<hr />
+<h3 id="subtractibasicintervaltboundary-other"><code>Subtract(IBasicInterval&lt;TBoundary&gt; other)</code></h3>
+<p>Subtracts <code>other</code> from this interval. The result is returned as a <code>DisjointIntervalSet&lt;TBoundary, TLength&gt;</code> containing zero, one, or two remaining sub-intervals.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======================]  (A = [2, 8])
+Interval B:                 [=======]          (B = [4, 6])
+
+A.Subtract(B)   -&gt;  [=======)       (=======]  ([2, 4) and (6, 8])
+</code></pre>
+<pre><code class="language-csharp">var a = DoubleInterval.CreateClosed(2.0, 8.0);
+var b = DoubleInterval.CreateClosed(4.0, 6.0);
+
+DisjointIntervalSet&lt;double, double&gt; remaining = a.Subtract(b);
+// remaining[0] is [2.0, 4.0)
+// remaining[1] is (6.0, 8.0]
+</code></pre>
+<hr />
+<h3 id="tointervalset"><code>ToIntervalSet()</code></h3>
+<p>Converts this single interval into a <code>DisjointIntervalSet&lt;TBoundary, TLength&gt;</code> containing only this interval.</p>
+<pre><code class="language-csharp">var interval = DoubleInterval.CreateClosed(1.0, 5.0);
+DisjointIntervalSet&lt;double, double&gt; set = interval.ToIntervalSet();
+
+Console.WriteLine(set.Count); // 1
+Console.WriteLine(set[0]);    // [1, 5]
+</code></pre>
+<hr />
+<h3 id="partitiontlength-step-bool-intermediateendsclosed-false"><code>Partition(TLength step, bool intermediateEndsClosed = false)</code></h3>
+<p>Splits the interval into contiguous sub-intervals of length <code>step</code>. </p>
+<p>The <code>intermediateEndsClosed</code> parameter controls the inclusivity of inner boundaries:
+- <code>false</code> (default): inner boundaries are half-open <code>[start, end)</code>.
+- <code>true</code>: inner boundaries are closed <code>[start, end]</code>.</p>
+<pre><code class="language-text">Real Line:  0---1---2---3---4---5---6---7---8---9---10
+
+Interval A:         [=======================]          (A = [2, 8])
+
+A.Partition(2) -&gt;   [=======)                          ([2, 4))
+                            [=======)                  ([4, 6))
+                                    [=======]          ([6, 8])
+</code></pre>
+<pre><code class="language-csharp">var interval = DoubleInterval.CreateClosed(2.0, 8.0);
+DisjointIntervalSet&lt;double, double&gt; chunks = interval.Partition(2.0);
+
+// chunks contains: [2, 4), [4, 6), and [6, 8]
+</code></pre>
+<hr />
+<h3 id="inherited-basic-interval-methods">Inherited Basic Interval Methods</h3>
+<p>Because <code>FullInterval&lt;TBoundary, TLength&gt;</code> inherits <code>BasicInterval&lt;TBoundary&gt;</code>, all boundary-only operations described in <a href="../basic-intervals/">Basic Intervals</a> work directly on full intervals:</p>
+<ul>
+<li><strong><code>Covers(point)</code></strong>: checks if a point is within the interval.</li>
+<li><strong><code>Covers(other)</code></strong>: checks if another interval is completely contained.</li>
+<li><strong><code>Intersects(other)</code></strong>: checks if two intervals overlap.</li>
+<li><strong><code>Intersect(other)</code></strong>: returns <code>Option&lt;BasicInterval&lt;TBoundary&gt;&gt;</code> of the overlap.</li>
+<li><strong><code>Join(other)</code></strong>: merges overlapping/contiguous intervals into one.</li>
+<li><strong><code>IsContiguouslyFollowedBy(other)</code></strong>: checks if <code>other</code> immediately touches the end.</li>
+<li><strong><code>IsContiguouslyPrecededBy(other)</code></strong>: checks if <code>other</code> immediately touches the start.</li>
+<li><strong><code>StartsBefore(other)</code></strong>: checks start boundary ordering.</li>
+<li><strong><code>IsEquivalentIntervalTo(other)</code></strong>: checks mathematical equivalence.</li>
+</ul>
+<pre><code class="language-csharp">var a = DateTimeOffsetInterval.CreateClosed(now, now.AddHours(4));
+var b = DateTimeOffsetInterval.CreateClosed(now.AddHours(1), now.AddHours(2));
+
+bool covers = a.Covers(b); // true
+bool overlaps = a.Intersects(b); // true
+</code></pre>
+<hr />
+<h2 id="practical-examples">Practical Examples</h2>
+<h3 id="scheduling-and-meeting-shifts">Scheduling and Meeting Shifts</h3>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Temporal;
+
+var now = DateTimeOffset.UtcNow;
+var morningMeeting = DateTimeOffsetInterval.CreateClosed(now, now.AddHours(1));
+
+// Shift meeting forward by 24 hours
+var tomorrowMeeting = morningMeeting.Shift(TimeSpan.FromHours(24));
+
+// Verify non-intersection
+bool conflict = morningMeeting.Intersects(tomorrowMeeting); // false
+</code></pre>
+<h3 id="dateonly-working-periods-net-6">DateOnly Working Periods (.NET 6+)</h3>
+<pre><code class="language-csharp">using Marsop.Ephemeral.Net6.Temporal;
+
+var projectPhase1 = DateOnlyInterval.CreateClosed(new DateOnly(2025, 1, 1), new DateOnly(2025, 1, 31));
+var vacation = DateOnlyInterval.CreateClosed(new DateOnly(2025, 1, 15), new DateOnly(2025, 1, 20));
+
+// Subtract vacation days from the project phase
+var workingSegments = projectPhase1.Subtract(vacation);
+// workingSegments contains: [2025-01-01, 2025-01-15) and (2025-01-20, 2025-01-31]
+</code></pre>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Explore <a href="../basic-intervals/">Basic Intervals</a> for lightweight intervals without metric requirements.</li>
+<li>Explore <a href="../interval-sets/">Interval Sets</a> to manage collections of non-overlapping intervals.</li>
+<li>Explore <a href="../custom-intervals/">Custom Intervals</a> to build your own intervals and length operators.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../search/main.js"></script>
+      
+    
+  </body>
+</html>
